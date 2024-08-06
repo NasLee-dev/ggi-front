@@ -1,0 +1,9 @@
+import { NaverMap } from "@/models/Map"
+
+export const fetchMapData = async (): Promise<NaverMap> => {
+  const response = await fetch('/api/map')
+  if (!response.ok) {
+    throw new Error('naver map 로드 실패')
+  }
+  return response.json()
+}

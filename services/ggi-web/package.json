@@ -1,0 +1,30 @@
+{
+  "name": "ggi-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "14.2.5",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@tanstack/react-query": "^5.51.21",
+    "@tanstack/react-query-devtools": "^5.51.21",
+    "@types/navermaps": "^3.7.5",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "axios": "^1.7.3",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.5",
+    "recoil": "^0.7.7",
+    "typescript": "^5",
+    "uuid": "^9.0.1"
+  }
+}

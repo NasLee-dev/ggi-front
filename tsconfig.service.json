@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@ggi/common": ["packages/common/src"],
+      "@ggi/services": ["packages/services/ggi-web/src"]
+    }
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./packages/common"
+    }
+  ]
+}

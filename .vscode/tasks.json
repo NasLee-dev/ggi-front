@@ -1,0 +1,32 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Docker Compose",
+      "type": "shell",
+      "command": "docker-compose",
+      "args": [
+        "up",
+        "-d" // 백그라운드에서 실행할 경우 옵션을 포함
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Stop Docker Compose",
+      "type": "shell",
+      "command": "docker-compose",
+      "args": [
+        "down"
+      ],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}
