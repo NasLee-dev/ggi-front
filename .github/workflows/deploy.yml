@@ -29,3 +29,14 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/ggi-web:latest
+          build-args: |
+            NEXT_PUBLIC_NAVER_MAP_API=${{ secrets.NEXT_PUBLIC_NAVER_MAP_API }}
+            NEXT_PUBLIC_NAVER_MAP_SECRET=${{ secrets.NEXT_PUBLIC_NAVER_MAP_SECRET }}
+            NEXT_PUBLIC_DAWUL_API_KEY=${{ secrets.NEXT_PUBLIC_DAWUL_API_KEY }}
+            NEXT_PUBLIC_NATIONAL_API_KEY=${{ secrets.NEXT_PUBLIC_NATIONAL_API_KEY }}
+            NEXT_PUBLIC_KAKAO_URL=${{ secrets.NEXT_PUBLIC_KAKAO_URL }}
+            NEXT_PUBLIC_KAKAO_API_KEY=${{ secrets.NEXT_PUBLIC_KAKAO_API_KEY }}
+            NEXT_PUBLIC_GONG_GONG_API_KEY=${{ secrets.NEXT_PUBLIC_GONG_GONG_API_KEY }}
+            NEXT_PUBLIC_ADDR_API_KEY=${{ secrets.NEXT_PUBLIC_ADDR_API_KEY }}
+            NEXT_PUBLIC_GONGGONG_KEY=${{ secrets.NEXT_PUBLIC_GONGGONG_KEY }}
+            NEXT_PUBLIC_KAKAO_JS_KEY=${{ secrets.NEXT_PUBLIC_KAKAO_JS_KEY }}
