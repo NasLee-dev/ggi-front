@@ -1,7 +1,7 @@
 import DefaultCheckbox from '@/components/commons/checkbox/DefaultCheckbox'
 import * as S from './style'
-import { Address } from '@/components/deunggi/ContentTop/AddressSearch/api/addressSearh'
 import { useRef, useState } from 'react'
+import { Address } from '@/components/deunggi/ContentTop/AddressSearch/api/addressSearch'
 
 export default function SearchList({
   data,

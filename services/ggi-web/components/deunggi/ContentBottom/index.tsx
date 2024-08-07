@@ -1,6 +1,6 @@
 import TitleBox from '@/components/deunggi/ContentBottom/TitleBox'
 import * as S from './style'
-import SearchListBox from '@/components/deunggi/ContentBottom/SearhListBox'
+import SearchListBox from '@/components/deunggi/ContentBottom/SearchListBox'
 
 export default function ContentBottom() {
   return (

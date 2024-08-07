@@ -1,9 +1,9 @@
 'use client'
 
-import SearchList from '@/components/deunggi/ContentBottom/SearhListBox/SearchList'
 import * as S from './style'
 import { useAddressStore } from '@/store/useAddressStore'
 import { useAddressSearchQuery } from '@/components/deunggi/ContentTop/AddressSearch/hook/useGetAddressSearch'
+import SearchList from '@/components/deunggi/ContentBottom/SearchListBox/SearchList'
 
 export default function SearchListBox() {
   const { address, page } = useAddressStore()

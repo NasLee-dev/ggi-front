@@ -1,7 +1,7 @@
 import {
   AddressResponse,
   fetchAddress,
-} from '@/components/deunggi/ContentTop/AddressSearch/api/addressSearh'
+} from '@/components/deunggi/ContentTop/AddressSearch/api/addressSearch'
 import { useQuery, UseQueryResult } from '@tanstack/react-query'
 
 export function useAddressSearchQuery(
