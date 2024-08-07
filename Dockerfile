@@ -6,6 +6,9 @@ WORKDIR /app
 
 # 패키지 파일들을 복사
 COPY package.json yarn.lock ./
+COPY .env ./
+
+RUN export $(cat .env | xargs)
 
 # 종속성 설치
 RUN yarn install
