@@ -4,7 +4,7 @@ FROM node:18-alpine AS builder
 # 작업 디렉토리 설정
 WORKDIR /app
 
-# 패키지 파일들을 복사
+# 패키지 파일들을 복사 -- 
 COPY package.json yarn.lock ./
 COPY .env ./
 
