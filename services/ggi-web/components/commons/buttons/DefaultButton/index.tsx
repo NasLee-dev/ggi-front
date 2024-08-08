@@ -1,5 +1,5 @@
 import { Button } from '@/components/commons/buttons/DefaultButton/style'
-import { ButtonHTMLAttributes } from 'react'
+import { ButtonHTMLAttributes, MouseEvent } from 'react'
 
 export interface DefaultButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -10,7 +10,7 @@ export interface DefaultButtonProps
   color?: string
   radius?: string
   backColor?: string
-  onClick: () => void
+  onClick: (e: MouseEvent<HTMLButtonElement>) => void
   disabled?: boolean
 }
 

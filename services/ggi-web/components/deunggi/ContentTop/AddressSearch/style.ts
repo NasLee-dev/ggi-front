@@ -26,7 +26,7 @@ export const ContainerTitle = styled.div`
   }
 `
 
-export const SearchContent = styled.div`
+export const SearchContent = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;

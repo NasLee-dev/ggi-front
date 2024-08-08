@@ -2,7 +2,7 @@
 
 import DefaultButton from '@/components/commons/buttons/DefaultButton'
 import * as S from './style'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, MouseEvent, useState } from 'react'
 import { useAddressStore } from '@/store/useAddressStore'
 
 export default function AddressSearch() {
@@ -13,7 +13,9 @@ export default function AddressSearch() {
     setKeyword(e.target.value)
   }
 
-  const handleClickSearch = () => {
+  const handleClickSearch = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+
     if (keyword.length < 3) {
       alert('검색어는 세글자 이상 입력되어야 합니다.')
       return
@@ -33,7 +35,11 @@ export default function AddressSearch() {
           onChange={handleChangeKeyword}
           value={keyword}
         />
-        <DefaultButton text="검색하기" onClick={handleClickSearch} />
+        <DefaultButton
+          type="submit"
+          text="검색하기"
+          onClick={handleClickSearch}
+        />
       </S.SearchContent>
     </S.SearchContainer>
   )
