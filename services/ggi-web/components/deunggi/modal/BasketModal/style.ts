@@ -13,6 +13,7 @@ export const BasketModalContainer = styled.div`
   box-shadow:
     0px 20px 13px rgba(0, 0, 0, 0.03),
     0px 8px 5px rgba(0, 0, 0, 0.08);
+  position: relative;
 `
 
 export const BasketIcon = styled.img`
@@ -27,4 +28,10 @@ export const ModalText = styled.p`
   margin-bottom: 25px;
   line-height: 1.35;
   text-align: center;
+`
+
+export const CloseButton = styled.button`
+  position: absolute;
+  top: 24px;
+  right: 24px;
 `

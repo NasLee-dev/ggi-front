@@ -19,6 +19,9 @@ export default function BasketModal({
 }: BasketModalProps) {
   return (
     <S.BasketModalContainer>
+      <S.CloseButton onClick={onClose}>
+        <img src="/images/close-btn.svg" alt="닫기 버튼" />
+      </S.CloseButton>
       <S.BasketIcon src="/images/basket-icon.png" alt="카트 아이콘" />
       <S.ModalText>{text}</S.ModalText>
       <FlexBetween>
