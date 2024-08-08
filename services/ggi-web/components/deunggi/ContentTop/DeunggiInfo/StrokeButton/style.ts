@@ -4,13 +4,16 @@ import styled from '@emotion/styled'
 
 interface ButtonProps {
   active?: boolean
+  width?: string
+  height?: string
+  radius?: string
 }
 
 export const Button = styled.button<ButtonProps>`
-  width: 160px;
-  height: 50px;
+  width: ${({ width }) => (width ? width : '160px')};
+  height: ${({ height }) => (height ? height : '50px')};
   background-color: ${({ active }) => (active ? '#F3F8FF' : '#fff')};
-  border-radius: 16px;
+  border-radius: ${({ radius }) => (radius ? radius : '16px')};
   font-weight: 700;
   color: ${({ active }) => (active ? '#2563EB' : '#6b7280')};
   font-size: 18px;

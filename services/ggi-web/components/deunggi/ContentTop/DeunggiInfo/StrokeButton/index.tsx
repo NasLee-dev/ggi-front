@@ -6,6 +6,9 @@ export interface StrokeButtonProps
   text: string
   onClick: () => void
   active?: boolean
+  width?: string
+  height?: string
+  radius?: string
 }
 
 export default function StrokeButton({
@@ -13,12 +16,22 @@ export default function StrokeButton({
   onClick,
   disabled,
   active,
+  width,
+  height,
+  radius,
   ...props
 }: StrokeButtonProps) {
   return (
-    <Button onClick={onClick} disabled={disabled} active={active} {...props}>
+    <Button
+      width={width}
+      height={height}
+      radius={radius}
+      onClick={onClick}
+      disabled={disabled}
+      active={active}
+      {...props}
+    >
       {text}
     </Button>
   )
 }
- 

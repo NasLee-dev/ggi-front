@@ -16,11 +16,8 @@ export default function SearchList({
 
   const handleClickCheckbox = () => {
     if (checkboxRef.current) {
-      // checkboxRef.current가 null이 아닌 경우
-      console.log(checkboxRef.current)
       const isChecked = checkboxRef.current.checked
-      setIsCheck(isChecked) // 체크 여부를 상태에 저장
-      console.log('Checkbox checked:', isChecked) // 체크 여부를 콘솔에 출력
+      setIsCheck(isChecked)
     }
   }
 

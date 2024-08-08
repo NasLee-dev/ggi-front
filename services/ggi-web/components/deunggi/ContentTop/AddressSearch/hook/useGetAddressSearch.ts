@@ -13,6 +13,12 @@ export function useAddressSearchQuery(
   const queryFn = async () => {
     const response = await fetchAddress(page, query)
 
+    if (response.statusCode !== '0') {
+      alert(response.msg)
+
+      return
+    }
+
     return response
   }
 

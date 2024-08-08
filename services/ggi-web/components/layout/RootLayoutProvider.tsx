@@ -21,6 +21,7 @@ export default function RootLayoutProvider({
         <ChakraProvider>
           <GlobalStyle />
           {children}
+          <div id="modal-portal"></div>
         </ChakraProvider>
       </CacheProvider>
     </ReactQueryProviders>
