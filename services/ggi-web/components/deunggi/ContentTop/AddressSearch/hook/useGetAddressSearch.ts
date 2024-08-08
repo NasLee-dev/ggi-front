@@ -20,6 +20,6 @@ export function useAddressSearchQuery(
     queryKey,
     queryFn,
     enabled: !!query,
-    staleTime: 5000,
+    staleTime: Infinity,
   })
 }
