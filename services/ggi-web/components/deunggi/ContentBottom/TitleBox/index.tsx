@@ -21,16 +21,34 @@ const MODES = {
 }
 
 export default function TitleBox() {
-  const { mode } = useDeunggiStore()
-  const [isOpenModal, setIsOpenModal] = useState(false)
+  const { mode, setMode } = useDeunggiStore()
+  const [isOpenFirstModal, setIsOpenFirstModal] = useState(false)
+  const [isOpenSecondModal, setIsOpenSecondModal] = useState(false)
 
-  const handleClickBasket = () => setIsOpenModal(true)
-  const handleCloseModal = () => setIsOpenModal(false)
+  const handleClickBasket = () => setIsOpenFirstModal(true)
+  const handleCloseFirstModal = () => setIsOpenFirstModal(false)
+  const handleCloseSecondModal = () => setIsOpenSecondModal(false)
+
+  const handleClickBasketConfirm = () => {
+    handleCloseFirstModal()
+    alert('장바구니 담기 로직')
+    setIsOpenSecondModal(true)
+  }
+
+  const locationBasket = () => {
+    setMode('장바구니')
+    handleCloseSecondModal()
+  }
 
   const renderButtons = () => {
     switch (mode) {
       case MODES.REGISTRATION:
-        return <DefaultButton text={BUTTON_TEXT.basket} onClick={handleClickBasket} />
+        return (
+          <DefaultButton
+            text={BUTTON_TEXT.basket}
+            onClick={handleClickBasket}
+          />
+        )
       case MODES.BASKET:
         return (
           <Flex gap={15}>
@@ -61,11 +79,11 @@ export default function TitleBox() {
         {mode === MODES.REGISTRATION
           ? '검색결과'
           : mode === MODES.BASKET
-          ? '장바구니'
-          : '열람내역'}
+            ? '장바구니'
+            : '열람내역'}
       </S.SearchResultTitle>
       {renderButtons()}
-      <ModalPortal isOpen={isOpenModal} onClose={handleCloseModal}>
+      <ModalPortal isOpen={isOpenFirstModal} onClose={handleCloseFirstModal}>
         <BasketModal
           text={
             <div>
@@ -74,9 +92,22 @@ export default function TitleBox() {
               장바구니에 넣으시겠습니까?
             </div>
           }
-          onClick={() => {}}
-          onClose={handleCloseModal}
+          onClick={handleClickBasketConfirm}
+          onClose={handleCloseFirstModal}
           type="basket"
+        />
+      </ModalPortal>
+      <ModalPortal isOpen={isOpenSecondModal} onClose={handleCloseSecondModal}>
+        <BasketModal
+          text={
+            <div>
+              장바구니에 저장이 완료되었습니다. <br />
+              장바구니로 이동하겠습니까?
+            </div>
+          }
+          onClick={locationBasket}
+          onClose={handleCloseSecondModal}
+          type="complete"
         />
       </ModalPortal>
     </S.TitleContainer>
