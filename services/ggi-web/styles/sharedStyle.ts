@@ -26,3 +26,15 @@ export const FlexBetween = styled.div<FlexBetweenProps>`
   align-items: center;
   margin-bottom: ${({ mb }) => (mb ? `${mb}px` : '0')};
 `
+
+interface FlexProps {
+  mb?: number
+  gap?: number
+}
+
+export const Flex = styled.div<FlexProps>`
+  display: flex;
+  align-items: center;
+  gap: ${({ gap }) => (gap ? `${gap}px` : '0')};
+  margin-bottom: ${({ mb }) => (mb ? `${mb}px` : '0')};
+`

@@ -1,10 +1,10 @@
 import { Button } from '@/components/deunggi/ContentTop/DeunggiInfo/StrokeButton/style'
-import { ButtonHTMLAttributes } from 'react'
+import { ButtonHTMLAttributes, MouseEvent } from 'react'
 
 export interface StrokeButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string
-  onClick: () => void
+  onClick: (e: MouseEvent<HTMLButtonElement>) => void
   active?: boolean
   width?: string
   height?: string

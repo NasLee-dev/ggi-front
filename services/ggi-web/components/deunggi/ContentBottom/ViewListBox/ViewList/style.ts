@@ -26,3 +26,9 @@ export const TableValue = styled.div<TableValueProps>`
   align-items: center;
   line-height: 1.45;
 `
+
+export const DownloadButton = styled.button`
+  &:disabled {
+    cursor: default;
+  }
+`

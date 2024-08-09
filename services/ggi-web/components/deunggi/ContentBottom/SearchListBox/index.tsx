@@ -3,9 +3,10 @@
 import * as S from './style'
 import { useAddressStore } from '@/store/useAddressStore'
 import { useAddressSearchQuery } from '@/components/deunggi/ContentTop/AddressSearch/hook/useGetAddressSearch'
-import SearchList from '@/components/deunggi/ContentBottom/SearchListBox/SearchList'
+
 import DefaultPagination from '@/components/commons/pagination/DefaultPagination'
 import Loading from '@/components/commons/loading/Loading'
+import SearchList from '@/components/deunggi/ContentBottom/SearchListBox/SearchList'
 
 export default function SearchListBox() {
   const { address, page, setPage } = useAddressStore()

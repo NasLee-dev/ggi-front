@@ -9,16 +9,18 @@ export const Title = styled.h2`
 `
 
 export const Description = styled.p`
+  min-height: 70px;
   font-size: 16px;
   font-weight: 400;
   color: #1f2937;
   line-height: 1.45;
   position: relative;
 
+  & > span {
+    margin-right: 55px;
+  }
+
   a {
-    position: absolute;
-    bottom: 0;
-    right: 0;
     font-size: 16px;
     font-weight: 600;
     color: #2563eb;

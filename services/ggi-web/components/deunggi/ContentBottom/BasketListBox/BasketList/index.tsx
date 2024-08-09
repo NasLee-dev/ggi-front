@@ -1,13 +1,12 @@
 import DefaultCheckbox from '@/components/commons/checkbox/DefaultCheckbox'
 import * as S from './style'
 import { useRef, useState } from 'react'
-import { Address } from '@/components/deunggi/ContentTop/AddressSearch/api/addressSearch'
 
-export default function SearchList({
+export default function BasketList({
   data,
   index,
 }: {
-  data: Address
+  data: any
   index: number
 }) {
   const [isCheck, setIsCheck] = useState(false)
@@ -23,7 +22,7 @@ export default function SearchList({
 
   return (
     <S.TableLi>
-      <S.TableValue width="7.88%">
+      <S.TableValue width="7.66%">
         <DefaultCheckbox
           id={`checkbox${index}`}
           ref={checkboxRef}
@@ -31,11 +30,11 @@ export default function SearchList({
           isCheck={isCheck}
         />
       </S.TableValue>
-      <S.TableValue width="6.96%">{index}</S.TableValue>
-      <S.TableValue width="16.1%">{data.uniquenumber}</S.TableValue>
-      <S.TableValue width="10.31%">{data.type}</S.TableValue>
-      <S.TableValue width="46.56%">{data.sojaeji}</S.TableValue>
-      <S.TableValue width="12.08%">{data.dungkiState}</S.TableValue>
+      <S.TableValue width="16.08%">{data.uniquenumber}</S.TableValue>
+      <S.TableValue width="10.16%">{data.type}</S.TableValue>
+      <S.TableValue width="44.25%">{data.address}</S.TableValue>
+      <S.TableValue width="12%">{data.status}</S.TableValue>
+      <S.TableValue width="9.58%">{data.price}</S.TableValue>
     </S.TableLi>
   )
 }
