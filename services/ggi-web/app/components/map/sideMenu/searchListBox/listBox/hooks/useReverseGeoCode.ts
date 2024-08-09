@@ -4,10 +4,23 @@ import { jusoAtom } from '@/store/atom/map'
 import { useCallback } from 'react'
 import { useSetRecoilState } from 'recoil'
 
+type AreaType = {
+  name: string
+  coords: {
+    center: {
+      crs: string
+      x: string
+      y: string
+    }
+  },
+  alias?: string
+}
 interface ReverseGeoCodeResult {
-  sido: string
-  sigugun: string
-  dongmyun: string
+  area0: AreaType
+  area1: AreaType
+  area2: AreaType
+  area3: AreaType
+  area4: AreaType
 }
 
 interface ReverseGeoCodeOptions {
@@ -28,61 +41,45 @@ const reverseGeocode = async (
         if (status !== window.naver.maps.Service.Status.OK) {
           reject(new Error('주소를 찾을 수 없습니다.'))
         } else {
-          resolve(response?.v2?.results[0].region)
+          resolve(response?.v2?.results[0]?.region)
         }
       },
     )
   })
 }
 
-const processResult = (result: any) => {
-  const sidoParts = result.area1.name
-  const sigugunParts = result.area2.name
-  let getGungu = ''
-  let topGungu = ''
-  if (sigugunParts.length === 1 && sigugunParts.match(/시$/)) {
-    // 첫 번째 파트가 '시'로 끝나는 경우
-    getGungu = sigugunParts
-  } else if (sigugunParts[1] && sigugunParts[1].match(/구$/)) {
-    // 두 번째 파트가 '구'로 끝나는 경우
-    getGungu = sigugunParts[1]
-    topGungu = `${sigugunParts[0]} ${sigugunParts[1]}`
-  }
-
-  return {
-    topSido:result.area1.name,
-    topGungu,
-    topDong: result.area3.name,
-    getGungu,
-  }
-}
-
 export const useReverseGeoCode = () => {
-  const setJuso = useSetRecoilState<jusoProps>(jusoAtom)
+  const setJuso = useSetRecoilState<jusoProps>(jusoAtom);
 
   const performReverseGeocode = useCallback(
     async ({ lat, lng }: ReverseGeoCodeOptions) => {
-      if (!window.naver.maps?.Service?.reverseGeocode) {
-        return
+      if (!window.naver || !window.naver.maps?.Service?.reverseGeocode) {
+        console.warn("Naver Maps API is not available.");
+        return;
       }
-      try {
-        const result = await reverseGeocode(lat, lng)
-        console.log('result', result)
-        const processedResult = processResult(result)
 
+      try {
+        const result = await reverseGeocode(lat, lng);
         setJuso((prev) => ({
           ...prev,
-          topSido: processedResult.topSido,
-          topGungu: processedResult.topGungu,
-          topDong: processedResult.topDong,
-        }))
-
-        return processedResult
+          topSido: result.area1.name,
+          topGungu: result.area1.name.includes('세종특별자치시')
+            ? result.area3.name.endsWith('동')
+              ? result.area1.name
+              : result.area3.name
+            : result.area2.name,
+          topDong: result.area1.name.includes('세종특별자치시')
+            ? result.area3.name.endsWith('동')
+              ? result.area3.name
+              : result.area4.name
+            : result.area3.name,
+        }));
       } catch (error) {
-        return
+        console.error("Error during reverse geocoding:", error);
       }
     },
-    [],
-  )
-  return { performReverseGeocode }
-}
+    [setJuso],
+  );
+
+  return { performReverseGeocode };
+};

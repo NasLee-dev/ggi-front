@@ -132,10 +132,6 @@ export default function GGIMap({
       zoom: zoom ?? 17,
       minZoom: 9,
       draggable: true,
-      maxBounds: new window.naver.maps.LatLngBounds(
-        new window.naver.maps.LatLng(33.1, 126.16),
-        new window.naver.maps.LatLng(38.614, 130.873),
-      ),
       scaleControl: true,
       logoControl: true,
     }
@@ -437,8 +433,8 @@ export default function GGIMap({
             strokeOpacity: 0.6,
             strokeWeight: 3,
             path: response.map(
-              (item: number[][]) =>
-                new window.naver.maps.LatLng(item[0][1], item[0][0]),
+              (item: number[]) =>
+                new window.naver.maps.LatLng(item[0], item[1]),
             ),
           }
           new window.naver.maps.Polyline(polylineOptions)

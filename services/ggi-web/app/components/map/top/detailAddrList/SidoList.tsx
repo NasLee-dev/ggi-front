@@ -24,8 +24,9 @@ const SidoList = ({
   addrToCenter,
 }: Props) => {
   const [juso, setJuso] = useRecoilState<jusoProps>(jusoAtom)
+  console.log('시도리스트 오픈')
   const { data: sidoList } = useGetSidoList()
-
+  console.log('시도리스트 오픈')
   const handleClick = useCallback(
     (sido: string, actualIndex: number) => {
       setSelectedIndex(actualIndex)

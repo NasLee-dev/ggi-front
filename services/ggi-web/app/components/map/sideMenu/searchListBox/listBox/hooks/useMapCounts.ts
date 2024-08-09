@@ -5,7 +5,7 @@ import { MapCountsResponse } from '@/models/MapItem'
 import { Dispatch, SetStateAction } from 'react'
 import { UseQueryResult, useMutation, useQuery } from '@tanstack/react-query'
 import { MapCountsParams } from '@/models/Params'
-import { postMapCounts } from '@/remote/map/items/getMapCounts'
+import postMapCounts from '@/remote/map/items/getMapCounts'
 
 export default function useMapCounts(
   formData: Form,

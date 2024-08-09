@@ -47,7 +47,6 @@ function TopAddress({
     enabled: false,
   })
   const [juso, setJuso] = useRecoilState<jusoProps>(jusoAtom)
-  console.log(juso)
   const auth = useRecoilValue(authInfo)
   const handleTopBottomSyncSido = useCallback(() => {
     const specialSido = [

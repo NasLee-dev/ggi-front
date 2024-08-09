@@ -12,6 +12,8 @@ import Flex from '@/components/shared/Flex'
 import TopBar from '../top'
 import AddressContainer from '../top/AddressContainer'
 import BottomAddress from '../top/BottomAddress'
+import Markers from '../sideMenu/markers/Markers'
+import Clusterings from '../sideMenu/markers/Clusterings'
 
 const isHalfWindow = () => window.innerWidth < 768
 
@@ -88,13 +90,13 @@ export default function MapSection() {
           />
         )}
       </Flex>
-      {/* <Markers
+      <Markers
         openOverlay={openOverlay}
         setOpenOverlay={setOpenOverlay}
         markerClickedRef={markerClickedRef}
       />
       <Clusterings item={mapCount} />
-      {openOverlay && <Overlay halfDimensions={halfDimensions} />} */}
+      {/* {openOverlay && <Overlay halfDimensions={halfDimensions} />} */}
     </div>
   )
 }

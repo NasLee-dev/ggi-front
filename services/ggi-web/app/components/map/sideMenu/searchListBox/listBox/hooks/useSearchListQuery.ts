@@ -1,5 +1,5 @@
 import { MapItems } from '@/models/MapItem'
-import { MutableRefObject, useCallback, useMemo, useRef } from 'react'
+import { MutableRefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { UseQueryResult, useInfiniteQuery, useQuery } from '@tanstack/react-query'
 import { useRecoilValue } from 'recoil'
 import { formDataAtom } from '@/store/atom/map'
@@ -14,15 +14,13 @@ interface SearchListQueryProps {
   handleCenterChanged: () => void
   dragStateRef: MutableRefObject<boolean>
 }
-
-const QUERY_KEY = 'searchList'
 const PAGE_SIZE = 10
 
 export default function useSearchListQuery({
   handleCenterChanged,
   dragStateRef,
 }: SearchListQueryProps) {
-  const isFirstMount = useRef(false)
+  const [zoomLevel, setZoomLevel] = useState<number>(0)
   const auth = useRecoilValue(authInfo)
   const formData = useRecoilValue(formDataAtom)
   const { data: map }: UseQueryResult<NaverMap> = useQuery({
@@ -36,8 +34,24 @@ export default function useSearchListQuery({
   const { mutateAsync: getMapListItems } = useGetMapListItems({ formData })
   const delay = (ms: number) =>
     new Promise((resolve) => setTimeout(resolve, ms))
+  console.log(zoomLevel)
+  useEffect(() => {
+    if (map) {
+      const zoomLevelChangeHandler = () => {
+        setZoomLevel(map.getZoom());
+      };
+      map.addListener('zoom_changed', zoomLevelChangeHandler);
 
-  const fetchSearchList = useCallback(
+      // 초기 줌 레벨 설정
+      setZoomLevel(map.getZoom());
+
+      return () => {
+        map.removeListener(zoomLevelChangeHandler as unknown as naver.maps.MapEventListener);
+      };
+    }
+  }, [map, setZoomLevel]);
+
+  const fetchSearchList = 
     async ({ pageParam }: { pageParam: number }): Promise<MapListResponse | void> => {
       if (
         !map ||
@@ -47,9 +61,8 @@ export default function useSearchListQuery({
           formData.y2 === 1)
       )
         return
-      await delay(250)
       try {
-        if (map.getZoom() < 15) {
+        if (zoomLevel < 15) {
           await handleCenterChanged()
           return
         }
@@ -81,55 +94,12 @@ export default function useSearchListQuery({
         console.error('fetchSearchList error:', error)
         throw error
       }
-    },
-    [
-      auth.id,
-      formData.x1,
-      formData.x2,
-      formData.y1,
-      formData.y2,
-      formData.interests,
-      formData.awardedMonths,
-      formData.km,
-      formData.kw,
-      formData.gg,
-      formData.gm,
-      formData.ekm,
-      formData.egm,
-      formData.egg,
-      formData.fromAppraisalAmount,
-      formData.toAppraisalAmount,
-      formData.fromMinimumAmount,
-      formData.toMinimumAmount,
-      formData.ids,
-      getMapItems,
-      getMapListItems,
-      handleCenterChanged,
-      map,
-    ],
-  )
+    }
   
   const { data, fetchNextPage, hasNextPage, isFetching, isLoading } = useInfiniteQuery({
     queryKey: [
-      QUERY_KEY,
-      formData.x1,
-      formData.x2,
-      formData.y1,
-      formData.y2,
-      formData.interests,
-      formData.awardedMonths,
-      formData.km,
-      formData.kw,
-      formData.gg,
-      formData.gm,
-      formData.ekm,
-      formData.egm,
-      formData.egg,
-      formData.fromAppraisalAmount,
-      formData.toAppraisalAmount,
-      formData.fromMinimumAmount,
-      formData.toMinimumAmount,
-      formData.ids,
+      formData,
+      zoomLevel,
     ],
     queryFn: ({ pageParam = 1 }) => fetchSearchList({ pageParam }) as Promise<MapListResponse>,
     initialPageParam: 1,
@@ -137,6 +107,7 @@ export default function useSearchListQuery({
       const nextPage = lastPage?.paging?.isLast ? undefined : (lastPage?.paging?.pageNumber ?? 0) + 1
       return nextPage
     },
+    enabled: !!map || !!auth.isInitialized,
   })
 
   const listProducts = useMemo(() => {

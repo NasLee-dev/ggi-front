@@ -51,13 +51,12 @@ function useGetMapListItems({ formData }: { formData: Form }) {
       pageSize,
     }: PostListItemsArgs) => await getMapListItems(param, pageParam, pageSize),
     onSuccess: (data) => {
-      setMapList(data)
+      if (data) {
+        return data
+      }
     },
     onError: (error) => {
       console.error(error)
-      setMapList((prev) => {
-        return prev
-      })
     },
   }
   return useMutation(mutationOptions)

@@ -42,7 +42,12 @@ export default function useGetMapItems(formData: Form, dragState: boolean) {
   const mutationOptions: UseMutationOptions<MapItemResponse, Error, void, unknown> = {
     mutationFn: async () => await getMapItems(param) as unknown as MapItemResponse,
     onSuccess: (data: MapItemResponse) => {
-      setMapItems(data.mapItems as MapItem[])
+      if (data) {
+        setMapItems([]) //  강제 렌더링을 위한 초기화
+        setMapItems(data.mapItems as MapItem[])
+      } else {
+        return 
+      }
       dragState = false
     },
     onError: (error) => {

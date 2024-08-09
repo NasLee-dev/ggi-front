@@ -1,10 +1,6 @@
 # 기존 컨테이너 중지하고 제거
-$CONTAINER_NAME = "/ggi-web"
-{ # try 
-  docker stop $CONTAINER_NAME
-  docker rm -f $CONTAINER_NAME
-  docker rmi -f $CONTAINER_NAME
-}
+$CONTAINER_NAME = "ggi-web"
+$CONTAINER_ID = (docker ps -a -q -f name=$CONTAINER_NAME)
 
 Write-Host "Check1"
 
@@ -13,6 +9,14 @@ $IMAGE_NAME = "wtlee1871/ggi-web:latest"
 docker pull $IMAGE_NAME
 
 Write-Host "Check2"
+
+if ($CONTAINER_ID) {
+  docker stop $CONTAINER_ID
+  docker rm -f $CONTAINER_ID
+  if ($?) {
+    docker rmi -f $CONTAINER_NAME
+  }
+}
 
 # 새 컨테이너 실행
 docker run -d --name $CONTAINER_NAME -p 3000:3000 `
