@@ -34,7 +34,15 @@ export default function ViewList({
       <S.TableValue width="16.08%">{data.time}</S.TableValue>
       <S.TableValue width="10.16%">{data.type}</S.TableValue>
       <S.TableValue width="44.25%">{data.address}</S.TableValue>
-      <S.TableValue width="12%">{data.status}</S.TableValue>
+      <S.TableValue width="12%">
+        {data.status === '열람' ? (
+          <S.PdfButton>
+            <img src="/images/pdf.png" alt="pdf아이콘" />
+          </S.PdfButton>
+        ) : (
+          data.status
+        )}
+      </S.TableValue>
       <S.TableValue width="9.58%">
         <S.DownloadButton disabled={data.status !== '열람'}>
           <DownloadIcon disabled={data.status !== '열람'} />

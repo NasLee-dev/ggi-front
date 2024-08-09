@@ -8,7 +8,7 @@ interface BasketModalProps {
   text: ReactNode
   onClick: () => void
   onClose: () => void
-  type: 'basket' | 'complete'
+  type: 'basket' | 'complete' | 'view'
 }
 
 export default function BasketModal({
@@ -33,7 +33,15 @@ export default function BasketModal({
         />
         <DefaultButton
           width="222px"
-          text={type === 'basket' ? '확인' : type === 'complete' ? '이동' : ''}
+          text={
+            type === 'basket'
+              ? '확인'
+              : type === 'complete'
+                ? '이동'
+                : type === 'view'
+                  ? '바로 등기 열람'
+                  : ''
+          }
           onClick={onClick}
         />
       </FlexBetween>

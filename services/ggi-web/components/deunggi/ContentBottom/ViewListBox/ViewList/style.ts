@@ -27,6 +27,8 @@ export const TableValue = styled.div<TableValueProps>`
   line-height: 1.45;
 `
 
+export const PdfButton = styled.button``
+
 export const DownloadButton = styled.button`
   &:disabled {
     cursor: default;

@@ -7,6 +7,7 @@ import ModalPortal from '@/components/commons/modals/ModalPortal'
 import BasketModal from '@/components/deunggi/modal/BasketModal'
 import { useDeunggiStore } from '@/store/useDeunggiStore'
 import { Flex } from 'styles/sharedStyle'
+import { MODES } from 'constants/deunggi'
 
 const BUTTON_TEXT = {
   delete: '삭제하기',
@@ -14,20 +15,16 @@ const BUTTON_TEXT = {
   basket: '장바구니',
 }
 
-const MODES = {
-  REGISTRATION: '등기발행',
-  BASKET: '장바구니',
-  MANAGEMENT: '등기관리',
-}
-
 export default function TitleBox() {
   const { mode, setMode } = useDeunggiStore()
   const [isOpenFirstModal, setIsOpenFirstModal] = useState(false)
   const [isOpenSecondModal, setIsOpenSecondModal] = useState(false)
+  const [isOpenThirdModal, setIsOpenThirdModal] = useState(false)
 
   const handleClickBasket = () => setIsOpenFirstModal(true)
   const handleCloseFirstModal = () => setIsOpenFirstModal(false)
   const handleCloseSecondModal = () => setIsOpenSecondModal(false)
+  const handleCloseThirdModal = () => setIsOpenThirdModal(false)
 
   const handleClickBasketConfirm = () => {
     handleCloseFirstModal()
@@ -38,6 +35,15 @@ export default function TitleBox() {
   const locationBasket = () => {
     setMode('장바구니')
     handleCloseSecondModal()
+  }
+
+  const locationView = () => {
+    setMode('등기관리')
+    handleCloseThirdModal()
+  }
+
+  const handleClickPaymentBtn = () => {
+    setIsOpenThirdModal(true)
   }
 
   const renderButtons = () => {
@@ -57,7 +63,10 @@ export default function TitleBox() {
               text={BUTTON_TEXT.delete}
               onClick={() => {}}
             />
-            <DefaultButton text={BUTTON_TEXT.checkout} onClick={() => {}} />
+            <DefaultButton
+              text={BUTTON_TEXT.checkout}
+              onClick={handleClickPaymentBtn}
+            />
           </Flex>
         )
       case MODES.MANAGEMENT:
@@ -108,6 +117,32 @@ export default function TitleBox() {
           onClick={locationBasket}
           onClose={handleCloseSecondModal}
           type="complete"
+        />
+      </ModalPortal>
+      <ModalPortal isOpen={isOpenThirdModal} onClose={handleCloseThirdModal}>
+        <BasketModal
+          text={
+            <div>
+              <div style={{ marginBottom: '30px' }}>
+                고객님의 사이버머니는{' '}
+                <span style={{ color: '#2563EB' }}>16,200</span>원 입니다.{' '}
+                <br />
+                사이버머니 <span style={{ color: '#2563EB' }}>2,000</span>
+                원(부가세 포함) 으로 <br />
+                바로등기 <span style={{ color: '#2563EB' }}>2</span>건을 열람
+                하시겠습니까?
+              </div>
+              <div>
+                <S.ModalSpan>건수</S.ModalSpan>에 따라 3분~10분가량 시간이
+                소요됩니다. <br /> <S.ModalSpan>과다등기</S.ModalSpan> 등 특정
+                사유로 인터넷 등기 발급이
+                <br /> 불가 할 경우 사이버머니로 환급 됩니다.
+              </div>
+            </div>
+          }
+          onClick={locationView}
+          onClose={handleCloseThirdModal}
+          type="view"
         />
       </ModalPortal>
     </S.TitleContainer>

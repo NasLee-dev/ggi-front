@@ -5,6 +5,7 @@ import * as S from './style'
 import { ChangeEvent, MouseEvent, useState } from 'react'
 import { useAddressStore } from '@/store/useAddressStore'
 import { useDeunggiStore } from '@/store/useDeunggiStore'
+import { MODES } from 'constants/deunggi'
 
 export default function AddressSearch() {
   const [keyword, setKeyword] = useState('')
@@ -27,7 +28,7 @@ export default function AddressSearch() {
   }
 
   return (
-    mode === '등기발행' && (
+    mode === MODES.REGISTRATION && (
       <S.SearchContainer>
         <S.ContainerTitle>
           <h3>주소검색</h3>

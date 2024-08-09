@@ -6,6 +6,7 @@ import Link from 'next/link'
 import StrokeButton from '@/components/deunggi/ContentTop/DeunggiInfo/StrokeButton'
 import { useDeunggiStore } from '@/store/useDeunggiStore'
 import { MouseEvent } from 'react'
+import { MODES } from 'constants/deunggi'
 
 export default function DeunggiInfo() {
   const { mode, setMode } = useDeunggiStore()
@@ -21,7 +22,7 @@ export default function DeunggiInfo() {
     <FlexColumn gap={20}>
       <S.Title>바로등기</S.Title>
       <S.Description>
-        {mode === '등기발행' && (
+        {mode === MODES.REGISTRATION && (
           <span>
             경매 부동산 인근의 등기, 평소 관심있는 부동산 등기를 지지옥션에서
             바로 발급받아 보세요. 간편한 주소 검색을 통해 손쉽에 발급
@@ -30,17 +31,17 @@ export default function DeunggiInfo() {
             바랍니다.
           </span>
         )}
-        {mode === '장바구니' && (
+        {mode === MODES.BASKET && (
           <span>
             모든 등기는 말소사항포함, 공동/전세목록, 매매목록 포함으로
             발행됩니다. 선택이 필요하신 경우 대법원 인터넷 등기소를 이용해
             주세요. 인터넷 등기소 사정에 따라 발급이 제한될 수도 있습니다.
           </span>
         )}
-        {mode === '등기관리' && (
+        {mode === MODES.MANAGEMENT && (
           <span>
             열람등기는 열람일로부터 1개월(30일)까지만 보관됩니다. 열람기간
-            중에는 자유롭게 열람 및 다운로드가 가능합니다.
+            중에는 자유롭게 열람 및 다운로드가 <br /> 가능합니다.
           </span>
         )}
 
@@ -48,21 +49,21 @@ export default function DeunggiInfo() {
       </S.Description>
       <S.ButtonContainer>
         <StrokeButton
-          text="등기발행"
-          name="등기발행"
-          active={mode === '등기발행'}
+          text={MODES.REGISTRATION}
+          name={MODES.REGISTRATION}
+          active={mode === MODES.REGISTRATION}
           onClick={handleChangeMode}
         />
         <StrokeButton
-          text="장바구니"
-          name="장바구니"
-          active={mode === '장바구니'}
+          text={MODES.BASKET}
+          name={MODES.BASKET}
+          active={mode === MODES.BASKET}
           onClick={handleChangeMode}
         />
         <StrokeButton
-          text="등기관리"
-          name="등기관리"
-          active={mode === '등기관리'}
+          text={MODES.MANAGEMENT}
+          name={MODES.MANAGEMENT}
+          active={mode === MODES.MANAGEMENT}
           onClick={handleChangeMode}
         />
       </S.ButtonContainer>

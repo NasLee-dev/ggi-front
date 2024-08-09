@@ -16,15 +16,12 @@ export const Description = styled.p`
   line-height: 1.45;
   position: relative;
 
-  & > span {
-    margin-right: 55px;
-  }
-
   a {
     font-size: 16px;
     font-weight: 600;
     color: #2563eb;
     text-decoration: underline;
+    margin-left: 20px;
   }
 `
 
