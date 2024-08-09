@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "standalone",
+  output: 'standalone',
   async headers() {
     return [
       {
@@ -63,6 +63,10 @@ const nextConfig = {
       {
         source: '/ggi/api/interest/map/:path*',
         destination: `https://dev-api.ggi.co.kr:8443/ggi/api/interest/map/:path*`,
+      },
+      {
+        source: '/irosDungki/:path*',
+        destination: `http://apiservicedata.co.kr/irosDungki/:path*`,
       },
       {
         source: '/member/:path*',
