@@ -16,6 +16,11 @@ export interface MapItem {
   winExist: boolean
 }
 
+export interface MapItemResponse {
+  count: number
+  mapItems: MapItem[]
+}
+
 export interface MapCounts {
   ids: string
   km: boolean

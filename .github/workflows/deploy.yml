@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - wt
+  pull_request:
+    branches:
+      - wt
 
 jobs:
   build-and-run:
