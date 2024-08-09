@@ -15,4 +15,9 @@ export const HeadTop = styled.div`
   justify-content: space-between;
   gap: 70px;
   margin-bottom: 30px;
+
+  @media (max-width: 1250px) {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
 `
