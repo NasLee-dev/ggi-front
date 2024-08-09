@@ -1,5 +1,10 @@
 # 기존 컨테이너 중지하고 제거
-$CONTAINER_NAME = "ggi-web"
+$CONTAINER_NAME = "/ggi-web"
+{ # try 
+  docker stop $CONTAINER_NAME
+  docker rm -f $CONTAINER_NAME
+  docker rmi -f $CONTAINER_NAME
+}
 
 Write-Host "Check1"
 
