@@ -1,3 +1,4 @@
+'use client'
 import { Form } from '@/models/Form'
 import { useEffect } from 'react'
 

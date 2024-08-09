@@ -1,3 +1,4 @@
+'use client'
 import Flex from 'app/components/shared/Flex'
 import Text from 'app/components/shared/Text'
 import { formDataAtom } from '@/store/atom/map'

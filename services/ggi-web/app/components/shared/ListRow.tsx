@@ -1,3 +1,4 @@
+'use client'
 import { css, SerializedStyles } from '@emotion/react'
 import Flex from './Flex'
 import Skeleton from './Skeleton'

@@ -1,5 +1,5 @@
+'use client'
 import Flex from 'app/components/shared/Flex'
-import { css } from '@emotion/react'
 import { useRecoilState } from 'recoil'
 import { formDataAtom } from '@/store/atom/map'
 import { useState } from 'react'

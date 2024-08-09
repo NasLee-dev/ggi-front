@@ -1,3 +1,4 @@
+'use client'
 import Interest from 'app/components/map/icons/Interest'
 import Flex from 'app/components/shared/Flex'
 import ListRow from 'app/components/shared/ListRow'

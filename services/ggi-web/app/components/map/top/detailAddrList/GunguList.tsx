@@ -1,3 +1,4 @@
+'use client'
 import { Dispatch, SetStateAction, useCallback, useEffect } from 'react'
 import Flex from '@/components/shared/Flex'
 import { css } from '@emotion/react'

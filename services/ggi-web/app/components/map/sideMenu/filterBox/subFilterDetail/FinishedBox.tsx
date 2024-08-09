@@ -1,3 +1,4 @@
+'use client'
 import Reset from 'app/components/map/icons/Reset'
 import Flex from 'app/components/shared/Flex'
 import Spacing from 'app/components/shared/Spacing'

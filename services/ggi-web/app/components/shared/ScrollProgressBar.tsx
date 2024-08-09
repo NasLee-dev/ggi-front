@@ -1,6 +1,8 @@
+'use client'
 import { useEffect, useState, useRef } from 'react'
 import { SerializedStyles } from '@emotion/react'
 import { colors, Colors } from 'app/styles/colorPallette'
+import Flex from './Flex'
 
 function ScrollProgressBar({
   style,
@@ -40,7 +42,7 @@ function ScrollProgressBar({
   }, [])
 
   return (
-    <div
+    <Flex
       css={style}
       style={{
         transform: `scaleX(${progress})`,
@@ -48,7 +50,7 @@ function ScrollProgressBar({
         backgroundColor: colors[color],
         height: 8,
       }}
-    ></div>
+    ></Flex>
   )
 }
 

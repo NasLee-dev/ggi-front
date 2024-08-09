@@ -1,3 +1,4 @@
+'use client'
 import Text from 'app/components/shared/Text'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'

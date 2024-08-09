@@ -1,6 +1,7 @@
+'use client'
 import SEO from './SEO'
 import Head from 'next/head'
-import Navbar from '../bidForm/Navbar'
+// import Navbar from '../bidForm/Navbar'
 
 function Layout({
   children,
@@ -11,9 +12,8 @@ function Layout({
 }) {
   return (
     <div>
-      {lastPathPart === 'bid-form' ? (
-        <Navbar />
-      ) : (
+      {lastPathPart === 'bid-form' ? // <Navbar />
+      null : (
         <>
           <SEO title="지지옥션-지도검색" description="지도 검색" image="" />
           <Head>

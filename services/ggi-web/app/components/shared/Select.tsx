@@ -1,3 +1,4 @@
+'use client'
 import { forwardRef, SelectHTMLAttributes } from 'react'
 
 import Flex from './Flex'

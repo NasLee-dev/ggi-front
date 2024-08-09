@@ -1,3 +1,4 @@
+'use client'
 import Flex from '@/components/shared/Flex'
 import Text from '@/components/shared/Text'
 import { jusoProps, SidoProps } from '@/models/Address'

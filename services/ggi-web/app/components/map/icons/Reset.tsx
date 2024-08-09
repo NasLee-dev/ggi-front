@@ -1,3 +1,4 @@
+'use client'
 import styled from '@emotion/styled'
 import Flex from 'app/components/shared/Flex'
 import { useState } from 'react'

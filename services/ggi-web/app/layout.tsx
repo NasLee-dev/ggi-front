@@ -1,8 +1,6 @@
 'use client'
 import ReactQueryProviders from '@/hooks/useReactQuery'
-import { Global } from '@emotion/react'
 import Script from 'next/script'
-import globalStyles from './styles/globalStyles'
 import EmotionProvider from './components/layout/EmotionProvider'
 import InterestContextProvider from 'contexts/useModalContext'
 
@@ -35,9 +33,7 @@ export default function RootLayout({
       <body>
         <ReactQueryProviders>
           <EmotionProvider>
-            <InterestContextProvider>
-              {children}
-            </InterestContextProvider>
+            <InterestContextProvider>{children}</InterestContextProvider>
           </EmotionProvider>
           <div id="root-portal" />
           <div id="portal" />

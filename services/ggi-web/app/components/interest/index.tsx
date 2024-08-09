@@ -1,3 +1,4 @@
+'use client'
 import styled from '@emotion/styled'
 import Spacing from '../shared/Spacing'
 import { useCallback, useEffect, useState } from 'react'

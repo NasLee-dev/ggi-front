@@ -1,3 +1,4 @@
+'use client'
 import { MouseEvent } from 'react'
 import { css } from '@emotion/react'
 import Flex from './Flex'

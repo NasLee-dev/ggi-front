@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+'use client'
 import { css } from '@emotion/react'
 import AddressArrow from '../icons/AddressArrow'
 import { Dispatch, SetStateAction, useCallback } from 'react'

@@ -1,3 +1,4 @@
+'use client'
 import Flex from 'app/components/shared/Flex'
 import ListRow from 'app/components/shared/ListRow'
 import Skeleton from 'app/components/shared/Skeleton'

@@ -1,3 +1,4 @@
+'use client'
 import { Dispatch, SetStateAction } from 'react'
 import TopAddress from './TopAddress'
 

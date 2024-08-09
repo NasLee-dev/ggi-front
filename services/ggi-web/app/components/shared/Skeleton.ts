@@ -1,3 +1,4 @@
+'use client'
 import styled from '@emotion/styled'
 import { keyframes } from '@emotion/react'
 import { colors } from 'app/styles/colorPallette'

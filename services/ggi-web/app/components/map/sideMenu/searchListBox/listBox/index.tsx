@@ -1,3 +1,4 @@
+'use client'
 import Flex from 'app/components/shared/Flex'
 import { css } from '@emotion/react'
 import { useRecoilValue } from 'recoil'

@@ -1,3 +1,4 @@
+'use client'
 import styled from '@emotion/styled'
 import { Dispatch, SetStateAction } from 'react'
 import { css } from '@emotion/react'

@@ -4,9 +4,7 @@ import { NaverMap } from '@/models/Map'
 import { useCallback } from 'react'
 import { useRecoilValue } from 'recoil'
 import { mapListAtom } from '@/store/atom/map'
-import { css } from '@emotion/css'
 import { queryKey } from '../sections/hooks/useMap'
-import styled from '@emotion/styled'
 
 export default function BoxGuard({
   children,

@@ -1,3 +1,4 @@
+'use client'
 import emotionStyled from '@emotion/styled'
 import { CSSProperties } from 'react'
 

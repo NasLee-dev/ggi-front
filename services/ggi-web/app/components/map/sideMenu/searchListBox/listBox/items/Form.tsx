@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+'use client'
 import Flex from 'app/components/shared/Flex'
 import ListRow from 'app/components/shared/ListRow'
 import Spacing from 'app/components/shared/Spacing'

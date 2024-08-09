@@ -1,3 +1,4 @@
+'use client'
 import Flex from './Flex'
 import Text from './Text'
 import Spacing from './Spacing'

@@ -1,3 +1,4 @@
+'use client'
 import styled from '@emotion/styled'
 import { colors, Colors } from 'app/styles/colorPallette'
 interface TagProps {

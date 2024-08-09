@@ -1,3 +1,4 @@
+'use client'
 import styled from '@emotion/styled'
 import { Colors, colors } from 'app/styles/colorPallette'
 

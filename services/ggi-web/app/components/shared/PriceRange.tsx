@@ -1,3 +1,4 @@
+'use client'
 import { Form } from '@/models/Form'
 import { css } from '@emotion/react'
 import Flex from './Flex'
@@ -221,23 +222,23 @@ export default function PriceRange({ formData, setFormData }: PriceRangeProps) {
               ? formData.fromAppraisalAmount === 3000000001
                 ? '최대'
                 : formData.fromAppraisalAmount === 10000000 &&
-                  formData.toAppraisalAmount === 3000000001
-                ? '최대'
-                : formData.toAppraisalAmount === 3000000001
-                ? '최대'
-                : formData.toAppraisalAmount
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                    formData.toAppraisalAmount === 3000000001
+                  ? '최대'
+                  : formData.toAppraisalAmount === 3000000001
+                    ? '최대'
+                    : formData.toAppraisalAmount
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
               : formData.fromMinimumAmount === 3000000001
-              ? '최대'
-              : formData.fromMinimumAmount === 10000000 &&
-                formData.toMinimumAmount === 3000000001
-              ? '최대'
-              : formData.toMinimumAmount === 3000000001
-              ? '최대'
-              : formData.toMinimumAmount
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                ? '최대'
+                : formData.fromMinimumAmount === 10000000 &&
+                    formData.toMinimumAmount === 3000000001
+                  ? '최대'
+                  : formData.toMinimumAmount === 3000000001
+                    ? '최대'
+                    : formData.toMinimumAmount
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
           }
           style={{
             height: '25px',

@@ -1,3 +1,4 @@
+'use client'
 import InterestProps from 'app/components/interest'
 import React, {
   ComponentProps,

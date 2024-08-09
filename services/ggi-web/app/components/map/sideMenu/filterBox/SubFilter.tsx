@@ -1,3 +1,4 @@
+'use client'
 import Flex from 'app/components/shared/Flex'
 import { Form } from '@/models/Form'
 import { css } from '@emotion/react'

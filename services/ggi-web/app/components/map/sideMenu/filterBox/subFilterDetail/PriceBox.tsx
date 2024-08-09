@@ -1,3 +1,4 @@
+'use client'
 import Flex from 'app/components/shared/Flex'
 import PriceRange from 'app/components/shared/PriceRange'
 import Text from 'app/components/shared/Text'
