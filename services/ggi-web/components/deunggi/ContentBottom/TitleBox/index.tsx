@@ -125,7 +125,7 @@ export default function TitleBox() {
             <div>
               <div style={{ marginBottom: '30px' }}>
                 고객님의 사이버머니는{' '}
-                <span style={{ color: '#2563EB' }}>16,200</span>원 입니다.{' '}
+                <span style={{ color: '#2563EB' }}>16,200</span>원 입니다.
                 <br />
                 사이버머니 <span style={{ color: '#2563EB' }}>2,000</span>
                 원(부가세 포함) 으로 <br />
