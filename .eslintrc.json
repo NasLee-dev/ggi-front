@@ -6,17 +6,8 @@
   },
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "prettier"
-  ],
-  "plugins": [
-    "react",
-    "@typescript-eslint",
-    "react-hooks",
-    "jsx-a11y"
-  ],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
+  "plugins": ["react", "@typescript-eslint", "react-hooks", "jsx-a11y"],
   "rules": {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
@@ -25,12 +16,6 @@
     "react/display-name": "off",
     "no-empty-function": "off",
     "@typescript-eslint/no-empty-function": "off",
-    "@typescript-eslint/no-unused-vars": [
-      "error",
-      {
-        "argsIgnorePattern": "^_"
-      }
-    ],
     "storybook/prefer-pascal-case": "off"
   },
   "overrides": [
@@ -45,10 +30,7 @@
       }
     }
   ],
-  "ignorePatterns": [
-    "**/dist/**/*",
-    ".eslintrc.js"
-  ],
+  "ignorePatterns": ["**/dist/**/*", ".eslintrc.js"],
   "settings": {
     "import/resolver": {
       "typescript": {}
