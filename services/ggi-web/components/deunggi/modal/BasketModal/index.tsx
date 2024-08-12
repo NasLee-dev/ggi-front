@@ -28,12 +28,22 @@ export default function BasketModal({
           alt="닫기 버튼"
         />
       </S.CloseButton>
-      <S.BasketIcon
-        width={48}
-        height={48}
-        src="/images/basket-icon.png"
-        alt="카트 아이콘"
-      />
+      {type === 'view' ? (
+        <S.BasketIcon
+          width={48}
+          height={48}
+          src="/images/won-icon.png"
+          alt="금액 아이콘"
+        />
+      ) : (
+        <S.BasketIcon
+          width={48}
+          height={48}
+          src="/images/basket-icon.png"
+          alt="카트 아이콘"
+        />
+      )}
+
       <S.ModalText>{text}</S.ModalText>
       <FlexBetween>
         <StrokeButton

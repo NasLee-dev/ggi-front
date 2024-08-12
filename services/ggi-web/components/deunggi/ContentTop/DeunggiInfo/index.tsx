@@ -7,25 +7,16 @@ import Link from 'next/link'
 import StrokeButton from '@/components/deunggi/ContentTop/DeunggiInfo/StrokeButton'
 import { useDeunggiStore } from '@/store/useDeunggiStore'
 import { MODES } from 'constants/deunggi'
-import { useCallback } from 'react'
 
 function DeunggiInfo() {
   const { mode, setMode } = useDeunggiStore()
 
-  const handleChangeMode = useCallback(
-    (e: MouseEvent<HTMLButtonElement>) => {
-      const { name } = e.target as HTMLButtonElement
-      if (
-        name === MODES.REGISTRATION ||
-        name === MODES.BASKET ||
-        name === MODES.MANAGEMENT
-      ) {
-        setMode(name)
-      }
-    },
-    [mode],
-  )
-
+  const handleChangeMode = (e: MouseEvent<HTMLButtonElement>) => {
+    const { name } = e.target as HTMLButtonElement
+    if (name === '등기발행' || name === '장바구니' || name === '등기관리') {
+      setMode(name)
+    }
+  }
   const descriptionContent = useMemo(() => {
     switch (mode) {
       case MODES.REGISTRATION:

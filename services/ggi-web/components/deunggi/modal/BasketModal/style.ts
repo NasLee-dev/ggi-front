@@ -22,7 +22,7 @@ export const BasketIcon = styled(Image)`
   margin-bottom: 22px;
 `
 
-export const ModalText = styled.p`
+export const ModalText = styled.div`
   font-size: 18px;
   font-weight: 400;
   color: #6b7280;
