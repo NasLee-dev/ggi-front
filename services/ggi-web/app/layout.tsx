@@ -1,9 +1,15 @@
 'use client'
+
+import RootLayoutProvider from 'app/shared/components/layout/RootLayoutProvider'
+import Script from 'next/script'
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const KAKAO_SDK_URL = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_JS_KEY}&autoload=false`
+
   return (
     <html lang="en">
       <head>
@@ -21,9 +27,10 @@ export default function RootLayout({
           name="viewport"
           content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width, minimum-scale=1.0"
         />
+        <Script src={KAKAO_SDK_URL} strategy="lazyOnload" />
       </head>
       <body>
-        {children}
+        <RootLayoutProvider>{children}</RootLayoutProvider>
       </body>
     </html>
   )
