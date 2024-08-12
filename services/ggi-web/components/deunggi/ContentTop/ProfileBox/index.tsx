@@ -3,6 +3,7 @@
 import { FlexBetween, FlexColumn } from 'styles/sharedStyle'
 import * as S from './style'
 import DefaultButton from '@/components/commons/buttons/DefaultButton'
+import Image from 'next/image'
 
 export default function ProfileBox() {
   return (
@@ -21,14 +22,24 @@ export default function ProfileBox() {
         <S.CashBox>
           <S.CashTitleBox>
             <span>나의 사이버머니</span>
-            <img src="/images/question-mark.svg" alt="" />
+            <Image
+              width={16}
+              height={16}
+              src="/images/question-mark.svg"
+              alt=""
+            />
           </S.CashTitleBox>
           <S.CashValue>16,200원</S.CashValue>
         </S.CashBox>
         <S.CashBox>
           <S.CashTitleBox>
             <span>일일무료열람</span>
-            <img src="/images/question-mark.svg" alt="" />
+            <Image
+              width={16}
+              height={16}
+              src="/images/question-mark.svg"
+              alt=""
+            />
           </S.CashTitleBox>
           <S.CashValue>
             <span>0건</span>/3건

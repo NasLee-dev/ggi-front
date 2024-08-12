@@ -1,6 +1,7 @@
 'use client'
 
 import styled from '@emotion/styled'
+import Image from 'next/image'
 
 export const BasketModalContainer = styled.div`
   width: 540px;
@@ -16,12 +17,12 @@ export const BasketModalContainer = styled.div`
   position: relative;
 `
 
-export const BasketIcon = styled.img`
+export const BasketIcon = styled(Image)`
   display: block;
   margin-bottom: 22px;
 `
 
-export const ModalText = styled.p`
+export const ModalText = styled.div`
   font-size: 18px;
   font-weight: 400;
   color: #6b7280;

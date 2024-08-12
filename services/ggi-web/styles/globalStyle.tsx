@@ -1,6 +1,27 @@
 import { Global, css } from '@emotion/react'
 
 const style = css`
+  @font-face {
+    font-family: 'NanumGothic';
+    src: url('/fonts/NanumGothicLight.ttf') format('truetype');
+    font-weight: 300;
+  }
+  @font-face {
+    font-family: 'NanumGothic';
+    src: url('/fonts/NanumGothic.ttf') format('truetype');
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: 'NanumGothic';
+    src: url('/fonts/NanumGothicBold.ttf') format('truetype');
+    font-weight: 600;
+  }
+  @font-face {
+    font-family: 'NanumGothic';
+    src: url('/fonts/NanumGothicExtraBold.ttf') format('truetype');
+    font-weight: 700;
+  }
+
   html,
   body,
   div,
@@ -103,6 +124,7 @@ const style = css`
   section {
     display: block;
   }
+
   body {
     line-height: 1;
   }

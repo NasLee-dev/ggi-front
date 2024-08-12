@@ -2,6 +2,7 @@ import DefaultCheckbox from '@/components/commons/checkbox/DefaultCheckbox'
 import * as S from './style'
 import { useRef, useState } from 'react'
 import DownloadIcon from '@/components/deunggi/ContentBottom/ViewListBox/ViewList/DownloadIcon'
+import Image from 'next/image'
 
 export default function ViewList({
   data,
@@ -37,7 +38,12 @@ export default function ViewList({
       <S.TableValue width="12%">
         {data.status === '열람' ? (
           <S.PdfButton>
-            <img src="/images/pdf.png" alt="pdf아이콘" />
+            <Image
+              width={40}
+              height={40}
+              src="/images/pdf.png"
+              alt="pdf아이콘"
+            />
           </S.PdfButton>
         ) : (
           data.status

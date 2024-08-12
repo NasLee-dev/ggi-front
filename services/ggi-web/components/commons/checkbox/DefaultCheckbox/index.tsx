@@ -1,6 +1,7 @@
 'use client'
 
 import { forwardRef } from 'react'
+import Image from 'next/image'
 import * as S from './style'
 
 interface DefaultCheckboxProps {
@@ -21,7 +22,9 @@ const DefaultCheckbox = forwardRef<HTMLInputElement, DefaultCheckboxProps>(
           onChange={onChange}
         />
         <S.CustomCheckbox htmlFor={id} isCheck={isCheck}>
-          {isCheck && <img src="/images/checked.png" alt="체크" />}
+          {isCheck && (
+            <Image width={10} height={7} src="/images/checked.png" alt="체크" />
+          )}
         </S.CustomCheckbox>
       </>
     )

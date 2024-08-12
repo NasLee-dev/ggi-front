@@ -8,8 +8,8 @@ export const Title = styled.h2`
   color: #1f2937;
 `
 
-export const Description = styled.p`
-  min-height: 70px;
+export const Description = styled.div`
+  min-height: 105px;
   font-size: 16px;
   font-weight: 400;
   color: #1f2937;
@@ -29,5 +29,4 @@ export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: 35px;
 `

@@ -10,4 +10,8 @@ export const Wrap = styled.div`
 export const Container = styled.div`
   width: 1500px;
   margin: 0 auto;
+
+  @media (max-width: 1500px) {
+    width: 90%;
+  }
 `
