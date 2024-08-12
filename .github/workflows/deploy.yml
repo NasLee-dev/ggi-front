@@ -3,10 +3,10 @@ name: Deploy to Server
 on:
   push:
     branches:
-      - wt
+      - main
   pull_request:
     branches:
-      - wt
+      - main
 
 jobs:
   build-and-run:
