@@ -1,18 +1,19 @@
-import ChaProvider from "./components/layout/ChaProvider"
+'use client'
 
-export default function Layout({
+import RootLayoutProvider from "./components/layout/RootLayoutProvider"
+
+export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
 
   return (
     <html lang="en">
       <body>
-        <ChaProvider>
+        <RootLayoutProvider>
           {children}
-          <div id="root-portal"/>
-        </ChaProvider>
+        </RootLayoutProvider>
       </body>
     </html>
   )

@@ -5,7 +5,6 @@ import { SearchTitle, TextGothic18px } from '../components/styles/Typography'
 import { FoldBtn, SearchBtn } from '../components/styles/Button'
 import { IDmProps } from '@/models/dm/DM'
 import SearchFilter from './SearchFilter'
-import { QueryClient } from '@tanstack/react-query'
 import { theme } from '../components/styles/theme'
 import { Divider } from '@chakra-ui/react'
 
@@ -57,7 +56,7 @@ export default function Search({
         </TextGothic18px>
       </SearchBtn>
     </FlexCenter>
-    <Divider color={theme.palette.graySecondary}/>
+    {/* <Divider /> */}
     </>
   )
 }

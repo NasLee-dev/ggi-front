@@ -1,10 +1,9 @@
-import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { FlexNowrap } from "../components/styles/Boxes";
-import { CalendarIcon } from "@chakra-ui/icons";
 import { theme } from "../components/styles/theme";
 import { InfoText } from "../components/styles/Typography";
 import React, { useState } from "react";
 import { CheckBox } from "../components/styles/Button";
+import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 
 export default function OngoingFilterDate() {
   const [checked, setChecked] = useState<boolean>(true)
@@ -62,9 +61,9 @@ export default function OngoingFilterDate() {
 
   return (
     <FlexNowrap>
-      <InputGroup style={{ width: '564px' }}>
+      {/* <InputGroup style={{ width: '564px' }}>
         <InputLeftElement style={{ margin: '5px'}}>
-          <CalendarIcon color={theme.palette.grayMain} />
+          CalendarIcon
         </InputLeftElement>
         <Input 
           style={{ 
@@ -80,7 +79,7 @@ export default function OngoingFilterDate() {
           value={dateValue}
           onChange={handleChangeInput}
         />
-      </InputGroup>
+      </InputGroup> */}
       <CheckBox type="checkbox" id='chk' onChange={() => setChecked(!checked)} value={Number(checked)} defaultChecked />
       <label htmlFor="chk">
         <InfoText color={theme.palette.grayMain}>
