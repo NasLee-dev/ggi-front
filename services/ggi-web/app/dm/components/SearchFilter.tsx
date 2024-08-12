@@ -5,10 +5,14 @@ import { theme } from "../components/styles/theme";
 import { HelpText, TextGothic18px, TextGothicBold } from "../components/styles/Typography";
 import { useEffect, useState } from "react";
 import SearchFilterContent from "./SearchFilterContent";
+import ModalPortal from "./ModalPortal";
+import MyConditionModal from "./MyConditionModal";
+import { conditionSubTitle, conditionTitle } from "constants/dm/dm";
 
 export default function SearchFilter({
   tabs
 }: IDmProps) {
+  const [openCondition, setOpenCondition] = useState<boolean>(false)
   const [openDetail, setOpenDetail] = useState<boolean>(false)
 
   useEffect(() => {
@@ -33,7 +37,7 @@ export default function SearchFilter({
 
         <div>
         <MineBtn>
-          <TextGothicBold color={theme.palette.blueMain}>
+          <TextGothicBold color={theme.palette.blueMain} onClick={() => setOpenCondition(!openCondition)}>
             ★나의조건
           </TextGothicBold>
         </MineBtn>
@@ -49,7 +53,13 @@ export default function SearchFilter({
         </div>
       </FlexSpaceBetweenAlignCenter>
 
+      {/* search filter contents */}
       <SearchFilterContent tabs={tabs} openDetail={openDetail} />
+
+      {openCondition 
+      ? <ModalPortal>
+        <MyConditionModal title={conditionTitle} subTitle={conditionSubTitle} />
+      </ModalPortal> : null}
     </FilterContainer>
     </>
   )

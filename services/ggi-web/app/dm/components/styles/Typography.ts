@@ -68,9 +68,23 @@ export const SearchTitle = styled(SuitText)({
   fontWeight: 800
 })
 
+export const TextGothic15px = styled(GothicText)({
+  fontSize: '15px',
+  fontWeight: 500,
+  color: `${theme.palette.grayMain}`,
+  whiteSpace: 'pre-wrap'
+})
+
 export const TextGothic14px = styled(GothicText)<{ color: string }>`
   color: ${({color}) => (color)};
   font-size: 14px;
   font-weight: 400;
   line-height: 18.9px
 `
+
+export const TextSuit20px = styled(SuitText)({
+  color: `${theme.palette.black}`,
+  fontSize: '20px',
+  fontWeight: 800,
+  lineHeight: '25px'
+})
