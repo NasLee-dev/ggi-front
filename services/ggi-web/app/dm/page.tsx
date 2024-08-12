@@ -8,6 +8,7 @@ import { ITabStatus } from '@/models/dm/DM'
 import getAuth from '@/remote/dm/auth/getAuth'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
+import ChaProvider from './components/layout/ChaProvider'
 
 interface IUser {
   authorities: Array<string>,
@@ -32,15 +33,18 @@ export default function Page (props: any) {
   }, [token])
 
   return (
-    <DmContainer>
-      <Container>
-        <Info tabs={tabs} setTabs={setTabs}></Info>
-        {tabs.mine ? <MyDm></MyDm> 
-        : (<>
-          <Search tabs={tabs}></Search> 
-          <List></List>
-        </>)}
-      </Container>
-    </DmContainer>
+    <ChaProvider>
+      <DmContainer>
+        <div id='root-portal'/>
+        <Container>
+          <Info tabs={tabs} setTabs={setTabs}></Info>
+          {tabs.mine ? <MyDm></MyDm> 
+          : (<>
+            <Search tabs={tabs}></Search> 
+            <List></List>
+          </>)}
+        </Container>
+      </DmContainer>
+    </ChaProvider>
   )
 }
