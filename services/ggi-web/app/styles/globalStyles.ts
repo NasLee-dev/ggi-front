@@ -143,17 +143,15 @@ export default css`
     color: inherit;
     font: inherit;
     line-height: normal;
-  }
-  a {
-    color: inherit;
-    text-decoration: inherit;
+    cursor: pointer;
   }
 
-  * {
+  input {
     box-sizing: border-box;
   }
 
-  button {
-    cursor: pointer;
+  a {
+    color: inherit;
+    text-decoration: inherit;
   }
 `
