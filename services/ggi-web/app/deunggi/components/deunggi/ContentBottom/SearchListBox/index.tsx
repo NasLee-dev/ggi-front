@@ -10,7 +10,6 @@ import DefaultPagination from 'app/deunggi/components/pagination/DefaultPaginati
 export default function SearchListBox() {
   const { address, page, setPage } = useAddressStore()
 
-  // React Query 훅을 사용하여 데이터 가져오기
   const { data: addressData, isLoading } = useAddressSearchQuery(page, address)
 
   const totalPages = addressData?.totalPage
@@ -56,7 +55,7 @@ export default function SearchListBox() {
       </S.ListContainer>
       {addressData?.addrInfo && (
         <DefaultPagination
-          totalPages={totalPages}
+          totalPages={totalPages ? totalPages : 1}
           currentPage={page}
           onPageChange={handleChangePage}
         />
