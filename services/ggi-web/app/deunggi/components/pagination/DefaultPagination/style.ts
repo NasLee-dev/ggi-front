@@ -11,7 +11,7 @@ export const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 16px auto 0;
+  margin: 40px auto 0;
   gap: 10px;
 `
 
@@ -41,4 +41,23 @@ export const MoveButton = styled.button`
       color: #4b5563;
     }
   }
+`
+
+export const ButtonContainer = styled.div`
+  display: flex;
+`
+
+interface PageButtonProps {
+  active: boolean
+}
+export const PageButton = styled.button<PageButtonProps>`
+  width: 38px;
+  height: 38px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #6b7280;
+  font-family: 'SUIT', sans-serif;
+  border-radius: 4px;
+
+  background: ${({ active }) => (active ? '#E5E7EB' : 'none')};
 `

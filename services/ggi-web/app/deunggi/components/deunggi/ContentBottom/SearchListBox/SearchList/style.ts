@@ -4,7 +4,8 @@ import styled from '@emotion/styled'
 
 export const TableLi = styled.li`
   width: 100%;
-  padding: 12px 0;
+  padding: 6px 0;
+  min-height: 44px;
   display: flex;
 
   &:not(:last-child) {
