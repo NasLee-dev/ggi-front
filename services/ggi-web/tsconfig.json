@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES5",
+    "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "moduleResolution": "bundler",
     "allowJs": true,
@@ -15,6 +15,7 @@
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": ".",
+    "jsxImportSource": "@emotion/react",
     "plugins": [
       {
         "name": "next"
@@ -25,7 +26,7 @@
       "@ggi/web": ["."],
       "@/models/*": ["./models/*"],
       "@/store/*": ["./store/*"],
-      "@/components/*": ["./components/*"],
+      "@/components/*": ["app/components/*"],
       "@/hooks/*": ["./hooks/*"],
       "@/remote/*": ["./remote/*"]
     }

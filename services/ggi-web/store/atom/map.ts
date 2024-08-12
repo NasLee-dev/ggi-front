@@ -164,3 +164,13 @@ export const pageAtom = atom<number>({
   key: `page`,
   default: 1,
 })
+
+export const isPyeongState = atom({
+  key: `isPyeongState`,
+  default: false,
+})
+
+export const isCurrentStateAtom = atom({
+  key: `isCurrentState`,
+  default: false,
+})
