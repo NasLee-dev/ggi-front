@@ -1,5 +1,7 @@
+import EmotionProvider from '@/components/layout/EmotionProvider'
 import ReactQueryProviders from '@/hooks/useReactQuery'
 import { Metadata } from 'next'
+import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -14,7 +16,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ReactQueryProviders>{children}</ReactQueryProviders>
+        <ReactQueryProviders>
+          <EmotionProvider>
+            {children}
+          </EmotionProvider>
+        </ReactQueryProviders>
       </body>
     </html>
   )
