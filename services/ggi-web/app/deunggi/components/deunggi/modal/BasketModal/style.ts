@@ -15,6 +15,7 @@ export const BasketModalContainer = styled.div`
     0px 20px 13px rgba(0, 0, 0, 0.03),
     0px 8px 5px rgba(0, 0, 0, 0.08);
   position: relative;
+  box-sizing: border-box;
 `
 
 export const BasketIcon = styled(Image)`
