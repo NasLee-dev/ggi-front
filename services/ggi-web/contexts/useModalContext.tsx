@@ -1,5 +1,5 @@
 'use client'
-import InterestProps from 'app/components/interest'
+import InterestProps from 'app/map/components/interest'
 import React, {
   ComponentProps,
   createContext,
