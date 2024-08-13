@@ -10,7 +10,7 @@ export default function OngoingFilterDate() {
   const [dateValue, setDateValue] = useState<string>('')
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let value = e.target.value.replace(/\D/g, "")
+    const value = e.target.value.replace(/\D/g, "")
     let result = ''
 
     if (value.length < 4) result = value
