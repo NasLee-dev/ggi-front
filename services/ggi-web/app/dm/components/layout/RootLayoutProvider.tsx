@@ -4,7 +4,7 @@ import createCache from '@emotion/cache'
 import { ReactNode } from 'react'
 import GlobalStyle from 'styles/globalStyle'
 import ReactQueryProviders from 'app/map/components/layout/RootQueryProvider'
-import ChaProvider from './ChaProvider'
+import { ChakraProvider } from '@chakra-ui/react'
 
 const cache = createCache({ key: 'css' })
 
@@ -16,11 +16,10 @@ export default function RootLayoutProvider({
   return (
     <ReactQueryProviders>
       <CacheProvider value={cache}>
-        <ChaProvider>
+        <ChakraProvider>
           <GlobalStyle />
-          {children}
-          <div id="root-portal"></div>
-        </ChaProvider>
+            {children}
+        </ChakraProvider>
       </CacheProvider>
     </ReactQueryProviders>
   )
