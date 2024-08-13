@@ -2,10 +2,8 @@
 import { CacheProvider, Global } from '@emotion/react'
 import createCache from '@emotion/cache'
 import { ReactNode } from 'react'
-import GlobalStyle from 'styles/globalStyle'
-import ReactQueryProviders from 'app/map/components/layout/RootQueryProvider'
-import { ChakraProvider } from '@chakra-ui/react'
 import globalStyles from 'app/styles/globalStyles'
+import ReactQueryProviders from 'app/shared/components/layout/ReactQueryProviders'
 
 const cache = createCache({ key: 'css' })
 
