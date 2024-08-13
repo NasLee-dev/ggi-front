@@ -1,0 +1,51 @@
+@import url('https://hangeul.pstatic.net/hangeul_static/css/nanum-gothic.css');
+
+@font-face {
+	font-family: 'SUIT';
+	font-weight: 100;
+	src: url('/dm/font/SUIT-Thin.ttf') format('ttf');
+}
+@font-face {
+	font-family: 'SUIT';
+	font-weight: 200;
+	src: url('/dm/font/SUIT-ExtraLight.ttf') format('ttf');
+}
+@font-face {
+	font-family: 'SUIT';
+	font-weight: 300;
+	src: url('/dm/font/SUIT-Light.ttf') format('ttf');
+}
+@font-face {
+	font-family: 'SUIT';
+	font-weight: 400;
+	src: url('/dm/font/SUIT-Regular.ttf') format('ttf');
+}
+@font-face {
+	font-family: 'SUIT';
+	font-weight: 500;
+	src: url('/dm/font/SUIT-Medium.ttf') format('ttf');
+}
+@font-face {
+	font-family: 'SUIT';
+	font-weight: 600;
+	src: url('/dm/font/SUIT-SemiBold.ttf') format('ttf');
+}
+@font-face {
+	font-family: 'SUIT';
+	font-weight: 700;
+	src: url('/dm/font/SUIT-Bold.ttf') format('ttf');
+}
+@font-face {
+	font-family: 'SUIT';
+	font-weight: 800;
+	src: url('/fonts/SUIT-ExtraBold.ttf') format('ttf');
+}
+@font-face {
+	font-family: 'SUIT';
+	font-weight: 900;
+	src: url('/fonts/SUIT-Heavy.ttf') format('ttf');
+}
+
+body {
+	font-family: 'SUIT', sans-serif;
+}
