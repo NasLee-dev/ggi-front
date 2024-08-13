@@ -24,7 +24,11 @@ import {
 import { authInfo } from '@/store/atom/auth'
 import { getPosition } from '@/remote/map/auth/getPosition'
 import handleToken from '@/remote/map/auth/getAuth'
+<<<<<<< HEAD
 import MapSection from 'app/map/components/sections/MapSection'
+=======
+import MapSection from 'app/components/map/sections/MapSection'
+>>>>>>> upstream/wt
 import { fetchMapData } from 'utils/map/fetchMapData'
 
 declare global {
