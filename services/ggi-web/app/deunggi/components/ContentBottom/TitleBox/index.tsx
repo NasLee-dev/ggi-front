@@ -9,6 +9,7 @@ import { MODES } from 'constants/deunggi'
 import DefaultButton from 'app/deunggi/components/commons/button/DefaultButton'
 import ModalPortal from 'app/deunggi/components/commons/modal/ModalPortal'
 import BasketModal from 'app/deunggi/components/commons/modal/BasketModal'
+import { useRouter } from 'next/navigation'
 
 const BUTTON_TEXT = {
   delete: '삭제하기',
@@ -17,10 +18,12 @@ const BUTTON_TEXT = {
 }
 
 export default function TitleBox() {
-  const { mode, setMode } = useDeunggiStore()
+  const { mode } = useDeunggiStore()
   const [isOpenFirstModal, setIsOpenFirstModal] = useState(false)
   const [isOpenSecondModal, setIsOpenSecondModal] = useState(false)
   const [isOpenThirdModal, setIsOpenThirdModal] = useState(false)
+
+  const router = useRouter()
 
   const handleClickBasket = () => setIsOpenFirstModal(true)
   const handleCloseFirstModal = () => setIsOpenFirstModal(false)
@@ -34,13 +37,13 @@ export default function TitleBox() {
   }
 
   const locationBasket = () => {
-    setMode('장바구니')
     handleCloseSecondModal()
+    router.push('/deunggi?mode=장바구니')
   }
 
   const locationView = () => {
-    setMode('등기관리')
     handleCloseThirdModal()
+    router.push('/deunggi?mode=등기관리')
   }
 
   const handleClickPaymentBtn = () => {

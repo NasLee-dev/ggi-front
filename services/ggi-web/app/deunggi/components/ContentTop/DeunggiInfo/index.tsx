@@ -11,7 +11,7 @@ import StrokeButton from '../StrokeButton'
 import { useRouter } from 'next/navigation'
 
 function DeunggiInfo() {
-  const { mode, setMode } = useDeunggiStore()
+  const { mode } = useDeunggiStore()
 
   const router = useRouter()
 
