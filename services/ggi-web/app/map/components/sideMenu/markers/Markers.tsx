@@ -5,7 +5,7 @@ import {
   mapItemsAtom,
   selectedItemAtom,
 } from '@/store/atom/map'
-import { MapItem } from '@/models/MapItem'
+import { MapItem } from '@/models/map/MapItem'
 import { authInfo } from '@/store/atom/auth'
 import Marker from './Marker'
 
@@ -30,8 +30,8 @@ export default function Markers({
         auth.type === '1'
           ? selectedItem?.kmItem?.id
           : auth.type === '2' || auth.type === '3'
-          ? selectedItem?.gmItem?.goodsId
-          : selectedItem?.kwItem?.id
+            ? selectedItem?.gmItem?.goodsId
+            : selectedItem?.kwItem?.id
       if (idToFilter) {
         const filteredItems: MapItem[] = mapItems.filter((item: MapItem) =>
           item.ids.includes(idToFilter),

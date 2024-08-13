@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 import useDebounce from '@/hooks/useDebounce'
-import { NaverMap } from '@/models/Map'
-import { MapCountsResponse } from '@/models/MapItem'
+import { NaverMap } from '@/models/map/Map'
+import { MapCountsResponse } from '@/models/map/MapItem'
 import { authInfo } from '@/store/atom/auth'
 import {
   clickedItemAtom,

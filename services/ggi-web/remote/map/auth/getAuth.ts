@@ -1,4 +1,4 @@
-import { TokenResponse } from '@/models/Auth'
+import { TokenResponse } from '@/models/map/Auth'
 import axios from 'axios'
 export default async function handleToken(token: string, type: string) {
   try {
