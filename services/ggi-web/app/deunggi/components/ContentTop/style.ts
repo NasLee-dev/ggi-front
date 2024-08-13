@@ -5,7 +5,7 @@ import styled from '@emotion/styled'
 export const ContentHead = styled.div`
   width: 100%;
   padding-bottom: 15px;
-  border-bottom: 3px solid #e5e7eb;
+  border-bottom: ${({ theme }) => `3px solid ${theme.colors.border}`};
   margin-bottom: 105px;
   box-sizing: border-box;
 `
