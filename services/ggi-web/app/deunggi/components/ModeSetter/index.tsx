@@ -1,13 +1,13 @@
 'use client'
 
 import { useDeunggiStore } from '@/store/useDeunggiStore'
+import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 
-interface ModeSetterProps {
-  mode: string | null
-}
+export default function ModeSetter() {
+  const searchParams = useSearchParams()
+  const mode = searchParams.get('mode')
 
-export default function ModeSetter({ mode }: ModeSetterProps) {
   const { setMode } = useDeunggiStore()
 
   useEffect(() => {
