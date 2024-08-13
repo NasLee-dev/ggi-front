@@ -13,6 +13,7 @@ export const PaginationContainer = styled.div`
   align-items: center;
   margin: 40px auto 0;
   gap: 10px;
+  box-sizing: border-box;
 `
 
 export const MoveButton = styled.button`

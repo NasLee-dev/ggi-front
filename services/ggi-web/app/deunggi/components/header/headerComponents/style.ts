@@ -10,6 +10,7 @@ export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-sizing: border-box;
 `
 
 export const EndButton = styled.button`

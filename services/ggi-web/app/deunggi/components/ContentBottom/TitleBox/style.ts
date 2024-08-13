@@ -15,6 +15,7 @@ export const SearchResultTitle = styled.h3`
   font-weight: 600;
   color: #1f2937;
   padding-left: 10px;
+  box-sizing: border-box;
 `
 
 export const ModalSpan = styled.span`

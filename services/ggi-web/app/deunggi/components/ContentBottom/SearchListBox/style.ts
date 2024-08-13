@@ -27,6 +27,7 @@ export const HeadList = styled.li<HeadListProps>`
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
 `
 
 export const EmptyContent = styled.div`
@@ -38,6 +39,7 @@ export const EmptyContent = styled.div`
   font-size: 16px;
   font-weight: 400;
   color: #000;
+  box-sizing: border-box;
 `
 
 export const ListContent = styled.ul`

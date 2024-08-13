@@ -18,6 +18,7 @@ export const ContainerTitle = styled.div`
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid #e5e7eb;
+  box-sizing: border-box;
 
   h3 {
     font-size: 18px;
@@ -32,6 +33,7 @@ export const SearchContent = styled.form`
   align-items: center;
   gap: 28px;
   padding: 36px;
+  box-sizing: border-box;
 `
 
 export const SearchInput = styled.input`

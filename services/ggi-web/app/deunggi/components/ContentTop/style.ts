@@ -7,6 +7,7 @@ export const ContentHead = styled.div`
   padding-bottom: 15px;
   border-bottom: 3px solid #e5e7eb;
   margin-bottom: 105px;
+  box-sizing: border-box;
 `
 
 export const HeadTop = styled.div`

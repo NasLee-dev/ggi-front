@@ -7,6 +7,7 @@ export const TableLi = styled.li`
   padding: 6px 0;
   min-height: 44px;
   display: flex;
+  box-sizing: border-box;
 
   &:not(:last-child) {
     border-bottom: 1px solid #e5e7eb;

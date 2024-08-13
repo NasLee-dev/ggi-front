@@ -8,6 +8,7 @@ export const Box = styled.div`
   background-color: #fff;
   border-radius: 12px;
   border: 1px solid #e5e7eb;
+  box-sizing: border-box;
 `
 
 export const ProfileName = styled.h3`
@@ -25,6 +26,7 @@ export const CashBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-sizing: border-box;
 `
 
 export const CashTitleBox = styled.div`
