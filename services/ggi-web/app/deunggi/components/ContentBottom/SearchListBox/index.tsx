@@ -5,7 +5,7 @@ import { useAddressSearchQuery } from '../../ContentTop/AddressSearch/hook/useGe
 import * as S from './style'
 import { useAddressStore } from '@/store/useAddressStore'
 import SearchList from './SearchList'
-import DefaultPagination from 'app/deunggi/components/pagination/DefaultPagination'
+import DefaultPagination from 'app/deunggi/components/commons/pagination/DefaultPagination'
 
 export default function SearchListBox() {
   const { address, page, setPage } = useAddressStore()

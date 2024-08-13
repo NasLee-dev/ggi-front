@@ -1,6 +1,6 @@
 'use client'
 
-import DefaultPagination from 'app/deunggi/components/pagination/DefaultPagination'
+import DefaultPagination from 'app/deunggi/components/commons/pagination/DefaultPagination'
 import BasketList from './BasketList'
 import * as S from './style'
 import { FlexColumn } from 'styles/sharedStyle'

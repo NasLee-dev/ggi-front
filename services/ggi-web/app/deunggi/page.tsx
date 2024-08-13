@@ -1,8 +1,11 @@
 'use client'
+import Header from 'app/deunggi/components/layout/Header'
 import DeunggiSection from './components/DeunggiSection'
-import Header from './components/header/headerComponents'
 
 export default function Deunggi() {
+
+  
+
   return (
     <>
       <Header />
