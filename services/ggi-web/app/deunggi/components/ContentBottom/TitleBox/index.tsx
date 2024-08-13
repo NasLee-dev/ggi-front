@@ -6,9 +6,9 @@ import { useState } from 'react'
 import { useDeunggiStore } from '@/store/useDeunggiStore'
 import { Flex } from 'styles/sharedStyle'
 import { MODES } from 'constants/deunggi'
-import DefaultButton from 'app/deunggi/components/commons/buttons/DefaultButton'
-import ModalPortal from 'app/deunggi/components/commons/models/ModalPortal'
-import BasketModal from '../../modal/BasketModal'
+import DefaultButton from 'app/deunggi/components/commons/button/DefaultButton'
+import ModalPortal from 'app/deunggi/components/commons/modal/ModalPortal'
+import BasketModal from 'app/deunggi/components/commons/modal/BasketModal'
 
 const BUTTON_TEXT = {
   delete: '삭제하기',

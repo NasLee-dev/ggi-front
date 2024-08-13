@@ -4,7 +4,7 @@ import { FlexBetween, FlexColumn } from 'styles/sharedStyle'
 import * as S from './style'
 
 import Image from 'next/image'
-import DefaultButton from 'app/deunggi/components/commons/buttons/DefaultButton'
+import DefaultButton from 'app/deunggi/components/commons/button/DefaultButton'
 
 export default function ProfileBox() {
   return (

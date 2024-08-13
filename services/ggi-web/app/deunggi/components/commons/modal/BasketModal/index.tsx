@@ -3,8 +3,8 @@ import * as S from './style'
 
 import { ReactNode } from 'react'
 import Image from 'next/image'
-import StrokeButton from '../../ContentTop/StrokeButton'
-import DefaultButton from 'app/deunggi/components/commons/buttons/DefaultButton'
+import StrokeButton from 'app/deunggi/components/ContentTop/StrokeButton'
+import DefaultButton from 'app/deunggi/components/commons/button/DefaultButton'
 
 interface BasketModalProps {
   text: ReactNode

@@ -1,6 +1,6 @@
-import ContentBottom from './ContentBottom'
-import ContentTop from './ContentTop'
+import ContentTop from 'app/deunggi/components/ContentTop'
 import * as S from './style'
+import ContentBottom from 'app/deunggi/components/ContentBottom'
 
 export default function DeunggiSection() {
   return (

@@ -1,12 +1,11 @@
 'use client'
 
-
 import * as S from './style'
 import { ChangeEvent, MouseEvent, useState } from 'react'
 import { useAddressStore } from '@/store/useAddressStore'
 import { useDeunggiStore } from '@/store/useDeunggiStore'
 import { MODES } from 'constants/deunggi'
-import DefaultButton from 'app/deunggi/components/commons/buttons/DefaultButton'
+import DefaultButton from 'app/deunggi/components/commons/button/DefaultButton'
 
 export default function AddressSearch() {
   const [keyword, setKeyword] = useState('')
