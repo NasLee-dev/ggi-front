@@ -5,7 +5,7 @@ import styled from '@emotion/styled'
 export const SearchContainer = styled.div`
   width: 95%;
   margin: 0 auto;
-  border: 1px solid #e5e7eb;
+  border: ${({ theme }) => `1px solid ${theme.colors.border}`};
   border-radius: 12px;
   overflow: hidden;
 `
@@ -13,11 +13,11 @@ export const SearchContainer = styled.div`
 export const ContainerTitle = styled.div`
   width: 100%;
   padding: 12px 0;
-  background-color: #f8fafc;
+  background-color: ${({ theme }) => theme.colors.secondary};
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: ${({ theme }) => `1px solid ${theme.colors.border}`};
   box-sizing: border-box;
 
   h3 {
@@ -39,10 +39,10 @@ export const SearchContent = styled.form`
 export const SearchInput = styled.input`
   width: 67.6%;
   height: 50px;
-  border: 1px solid #e5e7eb;
+  border: ${({ theme }) => `1px solid ${theme.colors.border}`};
   font-size: 16px;
   font-weight: 400;
-  color: #1f2937;
+  color: ${({ theme }) => theme.colors.text};
   border-radius: 16px;
   padding: 16px;
   outline: none;

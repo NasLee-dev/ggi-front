@@ -42,7 +42,7 @@ export default function DefaultPagination({
   return (
     <S.PaginationContainer>
       <S.MoveButton
-        disabled={currentPage === 1}
+        disabled={currentRangeStart - maxPagesToShow < 1}
         onClick={handlePreviousPageGroup}
       >
         <span className="move-img">«</span>
@@ -61,7 +61,7 @@ export default function DefaultPagination({
       </S.ButtonContainer>
 
       <S.MoveButton
-        disabled={currentPage === totalPages}
+        disabled={currentRangeEnd + 1 >= totalPages}
         onClick={handleNextPageGroup}
       >
         <span>다음 페이지</span>

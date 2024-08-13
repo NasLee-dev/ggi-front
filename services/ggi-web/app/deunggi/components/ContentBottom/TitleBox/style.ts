@@ -13,7 +13,7 @@ export const TitleContainer = styled.div`
 export const SearchResultTitle = styled.h3`
   font-size: 20px;
   font-weight: 600;
-  color: #1f2937;
+  color: ${({ theme }) => theme.colors.text};
   padding-left: 10px;
   box-sizing: border-box;
 `
