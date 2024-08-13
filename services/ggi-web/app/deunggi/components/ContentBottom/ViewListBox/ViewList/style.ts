@@ -4,12 +4,12 @@ import styled from '@emotion/styled'
 
 export const TableLi = styled.li`
   width: 100%;
-  
+
   min-height: 44px;
   display: flex;
 
   &:not(:last-child) {
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: ${({ theme }) => `1px solid ${theme.colors.border}`};
   }
 `
 
@@ -21,7 +21,7 @@ export const TableValue = styled.div<TableValueProps>`
   width: ${({ width }) => width};
   font-size: 16px;
   font-weight: 400;
-  color: #1f2937;
+  color: ${({ theme }) => theme.colors.text};
   display: flex;
   justify-content: center;
   align-items: center;

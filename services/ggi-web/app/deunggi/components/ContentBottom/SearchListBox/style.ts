@@ -4,15 +4,15 @@ import styled from '@emotion/styled'
 
 export const ListContainer = styled.div`
   width: 100%;
-  border: 1px solid #e5e7eb;
+  border: ${({ theme }) => `1px solid ${theme.colors.border}`};
   border-radius: 16px;
   overflow: hidden;
 `
 
 export const ListHead = styled.ul`
   display: flex;
-  background-color: #f8fafc;
-  border-bottom: 1px solid #e5e7eb;
+  background-color: ${({ theme }) => theme.colors.secondary};
+  border-bottom: ${({ theme }) => `1px solid ${theme.colors.border}`};
 `
 
 interface HeadListProps {

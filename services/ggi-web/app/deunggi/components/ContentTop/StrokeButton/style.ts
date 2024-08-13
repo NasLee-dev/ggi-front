@@ -15,8 +15,10 @@ export const Button = styled.button<ButtonProps>`
   background-color: ${({ active }) => (active ? '#F3F8FF' : '#fff')};
   border-radius: ${({ radius }) => (radius ? radius : '16px')};
   font-weight: 700;
-  color: ${({ active }) => (active ? '#2563EB' : '#6b7280')};
+  color: ${({ active, theme }) => (active ? theme.colors.primary : '#6b7280')};
   font-size: 18px;
-  border: ${({ active }) =>
-    active ? '1px solid #2563EB' : ' 1px solid #E5E7EB'};
+  border: ${({ active, theme }) =>
+    active
+      ? `1px solid ${theme.colors.primary}`
+      : `1px solid ${theme.colors.border}`};
 `

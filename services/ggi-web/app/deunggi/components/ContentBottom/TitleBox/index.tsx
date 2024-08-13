@@ -10,6 +10,7 @@ import DefaultButton from 'app/deunggi/components/commons/button/DefaultButton'
 import ModalPortal from 'app/deunggi/components/commons/modal/ModalPortal'
 import BasketModal from 'app/deunggi/components/commons/modal/BasketModal'
 import { useRouter } from 'next/navigation'
+import theme from 'app/shared/styles/theme'
 
 const BUTTON_TEXT = {
   delete: '삭제하기',
@@ -100,7 +101,8 @@ export default function TitleBox() {
         <BasketModal
           text={
             <div>
-              선택한 등기 <span style={{ color: '#2563EB' }}>2</span>건을
+              선택한 등기 <span style={{ color: theme.colors.primary }}>2</span>
+              건을
               <br />
               장바구니에 넣으시겠습니까?
             </div>
@@ -129,12 +131,14 @@ export default function TitleBox() {
             <div>
               <div style={{ marginBottom: '30px' }}>
                 고객님의 사이버머니는{' '}
-                <span style={{ color: '#2563EB' }}>16,200</span>원 입니다.
+                <span style={{ color: theme.colors.primary }}>16,200</span>원
+                입니다.
                 <br />
-                사이버머니 <span style={{ color: '#2563EB' }}>2,000</span>
+                사이버머니{' '}
+                <span style={{ color: theme.colors.primary }}>2,000</span>
                 원(부가세 포함) 으로 <br />
-                바로등기 <span style={{ color: '#2563EB' }}>2</span>건을 열람
-                하시겠습니까?
+                바로등기 <span style={{ color: theme.colors.primary }}>2</span>
+                건을 열람 하시겠습니까?
               </div>
               <div>
                 <S.ModalSpan>건수</S.ModalSpan>에 따라 3분~10분가량 시간이
