@@ -1,10 +1,11 @@
 // useAddressStore.ts
+import { create } from 'zustand'
 
-import create from 'zustand'
+type Mode = '등기발행' | '장바구니' | '등기관리'
 
 interface DeunggiState {
-  mode: '등기발행' | '장바구니' | '등기관리'
-  setMode: (mode: '등기발행' | '장바구니' | '등기관리') => void
+  mode: Mode
+  setMode: (mode: Mode) => void
 }
 
 export const useDeunggiStore = create<DeunggiState>((set) => ({
