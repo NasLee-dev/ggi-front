@@ -8,14 +8,17 @@ import Link from 'next/link'
 import { useDeunggiStore } from '@/store/useDeunggiStore'
 import { MODES } from 'constants/deunggi'
 import StrokeButton from '../StrokeButton'
+import { useRouter } from 'next/navigation'
 
 function DeunggiInfo() {
   const { mode, setMode } = useDeunggiStore()
 
+  const router = useRouter()
+
   const handleChangeMode = (e: MouseEvent<HTMLButtonElement>) => {
     const { name } = e.target as HTMLButtonElement
     if (name === '등기발행' || name === '장바구니' || name === '등기관리') {
-      setMode(name)
+      router.push(`/deunggi?mode=${name}`)
     }
   }
   const descriptionContent = useMemo(() => {
