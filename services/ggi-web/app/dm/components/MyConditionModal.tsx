@@ -1,4 +1,3 @@
-import { CloseIcon } from "@chakra-ui/icons";
 import { FlexSpaceBetween, InputBox, ModalBox, ModalContainer, ModalContentBox } from "./styles/Boxes";
 import { TextGothic15px, TextSuit20px } from "./styles/Typography";
 
@@ -17,7 +16,7 @@ export default function MyConditionModal({
   return (
     <ModalContainer>
       <div style={{ display: 'flex', flexDirection: 'row-reverse'}}>
-        <CloseIcon width={'16px'} height={'16px'}/>
+        <img src="/dm/images/close.png" width={'16px'} height={'6px'}/>
       </div>
       <ModalBox>
         <TextSuit20px>{title}{`(n/10)`}</TextSuit20px>
