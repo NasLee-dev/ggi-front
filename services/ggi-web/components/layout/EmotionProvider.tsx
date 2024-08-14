@@ -3,7 +3,7 @@
 import { CacheProvider } from '@emotion/react'
 import createCache from '@emotion/cache'
 import { ReactNode } from 'react'
-import GlobalStyle from '@/components/styles/globalStyle'
+import GlobalStyle from 'styles/globalStyle'
 
 const cache = createCache({ key: 'css' })
 
