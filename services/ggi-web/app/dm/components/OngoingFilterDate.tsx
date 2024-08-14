@@ -1,17 +1,29 @@
+<<<<<<< HEAD
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { FlexNowrap } from "../components/styles/Boxes";
 import { CalendarIcon } from "@chakra-ui/icons";
+=======
+import { FlexNowrap } from "../components/styles/Boxes";
+>>>>>>> 0e5b7f72b62cb4705a6d53727430016d0e20475b
 import { theme } from "../components/styles/theme";
 import { InfoText } from "../components/styles/Typography";
 import React, { useState } from "react";
 import { CheckBox } from "../components/styles/Button";
+<<<<<<< HEAD
+=======
+import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+>>>>>>> 0e5b7f72b62cb4705a6d53727430016d0e20475b
 
 export default function OngoingFilterDate() {
   const [checked, setChecked] = useState<boolean>(true)
   const [dateValue, setDateValue] = useState<string>('')
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+<<<<<<< HEAD
     let value = e.target.value.replace(/\D/g, "")
+=======
+    const value = e.target.value.replace(/\D/g, "")
+>>>>>>> 0e5b7f72b62cb4705a6d53727430016d0e20475b
     let result = ''
 
     if (value.length < 4) result = value
@@ -62,9 +74,15 @@ export default function OngoingFilterDate() {
 
   return (
     <FlexNowrap>
+<<<<<<< HEAD
       <InputGroup style={{ width: '564px' }}>
         <InputLeftElement style={{ margin: '5px'}}>
           <CalendarIcon color={theme.palette.grayMain} />
+=======
+      {/* <InputGroup style={{ width: '564px' }}>
+        <InputLeftElement style={{ margin: '5px'}}>
+          CalendarIcon
+>>>>>>> 0e5b7f72b62cb4705a6d53727430016d0e20475b
         </InputLeftElement>
         <Input 
           style={{ 
@@ -80,7 +98,11 @@ export default function OngoingFilterDate() {
           value={dateValue}
           onChange={handleChangeInput}
         />
+<<<<<<< HEAD
       </InputGroup>
+=======
+      </InputGroup> */}
+>>>>>>> 0e5b7f72b62cb4705a6d53727430016d0e20475b
       <CheckBox type="checkbox" id='chk' onChange={() => setChecked(!checked)} value={Number(checked)} defaultChecked />
       <label htmlFor="chk">
         <InfoText color={theme.palette.grayMain}>

@@ -1,19 +1,16 @@
-import ChaProvider from "./components/layout/ChaProvider"
+'use client'
 
-export default function Layout({
+import { ChakraProvider } from "@chakra-ui/react"
+
+export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
 
   return (
-    <html lang="en">
-      <body>
-        <ChaProvider>
-          {children}
-          <div id="root-portal"/>
-        </ChaProvider>
-      </body>
-    </html>
+    <ChakraProvider>
+      {children}
+    </ChakraProvider>
   )
 }

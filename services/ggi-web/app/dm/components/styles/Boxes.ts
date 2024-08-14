@@ -130,3 +130,43 @@ export const CountBox = styled.span({
   color: `${theme.palette.white}`,
   padding: '0 6px'
 })
+<<<<<<< HEAD
+=======
+
+export const ModalContainer = styled.div({
+  width: '531px',
+  maxHeight: '520px',
+  boxShadow: '0px 8px 5px 0px rgba(0, 0, 0, 0.08)',
+  backgroundColor: `${theme.palette.white}`,
+  borderRadius: '16px',
+  padding: '20px'
+})
+
+export const ModalBox = styled(FlexCenter)({
+  flexDirection: 'column',
+  width: '451px',
+  maxHeight: '188px',
+  margin: '20px',
+  marginTop: '0px'
+})
+
+export const ModalContentBox = styled(Flex)({
+  width: '451px',
+  maxHeight: '188px',
+  border: `1px solid ${theme.palette.graySecondary}`,
+  borderRadius: '10px',
+  padding: '20px',
+  margin: '5px auto'
+})
+
+export const InputBox = styled.input`
+  width: 323px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid ${theme.palette.graySecondary};
+  
+  &:focus {
+    border-color: ${theme.palette.blueMain}
+  }
+`
+>>>>>>> 0e5b7f72b62cb4705a6d53727430016d0e20475b

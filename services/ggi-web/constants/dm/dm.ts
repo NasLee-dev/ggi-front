@@ -2,6 +2,11 @@ export const infoContents = `
 경매 현장에서 법률상담, 소송대리, 입찰대리, 경매상담, 중개서비스, 대출서비스, 채권매각을 기다리는 수요자에게 DM을 보내보세요. 소유자/채무자/채권자/입주자 등 경매사건 이해관계인의 DM 발송용 정보를 한번에 다운로드 할 수 있습니다. 가장 빠르고 정확한 지지옥션 경매정보. 업무에 활용할 수 있는 기회를 놓치지 마세요.
 `
 
+export const conditionTitle = `나의조건`
+export const saveConditionTitle = `나의조건을 설정합니다`
+export const conditionSubTitle = `나의조건은 10개까지만 설정할 수 있습니다`
+export const saveConditionSubTitle = `사용하실 조건 이름을 적어주세요. \r\n 조건은 10개까지만 저장할 수 있습니다.`
+
 export const sendTo = [
   {status : true, name: '소재지'},
   {status : false, name: '소유자'},
