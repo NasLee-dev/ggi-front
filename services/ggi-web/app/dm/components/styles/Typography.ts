@@ -68,8 +68,6 @@ export const SearchTitle = styled(SuitText)({
   fontWeight: 800
 })
 
-<<<<<<< HEAD
-=======
 export const TextGothic15px = styled(GothicText)({
   fontSize: '15px',
   fontWeight: 500,
@@ -77,15 +75,11 @@ export const TextGothic15px = styled(GothicText)({
   whiteSpace: 'pre-wrap'
 })
 
->>>>>>> 0e5b7f72b62cb4705a6d53727430016d0e20475b
 export const TextGothic14px = styled(GothicText)<{ color: string }>`
   color: ${({color}) => (color)};
   font-size: 14px;
   font-weight: 400;
   line-height: 18.9px
-<<<<<<< HEAD
-`
-=======
 `
 
 export const TextSuit20px = styled(SuitText)({
@@ -94,4 +88,3 @@ export const TextSuit20px = styled(SuitText)({
   fontWeight: 800,
   lineHeight: '25px'
 })
->>>>>>> 0e5b7f72b62cb4705a6d53727430016d0e20475b

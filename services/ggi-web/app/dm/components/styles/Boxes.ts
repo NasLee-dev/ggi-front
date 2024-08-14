@@ -130,8 +130,6 @@ export const CountBox = styled.span({
   color: `${theme.palette.white}`,
   padding: '0 6px'
 })
-<<<<<<< HEAD
-=======
 
 export const ModalContainer = styled.div({
   width: '531px',
@@ -169,4 +167,3 @@ export const InputBox = styled.input`
     border-color: ${theme.palette.blueMain}
   }
 `
->>>>>>> 0e5b7f72b62cb4705a6d53727430016d0e20475b
