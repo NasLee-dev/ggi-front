@@ -9,12 +9,12 @@ import {
   mapListAtom,
   selectedItemAtom,
 } from '@/store/atom/map'
-import { NaverMap } from '@/models/Map'
-import { MapItem, MapItems } from '@/models/MapItem'
+import { NaverMap } from '@/models/map/Map'
+import { MapItem, MapItems } from '@/models/map/MapItem'
 import { useRouter } from 'next/navigation'
 import { UseQueryResult, useQuery } from '@tanstack/react-query'
 import useSessionStorage from '@/hooks/useSessionSotrage'
-import { GetItemResponse, PageInfo } from '@/models/ListItem'
+import { GetItemResponse, PageInfo } from '@/models/map/ListItem'
 import {
   getGgItem,
   getGmItem,
@@ -24,11 +24,7 @@ import {
 import { authInfo } from '@/store/atom/auth'
 import { getPosition } from '@/remote/map/auth/getPosition'
 import handleToken from '@/remote/map/auth/getAuth'
-<<<<<<< HEAD
 import MapSection from 'app/map/components/sections/MapSection'
-=======
-import MapSection from 'app/components/map/sections/MapSection'
->>>>>>> upstream/wt
 import { fetchMapData } from 'utils/map/fetchMapData'
 
 declare global {

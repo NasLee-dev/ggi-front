@@ -1,14 +1,7 @@
 'use client'
-<<<<<<< HEAD
 
 import RootLayoutProvider from 'app/shared/components/layout/RootLayoutProvider'
 import Script from 'next/script'
-=======
-import ReactQueryProviders from '@/hooks/useReactQuery'
-import Script from 'next/script'
-import EmotionProvider from './components/layout/EmotionProvider'
-import InterestContextProvider from 'contexts/useModalContext'
->>>>>>> upstream/wt
 
 export default function RootLayout({
   children,
@@ -37,18 +30,7 @@ export default function RootLayout({
         <Script src={KAKAO_SDK_URL} strategy="lazyOnload" />
       </head>
       <body>
-<<<<<<< HEAD
         <RootLayoutProvider>{children}</RootLayoutProvider>
-=======
-        <ReactQueryProviders>
-          <EmotionProvider>
-            <InterestContextProvider>{children}</InterestContextProvider>
-          </EmotionProvider>
-          <div id="root-portal" />
-          <div id="portal" />
-          <div id="portal-root" />
-        </ReactQueryProviders>
->>>>>>> upstream/wt
       </body>
     </html>
   )

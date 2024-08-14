@@ -1,4 +1,4 @@
-import { DongProps } from '@/models/Address'
+import { DongProps } from '@/models/map/Address'
 import { jusoAtom } from '@/store/atom/map'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
