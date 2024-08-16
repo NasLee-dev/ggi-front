@@ -5,13 +5,21 @@ import { FlexColumn } from 'styles/sharedStyle'
 import * as S from './style'
 import Link from 'next/link'
 
-import { useDeunggiStore } from '@/store/useDeunggiStore'
+import {
+  useBasketDataStore,
+  useDeunggiDataStore,
+  useDeunggiStore,
+  useViewDataStore,
+} from '@/store/useDeunggiStore'
 import { MODES } from 'constants/deunggi'
 import StrokeButton from '../StrokeButton'
 import { useRouter } from 'next/navigation'
 
 function DeunggiInfo() {
   const { mode } = useDeunggiStore()
+  const { clearBasketData } = useBasketDataStore()
+  const { clearViewData } = useViewDataStore()
+  const { clearDeunggiData } = useDeunggiDataStore()
 
   const router = useRouter()
 
@@ -19,6 +27,9 @@ function DeunggiInfo() {
     const { name } = e.target as HTMLButtonElement
     if (name === '등기발행' || name === '장바구니' || name === '등기관리') {
       router.push(`/deunggi?mode=${name}`)
+      clearDeunggiData()
+      clearBasketData()
+      clearViewData()
     }
   }
   const descriptionContent = useMemo(() => {
