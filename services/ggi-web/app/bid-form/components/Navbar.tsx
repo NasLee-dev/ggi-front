@@ -36,7 +36,7 @@ export default function Navbar() {
   }, [stepStateNum])
 
   return (
-    <div
+    <header
       className={`flex justify-center items-center absolute w-[100%] h-[50px] left-[50%] top-0 bg-mybg mx-auto`}
       style={{
         transform: 'translateX(-50%)',
@@ -50,6 +50,6 @@ export default function Navbar() {
           ></div>
         </div>
       )}
-    </div>
+    </header>
   )
 }

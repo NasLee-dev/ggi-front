@@ -11,7 +11,7 @@ export default function useGetAuth( token: string | null, idcode?: string | null
 
   const handleStateNum = () => {
     if (biddingForm.state === 0) {
-      setStateNum(4)
+      setStateNum(2)
     } else if (
       (biddingForm.state === 1 || biddingForm.state === 2) &&
       biddingForm.agentYn === 'Y'
@@ -55,13 +55,13 @@ export default function useGetAuth( token: string | null, idcode?: string | null
             ...prev,
             ...idcodeResponse,
           }))
-          handleStateNum()
         }
         if (mstSeq) {
           const mstSeqResponse = await getMstSeqInfo(mstSeq as string)
           setBiddingForm((prev) => ({
             ...prev,
             ...mstSeqResponse,
+            biddingDateString : mstSeqResponse.biddingDateString ?? mstSeqResponse.biddingDate.substring(0, 4) + '년 ' +  mstSeqResponse.biddingDate.substring(5, 6) + '월 ' + mstSeqResponse.biddingDate.substring(7, 8) + '일',
           }))
           handleStateNum()
         }

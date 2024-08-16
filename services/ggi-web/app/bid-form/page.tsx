@@ -26,7 +26,7 @@ export default function BidForm({ searchParams }: BidFormProps) {
     new URLSearchParams(searchParams as Record<string, string>),
   )
   const [loading, setLoading] = useState(false)
-  const { mutate } = useGetAuth(
+  const { mutate: getAuth } = useGetAuth(
     initialData.token,
     initialData?.idCode,
     initialData?.mstSeq,
@@ -34,7 +34,7 @@ export default function BidForm({ searchParams }: BidFormProps) {
 
   useEffect(() => {
     setLoading(true)
-    mutate()
+    getAuth()
     setLoading(false)
     setAuthInfo((prev) => ({
       ...prev,
