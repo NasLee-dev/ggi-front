@@ -22,6 +22,13 @@ interface BasketDataState {
   clearBasketData: () => void
 }
 
+interface ViewDataState {
+  viewData: any[]
+  setViewData: (newData: any) => void
+  isChecked: (newData: any) => boolean
+  clearViewData: () => void
+}
+
 export const useDeunggiStore = create<DeunggiState>((set) => ({
   mode: '등기발행',
   setMode: (mode) => set({ mode }),
@@ -72,5 +79,29 @@ export const useBasketDataStore = create<BasketDataState>((set, get) => ({
     }),
   isChecked: (newData) => {
     return get().basketData.includes(newData)
+  },
+}))
+
+export const useViewDataStore = create<ViewDataState>((set, get) => ({
+  viewData: [],
+  setViewData: (newData) =>
+    set((state) => {
+      const isExisting = state.viewData.includes(newData)
+      if (isExisting) {
+        return {
+          viewData: state.viewData.filter((item) => item !== newData),
+        }
+      } else {
+        return { viewData: [...state.viewData, newData] }
+      }
+    }),
+  clearViewData: () =>
+    set(() => {
+      return {
+        viewData: [],
+      }
+    }),
+  isChecked: (newData) => {
+    return get().viewData.includes(newData)
   },
 }))
