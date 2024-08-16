@@ -8,6 +8,10 @@ export const SearchContainer = styled.div`
   border: ${({ theme }) => `1px solid ${theme.colors.border}`};
   border-radius: 12px;
   overflow: hidden;
+
+  @media (max-width: 1250px) {
+    width: 100%;
+  }
 `
 
 export const ContainerTitle = styled.div`
