@@ -9,6 +9,10 @@ export const Box = styled.div`
   border-radius: 12px;
   border: ${({ theme }) => `1px solid ${theme.colors.border}`};
   box-sizing: border-box;
+
+  @media (max-width: 640px) {
+    min-width: auto;
+  }
 `
 
 export const ProfileName = styled.h3`
