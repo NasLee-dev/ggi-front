@@ -230,7 +230,7 @@ export default function TitleBox() {
           }
           onClick={() => {}}
           onClose={handleCloseBasketDeleteModal}
-          type="basket"
+          type="delete"
         />
       </ModalPortal>
       <ModalPortal
@@ -249,7 +249,7 @@ export default function TitleBox() {
           }
           onClick={() => {}}
           onClose={handleCloseViewDeleteModal}
-          type="basket"
+          type="delete"
         />
       </ModalPortal>
     </S.TitleContainer>
