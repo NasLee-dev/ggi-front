@@ -20,7 +20,7 @@ const BUTTON_TEXT = {
 
 export default function TitleBox() {
   const { mode } = useDeunggiStore()
-  const { deunggiData } = useDeunggiDataStore()
+  const { deunggiData, clearDeunggiData } = useDeunggiDataStore()
   const [isOpenFirstModal, setIsOpenFirstModal] = useState(false)
   const [isOpenSecondModal, setIsOpenSecondModal] = useState(false)
   const [isOpenThirdModal, setIsOpenThirdModal] = useState(false)
@@ -41,6 +41,7 @@ export default function TitleBox() {
   const handleClickBasketConfirm = () => {
     handleCloseFirstModal()
     alert('장바구니 담기 로직')
+    clearDeunggiData()
     setIsOpenSecondModal(true)
   }
 
@@ -145,9 +146,12 @@ export default function TitleBox() {
                 입니다.
                 <br />
                 사이버머니{' '}
-                <span style={{ color: theme.colors.primary }}>2,000</span>
+                <span style={{ color: theme.colors.primary }}>{(1000 * deunggiData.length).toLocaleString()}</span>
                 원(부가세 포함) 으로 <br />
-                바로등기 <span style={{ color: theme.colors.primary }}>2</span>
+                바로등기{' '}
+                <span style={{ color: theme.colors.primary }}>
+                  {deunggiData.length}
+                </span>
                 건을 열람 하시겠습니까?
               </div>
               <div>
