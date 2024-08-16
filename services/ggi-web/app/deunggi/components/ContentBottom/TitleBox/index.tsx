@@ -2,8 +2,11 @@
 
 import * as S from './style'
 import { useState } from 'react'
-
-import { useDeunggiDataStore, useDeunggiStore } from '@/store/useDeunggiStore'
+import {
+  useBasketDataStore,
+  useDeunggiDataStore,
+  useDeunggiStore,
+} from '@/store/useDeunggiStore'
 import { Flex } from 'styles/sharedStyle'
 import { MODES } from 'constants/deunggi'
 import DefaultButton from 'app/deunggi/components/commons/button/DefaultButton'
@@ -11,6 +14,7 @@ import ModalPortal from 'app/deunggi/components/commons/modal/ModalPortal'
 import BasketModal from 'app/deunggi/components/commons/modal/BasketModal'
 import { useRouter } from 'next/navigation'
 import theme from 'app/shared/styles/theme'
+import { toLocalStringFn } from 'utils/commons/toLocalString'
 
 const BUTTON_TEXT = {
   delete: '삭제하기',
@@ -21,9 +25,11 @@ const BUTTON_TEXT = {
 export default function TitleBox() {
   const { mode } = useDeunggiStore()
   const { deunggiData, clearDeunggiData } = useDeunggiDataStore()
+  const { basketData } = useBasketDataStore()
   const [isOpenFirstModal, setIsOpenFirstModal] = useState(false)
   const [isOpenSecondModal, setIsOpenSecondModal] = useState(false)
   const [isOpenThirdModal, setIsOpenThirdModal] = useState(false)
+  const [totalPrice, setTotalPrice] = useState(0)
 
   const router = useRouter()
 
@@ -56,6 +62,17 @@ export default function TitleBox() {
   }
 
   const handleClickPaymentBtn = () => {
+    if (basketData.length < 1) {
+      alert('결제하실 등기를 선택해주세요.')
+      return
+    }
+
+    let totalPrice = 0
+    basketData.forEach((data) => {
+      const price = data.price
+      totalPrice += price
+    })
+    setTotalPrice(totalPrice)
     setIsOpenThirdModal(true)
   }
 
@@ -146,11 +163,13 @@ export default function TitleBox() {
                 입니다.
                 <br />
                 사이버머니{' '}
-                <span style={{ color: theme.colors.primary }}>{(1000 * deunggiData.length).toLocaleString()}</span>
+                <span style={{ color: theme.colors.primary }}>
+                  {toLocalStringFn(totalPrice)}
+                </span>
                 원(부가세 포함) 으로 <br />
                 바로등기{' '}
                 <span style={{ color: theme.colors.primary }}>
-                  {deunggiData.length}
+                  {basketData.length}
                 </span>
                 건을 열람 하시겠습니까?
               </div>
