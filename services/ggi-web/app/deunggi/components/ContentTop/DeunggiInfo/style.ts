@@ -29,4 +29,9 @@ export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+
+  @media (max-width: 1250px) {
+    width: 100%;
+    justify-content: center;
+  }
 `
