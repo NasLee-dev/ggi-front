@@ -16,6 +16,7 @@ export interface Auth {
   detailLng: number
   detailLat: number
   id: string
+  mstSeq: string
 }
 
 interface Contents {

@@ -43,7 +43,6 @@ export default function MapSection() {
   const onLoadMap = (map: NaverMap) => {
     initMap(map)
   }
-  console.log(openOverlay)
   return (
     <div>
       <GGIMap

@@ -10,12 +10,20 @@ import Image from 'next/image'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { clickedInfoAtom, mapItemsAtom, mapListAtom } from '@/store/atom/map'
 import { authInfo } from '@/store/atom/auth'
-import { interest, InterestFormData, UpdatedInterest } from '@/models/map/Interest'
+import {
+  interest,
+  InterestFormData,
+  UpdatedInterest,
+} from '@/models/map/Interest'
 import useHandleSelectedData from './hooks/useHandleSelectedData'
 import usePostInterest from './hooks/usePostInterest'
 import usePutInterest from './hooks/usePutInterest'
 import useDeleteInterest from './hooks/useDeleteInterest'
-import { getGmInterest, getKmInterest, getKwInterest } from '@/remote/map/interest/getInterest'
+import {
+  getGmInterest,
+  getKmInterest,
+  getKwInterest,
+} from '@/remote/map/interest/getInterest'
 import TitlePage from './TitlePage'
 import InfoTextPage from './InfoText'
 import TopLine from './TopLine'
@@ -33,6 +41,10 @@ interface InterestProps {
   open?: boolean
   onButtonClick: () => void
 }
+
+type InterestFunction = (
+  id: string,
+) => Promise<{ success: boolean; data: interest }>
 
 export default function InterestProps({
   open,
@@ -106,7 +118,7 @@ export default function InterestProps({
   )
   const handleGetData = useCallback(
     async (type: string, id: string) => {
-      const fetchData: { [key: string]: Function } = {
+      const fetchData: { [key: string]: InterestFunction } = {
         '1': getKmInterest,
         '2': getGmInterest,
         '3': getGmInterest,
@@ -142,10 +154,10 @@ export default function InterestProps({
                 data?.goodsId === '' || data?.goodsId === undefined
                   ? 1
                   : data?.infoId === undefined
-                  ? 2
-                  : data?.mulSeq === undefined
-                  ? 4
-                  : 3,
+                    ? 2
+                    : data?.mulSeq === undefined
+                      ? 4
+                      : 3,
             },
           }))
         }
@@ -420,8 +432,8 @@ export default function InterestProps({
               ? interestData?.interestInfo !== null
                 ? '850px'
                 : type === '1'
-                ? '800px'
-                : '550px'
+                  ? '800px'
+                  : '550px'
               : '400px',
         }}
       >
