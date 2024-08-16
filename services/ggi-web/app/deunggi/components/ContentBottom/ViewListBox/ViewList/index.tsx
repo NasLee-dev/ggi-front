@@ -3,6 +3,7 @@ import { useRef, useState } from 'react'
 import Image from 'next/image'
 import DefaultCheckbox from 'app/deunggi/components/commons/checkbox/DefaultCheckbox'
 import DownloadIcon from './DownloadIcon'
+import { useViewDataStore } from '@/store/useDeunggiStore'
 
 export default function ViewList({
   data,
@@ -11,14 +12,13 @@ export default function ViewList({
   data: any
   index: number
 }) {
-  const [isCheck, setIsCheck] = useState(false)
+  const { setViewData, isChecked } = useViewDataStore()
 
   const checkboxRef = useRef<HTMLInputElement>(null)
 
   const handleClickCheckbox = () => {
     if (checkboxRef.current) {
-      const isChecked = checkboxRef.current.checked
-      setIsCheck(isChecked)
+      setViewData(data)
     }
   }
 
@@ -29,7 +29,7 @@ export default function ViewList({
           id={`checkbox${index}`}
           ref={checkboxRef}
           onChange={handleClickCheckbox}
-          isCheck={isCheck}
+          isCheck={isChecked(data)}
         />
       </S.TableValue>
       <S.TableValue width="16.08%">{data.time}</S.TableValue>

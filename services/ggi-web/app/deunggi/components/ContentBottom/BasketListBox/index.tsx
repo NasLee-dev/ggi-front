@@ -4,6 +4,8 @@ import DefaultPagination from 'app/deunggi/components/commons/pagination/Default
 import BasketList from './BasketList'
 import * as S from './style'
 import { FlexColumn } from 'styles/sharedStyle'
+import { useEffect, useState } from 'react'
+import { toLocalStringFn } from 'utils/commons/toLocalString'
 
 const BASKET_LIST = [
   {
@@ -11,32 +13,43 @@ const BASKET_LIST = [
     type: '건물',
     address: '서울특별시 성동구',
     status: '현행',
-    price: '1,004,000 원',
+    price: 1004000,
   },
   {
     uniquenumber: '1234567891',
     type: '건물',
     address: '서울특별시 광진구',
     status: '현행',
-    price: '1,000,000 원',
+    price: 1000000,
   },
   {
     uniquenumber: '1234567892',
     type: '건물',
     address: '서울특별시 성동구',
     status: '현행',
-    price: '3,000,000 원',
+    price: 3000000,
   },
   {
     uniquenumber: '1234567893',
     type: '건물',
     address: '서울특별시 송파구',
     status: '현행',
-    price: '100,000 원',
+    price: 100000,
   },
 ]
 
 export default function BasketListBox() {
+  const [totalPrice, setTotalPrice] = useState(0)
+
+  useEffect(() => {
+    let totalPrice = 0
+    BASKET_LIST.forEach((data) => {
+      const price = data.price
+      totalPrice += price
+    })
+    setTotalPrice(totalPrice)
+  }, [])
+
   return (
     <FlexColumn gap={8}>
       <S.ListContainer>
@@ -62,7 +75,9 @@ export default function BasketListBox() {
         </S.ListContent>
       </S.ListContainer>
       <S.TotalPriceBox>
-        <p>총 결제 금액 &nbsp;&nbsp;:&nbsp;&nbsp; 2,000원</p>
+        <p>
+          총 결제 금액 &nbsp;&nbsp;:&nbsp;&nbsp; {toLocalStringFn(totalPrice)}원
+        </p>
       </S.TotalPriceBox>
       {BASKET_LIST.length > 0 && (
         <DefaultPagination
