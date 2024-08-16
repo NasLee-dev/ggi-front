@@ -26,7 +26,7 @@ export default function Overlay({ halfDimensions, openOverlay }: OverlayProps) {
     enabled: false,
   })
   const calculateScreenNum = useMemo(() => {
-    let position = {
+    const position = {
       first: false,
       second: false,
       third: false,

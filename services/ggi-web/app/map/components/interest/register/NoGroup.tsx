@@ -32,7 +32,7 @@ export default function NoGroupBtn({
 
   const handleCategorySort = (categories: string[]) => {
     if (formData) {
-      let newCategory = []
+      const newCategory = []
       for (const a of categories) {
         if (a === '미분류') {
           newCategory.unshift(a)
@@ -209,7 +209,7 @@ export default function NoGroupBtn({
       </ContainerStyle>
       <Spacing size={20} />
       <div
-      css={scrollBarStyle}
+        css={scrollBarStyle}
         style={{
           display: 'flex',
           flexDirection: 'column',

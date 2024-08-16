@@ -117,6 +117,7 @@ const CloseButtonStyle = styled.button`
   border-radius: 8px;
   border: 1px solid #6d6e70;
   background: #fff;
+  cursor: pointer;
 `
 const TextStyle = css`
   color: #6d6e70;

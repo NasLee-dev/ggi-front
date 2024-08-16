@@ -9,13 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.1.1",
+    "@chakra-ui/react": "^2.8.2",
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
-    "cosmiconfig": "^9.0.0",
-    "@chakra-ui/react": "^2.8.2",
-    "@chakra-ui/icons": "^2.1.1",
     "@next/font": "^14.2.5",
+    "cosmiconfig": "^9.0.0",
     "framer-motion": "^11.3.23",
     "next": "^14.2.5",
     "next-transpile-modules": "^10.0.1",
@@ -45,9 +45,11 @@
     "eslint-config-next": "14.2.5",
     "react-infinite-scroll-component": "^6.1.0",
     "recoil": "^0.7.7",
+    "swiper": "^11.0.7",
+    "tailwindcss": "^3.4.10",
     "twin.macro": "^3.4.1",
     "typescript": "^5",
-    "uuid": "^9.0.1",
-    "swiper": "^11.0.7"
+    "postcss": "^8",
+    "uuid": "^9.0.1"
   }
 }

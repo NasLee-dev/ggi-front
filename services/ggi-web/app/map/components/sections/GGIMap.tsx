@@ -26,6 +26,9 @@ import useGeoCode from './hooks/useGeoCode'
 import useMapCounts from '../sideMenu/searchListBox/listBox/hooks/useMapCounts'
 import postXY from '@/remote/map/auth/postXY'
 import getPolypath from '@/remote/map/selected/getPolypath'
+import CloseButton from '../icons/CloseButton'
+import MapType from '../mapType/MapType'
+import MapFunction from '../mapFunc/MapFunction'
 
 type MapType = {
   basic: boolean
@@ -491,7 +494,7 @@ export default function GGIMap({
           display: isPanoVisible ? 'block' : 'none',
         }}
       />
-      {/* {isPanoVisible && (
+      {isPanoVisible && (
         <div
           style={{
             position: 'fixed',
@@ -515,7 +518,7 @@ export default function GGIMap({
         clickedMapType={clickedMapType}
         setClickedMapType={setClickedMapType}
         setOpenOverlay={setOpenOverlay}
-      /> */}
+      />
     </>
   )
 }

@@ -237,11 +237,13 @@ export default function Carousel({
                               clickedInfo[index]?.type?.toString()) ||
                             '1',
                           id:
-                            clickedInfo && clickedInfo[index]?.type === 1
+                            clickedInfo[index]?.type === (1 as number) ||
+                            clickedInfo[index]?.type === (4 as number)
                               ? (clickedInfo[index]?.id as string)
-                              : clickedInfo[index]?.type === 2 || 3
+                              : clickedInfo[index]?.type === (2 as number) ||
+                                  clickedInfo[index]?.type === (3 as number)
                                 ? (clickedInfo[index]?.goodsID as string)
-                                : (clickedInfo[index]?.id as string),
+                                : '',
                           onButtonClick: () => {
                             onButtonClick()
                           },
@@ -257,9 +259,11 @@ export default function Carousel({
                   </Flex>
                   <BottomBox>
                     <Text css={BottomTextStyle}>
-                      {clickedItem?.types[index] === 1
+                      {clickedItem?.types[index] === 1 ||
+                      clickedItem?.types[index] === 4
                         ? clickedInfo && clickedInfo[index]?.caseNo
-                        : clickedItem?.types[index] === 2 || 3
+                        : clickedItem?.types[index] === 2 ||
+                            clickedItem?.types[index] === 3
                           ? clickedInfo && clickedInfo[index]?.manageNo
                           : ''}
                     </Text>
