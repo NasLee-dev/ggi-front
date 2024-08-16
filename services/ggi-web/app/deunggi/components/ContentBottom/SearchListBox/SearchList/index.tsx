@@ -2,6 +2,7 @@ import * as S from './style'
 import { useRef, useState } from 'react'
 import { Address } from '../../../ContentTop/AddressSearch/api/addressSearch'
 import DefaultCheckbox from 'app/deunggi/components/commons/checkbox/DefaultCheckbox'
+import { useDeunggiDataStore } from '@/store/useDeunggiStore'
 
 export default function SearchList({
   data,
@@ -10,14 +11,13 @@ export default function SearchList({
   data: Address
   index: number
 }) {
-  const [isCheck, setIsCheck] = useState(false)
+  const { setDeunggiData, isChecked } = useDeunggiDataStore()
 
   const checkboxRef = useRef<HTMLInputElement>(null)
 
   const handleClickCheckbox = () => {
     if (checkboxRef.current) {
-      const isChecked = checkboxRef.current.checked
-      setIsCheck(isChecked)
+      setDeunggiData(data)
     }
   }
 
@@ -28,7 +28,7 @@ export default function SearchList({
           id={`checkbox${index}`}
           ref={checkboxRef}
           onChange={handleClickCheckbox}
-          isCheck={isCheck}
+          isCheck={isChecked(data)}
         />
       </S.TableValue>
       <S.TableValue width="6.96%">{index}</S.TableValue>

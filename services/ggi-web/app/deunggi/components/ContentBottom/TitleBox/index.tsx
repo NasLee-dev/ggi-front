@@ -3,7 +3,7 @@
 import * as S from './style'
 import { useState } from 'react'
 
-import { useDeunggiStore } from '@/store/useDeunggiStore'
+import { useDeunggiDataStore, useDeunggiStore } from '@/store/useDeunggiStore'
 import { Flex } from 'styles/sharedStyle'
 import { MODES } from 'constants/deunggi'
 import DefaultButton from 'app/deunggi/components/commons/button/DefaultButton'
@@ -20,13 +20,20 @@ const BUTTON_TEXT = {
 
 export default function TitleBox() {
   const { mode } = useDeunggiStore()
+  const { deunggiData } = useDeunggiDataStore()
   const [isOpenFirstModal, setIsOpenFirstModal] = useState(false)
   const [isOpenSecondModal, setIsOpenSecondModal] = useState(false)
   const [isOpenThirdModal, setIsOpenThirdModal] = useState(false)
 
   const router = useRouter()
 
-  const handleClickBasket = () => setIsOpenFirstModal(true)
+  const handleClickBasket = () => {
+    if (deunggiData.length < 1) {
+      alert('주소 검색 후 장바구니에 담을 등기 데이터를 선택해주세요.')
+      return
+    }
+    setIsOpenFirstModal(true)
+  }
   const handleCloseFirstModal = () => setIsOpenFirstModal(false)
   const handleCloseSecondModal = () => setIsOpenSecondModal(false)
   const handleCloseThirdModal = () => setIsOpenThirdModal(false)
@@ -101,7 +108,10 @@ export default function TitleBox() {
         <BasketModal
           text={
             <div>
-              선택한 등기 <span style={{ color: theme.colors.primary }}>2</span>
+              선택한 등기{' '}
+              <span style={{ color: theme.colors.primary }}>
+                {deunggiData.length}
+              </span>
               건을
               <br />
               장바구니에 넣으시겠습니까?
