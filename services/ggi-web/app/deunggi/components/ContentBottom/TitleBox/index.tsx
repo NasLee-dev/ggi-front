@@ -1,9 +1,13 @@
 'use client'
 
 import * as S from './style'
-import { useState } from 'react'
-
-import { useDeunggiDataStore, useDeunggiStore } from '@/store/useDeunggiStore'
+import { MouseEvent, useState } from 'react'
+import {
+  useBasketDataStore,
+  useDeunggiDataStore,
+  useDeunggiStore,
+  useViewDataStore,
+} from '@/store/useDeunggiStore'
 import { Flex } from 'styles/sharedStyle'
 import { MODES } from 'constants/deunggi'
 import DefaultButton from 'app/deunggi/components/commons/button/DefaultButton'
@@ -11,6 +15,7 @@ import ModalPortal from 'app/deunggi/components/commons/modal/ModalPortal'
 import BasketModal from 'app/deunggi/components/commons/modal/BasketModal'
 import { useRouter } from 'next/navigation'
 import theme from 'app/shared/styles/theme'
+import { toLocalStringFn } from 'utils/commons/toLocalString'
 
 const BUTTON_TEXT = {
   delete: '삭제하기',
@@ -20,10 +25,15 @@ const BUTTON_TEXT = {
 
 export default function TitleBox() {
   const { mode } = useDeunggiStore()
-  const { deunggiData } = useDeunggiDataStore()
+  const { deunggiData, clearDeunggiData } = useDeunggiDataStore()
+  const { basketData } = useBasketDataStore()
+  const { viewData } = useViewDataStore()
   const [isOpenFirstModal, setIsOpenFirstModal] = useState(false)
   const [isOpenSecondModal, setIsOpenSecondModal] = useState(false)
   const [isOpenThirdModal, setIsOpenThirdModal] = useState(false)
+  const [isBasketDeleteModal, setIsBasketDeleteModal] = useState(false)
+  const [isViewDeleteModal, setIsViewDeleteModal] = useState(false)
+  const [totalPrice, setTotalPrice] = useState(0)
 
   const router = useRouter()
 
@@ -37,10 +47,33 @@ export default function TitleBox() {
   const handleCloseFirstModal = () => setIsOpenFirstModal(false)
   const handleCloseSecondModal = () => setIsOpenSecondModal(false)
   const handleCloseThirdModal = () => setIsOpenThirdModal(false)
+  const handleCloseBasketDeleteModal = () => setIsBasketDeleteModal(false)
+  const handleCloseViewDeleteModal = () => setIsViewDeleteModal(false)
+
+  const handleClickDeleteModal = (e: MouseEvent<HTMLButtonElement>) => {
+    const target = e.target as HTMLButtonElement
+
+    if (target.name === 'basket') {
+      if (basketData.length < 1) {
+        alert('삭제할 장바구니 데이터를 선택해주세요.')
+        return
+      }
+
+      setIsBasketDeleteModal(true)
+    } else if (target.name === 'view') {
+      if (viewData.length < 1) {
+        alert('삭제할 등기 데이터를 선택해주세요.')
+        return
+      }
+
+      setIsViewDeleteModal(true)
+    }
+  }
 
   const handleClickBasketConfirm = () => {
     handleCloseFirstModal()
     alert('장바구니 담기 로직')
+    clearDeunggiData()
     setIsOpenSecondModal(true)
   }
 
@@ -55,6 +88,17 @@ export default function TitleBox() {
   }
 
   const handleClickPaymentBtn = () => {
+    if (basketData.length < 1) {
+      alert('결제하실 등기를 선택해주세요.')
+      return
+    }
+
+    let totalPrice = 0
+    basketData.forEach((data) => {
+      const price = data.price
+      totalPrice += price
+    })
+    setTotalPrice(totalPrice)
     setIsOpenThirdModal(true)
   }
 
@@ -73,7 +117,8 @@ export default function TitleBox() {
             <DefaultButton
               backColor="#4B5563"
               text={BUTTON_TEXT.delete}
-              onClick={() => {}}
+              onClick={handleClickDeleteModal}
+              name="basket"
             />
             <DefaultButton
               text={BUTTON_TEXT.checkout}
@@ -86,7 +131,8 @@ export default function TitleBox() {
           <DefaultButton
             backColor="#4B5563"
             text={BUTTON_TEXT.delete}
-            onClick={() => {}}
+            name="view"
+            onClick={handleClickDeleteModal}
           />
         )
       default:
@@ -145,9 +191,14 @@ export default function TitleBox() {
                 입니다.
                 <br />
                 사이버머니{' '}
-                <span style={{ color: theme.colors.primary }}>2,000</span>
+                <span style={{ color: theme.colors.primary }}>
+                  {toLocalStringFn(totalPrice)}
+                </span>
                 원(부가세 포함) 으로 <br />
-                바로등기 <span style={{ color: theme.colors.primary }}>2</span>
+                바로등기{' '}
+                <span style={{ color: theme.colors.primary }}>
+                  {basketData.length}
+                </span>
                 건을 열람 하시겠습니까?
               </div>
               <div>
@@ -161,6 +212,44 @@ export default function TitleBox() {
           onClick={locationView}
           onClose={handleCloseThirdModal}
           type="view"
+        />
+      </ModalPortal>
+      <ModalPortal
+        isOpen={isBasketDeleteModal}
+        onClose={handleCloseBasketDeleteModal}
+      >
+        <BasketModal
+          text={
+            <div>
+              선택하신{' '}
+              <span style={{ color: theme.colors.primary }}>
+                {basketData.length}
+              </span>
+              개의 장바구니 데이터를 삭제하시겠습니까?
+            </div>
+          }
+          onClick={() => {}}
+          onClose={handleCloseBasketDeleteModal}
+          type="basket"
+        />
+      </ModalPortal>
+      <ModalPortal
+        isOpen={isViewDeleteModal}
+        onClose={handleCloseViewDeleteModal}
+      >
+        <BasketModal
+          text={
+            <div>
+              선택하신{' '}
+              <span style={{ color: theme.colors.primary }}>
+                {viewData.length}
+              </span>
+              개의 등기 데이터를 삭제하시겠습니까?
+            </div>
+          }
+          onClick={() => {}}
+          onClose={handleCloseViewDeleteModal}
+          type="basket"
         />
       </ModalPortal>
     </S.TitleContainer>
