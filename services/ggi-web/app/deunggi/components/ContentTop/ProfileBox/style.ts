@@ -1,6 +1,7 @@
 'use client'
 
 import styled from '@emotion/styled'
+import { mobile } from 'app/shared/styles/responsive'
 
 export const Box = styled.div`
   min-width: 540px;
@@ -12,6 +13,7 @@ export const Box = styled.div`
 
   @media (max-width: 640px) {
     min-width: auto;
+    padding: 12px;
   }
 `
 
@@ -19,6 +21,10 @@ export const ProfileName = styled.h3`
   font-size: 18px;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.text};
+
+  ${mobile} {
+    font-size: 14px;
+  }
 `
 
 export const CashBox = styled.div`
@@ -31,6 +37,10 @@ export const CashBox = styled.div`
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
+
+  ${mobile} {
+    padding: 12px 10px;
+  }
 `
 
 export const CashTitleBox = styled.div`
@@ -43,6 +53,14 @@ export const CashTitleBox = styled.div`
     font-weight: 400;
     color: #4b5563;
   }
+
+  ${mobile} {
+    gap: 4px;
+
+    span {
+      font-size: 12px;
+    }
+  }
 `
 
 export const CashValue = styled.p`
@@ -52,5 +70,9 @@ export const CashValue = styled.p`
 
   span {
     color: #4b5563;
+  }
+
+  ${mobile} {
+    font-size: 12px;
   }
 `

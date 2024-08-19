@@ -1,6 +1,7 @@
 'use client'
 
 import styled from '@emotion/styled'
+import { mobile, small, smMedium } from 'app/shared/styles/responsive'
 
 export const SearchContainer = styled.div`
   width: 95%;
@@ -29,6 +30,14 @@ export const ContainerTitle = styled.div`
     font-weight: 700;
     color: #6b7280;
   }
+
+  ${mobile} {
+    padding: 8px 0;
+
+    h3 {
+      font-size: 14px;
+    }
+  }
 `
 
 export const SearchContent = styled.form`
@@ -38,6 +47,37 @@ export const SearchContent = styled.form`
   gap: 28px;
   padding: 36px;
   box-sizing: border-box;
+
+  ${small} {
+    flex-direction: column;
+    padding: 20px;
+    gap: 15px;
+
+    input {
+      width: 100%;
+    }
+
+    button {
+      width: 100% !important;
+    }
+  }
+
+  ${mobile} {
+    padding: 10px;
+    gap: 10px;
+
+    input {
+      height: 40px;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 12px;
+    }
+
+    button {
+      height: 35px;
+      font-size: 12px;
+    }
+  }
 `
 
 export const SearchInput = styled.input`

@@ -53,26 +53,40 @@ export default function BasketListBox() {
   return (
     <FlexColumn gap={8}>
       <S.ListContainer>
-        <S.ListHead>
-          <S.HeadList width="7.66%">선택</S.HeadList>
-          <S.HeadList width="16.08%">고유번호</S.HeadList>
-          <S.HeadList width="10.16%">구분</S.HeadList>
-          <S.HeadList width="44.25%">주소</S.HeadList>
-          <S.HeadList width="12%">상태</S.HeadList>
-          <S.HeadList width="9.58%">단가</S.HeadList>
-        </S.ListHead>
-        <S.ListContent>
-          {BASKET_LIST.length < 1 ? (
-            <S.EmptyContent>
-              {/* {isLoading ? <Loading /> : '장바구니 내역이 존재하지 않습니다.'} */}
-              장바구니 내역이 존재하지 않습니다.
-            </S.EmptyContent>
-          ) : (
-            BASKET_LIST.map((data, index) => (
-              <BasketList key={data.uniquenumber} data={data} index={index} />
-            ))
-          )}
-        </S.ListContent>
+        <S.TableContainer width={BASKET_LIST.length > 0 ? '888px' : '100%'}>
+          <S.ListHead>
+            <S.HeadList width="7.66%" mobileWidth="55px">
+              선택
+            </S.HeadList>
+            <S.HeadList width="16.08%" mobileWidth="140px">
+              고유번호
+            </S.HeadList>
+            <S.HeadList width="10.16%" mobileWidth="88px">
+              구분
+            </S.HeadList>
+            <S.HeadList width="44.25%" mobileWidth="388px">
+              주소
+            </S.HeadList>
+            <S.HeadList width="12%" mobileWidth="100px">
+              상태
+            </S.HeadList>
+            <S.HeadList width="9.58%" mobileWidth="110px">
+              단가
+            </S.HeadList>
+          </S.ListHead>
+          <S.ListContent>
+            {BASKET_LIST.length < 1 ? (
+              <S.EmptyContent>
+                {/* {isLoading ? <Loading /> : '장바구니 내역이 존재하지 않습니다.'} */}
+                장바구니 내역이 존재하지 않습니다.
+              </S.EmptyContent>
+            ) : (
+              BASKET_LIST.map((data, index) => (
+                <BasketList key={data.uniquenumber} data={data} index={index} />
+              ))
+            )}
+          </S.ListContent>
+        </S.TableContainer>
       </S.ListContainer>
       <S.TotalPriceBox>
         <p>

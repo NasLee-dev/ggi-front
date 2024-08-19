@@ -14,6 +14,11 @@ export const PaginationContainer = styled.div`
   margin: 40px auto 0;
   gap: 10px;
   box-sizing: border-box;
+
+  @media (max-width: 560px) {
+    width: 100%;
+    padding: 20px 10px;
+  }
 `
 
 export const MoveButton = styled.button`
@@ -42,6 +47,16 @@ export const MoveButton = styled.button`
       color: #4b5563;
     }
   }
+
+  @media (max-width: 560px) {
+    width: 85px;
+    height: 30px;
+    gap: 5px;
+
+    span {
+      font-size: 11px;
+    }
+  }
 `
 
 export const ButtonContainer = styled.div`
@@ -61,4 +76,10 @@ export const PageButton = styled.button<PageButtonProps>`
   border-radius: 4px;
 
   background: ${({ active, theme }) => (active ? theme.colors.border : 'none')};
+
+  @media (max-width: 560px) {
+    width: 25px;
+    height: 25px;
+    font-size: 12px;
+  }
 `

@@ -73,18 +73,30 @@ function DeunggiInfo() {
       </S.Description>
       <S.ButtonContainer>
         <StrokeButton
+          mobileWidth="130px"
+          mobileHeight="42px"
+          mobileRadius="8px"
+          mobileFontSize="15px"
           text={MODES.REGISTRATION}
           name={MODES.REGISTRATION}
           active={mode === MODES.REGISTRATION}
           onClick={handleChangeMode}
         />
         <StrokeButton
+          mobileWidth="130px"
+          mobileHeight="42px"
+          mobileRadius="8px"
+          mobileFontSize="15px"
           text={MODES.BASKET}
           name={MODES.BASKET}
           active={mode === MODES.BASKET}
           onClick={handleChangeMode}
         />
         <StrokeButton
+          mobileWidth="130px"
+          mobileHeight="42px"
+          mobileRadius="8px"
+          mobileFontSize="15px"
           text={MODES.MANAGEMENT}
           name={MODES.MANAGEMENT}
           active={mode === MODES.MANAGEMENT}

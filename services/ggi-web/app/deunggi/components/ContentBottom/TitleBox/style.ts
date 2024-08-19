@@ -1,6 +1,7 @@
 'use client'
 
 import styled from '@emotion/styled'
+import { mobile, small } from 'app/shared/styles/responsive'
 
 export const TitleContainer = styled.div`
   width: 100%;
@@ -8,6 +9,11 @@ export const TitleContainer = styled.div`
   justify-content: space-between;
   align-items: flex-end;
   margin-bottom: 17px;
+
+  ${small} {
+    align-items: center;
+    margin-bottom: 10px;
+  }
 `
 
 export const SearchResultTitle = styled.h3`
@@ -16,6 +22,11 @@ export const SearchResultTitle = styled.h3`
   color: ${({ theme }) => theme.colors.text};
   padding-left: 10px;
   box-sizing: border-box;
+
+  ${mobile} {
+    font-size: 16px;
+    padding-left: 0;
+  }
 `
 
 export const ModalSpan = styled.span`

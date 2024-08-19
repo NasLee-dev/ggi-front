@@ -53,15 +53,21 @@ export default function BasketModal({
       )}
 
       <S.ModalText>{text}</S.ModalText>
-      <FlexBetween>
+      <FlexBetween gap={10}>
         <StrokeButton
           width="222px"
+          mobileWidth="48%"
+          mobileHeight="40px"
+          mobileFontSize="14px"
           radius="8px"
           text="아니오"
           onClick={onClose}
         />
         <DefaultButton
           width="222px"
+          mobileWidth="48%"
+          mobileHeight="40px"
+          mobileFontSize="14px"
           text={
             type === 'basket' || type === 'delete'
               ? '확인'

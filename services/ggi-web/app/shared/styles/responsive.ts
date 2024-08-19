@@ -1,0 +1,5 @@
+export const mobile = '@media (max-width: 480px)'
+export const small = '@media (max-width: 768px)'
+export const smMedium = '@media (max-width: 1000px)'
+export const medium = '@media (max-width: 1250px)'
+export const large = '@media (max-width: 1500px)'

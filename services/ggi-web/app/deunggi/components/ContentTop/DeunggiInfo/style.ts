@@ -1,11 +1,16 @@
 'use client'
 
 import styled from '@emotion/styled'
+import { mobile } from 'app/shared/styles/responsive'
 
 export const Title = styled.h2`
   font-size: 24px;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.text};
+
+  ${mobile} {
+    font-size: 16px;
+  }
 `
 
 export const Description = styled.div`
@@ -22,6 +27,15 @@ export const Description = styled.div`
     color: ${({ theme }) => theme.colors.primary};
     text-decoration: underline;
     margin-left: 20px;
+  }
+
+  ${mobile} {
+    font-size: 14px;
+
+    a {
+      font-size: 14px;
+      margin-left: 10px;
+    }
   }
 `
 
