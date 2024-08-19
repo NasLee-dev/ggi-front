@@ -5,6 +5,9 @@ import Start from './Start'
 import { useEffect, useCallback } from 'react'
 import Search from './Search'
 import Info from './Info'
+import TimeInfo from './Time'
+import BidderInfo from './Bidder'
+import AgentForm from './Agent'
 
 export default function Steps({ loading }: { loading: boolean }) {
   const biddingForm = useRecoilValue(biddingInfoState)
@@ -36,6 +39,8 @@ export default function Steps({ loading }: { loading: boolean }) {
       )
     } else if (biddingForm.state === 9 || stateNum === 0) {
       return <Start />
+    } else if (biddingForm.state === 0 && stateNum === 4) {
+      return <BidderInfo />
     } else {
       switch (stateNum) {
         case 0:
@@ -44,12 +49,21 @@ export default function Steps({ loading }: { loading: boolean }) {
           return <Search />
         case 2:
           return <Info />
+        case 3:
+          if (biddingForm.biddingInfos.length > 1) {
+            return <TimeInfo />
+          }
+          break
+        case 4:
+          return <BidderInfo />
+        case 5:
+          return <AgentForm />
         default:
           return null
       }
     }
   }
-  console.log(biddingForm)
+
   return (
     <div
       id="box"

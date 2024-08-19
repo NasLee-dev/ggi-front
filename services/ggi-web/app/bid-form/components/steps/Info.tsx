@@ -1,7 +1,7 @@
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
 import { useInfoApi } from './hooks/useInfoApi'
 import { biddingInfoState, stepState } from '@/store/atom/bid-form'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { authInfo } from '@/store/atom/auth'
 import Spinner from '../icons/Spinner'
 import Button from '../shared/Button'
@@ -21,61 +21,150 @@ export default function Info() {
   const [tempData, setTempData] = useState<TempData | null>(null)
   const resetBIddingForm = useResetRecoilState(biddingInfoState)
 
+  const handleGetCaseCheck = useCallback(
+    async (infoId: string, caseNo: string, mulSeq: string) => {
+      setLoading(true)
+      try {
+        const response = await getCase.mutateAsync({ infoId, caseNo, mulSeq })
+        if (response) {
+          setLoading(false)
+          setBiddingForm((prev) => ({
+            ...prev,
+            ...response,
+          }))
+        }
+      } catch (error) {
+        console.log(error)
+        setLoading(false)
+      }
+    },
+    [],
+  )
+
+  const handleGetMstCaseCheck = useCallback(async () => {
+    try {
+      const response = await getInfoMstSeq.mutateAsync({
+        mstSeq: auth.mstSeq,
+      })
+      if (response) {
+        //  중간 저장 후 다시 접속하여 정보를 불러올 때 정보가 다를 경우 초기화
+        setInfo({
+          infoId: response.infoId,
+          caseNo: response.caseNo,
+          mulSeq: response.mulSeq,
+        })
+        setTempData(response)
+      } else {
+        alert('사건 정보가 잘못되었습니다. 다시 시도해주세요.')
+        window.close()
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }, [auth.mstSeq])
+
+  const handleGetInfo = async () => {
+    if (
+      biddingForm.mstSeq > 0 &&
+      biddingForm.infoId != '' &&
+      biddingForm.caseNo != '' &&
+      biddingForm.mulSeq != ''
+    ) {
+      try {
+        const response = await getInfoMstSeq.mutateAsync({
+          mstSeq: biddingForm.mstSeq.toString(),
+        })
+        if (response) {
+          setInfo({
+            infoId: response.infoId,
+            caseNo: response.caseNo,
+            mulSeq: response.mulSeq,
+          })
+          setTempData(response)
+        } else {
+          alert('사건 정보가 잘못되었습니다. 다시 시도해주세요.')
+          window.close()
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
   useEffect(() => {
     const fetchBidFormInfo = async () => {
       if (auth.mstSeq) {
-        try {
-          const response = await getInfoMstSeq.mutateAsync({
-            mstSeq: auth.mstSeq,
-          })
-          if (response) {
-            //  중간 저장 후 다시 접속하여 정보를 불러올 때 정보가 다를 경우 초기화
-            console.log('여기1')
-            setInfo({
-              infoId: response.infoId,
-              caseNo: response.caseNo,
-              mulSeq: response.mulSeq,
-            })
-            setTempData(response)
-          } else {
-            alert('사건 정보가 잘못되었습니다. 다시 시도해주세요.')
-            window.close()
-          }
-        } catch (error) {
-          console.log(error)
-        }
+        handleGetMstCaseCheck()
       } else {
         handleGetCaseCheck(
           biddingForm.infoId,
           biddingForm.caseNo,
           biddingForm.mulSeq,
         )
+        handleGetInfo()
       }
     }
     fetchBidFormInfo()
-  }, [])
+  }, [auth.mstSeq, handleGetCaseCheck, handleGetMstCaseCheck])
 
   const handleReset = () => {
+    const infoId = biddingForm.infoId
+    const caseNo = biddingForm.caseNo
+    const mulSeq = biddingForm.mulSeq
+    const caseYear = biddingForm.caseYear
+    const caseDetail = biddingForm.caseDetail
+    const searchResults = biddingForm.searchResults
+    const selectedCase = biddingForm.selectedCase
     resetBIddingForm()
+    setBiddingForm((prev) => ({
+      ...prev,
+      infoId: infoId,
+      caseNo: caseNo,
+      mulSeq: mulSeq,
+      caseYear: caseYear,
+      caseDetail: caseDetail,
+      searchResults: searchResults,
+      selectedCase: selectedCase,
+    }))
   }
 
   const handleConfirm = async () => {
     setLoading(true)
-    if (
+
+    const isInfoSame =
       info.infoId === biddingForm.infoId &&
       info.caseNo === biddingForm.caseNo &&
       info.mulSeq === biddingForm.mulSeq
-    ) {
-      setStateNum(stateNum + 2)
-    } else {
-      if (
-        window &&
-        window.confirm(
-          '사건번호가 달라지면 입찰 정보가 초기화됩니다. 진행하시겠습니까?',
-        )
-      ) {
-        handleReset()
-        try {
+
+    const processResponse = (response) => {
+      if (response) {
+        setBiddingForm((prev) => ({
+          ...prev,
+          mstSeq: response.mstSeq,
+          state: response.state,
+          selectedTime: biddingForm.biddingInfos[0].biddingTime,
+        }))
+
+        const nextStateNum =
+          biddingForm.biddingInfos.length > 1 ? stateNum + 1 : stateNum + 2
+        setTimeout(() => {
+          setStateNum(nextStateNum)
+          setLoading(false)
+        }, 1000)
+      }
+    }
+
+    try {
+      if (biddingForm.mstSeq !== 0) {
+        if (isInfoSame) {
+          setStateNum(stateNum + 2)
+        } else if (
+          window &&
+          window.confirm(
+            '사건번호가 달라지면 입찰 정보가 초기화됩니다. 진행하시겠습니까?',
+          )
+        ) {
+          handleReset()
           const response = await getInit.mutateAsync({
             infoId: biddingForm.infoId,
             caseNo: biddingForm.caseNo,
@@ -83,33 +172,24 @@ export default function Info() {
             biddingDate: biddingForm.biddingDate,
             biddingTime: biddingForm.biddingInfos[0].biddingTime,
           })
-          if (response) {
-            setBiddingForm((prev) => {
-              return {
-                ...prev,
-                ...response,
-              }
-            })
-            if (biddingForm.biddingInfos.length > 1) {
-              setTimeout(() => {
-                setStateNum(stateNum + 1)
-                setLoading(false)
-              }, 1000)
-            } else {
-              setTimeout(() => {
-                setStateNum(stateNum + 2)
-                setLoading(false)
-              }, 1000)
-            }
-          }
-        } catch (error) {
-          console.log(error)
+          processResponse(response)
+        } else {
           setLoading(false)
+          return
         }
       } else {
-        setLoading(false)
-        return null
+        const response = await getInit.mutateAsync({
+          infoId: biddingForm.infoId,
+          caseNo: biddingForm.caseNo,
+          mulSeq: biddingForm.mulSeq,
+          biddingDate: biddingForm.biddingDate,
+          biddingTime: biddingForm.biddingInfos[0].biddingTime,
+        })
+        processResponse(response)
       }
+    } catch (error) {
+      console.log(error)
+      setLoading(false)
     }
   }
 
@@ -124,7 +204,7 @@ export default function Info() {
       }))
     }
   }
-
+  console.log(biddingForm)
   const handleNextStep = async () => {
     setLoading(true)
     if (biddingForm.mstSeq === 0) {
@@ -144,26 +224,6 @@ export default function Info() {
     }
   }
 
-  const handleGetCaseCheck = async (
-    infoId: string,
-    caseNo: string,
-    mulSeq: string,
-  ) => {
-    setLoading(true)
-    try {
-      const response = await getCase.mutateAsync({ infoId, caseNo, mulSeq })
-      if (response) {
-        setLoading(false)
-        setBiddingForm((prev) => ({
-          ...prev,
-          ...response,
-        }))
-      }
-    } catch (error) {
-      console.log(error)
-      setLoading(false)
-    }
-  }
   return (
     <div className="flex w-[100%] justify-center bg-mybg relative">
       {loading && <Spinner />}

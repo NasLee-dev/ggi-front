@@ -1,8 +1,10 @@
+'use client'
 import { authInfo } from '@/store/atom/auth'
 import { biddingInfoState, stepState } from '@/store/atom/bid-form'
 import { useCallback, useEffect, useState } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import useGetBiddingStatus from './hooks/useGetBiddingStatus'
+import Image from 'next/image'
 
 export default function Start() {
   const [stateNum, setStateNum] = useRecoilState(stepState)
@@ -56,8 +58,8 @@ export default function Start() {
         className={`flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center gap-[10px]`}
       >
         <div className="flex pt-[50px]">
-          <img
-            src={'/images/bid-form/TopLogo.png'}
+          <Image
+            src="/images/bid-form/TopLogo.png"
             alt="logo"
             width={60}
             height={52.5}
