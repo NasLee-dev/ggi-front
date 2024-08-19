@@ -1,12 +1,17 @@
 'use client'
 
 import styled from '@emotion/styled'
+import { mobile } from 'app/shared/styles/responsive'
 
 interface ButtonProps {
   active?: boolean
   width?: string
   height?: string
   radius?: string
+  mobileWidth?: string
+  mobileHeight?: string
+  mobileRadius?: string
+  mobileFontSize?: string
 }
 
 export const Button = styled.button<ButtonProps>`
@@ -21,4 +26,14 @@ export const Button = styled.button<ButtonProps>`
     active
       ? `1px solid ${theme.colors.primary}`
       : `1px solid ${theme.colors.border}`};
+
+  ${mobile} {
+    width: ${({ mobileWidth, width }) => (mobileWidth ? mobileWidth : width)};
+    height: ${({ mobileHeight, height }) =>
+      mobileHeight ? mobileHeight : height};
+    border-radius: ${({ mobileRadius, radius }) =>
+      mobileRadius ? mobileRadius : radius};
+    font-size: ${({ mobileFontSize }) =>
+      mobileFontSize ? mobileFontSize : '18px'};
+  }
 `

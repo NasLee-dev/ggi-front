@@ -107,20 +107,29 @@ export default function TitleBox() {
       case MODES.REGISTRATION:
         return (
           <DefaultButton
+            mobileWidth="90px"
+            mobileHeight="35px"
+            mobileFontSize="14px"
             text={BUTTON_TEXT.basket}
             onClick={handleClickBasket}
           />
         )
       case MODES.BASKET:
         return (
-          <Flex gap={15}>
+          <Flex gap={15} mobileGap={8}>
             <DefaultButton
+              mobileWidth="90px"
+              mobileHeight="35px"
+              mobileFontSize="14px"
               backColor="#4B5563"
               text={BUTTON_TEXT.delete}
               onClick={handleClickDeleteModal}
               name="basket"
             />
             <DefaultButton
+              mobileWidth="90px"
+              mobileHeight="35px"
+              mobileFontSize="14px"
               text={BUTTON_TEXT.checkout}
               onClick={handleClickPaymentBtn}
             />
@@ -129,6 +138,9 @@ export default function TitleBox() {
       case MODES.MANAGEMENT:
         return (
           <DefaultButton
+            mobileWidth="90px"
+            mobileHeight="35px"
+            mobileFontSize="14px"
             backColor="#4B5563"
             text={BUTTON_TEXT.delete}
             name="view"

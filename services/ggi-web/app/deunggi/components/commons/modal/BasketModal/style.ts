@@ -1,6 +1,7 @@
 'use client'
 
 import styled from '@emotion/styled'
+import { small } from 'app/shared/styles/responsive'
 import Image from 'next/image'
 
 export const BasketModalContainer = styled.div`
@@ -20,6 +21,14 @@ export const BasketModalContainer = styled.div`
   @media (max-width: 640px) {
     min-width: auto;
   }
+
+  @media (max-width: 620px) {
+    width: 100%;
+  }
+
+  ${small} {
+    padding: 20px;
+  }
 `
 
 export const BasketIcon = styled(Image)`
@@ -34,6 +43,10 @@ export const ModalText = styled.div`
   margin-bottom: 25px;
   line-height: 1.35;
   text-align: center;
+
+  ${small} {
+    font-size: 14px;
+  }
 `
 
 export const CloseButton = styled.button`
