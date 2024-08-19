@@ -1,30 +1,5 @@
-import { css, SerializedStyles } from '@emotion/react'
-
-type Breakpoints = 'small' | 'smMedium' | 'medium' | 'large'
-
-const breakpoints: Record<Breakpoints, string> = {
-  small: '768px',
-  smMedium: '1000px',
-  medium: '1250px',
-  large: '1500px',
-}
-
-const media: Record<
-  Breakpoints,
-  (styles: TemplateStringsArray, ...args: any[]) => SerializedStyles
-> = (Object.keys(breakpoints) as Breakpoints[]).reduce(
-  (acc, label) => {
-    acc[label] = (styles, ...args) => css`
-      @media (max-width: ${breakpoints[label]}) {
-        ${css(styles, ...args)};
-      }
-    `
-    return acc
-  },
-  {} as Record<
-    Breakpoints,
-    (styles: TemplateStringsArray, ...args: any[]) => SerializedStyles
-  >,
-)
-
-export default media
+export const mobile = '@media (max-width: 480px)'
+export const small = '@media (max-width: 768px)'
+export const smMedium = '@media (max-width: 1000px)'
+export const medium = '@media (max-width: 1250px)'
+export const large = '@media (max-width: 1500px)'

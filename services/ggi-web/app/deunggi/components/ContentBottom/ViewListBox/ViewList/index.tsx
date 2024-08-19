@@ -24,7 +24,7 @@ export default function ViewList({
 
   return (
     <S.TableLi>
-      <S.TableValue width="7.66%">
+      <S.TableValue width="7.66%" mobileWidth="55px">
         <DefaultCheckbox
           id={`checkbox${index}`}
           ref={checkboxRef}
@@ -32,10 +32,16 @@ export default function ViewList({
           isCheck={isChecked(data)}
         />
       </S.TableValue>
-      <S.TableValue width="16.08%">{data.time}</S.TableValue>
-      <S.TableValue width="10.16%">{data.type}</S.TableValue>
-      <S.TableValue width="44.25%">{data.address}</S.TableValue>
-      <S.TableValue width="12%">
+      <S.TableValue width="16.08%" mobileWidth="140px">
+        {data.time}
+      </S.TableValue>
+      <S.TableValue width="10.16%" mobileWidth="90px">
+        {data.type}
+      </S.TableValue>
+      <S.TableValue width="44.25%" mobileWidth="410px">
+        {data.address}
+      </S.TableValue>
+      <S.TableValue width="12%" mobileWidth="108px">
         {data.status === '열람' ? (
           <S.PdfButton>
             <Image
@@ -49,7 +55,7 @@ export default function ViewList({
           data.status
         )}
       </S.TableValue>
-      <S.TableValue width="9.58%">
+      <S.TableValue width="9.58%" mobileWidth="85px">
         <S.DownloadButton disabled={data.status !== '열람'}>
           <DownloadIcon disabled={data.status !== '열람'} />
         </S.DownloadButton>

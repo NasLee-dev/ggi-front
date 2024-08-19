@@ -1,6 +1,7 @@
 'use client'
 
 import styled from '@emotion/styled'
+import { small } from 'app/shared/styles/responsive'
 
 export const TableLi = styled.li`
   width: 100%;
@@ -15,6 +16,7 @@ export const TableLi = styled.li`
 
 interface TableValueProps {
   width: string
+  mobileWidth?: string
 }
 
 export const TableValue = styled.div<TableValueProps>`
@@ -26,6 +28,11 @@ export const TableValue = styled.div<TableValueProps>`
   justify-content: center;
   align-items: center;
   line-height: 1.45;
+
+  ${small} {
+    width: ${({ width, mobileWidth }) => (mobileWidth ? mobileWidth : width)};
+    font-size: 14px;
+  }
 `
 
 export const PdfButton = styled.button``

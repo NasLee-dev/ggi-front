@@ -9,6 +9,10 @@ export interface StrokeButtonProps
   width?: string
   height?: string
   radius?: string
+  mobileWidth?: string
+  mobileHeight?: string
+  mobileRadius?: string
+  mobileFontSize?: string
 }
 
 export default function StrokeButton({
@@ -19,6 +23,10 @@ export default function StrokeButton({
   width,
   height,
   radius,
+  mobileWidth,
+  mobileHeight,
+  mobileRadius,
+  mobileFontSize,
   ...props
 }: StrokeButtonProps) {
   return (
@@ -26,6 +34,10 @@ export default function StrokeButton({
       width={width}
       height={height}
       radius={radius}
+      mobileWidth={mobileWidth}
+      mobileHeight={mobileHeight}
+      mobileRadius={mobileRadius}
+      mobileFontSize={mobileFontSize}
       onClick={onClick}
       disabled={disabled}
       active={active}

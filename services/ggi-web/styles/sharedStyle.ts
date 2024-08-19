@@ -1,6 +1,7 @@
 'use client'
 
 import styled from '@emotion/styled'
+import { mobile } from 'app/shared/styles/responsive'
 
 interface FlexColumnProps {
   center?: boolean
@@ -17,6 +18,7 @@ export const FlexColumn = styled.div<FlexColumnProps>`
 
 interface FlexBetweenProps {
   mb?: number
+  gap?: number
 }
 
 export const FlexBetween = styled.div<FlexBetweenProps>`
@@ -25,11 +27,13 @@ export const FlexBetween = styled.div<FlexBetweenProps>`
   justify-content: space-between;
   align-items: center;
   margin-bottom: ${({ mb }) => (mb ? `${mb}px` : '0')};
+  gap: ${({ gap }) => (gap ? `${gap}px` : '0')};
 `
 
 interface FlexProps {
   mb?: number
   gap?: number
+  mobileGap?: number
 }
 
 export const Flex = styled.div<FlexProps>`
@@ -37,4 +41,8 @@ export const Flex = styled.div<FlexProps>`
   align-items: center;
   gap: ${({ gap }) => (gap ? `${gap}px` : '0')};
   margin-bottom: ${({ mb }) => (mb ? `${mb}px` : '0')};
+
+  ${mobile} {
+    gap: ${({ mobileGap, gap }) => (mobileGap ? `${mobileGap}px` : `${gap}px`)};
+  }
 `

@@ -14,6 +14,9 @@ export default function ProfileBox() {
         <DefaultButton
           width="138px"
           height="30px"
+          mobileWidth="105px"
+          mobileHeight="26px"
+          mobileFontSize="12px"
           fontSize="16px"
           text="사이버머니 충전"
           onClick={() => {}}

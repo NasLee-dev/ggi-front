@@ -1,6 +1,7 @@
 'use client'
 
 import styled from '@emotion/styled'
+import { small } from 'app/shared/styles/responsive'
 
 export const HeaderContainer = styled.header`
   width: 100%;
@@ -11,6 +12,16 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
+
+  ${small} {
+    height: 60px;
+    padding: 0 12px;
+
+    & img {
+      width: 100px !important;
+      height: 32px !important;
+    }
+  }
 `
 
 export const EndButton = styled.button`
@@ -21,4 +32,10 @@ export const EndButton = styled.button`
   font-size: 15px;
   font-weight: 700;
   color: #fff;
+
+  ${small} {
+    width: 70px;
+    height: 35px;
+    font-size: 14px;
+  }
 `

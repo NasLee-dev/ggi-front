@@ -1,12 +1,13 @@
 'use client'
 
 import styled from '@emotion/styled'
+import { small } from 'app/shared/styles/responsive'
 
 export const ListContainer = styled.div`
   width: 100%;
   border: ${({ theme }) => `1px solid ${theme.colors.border}`};
   border-radius: 16px;
-  overflow: hidden;
+  overflow-x: auto;
 `
 
 export const ListHead = styled.ul`
@@ -17,6 +18,7 @@ export const ListHead = styled.ul`
 
 interface HeadListProps {
   width: string
+  mobileWidth?: string
 }
 export const HeadList = styled.li<HeadListProps>`
   width: ${({ width }) => width};
@@ -28,6 +30,11 @@ export const HeadList = styled.li<HeadListProps>`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+
+  ${small} {
+    width: ${({ width, mobileWidth }) => (mobileWidth ? mobileWidth : width)};
+    font-size: 14px;
+  }
 `
 
 export const EmptyContent = styled.div`
@@ -40,6 +47,17 @@ export const EmptyContent = styled.div`
   font-weight: 400;
   color: #000;
   box-sizing: border-box;
+`
+
+interface TableContainerProps {
+  width: string
+}
+export const TableContainer = styled.div<TableContainerProps>`
+  width: 100%;
+
+  ${small} {
+    width: ${({ width }) => width};
+  }
 `
 
 export const ListContent = styled.ul`
@@ -56,12 +74,20 @@ export const TotalPriceBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  border-radius: 12px;
+  border-radius: 8px;
   box-sizing: border-box;
 
   p {
     font-size: 16px;
     font-weight: 700;
     color: ${({ theme }) => theme.colors.primary};
+  }
+
+  ${small} {
+    padding: 10px 15px;
+
+    p {
+      font-size: 14px;
+    }
   }
 `
