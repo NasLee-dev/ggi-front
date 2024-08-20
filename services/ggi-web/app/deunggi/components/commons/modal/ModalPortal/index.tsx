@@ -12,14 +12,24 @@ interface ModalProps {
 
 export default function ModalPortal({ children, isOpen, onClose }: ModalProps) {
   useEffect(() => {
+    const preventScroll = (e: Event): void => {
+      e.preventDefault()
+      e.stopPropagation()
+    }
+
     if (isOpen) {
-      document.body.style.overflow = 'hidden'
+      document.body.addEventListener('wheel', preventScroll, { passive: false })
+      document.body.addEventListener('touchmove', preventScroll, {
+        passive: false,
+      })
     } else {
-      document.body.style.overflow = ''
+      document.body.removeEventListener('wheel', preventScroll)
+      document.body.removeEventListener('touchmove', preventScroll)
     }
 
     return () => {
-      document.body.style.overflow = ''
+      document.body.removeEventListener('wheel', preventScroll)
+      document.body.removeEventListener('touchmove', preventScroll)
     }
   }, [isOpen])
 
