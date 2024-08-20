@@ -29,8 +29,9 @@ export default function RootLayout({
       </head>
       <body>
         <RootLayoutProvider>
-          <Suspense fallback={<BackLoading />}></Suspense>
-          <AuthComponent />
+          <Suspense fallback={<BackLoading />}>
+            <AuthComponent />
+          </Suspense>
           {children}
         </RootLayoutProvider>
       </body>
