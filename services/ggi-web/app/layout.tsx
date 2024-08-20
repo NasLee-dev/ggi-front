@@ -1,6 +1,8 @@
 'use client'
 import AuthComponent from 'app/shared/components/AuthComponent'
 import RootLayoutProvider from 'app/shared/components/layout/RootLayoutProvider'
+import { Suspense } from 'react'
+import BackLoading from 'app/deunggi/components/commons/loading/BackLoading'
 
 export default function RootLayout({
   children,
@@ -27,6 +29,7 @@ export default function RootLayout({
       </head>
       <body>
         <RootLayoutProvider>
+          <Suspense fallback={<BackLoading />}></Suspense>
           <AuthComponent />
           {children}
         </RootLayoutProvider>
