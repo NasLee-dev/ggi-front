@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import usePostAgent from './hooks/usePostAgent'
-import AgentFormProps from '../Form/AgentForm'
+import AgentFormProps from '../form/AgentForm'
 
 export default function AgentForm() {
   const [biddingForm, setBiddingForm] = useRecoilState(biddingInfoState)

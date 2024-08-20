@@ -11,6 +11,7 @@ import {
 } from 'react-hook-form'
 import { useRecoilState } from 'recoil'
 import { LiaEyeSlashSolid, LiaEyeSolid } from 'react-icons/lia'
+import SearchAddress from './address/SearchAddress'
 
 interface Props {
   handleSubmit: UseFormHandleSubmit<AgentInfoType>
@@ -48,58 +49,57 @@ export default function AgentFormProps({
   const [passwordActive, setPasswordActive] = useState(false)
   const [biddingForm, setBiddingForm] = useRecoilState(biddingInfoState)
 
-  const handlePhoneFocusMove = (target: HTMLInputElement) => {
-    if (target.value.length === 3 && target.id === 'agentPhone1') {
-      setFocus('agentPhone2')
-    } else if (target.value.length === 4 && target.id === 'agentPhone2') {
-      setFocus('agentPhone3')
+  const handleValueChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    field: keyof AgentInfoType,
+    maxLength?: number,
+  ) => {
+    const { value } = e.target
+
+    if (maxLength && value.length > maxLength) {
+      e.target.value = value.slice(0, maxLength)
+    }
+
+    setAgentInfo((prev) => ({
+      ...prev,
+      [field]: e.target.value,
+    }))
+
+    setBiddingForm((prev) => ({
+      ...prev,
+      agent: {
+        ...prev.agent,
+        [field]: e.target.value,
+      },
+    }))
+
+    handleInputChange(e)
+  }
+
+  const handleFocusChange = (length: number, nextField: string) => {
+    return (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (e.target.value.length === length) {
+        setFocus(nextField as any)
+      }
     }
   }
 
-  const handleIdNumFocusMove = (target: HTMLInputElement) => {
-    if (target.value.length === 6 && target.id === 'agentIdNum1') {
-      setFocus('agentIdNum2')
-    }
-  }
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col md:w-[550px] w-[80%] h-[100%] justify-center items-center"
     >
       <div className="flex flex-col w-[100%] h-[100%] gap-2">
+        {/* 이름 & 관계 */}
         <div className="flex md:flex-row flex-col w-[100%] md:gap-[0.5%] gap-2">
+          {/* 이름 */}
           <div className="flex flex-col w-[100%] gap-1">
-            <div className="flex justify-between w-[100%]">
-              {errors.agentName?.type == 'required' ? (
-                <div className="flex w-[100%] justify-start">
-                  <label
-                    htmlFor="bidderName"
-                    className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
-                  >
-                    {errors.agentName?.message}
-                  </label>
-                </div>
-              ) : errors.agentName?.type == 'minLength' &&
-                biddingForm.agent.name.length < 2 ? (
-                <div className="flex w-[100%] justify-start">
-                  <label
-                    htmlFor="bidderName"
-                    className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
-                  >
-                    {errors.agentName?.message}
-                  </label>
-                </div>
-              ) : (
-                <div className="flex flex-row">
-                  <span className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%]">
-                    성명
-                  </span>
-                  <span className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500">
-                    *
-                  </span>
-                </div>
-              )}
-            </div>
+            <LabelWithError
+              label="성명"
+              error={errors.agentName}
+              isRequired={true}
+              note="이름을 입력해주세요"
+            />
             <input
               {...register('agentName', {
                 required: '이름을 입력해주세요',
@@ -142,42 +142,14 @@ export default function AgentFormProps({
               }}
             />
           </div>
+          {/* 관계 */}
           <div className="flex flex-col w-[100%] gap-1">
-            <div className="flex flex-row w-[100%]">
-              {errors.agentRel?.type === 'required' &&
-              biddingForm.agent.relationship === '' ? (
-                <div className="flex w-[100%] justify-start">
-                  <label
-                    htmlFor="agentRel"
-                    className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
-                  >
-                    {errors.agentRel?.message}
-                  </label>
-                </div>
-              ) : errors.agentRel?.type === 'maxLength' &&
-                biddingForm.agent.relationship.length > 10 ? (
-                <div className="flex w-[100%] justify-start">
-                  <label
-                    htmlFor="agentRel"
-                    className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
-                  >
-                    {errors.agentRel?.message}
-                  </label>
-                </div>
-              ) : (
-                <div className="flex w-[100%] justify-start">
-                  <label
-                    htmlFor="agentRel"
-                    className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%]"
-                  >
-                    입찰자와의 관계
-                  </label>
-                  <span className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500">
-                    *
-                  </span>
-                </div>
-              )}
-            </div>
+            <LabelWithError
+              label="입찰자와의 관계"
+              error={errors.agentRel}
+              isRequired={true}
+              note="관계를 입력해주세요"
+            />
             <input
               {...register('agentRel', {
                 required: '관계를 입력해주세요',
@@ -217,34 +189,16 @@ export default function AgentFormProps({
             />
           </div>
         </div>
+        {/* 전화번호 */}
         <div className="flex flex-col w-[100%] gap-1">
-          <div className="flex justify-between w-[100%]">
-            {(errors.agentPhone1?.type === 'required' ||
-              errors.agentPhone2?.type === 'required' ||
-              errors.agentPhone3?.type === 'required') &&
-            biddingForm.agent.phoneNo === '' ? (
-              <div className="flex w-[100%] justify-start">
-                <label
-                  htmlFor="agentPhone"
-                  className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
-                >
-                  전화번호를 입력해주세요
-                </label>
-              </div>
-            ) : (
-              <div className="flex w-[100%] justify-start">
-                <label
-                  htmlFor="agentPhone"
-                  className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%]"
-                >
-                  전화번호
-                </label>
-                <span className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500">
-                  *
-                </span>
-              </div>
-            )}
-          </div>
+          <LabelWithError
+            label="전화번호"
+            error={
+              errors.agentPhone1 || errors.agentPhone2 || errors.agentPhone3
+            }
+            isRequired={true}
+            note="전화번호를 입력해주세요"
+          />
           <div className="flex flex-row gap-[0.5%]">
             <input
               {...register('agentPhone1', { required: true, maxLength: 3 })}
@@ -275,8 +229,9 @@ export default function AgentFormProps({
                     phoneNo1: e.target.value,
                   },
                 }))
-                handlePhoneFocusMove(e.target)
+                handleValueChange(e, 'agentPhone1', 3)
                 handleInputChange(e)
+                handleFocusChange(3, 'agentPhone2')(e)
               }}
             />
             <input
@@ -308,8 +263,9 @@ export default function AgentFormProps({
                     phoneNo2: e.target.value,
                   },
                 }))
-                handlePhoneFocusMove(e.target)
+                handleValueChange(e, 'agentPhone2', 4)
                 handleInputChange(e)
+                handleFocusChange(4, 'agentPhone3')(e)
               }}
             />
             <input
@@ -341,17 +297,19 @@ export default function AgentFormProps({
                     phoneNo3: e.target.value,
                   },
                 }))
-                handlePhoneFocusMove(e.target)
+                handleValueChange(e, 'agentPhone3', 4)
                 handleInputChange(e)
+                handleFocusChange(4, 'agentPhone3')(e)
               }}
             />
           </div>
         </div>
+        {/* 주민등록번호 */}
         <div className="flex flex-col w-[100%] gap-1">
           <div className="flex justify-between w-[100%]">
-            {(errors.agentIdNum1?.type === 'required' &&
-              errors.agentIdNum2?.type === 'required' &&
-              biddingForm.agent.agentIdNum1 === '') ||
+            {errors.agentIdNum1?.type === 'required' &&
+            errors.agentIdNum2?.type === 'required' &&
+            biddingForm.agent.agentIdNum1 === '' &&
             biddingForm.agent.agentIdNum2 === '' ? (
               <div className="flex w-[100%] justify-start mb-[5px]">
                 <span className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500">
@@ -413,8 +371,9 @@ export default function AgentFormProps({
                     },
                   }))
                 }
-                handleIdNumFocusMove(e.target)
+                handleValueChange(e, 'agentIdNum1', 6)
                 handleInputChange(e)
+                handleFocusChange(6, 'agentIdNum2')(e)
               }}
             />
             <span className="flex text-mygray font-['suit'] font-bold mt-1">
@@ -449,6 +408,7 @@ export default function AgentFormProps({
                   },
                 }))
                 handleInputChange(e)
+                handleFocusChange(7, 'agentIdNum2')(e)
                 if (biddingForm.agent.agentIdNum2.length > 7) {
                   setBiddingForm((prev) => ({
                     ...prev,
@@ -514,7 +474,7 @@ export default function AgentFormProps({
               }}
             />
           </div>
-          {/* <SearchAddress
+          <SearchAddress
             agentRegister={register}
             agentErrors={errors}
             agentSetError={setError}
@@ -524,7 +484,7 @@ export default function AgentFormProps({
             onOpen={onOpen}
             onClose={onClose}
             agentSetValue={setValue}
-          /> */}
+          />
         </div>
       </div>
       <div className="flex flex-row gap-[10px] fixed md:bottom-[80px] bottom-[10px] md:w-[550px] w-[90%]">
@@ -549,5 +509,64 @@ export default function AgentFormProps({
         </button>
       </div>
     </form>
+  )
+}
+
+/**
+ *
+ * @param props
+ */
+
+function LabelWithError({
+  label,
+  error,
+  isRequired,
+  note,
+}: {
+  label: string
+  error: any
+  isRequired: boolean
+  note?: string
+}) {
+  return (
+    <div className="flex justify-between w-full">
+      {error?.type === 'required' ? (
+        <div className="flex w-[100%] justify-start">
+          <label
+            htmlFor="bidderName"
+            className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
+          >
+            {note}
+          </label>
+        </div>
+      ) : error?.type === 'minLength' ? (
+        <div className="flex w-[100%] justify-start">
+          <label
+            htmlFor="bidderName"
+            className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
+          >
+            {error?.message}
+          </label>
+        </div>
+      ) : error?.type === 'maxLength' ? (
+        <div className="flex w-[100%] justify-start">
+          <label
+            htmlFor="bidderName"
+            className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
+          >
+            {error?.message}
+          </label>
+        </div>
+      ) : (
+        <div className="flex flex-row">
+          <span className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%]">
+            {label}
+          </span>
+          <span className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500">
+            {isRequired && '*'}
+          </span>
+        </div>
+      )}
+    </div>
   )
 }

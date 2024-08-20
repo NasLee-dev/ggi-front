@@ -204,7 +204,7 @@ export default function Info() {
       }))
     }
   }
-  console.log(biddingForm)
+
   const handleNextStep = async () => {
     setLoading(true)
     if (biddingForm.mstSeq === 0) {

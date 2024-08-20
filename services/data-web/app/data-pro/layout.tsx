@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import './globals.css'
+import './global.css'
 import { ThemeProvider } from '@material-tailwind/react'
 import Header from './components/Header'
 import ReactQueryClientProvider from './config/ReactQueryClientProvider'
