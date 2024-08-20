@@ -3,6 +3,7 @@
 import { ReactNode, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { ModalContainer } from './style'
+import usePreventScroll from 'app/shared/hooks/usePreventScroll'
 
 interface ModalProps {
   children: ReactNode
@@ -11,17 +12,7 @@ interface ModalProps {
 }
 
 export default function ModalPortal({ children, isOpen, onClose }: ModalProps) {
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
-
-    return () => {
-      document.body.style.overflow = ''
-    }
-  }, [isOpen])
+  usePreventScroll(isOpen)
 
   if (!isOpen) return null
 

@@ -1,4 +1,5 @@
 'use client'
+import AuthComponent from 'app/shared/components/AuthComponent'
 import RootLayoutProvider from 'app/shared/components/layout/RootLayoutProvider'
 
 export default function RootLayout({
@@ -6,8 +7,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  
-
   return (
     <html lang="en">
       <head>
@@ -27,7 +26,10 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <RootLayoutProvider>{children}</RootLayoutProvider>
+        <RootLayoutProvider>
+          <AuthComponent />
+          {children}
+        </RootLayoutProvider>
       </body>
     </html>
   )
