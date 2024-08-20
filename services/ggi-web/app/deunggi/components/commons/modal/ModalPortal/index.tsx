@@ -3,6 +3,7 @@
 import { ReactNode, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { ModalContainer } from './style'
+import usePreventScroll from 'app/shared/hooks/usePreventScroll'
 
 interface ModalProps {
   children: ReactNode
@@ -11,27 +12,7 @@ interface ModalProps {
 }
 
 export default function ModalPortal({ children, isOpen, onClose }: ModalProps) {
-  useEffect(() => {
-    const preventScroll = (e: Event): void => {
-      e.preventDefault()
-      e.stopPropagation()
-    }
-
-    if (isOpen) {
-      document.body.addEventListener('wheel', preventScroll, { passive: false })
-      document.body.addEventListener('touchmove', preventScroll, {
-        passive: false,
-      })
-    } else {
-      document.body.removeEventListener('wheel', preventScroll)
-      document.body.removeEventListener('touchmove', preventScroll)
-    }
-
-    return () => {
-      document.body.removeEventListener('wheel', preventScroll)
-      document.body.removeEventListener('touchmove', preventScroll)
-    }
-  }, [isOpen])
+  usePreventScroll(isOpen)
 
   if (!isOpen) return null
 
