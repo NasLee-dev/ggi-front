@@ -5,12 +5,21 @@ import * as S from './style'
 
 import Image from 'next/image'
 import DefaultButton from 'app/deunggi/components/commons/button/DefaultButton'
+import useSessionStorage from '@/hooks/useSessionSotrage'
+import { useGetUserQuery } from 'app/shared/hooks/useGetUserQuery'
 
 export default function ProfileBox() {
+  const [token] = useSessionStorage({
+    key: 'token',
+    initialValue: 'default',
+  })
+
+  const { data: userData } = useGetUserQuery(token)
+
   return (
     <S.Box>
       <FlexBetween mb={8}>
-        <S.ProfileName>best님</S.ProfileName>
+        <S.ProfileName>{userData?.userId}님</S.ProfileName>
         <DefaultButton
           width="138px"
           height="30px"
