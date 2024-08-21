@@ -5,9 +5,9 @@ import { useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import usePostAgent from './hooks/usePostAgent'
-import AgentFormProps from '../form/AgentForm'
+import AgentForm from '../form/AgentForm'
 
-export default function AgentForm() {
+export default function Agent() {
   const [biddingForm, setBiddingForm] = useRecoilState(biddingInfoState)
   const [stateNum, setStateNum] = useRecoilState(stepState)
   const { isOpen, onClose, onOpen } = useDisclosure()
@@ -122,7 +122,7 @@ export default function AgentForm() {
           </div>
         </div>
         {/* 입력정보 */}
-        <AgentFormProps
+        <AgentForm
           onSubmit={onSubmit}
           handleSubmit={handleSubmit}
           errors={errors}

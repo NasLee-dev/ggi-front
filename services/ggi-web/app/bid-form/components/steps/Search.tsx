@@ -149,7 +149,6 @@ export default function SearchIpchal() {
       setSearchResult(1)
     }
   }, [])
-  console.log(stateNum)
   const renderContent = () => {
     if (loading) return <Spinner />
     switch (searchResult) {

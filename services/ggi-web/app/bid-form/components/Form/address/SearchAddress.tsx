@@ -16,8 +16,6 @@ interface SearchAddressProps {
   agentRegister?: UseFormRegister<AgentInfoType>
   agentErrors?: FieldErrors<AgentInfoType>
   agentSetError?: UseFormSetError<AgentInfoType>
-  biddingInfo?: BiddingInfoType
-  setBiddingInfo?: Dispatch<SetStateAction<BiddingInfoType>>
   agentInfo?: AgentInfoType
   setAgentInfo?: Dispatch<SetStateAction<AgentInfoType>>
   isOpen?: boolean
@@ -34,8 +32,6 @@ export default function SearchAddress({
   agentRegister,
   agentErrors,
   agentSetError,
-  biddingInfo,
-  setBiddingInfo,
   agentInfo,
   setAgentInfo,
   setValue,
@@ -78,7 +74,6 @@ export default function SearchAddress({
         <div className="flex w-[100%] ">
           <div className="flex justify-between w-[100%]">
             {errors?.bidderAddr?.type === 'required' &&
-            stepNum &&
             biddingForm.bidders[stepNum]?.address === '' ? (
               <div className="flex w-[100%] justify-start">
                 <span className="md:text-[20px] text-[12px] font-semibold font-['suit'] not-italic text-left text-red-500">
@@ -112,15 +107,10 @@ export default function SearchAddress({
             <input
               {...register('bidderAddr', { required: true })}
               id="bidderAddr"
-              name="bidderAddr"
               readOnly
               type="text"
               className="border border-gray-300 rounded-md md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] h-[40px] px-2 w-[95%] focus:outline-2 focus:outline-myBlue"
-              value={
-                stepNum && biddingForm.bidders[stepNum]?.address
-                  ? biddingForm.bidders[stepNum]?.address
-                  : ''
-              }
+              value={biddingForm.bidders[stepNum]?.address ?? ''}
             />
           )}
           {agentRegister && (
@@ -158,11 +148,7 @@ export default function SearchAddress({
               )}
               readOnly
               className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic leading-[135%] tracking-[-2%] text-left h-[40px] px-2 w-[100%]"
-              value={
-                stepNum && biddingForm.bidders[stepNum]?.addressDetail
-                  ? biddingForm.bidders[stepNum]?.addressDetail
-                  : ''
-              }
+              value={biddingForm.bidders[stepNum]?.addressDetail ?? ''}
             />
           )}
           {agentRegister && (
@@ -183,8 +169,6 @@ export default function SearchAddress({
               isOpen={isOpen}
               onClose={onClose}
               stepNum={stepNum}
-              biddingInfo={biddingInfo}
-              setBiddingInfo={setBiddingInfo}
               agentInfo={agentInfo}
               setAgentInfo={setAgentInfo}
               agentSetError={agentSetError}

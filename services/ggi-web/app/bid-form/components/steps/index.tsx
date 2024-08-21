@@ -6,10 +6,10 @@ import { useEffect, useCallback } from 'react'
 import Search from './Search'
 import Info from './Info'
 import TimeInfo from './Time'
-import AgentForm from './Agent'
 import BidderCnt from './BidderCnt'
 import BidderInfo from './BidderInfo'
 import Bidder from './Bidder'
+import Agent from './Agent'
 
 export default function Steps({ loading }: { loading: boolean }) {
   const biddingForm = useRecoilValue(biddingInfoState)
@@ -64,7 +64,7 @@ export default function Steps({ loading }: { loading: boolean }) {
         case 4:
           return <BidderInfo />
         case 5:
-          return <AgentForm />
+          return <Agent />
         case 6:
           return <BidderCnt />
         case 7:

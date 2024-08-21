@@ -19,11 +19,11 @@ interface PostBidderInfo {
 
 export const postBidderInfo = async ({ mstSeq, bidCorpYn, peopleSeq, bidders }: PostBidderInfo) => {
   try {
-    if (bidCorpYn[peopleSeq] === 'I') {
+    if (bidCorpYn === 'I') {
       const response = await axios.post(
         `/ggi/api/bid-form/${mstSeq}/bidders`,
         {
-          bidderType: bidders[peopleSeq].bidderType,
+          bidderType: bidCorpYn,
           name: bidders[peopleSeq].name,
           phoneNo: bidders[peopleSeq].phoneNo,
           address: bidders[peopleSeq].address,
@@ -38,11 +38,12 @@ export const postBidderInfo = async ({ mstSeq, bidCorpYn, peopleSeq, bidders }: 
       if (response.data.success) {
         return response.data.data
       }
-    } else if (bidCorpYn[peopleSeq] === 'C') {
+    } else if (bidCorpYn === 'C') {
+      console.log(bidders)
       const response = await axios.post(
         `/ggi/api/bid-form/${mstSeq}/bidders`,
         {
-          bidderType: bidders[peopleSeq].bidderType,
+          bidderType: bidCorpYn,
           name: bidders[peopleSeq].name,
           phoneNo: bidders[peopleSeq].phoneNo,
           address: bidders[peopleSeq].address,

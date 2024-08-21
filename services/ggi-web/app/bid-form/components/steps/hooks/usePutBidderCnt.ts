@@ -16,7 +16,6 @@ export default function usePutBidderCnt(mstSeq: string, bidderCount: number) {
     },
     onError: (error) => {
       console.error(error)
-      alert("입력을 다시 확인해주세요")
     }
   });
   return { putBidderCount: mutate, isPending, isError };

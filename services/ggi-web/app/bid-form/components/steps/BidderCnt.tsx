@@ -34,7 +34,7 @@ export default function BidderCnt() {
     mandateYn: '',
     bidCorpYn: 'I',
   }
-  const { putBidderCount, isPending, isError } = usePutBidderCnt(
+  const { putBidderCount } = usePutBidderCnt(
     biddingForm.mstSeq.toString(),
     biddingForm.bidderCount,
   )
@@ -92,9 +92,6 @@ export default function BidderCnt() {
           bidders: temp,
         }
       })
-      biddingForm.bidders.length >= 1 && biddingForm.bidders[0].name !== ''
-        ? setStateNum(16)
-        : setStateNum(stateNum + 1)
     }
   }, [biddingForm.bidderCount])
 
@@ -104,17 +101,25 @@ export default function BidderCnt() {
   const handleBiddingCnt = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
 
-    if (!validateInputValue(value)) return
+    if (value === '') {
+      setErrorMsg(false)
+      setCanGo(false)
+      return
+    }
 
-    setBiddingForm((prev) => ({
-      ...prev,
-      bidderCount: Number(value),
-    }))
-    putBidderCount({
-      mstSeq: biddingForm.mstSeq.toString(),
-      bidderCount: Number(value),
-    })
-    setCanGo(true)
+    if (validateInputValue(value)) {
+      setBiddingForm((prev) => ({
+        ...prev,
+        bidderCount: Number(value),
+      }))
+      putBidderCount({
+        mstSeq: biddingForm.mstSeq.toString(),
+        bidderCount: Number(value),
+      })
+      setCanGo(true)
+    } else {
+      setErrorMsg(true)
+    }
   }
 
   const handleBiddingCntNextBtn = useCallback(() => {
@@ -134,22 +139,32 @@ export default function BidderCnt() {
   const handleErrorOk = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
 
-    if (!validateInputValue(value)) {
+    if (value === '') {
+      setCanGo(false)
       setErrorMsg(true)
+      setBiddingForm((prev) => ({
+        ...prev,
+        bidderCount: 0,
+      }))
       return
     }
 
-    handleBiddingCnt(e)
-    const nextStep =
-      biddingForm.bidders.length > 0 && biddingForm.bidders[0].name !== ''
-        ? 16
-        : stateNum + 1
-
-    setTimeout(() => {
+    if (validateInputValue(value)) {
+      setErrorMsg(false)
       setIsLoading(true)
-      setStateNum(nextStep)
-      setIsLoading(false)
-    }, 2000)
+      handleBiddingCnt(e)
+      const nextStep =
+        biddingForm.bidders.length > 0 && biddingForm.bidders[0].name !== ''
+          ? 16
+          : stateNum + 1
+
+      setTimeout(() => {
+        setStateNum(nextStep)
+        setIsLoading(false)
+      }, 2000)
+    } else {
+      setErrorMsg(true)
+    }
   }
 
   const handleNextStep = () => {
@@ -157,17 +172,20 @@ export default function BidderCnt() {
       alert('입찰자는 1명 이상이어야 합니다')
       return
     }
+    setIsLoading(true)
     if (
       biddingForm.bidders.length === 1 &&
       biddingForm.bidders[0].name === '' &&
       biddingForm.bidderCount === 0
     ) {
-      //  아직 bidders의 정보가 입력되지 않은 초기 상태
       initBidders()
     } else {
-      //  bidders의 정보가 입력된 상태
       updateBidCorpYn()
+      biddingForm.bidderCount >= 1 && biddingForm.bidders[0].name !== ''
+        ? setStateNum(16)
+        : setStateNum(stateNum + 1)
     }
+    setIsLoading(false)
   }
 
   const handlePrevStep = () => {
@@ -179,13 +197,20 @@ export default function BidderCnt() {
 
     if (!validateInputValue(value)) return
 
-    if (biddingForm.bidders.find((bidder) => !bidder.bidCorpYn)) {
+    if (biddingForm.bidders.find((bidder) => bidder.bidCorpYn === '')) {
       updateBidCorpYn()
     }
   }
 
   useEffect(() => {
-    initBidders()
+    if (biddingForm.bidderCount > 0 && biddingForm.bidders[0].name === '') {
+      initBidders()
+    } else if (
+      biddingForm.bidderCount > 0 &&
+      biddingForm.bidders[0].name !== ''
+    ) {
+      updateBidCorpYn()
+    }
   }, [biddingForm.bidderCount])
   return (
     <>
@@ -244,6 +269,7 @@ export default function BidderCnt() {
           nextText="다음으로"
           handleNextStep={handleNextStep}
           handlePrevStep={handlePrevStep}
+          isDisabled={isLoading}
         />
       </div>
     </>

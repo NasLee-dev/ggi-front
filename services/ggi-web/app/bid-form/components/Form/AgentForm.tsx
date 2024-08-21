@@ -30,7 +30,7 @@ interface Props {
   onClose: () => void
 }
 
-export default function AgentFormProps({
+export default function AgentForm({
   setValue,
   handleSubmit,
   onSubmit,
