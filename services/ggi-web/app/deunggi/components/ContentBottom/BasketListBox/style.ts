@@ -46,7 +46,7 @@ export const EmptyContent = styled.div`
   font-size: 16px;
   font-weight: 400;
   color: #000;
-  box-sizing: border-box;
+  box-sizing: border-box;     
 `
 
 interface TableContainerProps {

@@ -28,7 +28,9 @@ export default function ProfileBox() {
           mobileFontSize="12px"
           fontSize="16px"
           text="사이버머니 충전"
-          onClick={() => {}}
+          onClick={() => {
+            console.log('')
+          }}
         />
       </FlexBetween>
       <FlexColumn gap={12}>
