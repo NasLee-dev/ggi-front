@@ -81,7 +81,7 @@ export default function Start() {
           </span>
         </div>
         <div className="flex mt-[30px]">
-          <img
+          <Image
             src="/images/bid-form/MainLogo.png"
             alt="logo"
             width={310}

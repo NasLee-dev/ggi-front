@@ -1,4 +1,4 @@
-import { getBidFormInfoMstSeq, getCaseCheck, initBidForm } from "@/remote/bid-form/getBidFormInfo"
+import { getBidFormInfoMstSeq, getCaseCheck, initBidForm } from "app/bid-form/remote/getBidFormInfo"
 import { useMutation } from "@tanstack/react-query"
 
 export const useInfoApi = () => {

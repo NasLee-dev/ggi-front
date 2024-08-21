@@ -3,8 +3,8 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { createPortal } from 'react-dom'
 import { FieldErrors, UseFormRegister, UseFormSetError } from 'react-hook-form'
-import { BiddingInfoType } from '@/models/bid-form/Bidder'
-import { AgentInfoType } from '@/models/bid-form/Agent'
+import { BiddingInfoType } from 'app/bid-form/models/Bidder'
+import { AgentInfoType } from 'app/bid-form/models/Agent'
 import { biddingInfoState } from '@/store/atom/bid-form'
 import ModalAddr from './ModalAddr'
 
@@ -79,7 +79,7 @@ export default function SearchAddress({
           <div className="flex justify-between w-[100%]">
             {errors?.bidderAddr?.type === 'required' &&
             stepNum &&
-            biddingForm.bidders[stepNum - 1].address === '' ? (
+            biddingForm.bidders[stepNum]?.address === '' ? (
               <div className="flex w-[100%] justify-start">
                 <span className="md:text-[20px] text-[12px] font-semibold font-['suit'] not-italic text-left text-red-500">
                   주소를 입력해주세요
@@ -117,8 +117,8 @@ export default function SearchAddress({
               type="text"
               className="border border-gray-300 rounded-md md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] h-[40px] px-2 w-[95%] focus:outline-2 focus:outline-myBlue"
               value={
-                stepNum && biddingForm.bidders[stepNum - 1].address
-                  ? biddingForm.bidders[stepNum - 1].address
+                stepNum && biddingForm.bidders[stepNum]?.address
+                  ? biddingForm.bidders[stepNum]?.address
                   : ''
               }
             />
@@ -149,18 +149,18 @@ export default function SearchAddress({
         </div>
         {/* 상세주소 */}
         <div className="flex flex-col w-[100%] bg-mybg gap-1">
-          {register && stepNum && (
+          {register && (
             <input
               id="bidAddrDetail"
               type="text"
               maxLength={handleGetLetterNum(
-                biddingForm.bidders[stepNum - 1].address,
+                biddingForm.bidders[stepNum]?.address,
               )}
               readOnly
               className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic leading-[135%] tracking-[-2%] text-left h-[40px] px-2 w-[100%]"
               value={
-                stepNum && biddingForm.bidders[stepNum - 1].addressDetail
-                  ? biddingForm.bidders[stepNum - 1].addressDetail
+                stepNum && biddingForm.bidders[stepNum]?.addressDetail
+                  ? biddingForm.bidders[stepNum]?.addressDetail
                   : ''
               }
             />

@@ -1,4 +1,4 @@
-import { AgentInfoType } from '@/models/bid-form/Agent'
+import { AgentInfoType } from 'app/bid-form/models/Agent'
 import { biddingInfoState } from '@/store/atom/bid-form'
 import { Dispatch, SetStateAction, useState } from 'react'
 import {

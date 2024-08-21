@@ -1,4 +1,4 @@
-import { SearchResultType } from '@/models/bid-form/Search'
+import { SearchResultType } from 'app/bid-form/models/Search'
 import { biddingInfoState, stepState } from '@/store/atom/bid-form'
 import { useEffect, useState } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
@@ -149,7 +149,7 @@ export default function SearchIpchal() {
       setSearchResult(1)
     }
   }, [])
-
+  console.log(stateNum)
   const renderContent = () => {
     if (loading) return <Spinner />
     switch (searchResult) {

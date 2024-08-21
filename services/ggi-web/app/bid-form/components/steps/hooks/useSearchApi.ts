@@ -1,5 +1,5 @@
-import { getSearch } from "@/remote/bid-form/getSearch"
-import { getSearchResult } from "@/remote/bid-form/getSearchResult"
+import { getSearch } from "app/bid-form/remote/getSearch"
+import { getSearchResult } from "app/bid-form/remote/getSearchResult"
 import { useMutation } from "@tanstack/react-query"
 
 export const useSearchApi = () => {

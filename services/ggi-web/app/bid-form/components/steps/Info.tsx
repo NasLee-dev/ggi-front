@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { authInfo } from '@/store/atom/auth'
 import Spinner from '../icons/Spinner'
 import Button from '../shared/Button'
-import { TempData } from '@/models/bid-form/Info'
+import { TempData } from 'app/bid-form/models/Info'
 
 export default function Info() {
   const { getInfoMstSeq, getCase, getInit } = useInfoApi()

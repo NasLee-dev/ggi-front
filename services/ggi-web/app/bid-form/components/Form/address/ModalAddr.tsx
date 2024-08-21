@@ -8,7 +8,7 @@ import {
 } from 'react'
 import { useRecoilState } from 'recoil'
 import { IoClose } from 'react-icons/io5'
-import { BiddingInfoType } from '@/models/bid-form/Bidder'
+import { BiddingInfoType } from 'app/bid-form/models/Bidder'
 import { biddingInfoState } from '@/store/atom/bid-form'
 import useGetAddress from '../hooks/useGetAddress'
 import Dimmed from 'app/map/components/shared/Dimmed'

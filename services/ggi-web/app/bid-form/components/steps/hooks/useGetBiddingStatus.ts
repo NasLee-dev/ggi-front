@@ -1,4 +1,4 @@
-import { getBiddingStatus } from "@/remote/bid-form/getBiddingStatus";
+import { getBiddingStatus } from "app/bid-form/remote/getBiddingStatus";
 import { biddingInfoState } from "@/store/atom/bid-form";
 import { useMutation } from "@tanstack/react-query";
 import { useRecoilState } from "recoil";

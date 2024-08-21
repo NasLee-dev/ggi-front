@@ -15,3 +15,23 @@ export interface BiddingInfoType {
   bidderCorpYn: string[]
   bidderJob: string[]
 }
+
+export interface BiddersProps {
+  address: string
+  bidderType: string
+  companyNo: string
+  corporationNo: string
+  job: string
+  name: string
+  peopleSeq: number
+  phoneNo: string
+  share: any
+}
+export interface BidderListProps {
+  agentYn: string | null
+  bidderCount: number
+  mstSeq: number
+  number: number
+  state: number
+  bidders: BiddersProps[]
+}

@@ -1,4 +1,4 @@
-import { deleteAgent } from "@/remote/bid-form/deleteAgent";
+import { deleteAgent } from "app/bid-form/remote/deleteAgent";
 import { biddingInfoState } from "@/store/atom/bid-form";
 import { useMutation } from "@tanstack/react-query";
 import { useSetRecoilState } from "recoil";

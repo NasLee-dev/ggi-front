@@ -1,5 +1,5 @@
 
-import getAddress from "@/remote/bid-form/address/getAddress";
+import getAddress from "app/bid-form/remote/address/getAddress";
 import { useMutation } from "@tanstack/react-query";
 
 interface GetAddressProps {

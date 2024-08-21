@@ -1,6 +1,6 @@
-import { getAuth } from "@/remote/bid-form/getAuth";
-import { getIdcodeCheck } from "@/remote/bid-form/getIdcodeCheck";
-import { getMstSeqInfo } from "@/remote/bid-form/getInfo";
+import { getAuth } from "app/bid-form/remote/getAuth";
+import { getIdcodeCheck } from "app/bid-form/remote/getIdcodeCheck";
+import { getMstSeqInfo } from "app/bid-form/remote/getInfo";
 import { biddingInfoState, stepState } from "@/store/atom/bid-form";
 import { useMutation } from "@tanstack/react-query";
 import { useRecoilState } from "recoil";

@@ -1,4 +1,4 @@
-import { postAgent } from "@/remote/bid-form/postAgent";
+import { postAgent } from "app/bid-form/remote/postAgent";
 import { biddingInfoState } from "@/store/atom/bid-form";
 import { useMutation } from "@tanstack/react-query";
 import { useSetRecoilState } from "recoil";
