@@ -31,7 +31,7 @@ export const MoveButton = styled.button`
   justify-content: center;
   align-items: center;
   gap: 10px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'SUIT' !important;
 
   &:disabled {
     opacity: 0.7;
@@ -69,6 +69,7 @@ interface PageButtonProps {
 export const PageButton = styled.button<PageButtonProps>`
   width: 38px;
   height: 38px;
+  font-family: 'SUIT' !important;
   font-size: 16px;
   font-weight: 500;
   color: #6b7280;

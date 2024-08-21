@@ -4,8 +4,9 @@ import styled from '@emotion/styled'
 import { mobile } from 'app/shared/styles/responsive'
 
 export const Title = styled.h2`
+  font-family: 'Inter', sans-serif !important;
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 600;
   color: ${({ theme }) => theme.colors.text};
 
   ${mobile} {
@@ -15,6 +16,7 @@ export const Title = styled.h2`
 
 export const Description = styled.div`
   min-height: 105px;
+  font-family: 'Inter', sans-serif !important;
   font-size: 16px;
   font-weight: 400;
   color: ${({ theme }) => theme.colors.text};
