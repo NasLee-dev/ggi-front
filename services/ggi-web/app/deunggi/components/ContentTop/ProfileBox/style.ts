@@ -51,7 +51,7 @@ export const CashTitleBox = styled.div`
   span {
     font-size: ${({ theme }) => theme.fonts.text};
     font-weight: 400;
-    color: #4b5563;
+    color: ${({ theme }) => theme.colors.charcoal};
   }
 
   ${mobile} {
@@ -69,7 +69,7 @@ export const CashValue = styled.p`
   color: ${({ theme }) => theme.colors.primary};
 
   span {
-    color: #4b5563;
+    color: ${({ theme }) => theme.colors.charcoal};
   }
 
   ${mobile} {

@@ -6,6 +6,8 @@ const theme = {
     secondary: '#F8FAFC',
     text: '#1F2937',
     border: '#E5E7EB',
+    charcoal: '#4b5563',
+    coolGray: '#6b7280',
   },
 
   fonts: {
