@@ -41,7 +41,7 @@ export const ModalSpan = styled.span`
     left: -12px;
     width: 4px;
     height: 4px;
-    background-color: #6b7280;
+    background-color: ${({ theme }) => theme.colors.coolGray};
     border-radius: 50%;
   }
 `

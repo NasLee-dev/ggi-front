@@ -121,7 +121,7 @@ export default function TitleBox() {
               mobileWidth="90px"
               mobileHeight="35px"
               mobileFontSize="14px"
-              backColor="#4B5563"
+              backColor={theme.colors.charcoal}
               text={BUTTON_TEXT.delete}
               onClick={handleClickDeleteModal}
               name="basket"
@@ -141,7 +141,7 @@ export default function TitleBox() {
             mobileWidth="90px"
             mobileHeight="35px"
             mobileFontSize="14px"
-            backColor="#4B5563"
+            backColor={theme.colors.charcoal}
             text={BUTTON_TEXT.delete}
             name="view"
             onClick={handleClickDeleteModal}

@@ -28,7 +28,7 @@ export const ContainerTitle = styled.div`
   h3 {
     font-size: 18px;
     font-weight: 700;
-    color: #6b7280;
+    color: ${({ theme }) => theme.colors.coolGray};
   }
 
   ${mobile} {

@@ -27,7 +27,7 @@ export const HeaderContainer = styled.header`
 export const EndButton = styled.button`
   width: 84px;
   height: 48px;
-  background-color: #6b7280;
+  background-color: ${({ theme }) => theme.colors.coolGray};
   border-radius: 8px;
   font-size: 15px;
   font-weight: 700;
