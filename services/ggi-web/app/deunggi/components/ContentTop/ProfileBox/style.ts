@@ -21,6 +21,7 @@ export const ProfileName = styled.h3`
   font-size: 18px;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.text};
+  font-family: 'Inter';
 
   ${mobile} {
     font-size: ${({ theme }) => theme.fonts.smallText};
