@@ -16,7 +16,7 @@ export const getUser = async (token: string): Promise<UserType | undefined> => {
     )
 
     if (res.data.success) {
-      return res.data.data
+      return res.data.data || null
     }
   } catch (error) {
     console.error(error)

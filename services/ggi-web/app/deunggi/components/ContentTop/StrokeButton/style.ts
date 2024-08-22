@@ -19,6 +19,7 @@ export const Button = styled.button<ButtonProps>`
   height: ${({ height }) => (height ? height : '50px')};
   background-color: ${({ active }) => (active ? '#F3F8FF' : '#fff')};
   border-radius: ${({ radius }) => (radius ? radius : '16px')};
+  font-family: 'Inter';
   font-weight: 700;
   color: ${({ active, theme }) => (active ? theme.colors.primary : '#6b7280')};
   font-size: 18px;

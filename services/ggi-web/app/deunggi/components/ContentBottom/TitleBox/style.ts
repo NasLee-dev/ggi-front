@@ -17,14 +17,14 @@ export const TitleContainer = styled.div`
 `
 
 export const SearchResultTitle = styled.h3`
-  font-size: 20px;
+  font-size: ${({ theme }) => theme.fonts.subTitle};
   font-weight: 600;
   color: ${({ theme }) => theme.colors.text};
   padding-left: 10px;
   box-sizing: border-box;
 
   ${mobile} {
-    font-size: 16px;
+    font-size: ${({ theme }) => theme.fonts.text};
     padding-left: 0;
   }
 `

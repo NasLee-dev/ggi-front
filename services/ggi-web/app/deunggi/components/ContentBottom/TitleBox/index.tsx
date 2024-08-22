@@ -240,7 +240,9 @@ export default function TitleBox() {
               개의 장바구니 데이터를 삭제하시겠습니까?
             </div>
           }
-          onClick={() => {}}
+          onClick={() => {
+            console.log('')
+          }}
           onClose={handleCloseBasketDeleteModal}
           type="delete"
         />
@@ -259,7 +261,9 @@ export default function TitleBox() {
               개의 등기 데이터를 삭제하시겠습니까?
             </div>
           }
-          onClick={() => {}}
+          onClick={() => {
+            console.log('')
+          }}
           onClose={handleCloseViewDeleteModal}
           type="delete"
         />

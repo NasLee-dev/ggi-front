@@ -7,12 +7,10 @@ import Image from 'next/image'
 import DefaultButton from 'app/deunggi/components/commons/button/DefaultButton'
 import useSessionStorage from '@/hooks/useSessionSotrage'
 import { useGetUserQuery } from 'app/shared/hooks/useGetUserQuery'
+import { getToken } from 'utils/commons/getToken'
 
 export default function ProfileBox() {
-  const [token] = useSessionStorage({
-    key: 'token',
-    initialValue: 'default',
-  })
+  const token = getToken() as string
 
   const { data: userData } = useGetUserQuery(token)
 
@@ -28,7 +26,9 @@ export default function ProfileBox() {
           mobileFontSize="12px"
           fontSize="16px"
           text="사이버머니 충전"
-          onClick={() => {}}
+          onClick={() => {
+            console.log('')
+          }}
         />
       </FlexBetween>
       <FlexColumn gap={12}>

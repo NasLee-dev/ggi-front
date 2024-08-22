@@ -35,7 +35,7 @@ export const ContainerTitle = styled.div`
     padding: 8px 0;
 
     h3 {
-      font-size: 14px;
+      font-size: ${({ theme }) => theme.fonts.smallText};
     }
   }
 `
@@ -70,12 +70,12 @@ export const SearchContent = styled.form`
       height: 40px;
       border-radius: 8px;
       padding: 10px;
-      font-size: 12px;
+      font-size: ${({ theme }) => theme.fonts.tinyText};
     }
 
     button {
       height: 35px;
-      font-size: 12px;
+      font-size: ${({ theme }) => theme.fonts.tinyText};
     }
   }
 `
@@ -84,7 +84,7 @@ export const SearchInput = styled.input`
   width: 67.6%;
   height: 50px;
   border: ${({ theme }) => `1px solid ${theme.colors.border}`};
-  font-size: 16px;
+  font-size: ${({ theme }) => theme.fonts.text};
   font-weight: 400;
   color: ${({ theme }) => theme.colors.text};
   border-radius: 16px;

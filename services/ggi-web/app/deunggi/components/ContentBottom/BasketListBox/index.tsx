@@ -6,6 +6,7 @@ import * as S from './style'
 import { FlexColumn } from 'styles/sharedStyle'
 import { useEffect, useState } from 'react'
 import { toLocalStringFn } from 'utils/commons/toLocalString'
+import { useBasketDataStore } from '@/store/useDeunggiStore'
 
 const BASKET_LIST = [
   {
@@ -40,15 +41,16 @@ const BASKET_LIST = [
 
 export default function BasketListBox() {
   const [totalPrice, setTotalPrice] = useState(0)
+  const { basketData } = useBasketDataStore()
 
   useEffect(() => {
     let totalPrice = 0
-    BASKET_LIST.forEach((data) => {
+    basketData.forEach((data) => {
       const price = data.price
       totalPrice += price
     })
     setTotalPrice(totalPrice)
-  }, [])
+  }, [basketData])
 
   return (
     <FlexColumn gap={8}>
@@ -97,7 +99,9 @@ export default function BasketListBox() {
         <DefaultPagination
           totalPages={10}
           currentPage={1}
-          onPageChange={() => {}}
+          onPageChange={() => {
+            console.log('')
+          }}
         />
       )}
     </FlexColumn>
