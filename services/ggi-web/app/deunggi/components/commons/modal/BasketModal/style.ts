@@ -45,7 +45,7 @@ export const ModalText = styled.div`
   text-align: center;
 
   ${small} {
-    font-size: 14px;
+    font-size: ${({ theme }) => theme.fonts.smallText};
   }
 `
 

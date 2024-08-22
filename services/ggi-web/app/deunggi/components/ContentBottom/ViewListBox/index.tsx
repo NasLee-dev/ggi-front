@@ -74,7 +74,9 @@ export default function ViewListBox() {
         <DefaultPagination
           totalPages={10}
           currentPage={1}
-          onPageChange={() => {}}
+          onPageChange={() => {
+            console.log('')
+          }}
         />
       )}
     </>
