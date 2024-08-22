@@ -5,26 +5,26 @@ import { mobile } from 'app/shared/styles/responsive'
 
 export const Title = styled.h2`
   font-family: 'Inter', sans-serif !important;
-  font-size: 24px;
+  font-size: ${({ theme }) => theme.fonts.title};
   font-weight: 600;
   color: ${({ theme }) => theme.colors.text};
 
   ${mobile} {
-    font-size: 16px;
+    font-size: ${({ theme }) => theme.fonts.text};
   }
 `
 
 export const Description = styled.div`
   min-height: 105px;
   font-family: 'Inter', sans-serif !important;
-  font-size: 16px;
+  font-size: ${({ theme }) => theme.fonts.text};
   font-weight: 400;
   color: ${({ theme }) => theme.colors.text};
   line-height: 1.45;
   position: relative;
 
   a {
-    font-size: 16px;
+    font-size: ${({ theme }) => theme.fonts.text};
     font-weight: 600;
     color: ${({ theme }) => theme.colors.primary};
     text-decoration: underline;
@@ -32,10 +32,10 @@ export const Description = styled.div`
   }
 
   ${mobile} {
-    font-size: 14px;
+    font-size: ${({ theme }) => theme.fonts.smallText};
 
     a {
-      font-size: 14px;
+      font-size: ${({ theme }) => theme.fonts.smallText};
       margin-left: 10px;
     }
   }

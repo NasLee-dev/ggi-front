@@ -36,6 +36,6 @@ export const EndButton = styled.button`
   ${small} {
     width: 70px;
     height: 35px;
-    font-size: 14px;
+    font-size: ${({ theme }) => theme.fonts.smallText};
   }
 `

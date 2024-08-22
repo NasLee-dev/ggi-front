@@ -23,7 +23,7 @@ export const ProfileName = styled.h3`
   color: ${({ theme }) => theme.colors.text};
 
   ${mobile} {
-    font-size: 14px;
+    font-size: ${({ theme }) => theme.fonts.smallText};
   }
 `
 
@@ -49,7 +49,7 @@ export const CashTitleBox = styled.div`
   gap: 8px;
 
   span {
-    font-size: 16px;
+    font-size: ${({ theme }) => theme.fonts.text};
     font-weight: 400;
     color: #4b5563;
   }
@@ -58,13 +58,13 @@ export const CashTitleBox = styled.div`
     gap: 4px;
 
     span {
-      font-size: 12px;
+      font-size: ${({ theme }) => theme.fonts.tinyText};
     }
   }
 `
 
 export const CashValue = styled.p`
-  font-size: 16px;
+  font-size: ${({ theme }) => theme.fonts.text};
   font-weight: 700;
   color: ${({ theme }) => theme.colors.primary};
 
@@ -73,6 +73,6 @@ export const CashValue = styled.p`
   }
 
   ${mobile} {
-    font-size: 12px;
+    font-size: ${({ theme }) => theme.fonts.tinyText};
   }
 `

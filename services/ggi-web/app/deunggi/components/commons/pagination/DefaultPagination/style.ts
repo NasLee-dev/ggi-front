@@ -39,7 +39,7 @@ export const MoveButton = styled.button`
   }
 
   span {
-    font-size: 16px;
+    font-size: ${({ theme }) => theme.fonts.text};
     font-weight: 500;
     color: #6b7280;
 
@@ -70,7 +70,7 @@ export const PageButton = styled.button<PageButtonProps>`
   width: 38px;
   height: 38px;
   font-family: 'SUIT' !important;
-  font-size: 16px;
+  font-size: ${({ theme }) => theme.fonts.text};
   font-weight: 500;
   color: #6b7280;
   font-family: 'SUIT', sans-serif;
@@ -81,6 +81,6 @@ export const PageButton = styled.button<PageButtonProps>`
   @media (max-width: 560px) {
     width: 25px;
     height: 25px;
-    font-size: 12px;
+    font-size: ${({ theme }) => theme.fonts.tinyText};
   }
 `

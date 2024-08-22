@@ -2,7 +2,6 @@ import { UserType } from 'app/shared/types/auth'
 import axios from 'axios'
 
 export const getUser = async (token: string): Promise<UserType | undefined> => {
-  console.log(token)
   try {
     const res = await axios.post(
       `/ggi/api/auth/asp`,
@@ -15,7 +14,6 @@ export const getUser = async (token: string): Promise<UserType | undefined> => {
         },
       },
     )
-    console.log(res.data)
 
     if (res.data.success) {
       return res.data.data || null

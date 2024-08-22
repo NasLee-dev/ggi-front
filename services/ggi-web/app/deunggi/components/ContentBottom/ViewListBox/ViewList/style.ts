@@ -21,7 +21,7 @@ interface TableValueProps {
 
 export const TableValue = styled.div<TableValueProps>`
   width: ${({ width }) => width};
-  font-size: 16px;
+  font-size: ${({ theme }) => theme.fonts.text};
   font-weight: 400;
   color: ${({ theme }) => theme.colors.text};
   display: flex;
@@ -31,7 +31,7 @@ export const TableValue = styled.div<TableValueProps>`
 
   ${small} {
     width: ${({ width, mobileWidth }) => (mobileWidth ? mobileWidth : width)};
-    font-size: 14px;
+    font-size: ${({ theme }) => theme.fonts.smallText};
   }
 `
 

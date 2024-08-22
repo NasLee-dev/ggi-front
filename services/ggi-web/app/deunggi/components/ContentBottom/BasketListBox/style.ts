@@ -23,7 +23,7 @@ interface HeadListProps {
 export const HeadList = styled.li<HeadListProps>`
   width: ${({ width }) => width};
   padding: 15px 0;
-  font-size: 16px;
+  font-size: ${({ theme }) => theme.fonts.text};
   font-weight: 700;
   color: #6b7280;
   display: flex;
@@ -33,7 +33,7 @@ export const HeadList = styled.li<HeadListProps>`
 
   ${small} {
     width: ${({ width, mobileWidth }) => (mobileWidth ? mobileWidth : width)};
-    font-size: 14px;
+    font-size: ${({ theme }) => theme.fonts.smallText};
   }
 `
 
@@ -43,10 +43,10 @@ export const EmptyContent = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 16px;
+  font-size: ${({ theme }) => theme.fonts.text};
   font-weight: 400;
   color: #000;
-  box-sizing: border-box;     
+  box-sizing: border-box;
 `
 
 interface TableContainerProps {
@@ -78,7 +78,7 @@ export const TotalPriceBox = styled.div`
   box-sizing: border-box;
 
   p {
-    font-size: 16px;
+    font-size: ${({ theme }) => theme.fonts.text};
     font-weight: 700;
     color: ${({ theme }) => theme.colors.primary};
   }
@@ -87,7 +87,7 @@ export const TotalPriceBox = styled.div`
     padding: 10px 15px;
 
     p {
-      font-size: 14px;
+      font-size: ${({ theme }) => theme.fonts.smallText};
     }
   }
 `
