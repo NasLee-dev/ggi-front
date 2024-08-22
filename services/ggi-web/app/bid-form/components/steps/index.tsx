@@ -1,21 +1,28 @@
 import { useRecoilValue } from 'recoil'
 import Spinner from '../icons/Spinner'
-import { biddingInfoState } from '@/store/atom/bid-form'
+import { biddingInfoState, stepState } from '@/store/atom/bid-form'
 import Start from './Start'
-import { useCallback, useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
+import Search from './Search'
+import Info from './Info'
+import TimeInfo from './Time'
+import BidderCnt from './BidderCnt'
+import BidderInfo from './BidderInfo'
+import Bidder from './Bidder'
+import Agent from './Agent'
+import BidderEdit from './BidderEdit'
 
 export default function Steps({ loading }: { loading: boolean }) {
   const biddingForm = useRecoilValue(biddingInfoState)
+  const stateNum = useRecoilValue(stepState)
 
-  const handleHeight = () => {
+  const handleHeight = useCallback(() => {
     const height = window.innerHeight
-    if (document && document.getElementById('box')) {
-      const boxElement = document.getElementById('box')
-      if (boxElement) {
-        boxElement.style.height = height + 'px'
-      }
+    const boxElement = document.getElementById('box')
+    if (boxElement) {
+      boxElement.style.height = height + 'px'
     }
-  }
+  }, [])
 
   useEffect(() => {
     handleHeight()
@@ -23,25 +30,63 @@ export default function Steps({ loading }: { loading: boolean }) {
     return () => {
       window.removeEventListener('resize', handleHeight)
     }
-  }, [])
-  return (
-    <div
-      id="box"
-      className="w-screen bg-mybg h-screen items-center justify-center"
-    >
-      {loading ? (
+  }, [handleHeight])
+  const renderContent = () => {
+    if (loading) {
+      return (
         <div className="flex justify-center items-center bg-mybg w-[100%] h-screen">
           <div className="flex flex-col justify-center items-center bg-mybg w-[50%] h-[100%]">
             <Spinner />
           </div>
         </div>
-      ) : (
-        <>
-          {biddingForm.state === 9 || biddingForm.state === 0 ? (
-            <Start />
-          ) : null}
-        </>
-      )}
+      )
+    } else if (biddingForm.state === 9 || stateNum === 0) {
+      return <Start />
+    } else if (biddingForm.state === 0 && stateNum === 4) {
+      return <BidderInfo />
+    } else if (
+      (biddingForm.state === 1 || biddingForm.state === 2) &&
+      stateNum === 6
+    ) {
+      return <BidderCnt />
+    } else {
+      switch (stateNum) {
+        case 0:
+          return <Start />
+        case 1:
+          return <Search />
+        case 2:
+          return <Info />
+        case 3:
+          if (biddingForm.biddingInfos.length > 1) {
+            return <TimeInfo />
+          }
+          break
+        case 4:
+          return <BidderInfo />
+        case 5:
+          return <Agent />
+        case 6:
+          return <BidderCnt />
+        case 7:
+          return <Bidder />
+        case 16:
+          return <BidderEdit />
+        default:
+          return null
+      }
+    }
+  }
+
+  return (
+    <div
+      id="box"
+      className={`w-full bg-mybg items-center justify-center`}
+      style={{
+        height: '100vh',
+      }}
+    >
+      {renderContent()}
     </div>
   )
 }

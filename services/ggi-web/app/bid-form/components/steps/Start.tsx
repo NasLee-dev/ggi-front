@@ -1,8 +1,10 @@
+'use client'
 import { authInfo } from '@/store/atom/auth'
 import { biddingInfoState, stepState } from '@/store/atom/bid-form'
 import { useCallback, useEffect, useState } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import useGetBiddingStatus from './hooks/useGetBiddingStatus'
+import Image from 'next/image'
 
 export default function Start() {
   const [stateNum, setStateNum] = useRecoilState(stepState)
@@ -12,7 +14,7 @@ export default function Start() {
   const { mutate: getBiddingStatus } = useGetBiddingStatus(auth.idCode)
 
   useEffect(() => {
-    if (auth.idCode.length > 1) {
+    if (auth.idCode?.length > 1) {
       getBiddingStatus()
     } else {
       setBiddingForm((prev) => ({
@@ -27,14 +29,15 @@ export default function Start() {
     if (!biddingForm.isBiddingStatus) {
       alert('입찰기일이 지났거나 현재 입찰 중인 사건이 아닙니다.')
     } else {
-      if (auth.idCode !== '') {
+      if (auth.idCode) {
         setStateNum(2)
         setLoading(false)
-      } else if (auth.idCode === '') {
+      } else if (!auth.idCode) {
         setStateNum(stateNum + 1)
         setBiddingForm({
           ...biddingForm,
           searchResultState: 1,
+          state: biddingForm.state + 1,
         })
         setLoading(false)
       } else {
@@ -42,6 +45,7 @@ export default function Start() {
         setBiddingForm({
           ...biddingForm,
           searchResultState: 1,
+          state: biddingForm.state + 1,
         })
         setLoading(false)
       }
@@ -54,8 +58,8 @@ export default function Start() {
         className={`flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center gap-[10px]`}
       >
         <div className="flex pt-[50px]">
-          <img
-            src={'/images/bid-form/TopLogo.png'}
+          <Image
+            src="/images/bid-form/TopLogo.png"
             alt="logo"
             width={60}
             height={52.5}
@@ -77,14 +81,19 @@ export default function Start() {
           </span>
         </div>
         <div className="flex mt-[30px]">
-          <img
+          <Image
             src="/images/bid-form/MainLogo.png"
             alt="logo"
             width={310}
             height={230}
           />
         </div>
-        <div className="flex flex-col bg-myBlue w-[180px] h-[46px] rounded-full items-center justify-center cursor-pointer md:mt-[70px] mt-[20px]">
+        <div
+          className="flex flex-col bg-myBlue w-[180px] h-[46px] rounded-full items-center justify-center cursor-pointer md:mt-[70px] mt-[20px]"
+          onClick={() => {
+            handleStart()
+          }}
+        >
           <span className="text-white md:text-[20px] text-[18px] font-['suit'] leading-[135%] tracking-[-2%] font-bold not-italic">
             입찰표 작성하기
           </span>
