@@ -25,7 +25,7 @@ export const HeadList = styled.li<HeadListProps>`
   padding: 15px 0;
   font-size: ${({ theme }) => theme.fonts.text};
   font-weight: 700;
-  color: #6b7280;
+  color: ${({ theme }) => theme.colors.coolGray};
   display: flex;
   justify-content: center;
   align-items: center;

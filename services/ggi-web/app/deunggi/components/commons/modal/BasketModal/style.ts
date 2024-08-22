@@ -39,7 +39,7 @@ export const BasketIcon = styled(Image)`
 export const ModalText = styled.div`
   font-size: 18px;
   font-weight: 400;
-  color: #6b7280;
+  color: ${({ theme }) => theme.colors.coolGray};
   margin-bottom: 25px;
   line-height: 1.35;
   text-align: center;

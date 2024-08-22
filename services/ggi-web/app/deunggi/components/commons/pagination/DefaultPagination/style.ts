@@ -41,10 +41,10 @@ export const MoveButton = styled.button`
   span {
     font-size: ${({ theme }) => theme.fonts.text};
     font-weight: 500;
-    color: #6b7280;
+    color: ${({ theme }) => theme.colors.coolGray};
 
     &.move-img {
-      color: #4b5563;
+      color: ${({ theme }) => theme.colors.charcoal};
     }
   }
 
@@ -72,7 +72,7 @@ export const PageButton = styled.button<PageButtonProps>`
   font-family: 'SUIT' !important;
   font-size: ${({ theme }) => theme.fonts.text};
   font-weight: 500;
-  color: #6b7280;
+  color: ${({ theme }) => theme.colors.coolGray};
   font-family: 'SUIT', sans-serif;
   border-radius: 4px;
 
