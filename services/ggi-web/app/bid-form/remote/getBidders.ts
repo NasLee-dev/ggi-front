@@ -1,4 +1,5 @@
 import axios from "axios"
+import { BiddersProps } from "../models/Bidder"
 
 export const getBidders = async (mstSeq: string) => {
   try {
@@ -6,7 +7,7 @@ export const getBidders = async (mstSeq: string) => {
       `/ggi/api/bid-form/${mstSeq}/bidders`,
     )
     if (response.data.success) {
-      return response.data.data
+      return response.data.data as BiddersProps[]
     }
   } catch (error) {
     console.log(error)

@@ -4,7 +4,6 @@ import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react'
 import {
   FieldErrors,
   SubmitHandler,
-  useForm,
   UseFormHandleSubmit,
   UseFormRegister,
   UseFormSetError,
@@ -50,31 +49,11 @@ export default function BidderForm({
   const [stateNum, setStateNum] = useRecoilState(stepState)
   const [passwordActive, setPasswordActive] = useState(false)
 
-  const handlePhoneFocusMove = (target: HTMLInputElement) => {
-    if (target.value.length === 3 && target.id === 'bidderPhone1') {
-      setFocus('bidderPhone2')
-    } else if (target.value.length === 4 && target.id === 'bidderPhone2') {
-      setFocus('bidderPhone3')
-    }
-  }
-
-  const handleCorpNumFocusMove = (target: HTMLInputElement) => {
-    if (target.value.length === 3 && target.id === 'bidderCorpNum1') {
-      setFocus('bidderCorpNum2')
-    } else if (target.value.length === 2 && target.id === 'bidderCorpNum2') {
-      setFocus('bidderCorpNum3')
-    }
-  }
-
-  const handleCorpRegiNumFocusMove = (target: HTMLInputElement) => {
-    if (target.value.length === 6 && target.id === 'bidderCorpRegiNum1') {
-      setFocus('bidderCorpRegiNum2')
-    }
-  }
-
-  const handleIdNumFocusMove = (target: HTMLInputElement) => {
-    if (target.value.length === 6 && target.id === 'bidderIdNum1') {
-      setFocus('bidderIdNum2')
+  const handleFocusChange = (length: number, nextField: string) => {
+    return (e: ChangeEvent<HTMLInputElement>) => {
+      if (e.target.value.length === length) {
+        setFocus(nextField as keyof BiddingInfoType)
+      }
     }
   }
   return (
@@ -118,7 +97,7 @@ export default function BidderForm({
               </div>
             ) : (
               <div className="flex flex-row">
-                {biddingForm.bidders[stepNum]?.bidCorpYn === 'I' ? (
+                {biddingForm.bidders[stepNum]?.bidderType === 'I' ? (
                   <span className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%]">
                     성명
                   </span>
@@ -151,7 +130,7 @@ export default function BidderForm({
             type="text"
             className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left h-[40px] px-2 leading-[135%] tracking-[-2%]"
             placeholder={`${
-              biddingForm.bidders[stepNum]?.bidCorpYn === 'I'
+              biddingForm.bidders[stepNum]?.bidderType === 'I'
                 ? '성명'
                 : '법인명'
             }을 입력해주세요`}
@@ -241,8 +220,8 @@ export default function BidderForm({
                     return bidder
                   }),
                 }))
-                handlePhoneFocusMove(e.target)
                 handleInputChange(e)
+                handleFocusChange(3, 'bidderPhone2')(e)
               }}
             />
             <input
@@ -277,8 +256,8 @@ export default function BidderForm({
                     return bidder
                   }),
                 }))
-                handlePhoneFocusMove(e.target)
                 handleInputChange(e)
+                handleFocusChange(4, 'bidderPhone3')(e)
               }}
             />
             <input
@@ -313,13 +292,12 @@ export default function BidderForm({
                     return bidder
                   }),
                 }))
-                handlePhoneFocusMove(e.target)
                 handleInputChange(e)
               }}
             />
           </div>
         </div>
-        {biddingForm.bidders[stepNum]?.bidCorpYn === 'I' ? (
+        {biddingForm.bidders[stepNum]?.bidderType === 'I' ? (
           <>
             <div className="flex flex-col w-[100%] gap-1">
               <div className="flex justify-between w-[100%]">
@@ -378,8 +356,8 @@ export default function BidderForm({
                         return bidder
                       }),
                     }))
-                    handleIdNumFocusMove(e.target)
                     handleInputChange(e)
+                    handleFocusChange(6, 'bidderIdNum2')(e)
                     if (biddingForm.bidders[stepNum].idNum1.length > 6) {
                       setBiddingForm((prev) => ({
                         ...prev,
@@ -516,8 +494,8 @@ export default function BidderForm({
                         return bidder
                       }),
                     }))
-                    handleCorpNumFocusMove(e.target)
                     handleInputChange(e)
+                    handleFocusChange(3, 'bidderCorpNum2')(e)
                   }}
                 />
                 <span className="flex text-mygray font-['suit'] font-bold mt-1">
@@ -556,8 +534,8 @@ export default function BidderForm({
                         return bidder
                       }),
                     }))
-                    handleCorpNumFocusMove(e.target)
                     handleInputChange(e)
+                    handleFocusChange(2, 'bidderCorpNum3')(e)
                   }}
                 />
                 <span className="flex text-mygray font-['suit'] font-bold mt-1">
@@ -596,7 +574,6 @@ export default function BidderForm({
                         return bidder
                       }),
                     }))
-                    handleCorpNumFocusMove(e.target)
                     handleInputChange(e)
                   }}
                 />
@@ -654,8 +631,8 @@ export default function BidderForm({
                           return bidder
                         }),
                       }))
-                      handleCorpRegiNumFocusMove(e.target)
                       handleInputChange(e)
+                      handleFocusChange(6, 'bidderCorpRegiNum2')(e)
                     }}
                   />
                   <span className="flex text-mygray font-['suit'] font-bold mt-1">
@@ -704,7 +681,7 @@ export default function BidderForm({
           className={`flex flex-col w-[100%] h-[100%] bg-mybg gap-1 relative`}
         >
           {biddingForm.agentYn === 'Y' &&
-            biddingForm.bidders[stepNum]?.bidCorpYn !== 'C' && (
+            biddingForm.bidders[stepNum]?.bidderType !== 'C' && (
               <div className="flex flex-col w-[100%] gap-1">
                 <div className="flex justify-between w-[100%]">
                   <div className="flex flex-row justify-start w-[100%]">
@@ -764,7 +741,7 @@ export default function BidderForm({
       </div>
       <div
         className={`flex flex-row fixed gap-[10px] md:w-[550px] w-[90%] ${
-          biddingForm.bidders[stepNum]?.bidCorpYn === 'I'
+          biddingForm.bidders[stepNum]?.bidderType === 'I'
             ? 'md:bottom-[80px] bottom-[10px]'
             : 'md:bottom-[80px] bottom-[10px]'
         }`}
@@ -775,7 +752,9 @@ export default function BidderForm({
           onClick={() => {
             {
               stepNum === 0
-                ? setStateNum(stateNum - 1)
+                ? stateNum === 16
+                  ? setStateNum(6)
+                  : setStateNum(stateNum - 1)
                 : setStepNum(stepNum - 1)
             }
           }}

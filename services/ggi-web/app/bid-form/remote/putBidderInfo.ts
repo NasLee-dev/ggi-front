@@ -12,14 +12,14 @@ type Bidder = {
 
 interface PutBidderInfo {
   mstSeq: number
-  bidCorpYn: string
+  bidderType: string
   peopleSeq: number
   bidders: Bidder[]
 }
 
-export const putBidderInfo = async ({ mstSeq, bidCorpYn, peopleSeq, bidders }: PutBidderInfo) => {
+export const putBidderInfo = async ({ mstSeq, bidderType, peopleSeq, bidders }: PutBidderInfo) => {
   try {
-    if (bidCorpYn === 'I') {
+    if (bidderType === 'I') {
       const response = await axios.put(
         `/ggi/api/bid-form/${mstSeq}/bidders/${peopleSeq}`,
         {
@@ -33,7 +33,7 @@ export const putBidderInfo = async ({ mstSeq, bidCorpYn, peopleSeq, bidders }: P
       if (response.data.success) {
         return response.data.data
       }
-    } else if (bidCorpYn === 'C') {
+    } else if (bidderType === 'C') {
       const response = await axios.put(
         `/ggi/api/bid-form/${mstSeq}/bidders/${peopleSeq}`,
         {

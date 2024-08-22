@@ -1,27 +1,30 @@
 import { BiddingInfoType } from 'app/bid-form/models/Bidder'
 import { biddingInfoState, stepState } from '@/store/atom/bid-form'
 import { useDisclosure } from '@chakra-ui/react'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useCallback, useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useRecoilState } from 'recoil'
 import Spinner from '../icons/Spinner'
 import usePutBidders from './hooks/usePutBidders'
 import usePostBidders from './hooks/usePostBidders'
 import BidderForm from '../form/BidderForm'
+import useGetBidders from './hooks/useGetBidders'
 
-export default function Bidder() {
+export default function BidderEdit() {
   if (typeof window === 'undefined') return null
   window.document.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       e.preventDefault()
     }
   })
-  const [stateNum, setStateNum] = useRecoilState(stepState) //  입찰표 작성 단계 set함수
-  const [stepNum, setStepNum] = useState<number>(0) //  입찰자 정보 단계
-  const [biddingForm, setBiddingForm] = useRecoilState(biddingInfoState) //  입찰표 작성 정보
-  const [loading, setLoading] = useState<boolean>(false) //  로딩 상태
-  const { isOpen, onClose, onOpen } = useDisclosure() //  주소검색 모달 상태
+  const [stateNum, setStateNum] = useRecoilState(stepState)
+  const [stepNum, setStepNum] = useState<number>(0)
+  const [biddingForm, setBiddingForm] = useRecoilState(biddingInfoState)
+  const [loading, setLoading] = useState<boolean>(false)
+  const { isOpen, onClose, onOpen } = useDisclosure()
   const [errControl, setErrControl] = useState(false)
+  const { data: bidders } = useGetBidders(biddingForm.mstSeq.toString())
+
   const putBidderInfo = usePutBidders({
     mstSeq: biddingForm.mstSeq,
     bidderType: biddingForm.bidders[stepNum]?.bidderType,
@@ -34,6 +37,60 @@ export default function Bidder() {
     peopleSeq: stepNum,
     bidders: biddingForm.bidders,
   })
+
+  const handleBidderForm = useCallback(() => {
+    if (typeof bidders === 'undefined') return
+    if (bidders?.length < biddingForm.bidderCount) {
+      // bidderCount가 bidders.length보다 크면 bidderCount - bidders.length 만큼 빈 객체를 추가
+      setBiddingForm((prev) => ({
+        ...prev,
+        bidders: [
+          ...prev.bidders,
+          ...Array.from({ length: prev.bidderCount - bidders.length }).map(
+            (_, idx) => ({
+              peopleSeq: bidders.length + idx,
+              name: '',
+              phoneNo: '',
+              phoneNo1: '',
+              phoneNo2: '',
+              phoneNo3: '',
+              idNum1: '',
+              idNum2: '',
+              address: '',
+              addressDetail: '',
+              job: '',
+              companyNo: '',
+              companyNo1: '',
+              companyNo2: '',
+              companyNo3: '',
+              corporationNo: '',
+              corporationNo1: '',
+              corporationNo2: '',
+              share: '',
+              mandateYn: '',
+              bidderType: 'I',
+            }),
+          ),
+        ],
+      }))
+    } else if (bidders?.length > biddingForm.bidderCount) {
+      // bidderCount가 bidders.length보다 작으면 bidderCount - bidders.length 만큼 빈 객체를 삭제
+      setBiddingForm((prev) => ({
+        ...prev,
+        bidders: prev.bidders.slice(0, prev.bidderCount),
+      }))
+    } else if (bidders?.length === biddingForm.bidderCount) {
+      // bidderCount와 bidders.length가 같으면 업데이트
+      setBiddingForm((prev) => ({
+        ...prev,
+        bidders: prev.bidders.map((bidder, idx) => ({
+          ...bidder,
+          ...bidders[idx],
+        })),
+      }))
+    }
+  }, [bidders, biddingForm.bidderCount, setBiddingForm])
+
   const {
     register,
     handleSubmit,
@@ -174,6 +231,10 @@ export default function Bidder() {
       )
     }
   }
+
+  useEffect(() => {
+    handleBidderForm()
+  }, [bidders])
 
   return (
     <div

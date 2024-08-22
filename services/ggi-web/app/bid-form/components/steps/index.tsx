@@ -10,6 +10,7 @@ import BidderCnt from './BidderCnt'
 import BidderInfo from './BidderInfo'
 import Bidder from './Bidder'
 import Agent from './Agent'
+import BidderEdit from './BidderEdit'
 
 export default function Steps({ loading }: { loading: boolean }) {
   const biddingForm = useRecoilValue(biddingInfoState)
@@ -69,6 +70,8 @@ export default function Steps({ loading }: { loading: boolean }) {
           return <BidderCnt />
         case 7:
           return <Bidder />
+        case 16:
+          return <BidderEdit />
         default:
           return null
       }

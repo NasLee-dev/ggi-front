@@ -1,6 +1,6 @@
 import { AgentInfoType } from 'app/bid-form/models/Agent'
 import { biddingInfoState } from '@/store/atom/bid-form'
-import { Dispatch, SetStateAction, useState } from 'react'
+import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react'
 import {
   FieldErrors,
   UseFormHandleSubmit,
@@ -77,9 +77,9 @@ export default function AgentForm({
   }
 
   const handleFocusChange = (length: number, nextField: string) => {
-    return (e: React.ChangeEvent<HTMLInputElement>) => {
+    return (e: ChangeEvent<HTMLInputElement>) => {
       if (e.target.value.length === length) {
-        setFocus(nextField as any)
+        setFocus(nextField as keyof AgentInfoType)
       }
     }
   }

@@ -12,7 +12,7 @@ export default function BidderCnt() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [canGo, setCanGo] = useState<boolean>(false)
   const biddersTemplate = {
-    bidderType: '',
+    bidderType: 'I',
     name: '',
     phoneNo: '',
     phoneNo1: '',
@@ -32,9 +32,8 @@ export default function BidderCnt() {
     corporationNo2: '',
     share: '',
     mandateYn: '',
-    bidCorpYn: 'I',
   }
-  const { putBidderCount } = usePutBidderCnt(
+  const { putBidderCount, isPending } = usePutBidderCnt(
     biddingForm.mstSeq.toString(),
     biddingForm.bidderCount,
   )
@@ -100,13 +99,11 @@ export default function BidderCnt() {
 
   const handleBiddingCnt = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
-
     if (value === '') {
       setErrorMsg(false)
       setCanGo(false)
       return
     }
-
     if (validateInputValue(value)) {
       setBiddingForm((prev) => ({
         ...prev,
@@ -124,21 +121,17 @@ export default function BidderCnt() {
 
   const handleBiddingCntNextBtn = useCallback(() => {
     try {
-      setIsLoading(true)
       putBidderCount({
         mstSeq: biddingForm.mstSeq.toString(),
         bidderCount: biddingForm.bidderCount,
       })
-      setIsLoading(false)
     } catch (error) {
       console.error(error)
-      setIsLoading(false)
     }
   }, [biddingForm.bidderCount])
 
   const handleErrorOk = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
-
     if (value === '') {
       setCanGo(false)
       setErrorMsg(true)
@@ -148,16 +141,14 @@ export default function BidderCnt() {
       }))
       return
     }
-
     if (validateInputValue(value)) {
-      setErrorMsg(false)
       setIsLoading(true)
+      setErrorMsg(false)
       handleBiddingCnt(e)
       const nextStep =
         biddingForm.bidders.length > 0 && biddingForm.bidders[0].name !== ''
           ? 16
           : stateNum + 1
-
       setTimeout(() => {
         setStateNum(nextStep)
         setIsLoading(false)
@@ -166,26 +157,33 @@ export default function BidderCnt() {
       setErrorMsg(true)
     }
   }
-
+  console.log(isLoading)
   const handleNextStep = () => {
     if (biddingForm.bidderCount === 0) {
       alert('입찰자는 1명 이상이어야 합니다')
       return
     }
-    setIsLoading(true)
-    if (
-      biddingForm.bidders.length === 1 &&
-      biddingForm.bidders[0].name === '' &&
-      biddingForm.bidderCount === 0
-    ) {
-      initBidders()
-    } else {
-      updateBidCorpYn()
-      biddingForm.bidderCount >= 1 && biddingForm.bidders[0].name !== ''
-        ? setStateNum(16)
-        : setStateNum(stateNum + 1)
+    try {
+      if (
+        biddingForm.bidders.length === 1 &&
+        biddingForm.bidders[0].name === '' &&
+        biddingForm.bidderCount === 0
+      ) {
+        initBidders()
+      } else {
+        updateBidCorpYn()
+        if (
+          biddingForm.bidderCount >= 1 &&
+          biddingForm.bidders[0].name !== ''
+        ) {
+          setStateNum(16)
+        } else {
+          setStateNum(stateNum + 1)
+        }
+      }
+    } catch (error) {
+      console.error(error)
     }
-    setIsLoading(false)
   }
 
   const handlePrevStep = () => {
@@ -194,10 +192,8 @@ export default function BidderCnt() {
 
   const handleCorpYn = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
-
     if (!validateInputValue(value)) return
-
-    if (biddingForm.bidders.find((bidder) => bidder.bidCorpYn === '')) {
+    if (biddingForm.bidders.find((bidder) => bidder.bidderType === '')) {
       updateBidCorpYn()
     }
   }
@@ -231,8 +227,8 @@ export default function BidderCnt() {
           </div>
           <div className="flex flex-col gap-10 md:w-[550px] w-[90%] h-[257px] justify-center items-center rounded-lg border-slate-500">
             {isLoading && <Spinner />}
-            <div className="flex flex-col">
-              <div className="flex flex-row justify-center items-center">
+            <div className="flex flex-col h-full justify-center items-center relative">
+              <div className="flex flex-row justify-center items-center top-[50%]">
                 <span className="md:text-[22.5px] text-[18px] font-semibold font-['suit'] leading-[135%] tracking-[-1%]">
                   총 입찰자 수는
                 </span>
@@ -256,7 +252,7 @@ export default function BidderCnt() {
                 </span>
               </div>
               {errorMsg && (
-                <div className="mt-5">
+                <div className="absolute bottom-[60px]">
                   <span className="md:text-[0.9rem] text-[0.8rem] font-['suit'] font-bold text-red-500">
                     입찰자는 1명 이상이어야 합니다
                   </span>

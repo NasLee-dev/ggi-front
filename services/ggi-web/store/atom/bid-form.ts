@@ -56,7 +56,7 @@ export const biddingInfoState = atom({
     bidderCount: 0,
     bidders: [{
       peopleSeq: 0,
-      bidderType: '',
+      bidderType: 'I',
       name: '',
       phoneNo: '',
       phoneNo1: '',
@@ -76,7 +76,6 @@ export const biddingInfoState = atom({
       corporationNo2: '',
       share: '',
       mandateYn: '',
-      bidCorpYn: 'I',
     }],
     isFileCreated: false,
     selectedTime: '0',

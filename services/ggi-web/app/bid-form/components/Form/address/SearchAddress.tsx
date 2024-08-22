@@ -40,7 +40,7 @@ export default function SearchAddress({
   onOpen,
   agentSetValue,
 }: SearchAddressProps) {
-  let [portalElement, setPortalElement] = useState<Element | null>(null)
+  const [portalElement, setPortalElement] = useState<Element | null>(null)
   const [biddingForm, setBiddingForm] = useRecoilState(biddingInfoState)
 
   useEffect(() => {

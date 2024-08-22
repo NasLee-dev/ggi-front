@@ -1,6 +1,6 @@
 //  민증 검증
 const handleVerifyIdNum = (idNum: string) => {
-  let total = 0
+  const total = 0
   const jumin = idNum.replace('-', '').split('')
   const lastNum = parseInt(jumin[jumin.length - 1])
   const bits = [2, 3, 4, 5, 6, 7, 8, 9, 2, 3, 4, 5]
@@ -28,7 +28,7 @@ const handleVerifyCorpNum = (number: string) => {
   if (regsplitNum.length === 10) {
     const regkey = [1, 3, 7, 1, 3, 7, 1, 3, 5]
     let regNumSum = 0
-    for (var i = 0; i < regkey.length; i++) {
+    for (let i = 0; i < regkey.length; i++) {
       regNumSum += regkey[i] * regsplitNum[i]
     }
     regNumSum += parseInt(((regkey[8] * regsplitNum[8]) / 10).toString(), 10)

@@ -13,14 +13,14 @@ type Bidder = {
 
 interface PostBidderInfo {
   mstSeq: number
-  bidCorpYn: string
+  bidderType: string
   peopleSeq: number
   bidders: Bidder[]
 }
 
-export default function usePostBidders({ mstSeq, bidCorpYn, peopleSeq, bidders }: PostBidderInfo) {
+export default function usePostBidders({ mstSeq, bidderType, peopleSeq, bidders }: PostBidderInfo) {
   return useMutation({
-    mutationKey: ["postBidders", mstSeq, bidCorpYn, peopleSeq],
+    mutationKey: ["postBidders", mstSeq, bidderType, peopleSeq, bidders],
     mutationFn: postBidderInfo,
   })
 }
