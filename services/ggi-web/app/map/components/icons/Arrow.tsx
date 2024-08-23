@@ -1,9 +1,9 @@
 'use client'
-import { Form } from '@/models/Form'
+import { Form } from '@/models/map/Form'
 import { useEffect } from 'react'
 
 import { UseQueryResult, useQuery } from '@tanstack/react-query'
-import { NaverMap } from '@/models/Map'
+import { NaverMap } from '@/models/map/Map'
 import { queryKey } from '../sections/hooks/useMap'
 
 interface ArrowProps {

@@ -1,4 +1,4 @@
-import { MapItem } from '@/models/MapItem'
+import { MapItem } from '@/models/map/MapItem'
 import { PnuCountIcon, ShareIcon } from './Marker1'
 import { colors } from 'app/styles/colorPallette'
 import { NumToHan } from 'utils/map/NumToHan'

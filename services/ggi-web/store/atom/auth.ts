@@ -1,4 +1,4 @@
-import { Auth } from '@/models/Auth'
+import { Auth } from '@/models/map/Auth'
 import { atom } from 'recoil'
 
 export const authInfo = atom<Auth>({
@@ -18,5 +18,6 @@ export const authInfo = atom<Auth>({
     lat: 37.4909565,
     detailLng: 0,
     detailLat: 0,
+    mstSeq: '',
   },
 })

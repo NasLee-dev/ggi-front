@@ -24,6 +24,9 @@
     "@typescript-eslint/no-non-null-asserted-optional-chain": "off",
     "react/no-unescaped-entities": "off",
     "react/react-in-jsx-scope": "off",
-    "@next/next/no-page-custom-font": "off"
+    "@next/next/no-page-custom-font": "off",
+    "no-extra-semi": "off",
+    "@typescript-eslint/no-unsafe-function-types": "off",
+    "no-restricted-syntax": "off"
   }
 }

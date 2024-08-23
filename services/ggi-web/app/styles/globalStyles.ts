@@ -149,7 +149,6 @@ export default css`
   input {
     box-sizing: border-box;
   }
-
   a {
     color: inherit;
     text-decoration: inherit;
