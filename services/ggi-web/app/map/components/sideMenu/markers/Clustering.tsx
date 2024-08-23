@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo } from 'react'
 import { UseQueryResult, useQuery } from '@tanstack/react-query'
-import { NaverMap } from '@/models/Map'
+import { NaverMap } from '@/models/map/Map'
 import { queryKey } from '../../sections/hooks/useMap'
 
 interface ClusteringProps {

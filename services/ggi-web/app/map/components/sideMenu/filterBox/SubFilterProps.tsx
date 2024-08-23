@@ -1,7 +1,7 @@
 'use client'
 import Text from 'app/map/components/shared/Text'
 import { css } from '@emotion/react'
-import { NaverMap } from '@/models/Map'
+import { NaverMap } from '@/models/map/Map'
 import { useQuery, UseQueryResult } from '@tanstack/react-query'
 import { queryKey } from '../../sections/hooks/useMap'
 import { colors } from 'app/styles/colorPallette'

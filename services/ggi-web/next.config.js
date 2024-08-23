@@ -38,7 +38,7 @@ const nextConfig = {
         destination: 'https://api.vworld.kr/req:path*',
       },
       {
-        source: '/addrlink:path*',
+        source: '/addrlink/:path*',
         destination: 'https://www.juso.go.kr/addrlink:path*',
       },
       {

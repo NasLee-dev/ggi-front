@@ -1,10 +1,10 @@
 
-import { jusoProps } from '@/models/Address'
-import { ItemDetail } from '@/models/DetailItem'
-import { Form } from '@/models/Form'
-import { MapListResponse } from '@/models/ListItem'
-import { MapItem } from '@/models/MapItem'
-import { SelectedItem } from '@/models/SelectedItem'
+import { jusoProps } from '@/models/map/Address'
+import { ItemDetail } from '@/models/map/DetailItem'
+import { Form } from '@/models/map/Form'
+import { MapListResponse } from '@/models/map/ListItem'
+import { MapItem } from '@/models/map/MapItem'
+import { SelectedItem } from '@/models/map/SelectedItem'
 import { atom } from 'recoil'
 
 

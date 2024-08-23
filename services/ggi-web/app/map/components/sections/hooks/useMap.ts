@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Coordinates, NaverMap } from '@/models/Map'
+import { Coordinates, NaverMap } from '@/models/map/Map'
 import { useCallback } from 'react'
 import { useQuery, useQueryClient, UseQueryResult } from '@tanstack/react-query'
 import { fetchMapData } from 'utils/map/fetchMapData'
