@@ -7,7 +7,7 @@ import { useRecoilState } from 'recoil'
 import Spinner from '../icons/Spinner'
 import usePutBidders from './hooks/usePutBidders'
 import usePostBidders from './hooks/usePostBidders'
-import BidderForm from '../form/BidderForm'
+import BidderForm from 'app/bid-form/components/form/BidderForm'
 
 export default function Bidder() {
   if (typeof window === 'undefined') return null
