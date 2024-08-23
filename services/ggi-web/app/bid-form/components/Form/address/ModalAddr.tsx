@@ -9,12 +9,12 @@ import {
 import { useRecoilState } from 'recoil'
 import { IoClose } from 'react-icons/io5'
 import { biddingInfoState } from '@/store/atom/bid-form'
+import useGetAddress from '../hooks/useGetAddress'
 import Dimmed from 'app/map/components/shared/Dimmed'
 import Flex from 'app/map/components/shared/Flex'
+import Pagination from './Pagination'
 import { UseFormSetValue } from 'react-hook-form'
 import { BiddingInfoType } from 'app/bid-form/models/Bidder'
-import useGetAddress from '../hooks/useGetAddress'
-import Pagination from './Pagination'
 
 type IsDirtyProps = {
   agentName: boolean
