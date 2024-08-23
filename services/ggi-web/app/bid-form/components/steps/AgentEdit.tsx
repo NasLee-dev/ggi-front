@@ -1,8 +1,7 @@
 import { biddingInfoState, stepState } from '@/store/atom/bid-form'
-import { useDisclosure } from '@chakra-ui/react'
 import { useRecoilState } from 'recoil'
-import AgentForm from '../form/AgentForm'
 import usePutAgent from './hooks/usePutAgent'
+import AgentForm from '../form/AgentForm'
 
 export default function AgentEdit() {
   const [biddingForm, setBiddingForm] = useRecoilState(biddingInfoState)
