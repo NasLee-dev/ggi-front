@@ -9,6 +9,7 @@ import usePutBidders from './hooks/usePutBidders'
 import usePostBidders from './hooks/usePostBidders'
 import BidderForm from '../form/BidderForm'
 import useGetBidders from './hooks/useGetBidders'
+import usePutManates from './hooks/usePutMandate'
 
 export default function BidderEdit() {
   if (typeof window === 'undefined') return null
@@ -24,7 +25,15 @@ export default function BidderEdit() {
   const { isOpen, onClose, onOpen } = useDisclosure()
   const [errControl, setErrControl] = useState(false)
   const { data: bidders } = useGetBidders(biddingForm.mstSeq.toString())
-
+  const putMandates = usePutManates({
+    mstSeq: biddingForm.mstSeq.toString(),
+    bidderNum: biddingForm.bidderCount,
+    mandates: biddingForm.bidders.map((bidder) => ({
+      peopleSeq: bidder.peopleSeq,
+      name: bidder.name,
+      mandateYn: bidder.mandateYn,
+    })),
+  })
   const putBidderInfo = usePutBidders({
     mstSeq: biddingForm.mstSeq,
     bidderType: biddingForm.bidders[stepNum]?.bidderType,
@@ -37,7 +46,7 @@ export default function BidderEdit() {
     peopleSeq: stepNum,
     bidders: biddingForm.bidders,
   })
-
+  console.log('du')
   const handleBidderForm = useCallback(() => {
     if (typeof bidders === 'undefined') return
     if (bidders?.length < biddingForm.bidderCount) {
@@ -120,7 +129,7 @@ export default function BidderEdit() {
   })
 
   //  수정 사항 반영
-  const handleUpdate = () => {
+  const handleBidderFormUpdate = () => {
     putBidderInfo.mutate({
       mstSeq: biddingForm.mstSeq,
       bidderType: biddingForm.bidders[stepNum]?.bidderType,
@@ -139,60 +148,173 @@ export default function BidderEdit() {
     })
   }
 
-  //  다음 스텝 넘어가기
-  const handleNextStepNew = (num: number) => {
-    if (biddingForm.bidderCount === 1) {
-      handleBidderFormSave()
-      if (!errControl) {
-        setStateNum(stateNum + 2)
-      }
-    } else if (biddingForm.bidderCount > 1) {
-      if (
-        stepNum + 1 === biddingForm.bidderCount &&
-        biddingForm.agentYn !== 'Y'
-      ) {
-        handleBidderFormSave()
-        if (!errControl) {
-          setStateNum(stateNum + 1)
-        }
-      } else if (
-        stepNum + 1 === biddingForm.bidderCount &&
-        biddingForm.agentYn === 'Y'
-      ) {
-        handleBidderFormSave()
-        if (!errControl) {
-          setStateNum(19)
-        }
-      } else if (biddingForm.bidders[stepNum].name === '') {
-        handleBidderFormSave()
-        if (!errControl) {
-          setStepNum(num + 1)
-        }
-      } else {
-        if (
-          biddingForm?.bidders?.length > 0 &&
-          biddingForm?.bidders[stepNum]?.peopleSeq === stepNum
-        ) {
-          handleUpdate()
-          if (!errControl) {
-            setStepNum(num + 1)
+  const handleRegisterMandate = async () => {
+    try {
+      await putMandates.mutateAsync({
+        mstSeq: biddingForm.mstSeq.toString(),
+        bidderNum: biddingForm.bidderCount,
+        mandates: biddingForm.bidders.map((bidder) => ({
+          peopleSeq: bidder.peopleSeq,
+          name: bidder.name,
+          mandateYn: bidder.mandateYn,
+        })),
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  //  다음 단계로 이동
+  const handleNextStep = async () => {
+    try {
+      if (biddingForm.bidderCount === 1) {
+        if (biddingForm.bidderCount > (bidders?.length ?? 0)) {
+          //  서버에 저장된 입찰자 수보다 많을 경우 => 아직 서버에 저장을 하지 못한 경우
+          if (biddingForm.agentYn === 'Y') {
+            if (bidders[stepNum].name === '') {
+              await handleBidderFormUpdate()
+              await handleRegisterMandate()
+            } else {
+              await handleBidderFormSave()
+              await handleRegisterMandate()
+            }
+            setStateNum(9)
+          } else {
+            if (bidders[stepNum].name === '') {
+              await handleBidderFormUpdate()
+            } else {
+              await handleBidderFormSave()
+            }
+            setStateNum(9)
           }
-          reset()
-        } else {
-          handleBidderFormSave()
-          if (!errControl) {
-            setStepNum(num + 1)
+        } else if (biddingForm.bidderCount < (bidders?.length ?? 0)) {
+          //  서버에 저장된 입찰자 수보다 적을 경우 => 서버에 저장된 입찰자 수를 줄여야 하는 경우
+          if (biddingForm.agentYn === 'Y') {
+            await handleBidderFormUpdate()
+            await handleRegisterMandate()
+            setStateNum(9)
+          } else {
+            await handleBidderFormUpdate()
+            setStateNum(9)
           }
-          reset()
+        } else if (biddingForm.bidderCount === (bidders?.length ?? 0)) {
+          if (biddingForm.agentYn === 'Y') {
+            await handleBidderFormUpdate()
+            await handleRegisterMandate()
+            setStateNum(9)
+          } else {
+            await handleBidderFormUpdate()
+            setStateNum(9)
+          }
+        }
+      } else if (biddingForm.bidderCount > 1) {
+        if (biddingForm.bidderCount > (bidders?.length ?? 0)) {
+          if (biddingForm.agentYn === 'Y') {
+            if (stepNum + 1 === biddingForm.bidderCount) {
+              await handleBidderFormSave()
+              setStateNum(19)
+            } else {
+              if (stepNum + 1 > (bidders?.length ?? 0)) {
+                await handleBidderFormSave()
+                setStepNum(stepNum + 1)
+                reset()
+              } else {
+                await handleBidderFormUpdate()
+                setStepNum(stepNum + 1)
+                reset()
+              }
+            }
+          } else {
+            if (stepNum + 1 === biddingForm.bidderCount) {
+              await handleBidderFormSave()
+              setStateNum(8)
+            } else {
+              if (stepNum + 1 > (bidders?.length ?? 0)) {
+                await handleBidderFormSave()
+                setStepNum(stepNum + 1)
+                reset()
+              } else {
+                await handleBidderFormUpdate()
+                setStepNum(stepNum + 1)
+                reset()
+              }
+            }
+          }
+        } else if (biddingForm.bidderCount < (bidders?.length ?? 0)) {
+          if (biddingForm.agentYn === 'Y') {
+            if (stepNum + 1 === biddingForm.bidderCount) {
+              await handleBidderFormUpdate()
+              setStateNum(19)
+            } else {
+              if (stepNum + 1 > biddingForm.bidderCount) {
+                await handleBidderFormUpdate()
+                setStepNum(stepNum + 1)
+                reset()
+              } else {
+                await handleBidderFormUpdate()
+                setStepNum(stepNum + 1)
+                reset()
+              }
+            }
+          } else {
+            if (stepNum + 1 === biddingForm.bidderCount) {
+              await handleBidderFormUpdate()
+              setStateNum(8)
+            } else {
+              if (stepNum + 1 > biddingForm.bidderCount) {
+                await handleBidderFormUpdate()
+                setStepNum(stepNum + 1)
+                reset()
+              } else {
+                await handleBidderFormUpdate()
+                setStepNum(stepNum + 1)
+                reset()
+              }
+            }
+          }
+        } else if (biddingForm.bidderCount === (bidders?.length ?? 0)) {
+          if (biddingForm.agentYn === 'Y') {
+            if (stepNum + 1 === biddingForm.bidderCount) {
+              await handleBidderFormUpdate()
+              setStateNum(19)
+            } else {
+              if (stepNum > biddingForm.bidderCount) {
+                await handleBidderFormUpdate()
+                setStepNum(stepNum + 1)
+                reset()
+              } else {
+                await handleBidderFormUpdate()
+                setStepNum(stepNum + 1)
+                reset()
+              }
+            }
+          } else {
+            if (stepNum + 1 === biddingForm.bidderCount) {
+              await handleBidderFormUpdate()
+              setStateNum(8)
+            } else {
+              if (stepNum > biddingForm.bidderCount) {
+                await handleBidderFormUpdate()
+                setStepNum(stepNum + 1)
+                reset()
+              } else {
+                await handleBidderFormUpdate()
+                setStepNum(stepNum + 1)
+                reset()
+              }
+            }
+          }
         }
       }
+    } catch (error) {
+      console.log(error)
     }
   }
 
   const onSubmit: SubmitHandler<any> = async (stepNum: number) => {
     if (isOpen === false) {
       try {
-        await handleNextStepNew(stepNum)
+        await handleNextStep()
       } catch (error) {
         console.log(error)
       }

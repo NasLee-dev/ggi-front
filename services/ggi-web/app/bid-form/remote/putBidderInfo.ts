@@ -21,7 +21,7 @@ export const putBidderInfo = async ({ mstSeq, bidderType, peopleSeq, bidders }: 
   try {
     if (bidderType === 'I') {
       const response = await axios.put(
-        `/ggi/api/bid-form/${mstSeq}/bidders/${peopleSeq}`,
+        `/ggi/api/bid-form/${mstSeq}/bidders/${peopleSeq + 1}`,
         {
           address: bidders[peopleSeq].address,
           bidderType: bidders[peopleSeq].bidderType,

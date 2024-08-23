@@ -157,7 +157,7 @@ export default function BidderCnt() {
       setErrorMsg(true)
     }
   }
-  console.log(isLoading)
+
   const handleNextStep = () => {
     if (biddingForm.bidderCount === 0) {
       alert('입찰자는 1명 이상이어야 합니다')

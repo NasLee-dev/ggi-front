@@ -728,13 +728,11 @@ export default function BidderForm({
               </div>
             )}
           <SearchAddress
+            isAgent={false}
             stepNum={stepNum}
             register={register}
             errors={errors}
             setError={setError}
-            isOpen={isOpen}
-            onOpen={onOpen}
-            onClose={onClose}
             setValue={setValue}
           />
         </div>

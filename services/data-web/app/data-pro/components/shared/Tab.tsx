@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { TabMenu } from '../../constants/Tab'
-import { colors } from '../../styles/collorPallette'
 
 export default function TabComponent() {
   const INITIAL_TAB = '매각통계'
