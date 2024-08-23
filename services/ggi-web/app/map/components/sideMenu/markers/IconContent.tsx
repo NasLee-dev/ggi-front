@@ -1,4 +1,4 @@
-import { MapItem } from '@/models/map/MapItem'
+import { MapItem } from 'app/map/models/map/MapItem'
 
 import {
   AmountIcon,

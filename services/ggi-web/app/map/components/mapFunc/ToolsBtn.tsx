@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react'
-import { NaverMap } from '@/models/map/Map'
+import { NaverMap } from 'app/map/models/map/Map'
 import { Measure } from './Measure'
 
 declare global {

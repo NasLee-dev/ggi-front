@@ -1,4 +1,4 @@
-import { NaverMap } from '@/models/map/Map'
+import { NaverMap } from 'app/map/models/map/Map'
 import { useEffect } from 'react'
 
 const useMapListeners = (

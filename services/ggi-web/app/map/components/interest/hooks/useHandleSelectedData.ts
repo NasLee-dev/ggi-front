@@ -1,5 +1,5 @@
 
-import { GetItemResponse } from '@/models/map/ListItem'
+import { GetItemResponse } from 'app/map/models/map/ListItem'
 import { getGgItem, getGmItem, getKmItem, getKwItem } from '@/remote/map/selectedItem/getSelectedItem'
 import { authInfo } from '@/store/atom/auth'
 import { selectedItemAtom } from '@/store/atom/map'

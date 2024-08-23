@@ -22,9 +22,9 @@ import {
   useSetRecoilState,
 } from 'recoil'
 import { InfiniteData, UseQueryResult, useQuery } from '@tanstack/react-query'
-import { NaverMap } from '@/models/map/Map'
+import { NaverMap } from 'app/map/models/map/Map'
 import { queryKey } from 'app/map/components/sections/hooks/useMap'
-import { MapListResponse } from '@/models/map/ListItem'
+import { MapListResponse } from 'app/map/models/map/ListItem'
 import { useReverseGeoCode } from './useReverseGeoCode'
 import useSearchListQuery from './useSearchListQuery'
 

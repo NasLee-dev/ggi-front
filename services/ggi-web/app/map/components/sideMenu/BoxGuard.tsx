@@ -1,6 +1,6 @@
 import Flex from '../shared/Flex'
 import { UseQueryResult, useQuery } from '@tanstack/react-query'
-import { NaverMap } from '@/models/map/Map'
+import { NaverMap } from 'app/map/models/map/Map'
 import { useCallback } from 'react'
 import { useRecoilValue } from 'recoil'
 import { mapListAtom } from '@/store/atom/map'
