@@ -12,8 +12,6 @@ import { skip } from 'node:test'
 export default function ProfileBox() {
   const { token } = useAuthStore()
 
-  console.log(token)
-
   const { data: userData } = useGetUserQuery(token)
 
   return (
