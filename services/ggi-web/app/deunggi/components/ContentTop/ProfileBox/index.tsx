@@ -5,12 +5,14 @@ import * as S from './style'
 
 import Image from 'next/image'
 import DefaultButton from 'app/deunggi/components/commons/button/DefaultButton'
-import useSessionStorage from '@/hooks/useSessionSotrage'
 import { useGetUserQuery } from 'app/shared/hooks/useGetUserQuery'
-import { getToken } from 'utils/commons/getToken'
+import { useAuthStore } from '@/store/useAuthStore'
+import { skip } from 'node:test'
 
 export default function ProfileBox() {
-  const token = getToken() as string
+  const { token } = useAuthStore()
+
+  console.log(token)
 
   const { data: userData } = useGetUserQuery(token)
 

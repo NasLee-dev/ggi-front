@@ -56,7 +56,7 @@ function DeunggiInfo() {
         return (
           <span>
             열람등기는 열람일로부터 1개월(30일)까지만 보관됩니다. 열람기간
-            중에는 자유롭게 열람 및 다운로드가 <br /> 가능합니다.
+            중에는 자유롭게 열람 및 다운로드가 <S.BrComponent /> 가능합니다.
           </span>
         )
       default:
