@@ -7,7 +7,7 @@ export const getBidders = async (mstSeq: string) => {
       `/ggi/api/bid-form/${mstSeq}/bidders`,
     )
     if (response.data.success) {
-      return response.data.data as BiddersProps[]
+      return response.data.data.bidders as BiddersProps[]
     }
   } catch (error) {
     console.log(error)

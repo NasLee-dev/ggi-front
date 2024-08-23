@@ -8,35 +8,43 @@ import {
 } from 'react'
 import { useRecoilState } from 'recoil'
 import { IoClose } from 'react-icons/io5'
-import { BiddingInfoType } from 'app/bid-form/models/Bidder'
 import { biddingInfoState } from '@/store/atom/bid-form'
 import useGetAddress from '../hooks/useGetAddress'
 import Dimmed from 'app/map/components/shared/Dimmed'
 import Flex from 'app/map/components/shared/Flex'
 import Pagination from './Pagination'
+import { UseFormSetValue } from 'react-hook-form'
+import { BiddingInfoType } from 'app/bid-form/models/Bidder'
+
+type IsDirtyProps = {
+  agentName: boolean
+  agentRel: boolean
+  agentPhone1: boolean
+  agentPhone2: boolean
+  agentPhone3: boolean
+  agentIdNum1: boolean
+  agentIdNum2: boolean
+  agentAddr: boolean
+  agentAddrDetail: boolean
+  agentJob: boolean
+}
 
 interface PopupContentProps {
-  isOpen: any
-  setIsOpen?: Dispatch<SetStateAction<boolean>>
-  stepNum?: number
-  agentInfo?: any
-  setAgentInfo?: any
-  onClose: any
-  setError?: any
-  agentSetError?: any
-  register?: any
-  setValue?: any
-  agentSetValue?: any
+  isAgent: boolean
+  isOpen: boolean
+  stepNum: number
+  onClose: () => void
+  setIsDirty?: Dispatch<SetStateAction<IsDirtyProps>>
+  setValue?: UseFormSetValue<BiddingInfoType>
 }
 
 export default function ModalAddr({
+  isAgent,
   isOpen,
   onClose,
   stepNum,
-  agentInfo,
-  setAgentInfo,
+  setIsDirty,
   setValue,
-  agentSetValue,
 }: PopupContentProps) {
   const [searchAddr, setSearchAddr] = useState<string>('')
   const [emptyView, setEmptyView] = useState<boolean>(false) // 검색결과 없을 때 뷰
@@ -105,7 +113,7 @@ export default function ModalAddr({
     setFirstSort(e)
   }
   const handleDetailAddr = (e: ChangeEvent<HTMLInputElement>) => {
-    if (typeof agentInfo === 'undefined') {
+    if (!isAgent) {
       setBiddingForm((prev) => ({
         ...prev,
         bidders: prev.bidders.map((bidder, idx) => {
@@ -118,15 +126,7 @@ export default function ModalAddr({
           return bidder
         }),
       }))
-    } else if (agentInfo && setAgentInfo && setBiddingForm) {
-      setAgentInfo((prev) => {
-        let temp = prev.agentAddrDetail
-        temp = e.target.value
-        return {
-          ...prev,
-          agentAddrDetail: temp,
-        }
-      })
+    } else if (isAgent) {
       setBiddingForm((prev) => {
         let temp = prev.agent.addressDetail
         temp = e.target.value
@@ -152,57 +152,55 @@ export default function ModalAddr({
   }
 
   const handleGetAddr = () => {
-    if (setValue && !agentInfo) {
+    if (!isAgent) {
       setValue('bidderAddr', [biddingForm?.bidders[stepNum].address ?? ''])
       setValue('bidderAddrDetail', [
         biddingForm.bidders[stepNum].addressDetail ?? '',
       ])
       setDetailAddr(false)
-    } else if (agentInfo && agentSetValue) {
-      agentSetValue('agentAddr', agentInfo?.agentAddr)
-      agentSetValue('agentAddrDetail', agentInfo?.agentAddrDetail)
+    } else if (isAgent) {
       setDetailAddr(false)
     }
   }
 
-  const handleCombineAddr = () => {
-    if (!agentInfo) {
-      const updatedAddr =
-        biddingForm.bidders[stepNum].address +
-        ' ' +
-        (biddingForm.bidders[stepNum].addressDetail !== ''
-          ? biddingForm.bidders[stepNum].addressDetail
-          : '')
-      setBiddingForm((prev) => ({
-        ...prev,
-        bidders: prev.bidders.map((bidder, idx) => {
-          if (idx === stepNum) {
-            return {
-              ...bidder,
-              address: updatedAddr,
-            }
-          }
-          return bidder
-        }),
-      }))
-    } else {
-      const updatedAddr =
-        agentInfo?.agentAddr + (' ' + agentInfo?.agentAddrDetail) ?? ''
-      setBiddingForm((prev) => ({
-        ...prev,
-        agent: {
-          ...prev.agent,
-          address: updatedAddr,
-        },
-      }))
-    }
-  }
+  // const handleCombineAddr = () => {
+  //   if (!agentInfo) {
+  //     const updatedAddr =
+  //       biddingForm.bidders[stepNum].address +
+  //       ' ' +
+  //       (biddingForm.bidders[stepNum].addressDetail !== ''
+  //         ? biddingForm.bidders[stepNum].addressDetail
+  //         : '')
+  //     setBiddingForm((prev) => ({
+  //       ...prev,
+  //       bidders: prev.bidders.map((bidder, idx) => {
+  //         if (idx === stepNum) {
+  //           return {
+  //             ...bidder,
+  //             address: updatedAddr,
+  //           }
+  //         }
+  //         return bidder
+  //       }),
+  //     }))
+  //   } else {
+  //     const updatedAddr =
+  //       agentInfo?.agentAddr + (' ' + agentInfo?.agentAddrDetail) ?? ''
+  //     setBiddingForm((prev) => ({
+  //       ...prev,
+  //       agent: {
+  //         ...prev.agent,
+  //         address: updatedAddr,
+  //       },
+  //     }))
+  //   }
+  // }
 
   const handleEnterDetail = (e: any) => {
     if (window !== undefined) {
       if (e.key === 'Enter' && searchAddr.length > 0) {
         handleGetAddr()
-        handleCombineAddr()
+        // handleCombineAddr()
         onClose()
         setBiddingForm((prev: any) => ({
           ...prev,
@@ -442,16 +440,7 @@ export default function ModalAddr({
                                                 },
                                               ),
                                             }))
-                                            setAgentInfo &&
-                                              setAgentInfo((prev) => {
-                                                let temp = prev.agentAddr
-                                                temp = addr.roadAddr
-                                                return {
-                                                  ...prev,
-                                                  agentAddr: temp,
-                                                }
-                                              })
-                                            setAgentInfo &&
+                                            isAgent &&
                                               setBiddingForm((prev) => {
                                                 let temp = prev.agent.address
                                                 temp = addr.roadAddr
@@ -553,8 +542,8 @@ export default function ModalAddr({
                                 </div>
                                 <div className="w-[70%] h-[100%] flex justify-center items-center border-gray-100 border-r-[1px]">
                                   <span className="text-[12px] font-normal font-NanumGothic">
-                                    {agentInfo
-                                      ? agentInfo?.agentAddr
+                                    {isAgent
+                                      ? biddingForm.agent.address
                                       : biddingForm.bidders[stepNum].address}
                                   </span>
                                 </div>
@@ -570,8 +559,8 @@ export default function ModalAddr({
                                     type="text"
                                     className="flex w-[90%] h-[30%] border border-gray-200"
                                     value={
-                                      agentInfo
-                                        ? agentInfo?.agentAddrDetail
+                                      isAgent
+                                        ? biddingForm.agent.addressDetail
                                         : biddingForm.bidders[stepNum]
                                             .addressDetail
                                     }
@@ -587,12 +576,17 @@ export default function ModalAddr({
                               className="flex justify-center items-center w-[100px] h-[40px] bg-blue-500 rounded-md cursor-pointer hover:bg-blue-300"
                               onClick={() => {
                                 handleGetAddr()
-                                handleCombineAddr()
+                                // handleCombineAddr()
                                 onClose()
                                 setBiddingForm((prev) => ({
                                   ...prev,
                                   isModalOpen: false,
                                 }))
+                                setIsDirty &&
+                                  setIsDirty((prev) => ({
+                                    ...prev,
+                                    agentAddr: true,
+                                  }))
                               }}
                             >
                               <span className="text-sm text-white rounded-md">

@@ -5,6 +5,8 @@ import useDeleteAgent from './hooks/useDeleteAgent'
 import Spinner from '../icons/Spinner'
 import Button from '../shared/Button'
 import { useInfoApi } from './hooks/useInfoApi'
+import useGetAgent from './hooks/useGetAgent'
+import useGetBidders from './hooks/useGetBidders'
 
 export default function BidderInfo() {
   const [stateNum, setStateNum] = useRecoilState(stepState)
@@ -13,26 +15,30 @@ export default function BidderInfo() {
   const [loading, setLoading] = useState<boolean>(false)
   const handleDeleteAgent = useDeleteAgent(biddingForm.mstSeq.toString())
   const { getCase } = useInfoApi()
+  const { data: agent } = useGetAgent({ mstSeq: biddingForm.mstSeq.toString() })
+  const { data: bidders } = useGetBidders(biddingForm.mstSeq.toString())
 
   const handleNextStep = useCallback(() => {
     setLoading(true)
-    if (biddingForm.bidder === 'self') {
+    const isBidders = bidders.length > 0
+    const isAgent = agent !== null
+    //  입찰자 정보가 있으나 저장은 하지 않은 경우 => 다음 단계로 이동
+    if (!isBidders && biddingForm.bidder === 'self') {
       setStateNum(stateNum + 2)
-    } else if (
-      biddingForm.agent.name === '' &&
-      biddingForm.bidder === 'agent'
-    ) {
-      setStateNum(stateNum + 1)
-    } else if (
-      biddingForm.agent.name !== '' &&
-      biddingForm.bidder === 'agent'
-    ) {
+    } else if (isBidders && biddingForm.bidder === 'self') {
+      //  입찰자 정보가 있고 저장된 경우 => 입찰자 수정 단계로 이동
+      setStateNum(16)
+    } else if (biddingForm.bidder === 'agent' && isAgent) {
+      //  대리인 정보가 있고 저장된 경우 => 대리인 수정 단계로 이동
       setStateNum(17)
+    } else if (biddingForm.bidder === 'agent' && !isAgent) {
+      //  대리인 정보가 없는 경우 => 대리인 정보 입력 단계로 이동
+      setStateNum(stateNum + 1)
     } else if (biddingForm.bidder === '') {
       setLoading(false)
       setIsSelected(false)
     }
-  }, [biddingForm.bidder, biddingForm.agent.name])
+  }, [bidders, agent, biddingForm, stateNum])
 
   const handlePrevStep = () => {
     if (biddingForm.biddingInfos.length > 1) {
