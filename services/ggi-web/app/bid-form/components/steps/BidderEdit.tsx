@@ -9,7 +9,7 @@ import usePutBidders from './hooks/usePutBidders'
 import usePostBidders from './hooks/usePostBidders'
 import useGetBidders from './hooks/useGetBidders'
 import usePutManates from './hooks/usePutMandate'
-import BidderForm from '../form/BidderForm'
+import BidderForm from 'app/bid-form/components/form/BidderForm'
 
 export default function BidderEdit() {
   if (typeof window === 'undefined') return null
