@@ -1,17 +1,23 @@
 'use client'
 import React from 'react'
-import './global.css'
+import './globals.css'
 import Header from './components/Header'
-import RootLayoutProvider from './config/RootLayoutProvider'
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+import Sidebar from './components/Sidebar'
+import ReactQueryClientProvider from './config/ReactQueryClientProvider'
+import { ThemeProvider } from './config/material-tailwind-theme-provider'
+
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <RootLayoutProvider>
-      <Header />
-      {children}
-    </RootLayoutProvider>
+    <ReactQueryClientProvider>
+      <ThemeProvider>
+        <div className="app-layout">
+          <Header />
+          <Sidebar />
+          <div className="content-area">
+            <main>{children}</main>
+          </div>
+        </div>
+      </ThemeProvider>
+    </ReactQueryClientProvider>
   )
 }

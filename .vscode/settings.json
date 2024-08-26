@@ -1,9 +1,4 @@
 {
-  "files.autoSave": "afterDelay",
-  "files.autoSaveDelay": 1000,
+  "files.autoSave": "off",
   "task.autoDetect": "on",
-  "task.viewer": {
-    "default": "terminal",
-    "enabled": true
-  }
 }
