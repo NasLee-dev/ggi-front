@@ -8,7 +8,7 @@ import {
 import { css } from '@emotion/react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { useQuery, UseQueryResult } from '@tanstack/react-query'
-import { NaverMap } from '@/models/map/Map'
+import { NaverMap } from 'app/map/models/map/Map'
 import { queryKey } from '../sections/hooks/useMap'
 import { isCurrentStateAtom, isPyeongState } from '@/store/atom/map'
 import { fromSquareMetersToText } from 'utils/map/MeterToText'

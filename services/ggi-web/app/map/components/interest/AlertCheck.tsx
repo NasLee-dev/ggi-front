@@ -4,7 +4,7 @@ import Text from '../shared/Text'
 import { css } from '@emotion/react'
 import Flex from '../shared/Flex'
 import Spacing from '../shared/Spacing'
-import { InterestFormData } from '@/models/map/Interest'
+import { InterestFormData } from 'app/map/models/map/Interest'
 
 interface AlertCheckProps {
   formData: InterestFormData

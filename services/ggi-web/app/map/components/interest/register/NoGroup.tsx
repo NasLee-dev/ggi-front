@@ -1,4 +1,4 @@
-import { InterestFormData } from '@/models/map/Interest'
+import { InterestFormData } from 'app/map/models/map/Interest'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { useEffect, useState } from 'react'

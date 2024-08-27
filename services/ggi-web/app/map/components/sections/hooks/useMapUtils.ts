@@ -3,8 +3,8 @@ import { formDataAtom } from '@/store/atom/map'
 import { useCallback, useEffect, useState } from 'react'
 import { authInfo } from '@/store/atom/auth'
 import { UseQueryResult, useQuery } from '@tanstack/react-query'
-import { NaverMap } from '@/models/map/Map'
-import { MapCountsResponse } from '@/models/map/MapItem'
+import { NaverMap } from 'app/map/models/map/Map'
+import { MapCountsResponse } from 'app/map/models/map/MapItem'
 import { fetchMapData } from 'utils/map/fetchMapData'
 
 const useMapUtils = () => {

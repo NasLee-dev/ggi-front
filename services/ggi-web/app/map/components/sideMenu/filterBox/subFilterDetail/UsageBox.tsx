@@ -3,7 +3,7 @@ import Flex from 'app/map/components/shared/Flex'
 import Text from 'app/map/components/shared/Text'
 import { formDataAtom } from '@/store/atom/map'
 import { css } from '@emotion/react'
-import { USAGE } from 'constants/map/SubFilter'
+import { USAGE } from 'app/map/constants/map/SubFilter'
 import { useRecoilState } from 'recoil'
 import { colors } from 'app/styles/colorPallette'
 

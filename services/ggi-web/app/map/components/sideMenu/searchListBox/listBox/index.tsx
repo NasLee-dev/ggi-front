@@ -5,7 +5,7 @@ import { formDataAtom, mapListAtom } from '@/store/atom/map'
 import { authInfo } from '@/store/atom/auth'
 import { useCallback } from 'react'
 import { UseQueryResult, useQuery } from '@tanstack/react-query'
-import { NaverMap } from '@/models/map/Map'
+import { NaverMap } from 'app/map/models/map/Map'
 import { queryKey } from 'app/map/components/sections/hooks/useMap'
 import Result from './Result'
 

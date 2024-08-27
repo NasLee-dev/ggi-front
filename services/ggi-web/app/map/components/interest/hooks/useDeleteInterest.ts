@@ -1,4 +1,4 @@
-import { InterestFormData } from "@/models/map/Interest";
+import { InterestFormData } from "app/map/models/map/Interest";
 import { deleteGmInterest, deleteKmInterest, deleteKwInterest } from "@/remote/map/interest/deleteInterest";
 import { useMutation } from "@tanstack/react-query";
 

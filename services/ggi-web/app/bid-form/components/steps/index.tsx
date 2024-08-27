@@ -8,11 +8,7 @@ import Info from './Info'
 import TimeInfo from './Time'
 import BidderCnt from './BidderCnt'
 import BidderInfo from './BidderInfo'
-import Bidder from './Bidder'
-import Agent from './Agent'
-import BidderEdit from './BidderEdit'
 import ShareInfo from './Share'
-import AgentEdit from './AgentEdit'
 
 export default function Steps({ loading }: { loading: boolean }) {
   const biddingForm = useRecoilValue(biddingInfoState)
@@ -67,17 +63,17 @@ export default function Steps({ loading }: { loading: boolean }) {
         case 4:
           return <BidderInfo />
         case 5:
-          return <Agent />
+          return 
         case 6:
           return <BidderCnt />
         case 7:
-          return <Bidder />
+          return 
         case 8:
           return biddingForm.bidderCount > 1 && <ShareInfo />
         case 16:
-          return <BidderEdit />
+          return 
         case 17:
-          return <AgentEdit />
+          return 
         default:
           return null
       }

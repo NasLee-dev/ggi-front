@@ -1,4 +1,4 @@
-import { InterestFormData, UpdatedInterest } from "@/models/map/Interest"
+import { InterestFormData, UpdatedInterest } from "app/map/models/map/Interest"
 import { putGmInterest, putKmInterest, putKwInterest } from "@/remote/map/interest/putInterest";
 import { useMutation } from "@tanstack/react-query";
 import { Dispatch, SetStateAction } from "react"

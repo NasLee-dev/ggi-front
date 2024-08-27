@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import styled from '@emotion/styled'
 import Spacing from '../shared/Spacing'
 import { useCallback, useEffect, useState } from 'react'
@@ -15,7 +14,7 @@ import {
   interest,
   InterestFormData,
   UpdatedInterest,
-} from '@/models/map/Interest'
+} from 'app/map/models/map/Interest'
 import useHandleSelectedData from './hooks/useHandleSelectedData'
 import usePostInterest from './hooks/usePostInterest'
 import usePutInterest from './hooks/usePutInterest'
@@ -503,5 +502,3 @@ const ModalContainer = styled.div`
   padding: 10px;
   box-sizing: border-box;
 `
-=======
->>>>>>> e022c75304d00a528adc1ad77ae99f2d5e4a4daf

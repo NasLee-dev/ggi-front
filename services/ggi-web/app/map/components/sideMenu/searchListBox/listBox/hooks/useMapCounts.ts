@@ -1,10 +1,10 @@
 import { queryKey } from 'app/map/components/sections/hooks/useMap'
-import { Form } from '@/models/map/Form'
-import { NaverMap } from '@/models/map/Map'
-import { MapCountsResponse } from '@/models/map/MapItem'
+import { Form } from 'app/map/models/map/Form'
+import { NaverMap } from 'app/map/models/map/Map'
+import { MapCountsResponse } from 'app/map/models/map/MapItem'
 import { Dispatch, SetStateAction } from 'react'
 import { UseQueryResult, useMutation, useQuery } from '@tanstack/react-query'
-import { MapCountsParams } from '@/models/map/Params'
+import { MapCountsParams } from 'app/map/models/map/Params'
 import postMapCounts from '@/remote/map/items/getMapCounts'
 
 export default function useMapCounts(

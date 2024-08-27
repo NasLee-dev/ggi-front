@@ -1,8 +1,8 @@
-import { NaverMap } from '@/models/map/Map'
+import { NaverMap } from 'app/map/models/map/Map'
 import { useEffect, useRef, useState } from 'react'
-import { MapItem } from '@/models/map/MapItem'
+import { MapItem } from 'app/map/models/map/MapItem'
 import getPolypath from '@/remote/map/selected/getPolypath'
-import { ItemDetail } from '@/models/map/DetailItem'
+import { ItemDetail } from 'app/map/models/map/DetailItem'
 
 declare global {
   interface Window {

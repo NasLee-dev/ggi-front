@@ -1,4 +1,4 @@
-import { Auth } from '@/models/map/Auth'
+import { Auth } from 'app/map/models/map/Auth'
 import { atom } from 'recoil'
 
 export const authInfo = atom<Auth>({
