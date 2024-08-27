@@ -1,4 +1,3 @@
-'use client'
 import Flex from 'app/map/components/shared/Flex'
 import ListRow from 'app/map/components/shared/ListRow'
 import Skeleton from 'app/map/components/shared/Skeleton'

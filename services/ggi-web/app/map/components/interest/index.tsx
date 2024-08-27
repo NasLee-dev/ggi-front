@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import styled from '@emotion/styled'
 import Spacing from '../shared/Spacing'
 import { useCallback, useEffect, useState } from 'react'
@@ -502,3 +503,5 @@ const ModalContainer = styled.div`
   padding: 10px;
   box-sizing: border-box;
 `
+=======
+>>>>>>> e022c75304d00a528adc1ad77ae99f2d5e4a4daf

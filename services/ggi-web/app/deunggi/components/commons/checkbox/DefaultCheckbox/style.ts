@@ -13,10 +13,13 @@ interface CustomCheckboxProps {
 export const CustomCheckbox = styled.label<CustomCheckboxProps>`
   width: 16px;
   height: 16px;
-  border: ${({ isCheck }) =>
-    isCheck ? '1px solid #2563eb' : '1px solid #e5e7eb'};
+  border: ${({ isCheck, theme }) =>
+    isCheck
+      ? `1px solid ${theme.colors.primary}`
+      : `1px solid ${theme.colors.border}`};
   border-radius: 4px;
-  background-color: ${({ isCheck }) => (isCheck ? '#2563eb' : '#fff')};
+  background-color: ${({ isCheck, theme }) =>
+    isCheck ? theme.colors.primary : '#fff'};
   cursor: pointer;
   display: flex;
   justify-content: center;

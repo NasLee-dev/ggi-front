@@ -144,15 +144,21 @@ export default css`
     font: inherit;
     line-height: normal;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> e022c75304d00a528adc1ad77ae99f2d5e4a4daf
     cursor: pointer;
   }
 
   input {
     box-sizing: border-box;
   }
+<<<<<<< HEAD
 
 =======
   }
+=======
+>>>>>>> e022c75304d00a528adc1ad77ae99f2d5e4a4daf
   a {
     color: inherit;
     text-decoration: inherit;

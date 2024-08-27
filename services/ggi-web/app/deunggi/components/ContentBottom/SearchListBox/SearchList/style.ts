@@ -1,6 +1,7 @@
 'use client'
 
 import styled from '@emotion/styled'
+import { small } from 'app/shared/styles/responsive'
 
 export const TableLi = styled.li`
   width: 100%;
@@ -10,21 +11,27 @@ export const TableLi = styled.li`
   box-sizing: border-box;
 
   &:not(:last-child) {
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: ${({ theme }) => `1px solid ${theme.colors.border}`};
   }
 `
 
 interface TableValueProps {
   width: string
+  mobileWidth?: string
 }
 
 export const TableValue = styled.div<TableValueProps>`
   width: ${({ width }) => width};
-  font-size: 16px;
+  font-size: ${({ theme }) => theme.fonts.text};
   font-weight: 400;
-  color: #1f2937;
+  color: ${({ theme }) => theme.colors.text};
   display: flex;
   justify-content: center;
   align-items: center;
   line-height: 1.45;
+
+  ${small} {
+    width: ${({ width, mobileWidth }) => (mobileWidth ? mobileWidth : width)};
+    font-size: ${({ theme }) => theme.fonts.smallText};
+  }
 `

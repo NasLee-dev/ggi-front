@@ -1,4 +1,3 @@
-'use client'
 import Flex from 'app/map/components/shared/Flex'
 import { Form } from '@/models/map/Form'
 import { css } from '@emotion/react'

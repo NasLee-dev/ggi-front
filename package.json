@@ -33,8 +33,9 @@
     "data:start": "yarn workspace data-wep start"
   },
   "dependencies": {
-    "@emotion/css": "^11.13.0",
-    "@emotion/styled": "^11.13.0",
+    "@emotion/css": "^11.11.2",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "body-parser": "^1.20.2",
     "child_process": "^1.0.2",
     "express": "^4.19.2"

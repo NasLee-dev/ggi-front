@@ -1,8 +1,6 @@
-
 import { Select } from "@chakra-ui/react"
 import { theme } from "./theme"
 import { UpDownIcon } from "@chakra-ui/icons"
-
 
 interface ISelectProps {
   options: Array<{
