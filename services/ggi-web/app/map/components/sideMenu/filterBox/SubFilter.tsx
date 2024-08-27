@@ -1,14 +1,13 @@
-'use client'
 import Flex from 'app/map/components/shared/Flex'
-import { Form } from '@/models/Form'
+import { Form } from 'app/map/models/map/Form'
 import { css } from '@emotion/react'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import SubFilterProps from './SubFilterProps'
 import Arrow from '../../icons/Arrow'
-import { NaverMap } from '@/models/Map'
+import { NaverMap } from 'app/map/models/map/Map'
 import { useQuery, UseQueryResult } from '@tanstack/react-query'
 import { queryKey } from '../../sections/hooks/useMap'
-import { SUBFILTERS } from 'constants/map'
+import { SUBFILTERS } from 'app/map/constants/map'
 
 interface SearchBoxProps {
   formData: Form

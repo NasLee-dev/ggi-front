@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 import { useRef, useState } from 'react'
-import { NaverMap } from '@/models/Map'
+import { NaverMap } from 'app/map/models/map/Map'
 import useMap from './hooks/useMap'
 import useMapUtils from './hooks/useMapUtils'
 import GGIMap from './GGIMap'
@@ -14,6 +14,7 @@ import AddressContainer from '../top/AddressContainer'
 import BottomAddress from '../top/BottomAddress'
 import Markers from '../sideMenu/markers/Markers'
 import Clusterings from '../sideMenu/markers/Clusterings'
+import Overlay from '../overlay'
 
 const isHalfWindow = () => window.innerWidth < 768
 
@@ -42,7 +43,6 @@ export default function MapSection() {
   const onLoadMap = (map: NaverMap) => {
     initMap(map)
   }
-
   return (
     <div>
       <GGIMap
@@ -96,7 +96,9 @@ export default function MapSection() {
         markerClickedRef={markerClickedRef}
       />
       <Clusterings item={mapCount} />
-      {/* {openOverlay && <Overlay halfDimensions={halfDimensions} />} */}
+      {openOverlay && (
+        <Overlay halfDimensions={halfDimensions} openOverlay={openOverlay} />
+      )}
     </div>
   )
 }

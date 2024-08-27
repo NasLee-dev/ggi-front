@@ -9,9 +9,9 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import { jusoAtom } from '@/store/atom/map'
 import { authInfo } from '@/store/atom/auth'
 import { UseQueryResult, useQuery } from '@tanstack/react-query'
-import { NaverMap } from '@/models/Map'
+import { NaverMap } from 'app/map/models/map/Map'
 import { queryKey } from '../sections/hooks/useMap'
-import { jusoProps } from '@/models/Address'
+import { jusoProps } from 'app/map/models/map/Address'
 import AddressCursorArrow from '../icons/AddressCursorArrow'
 
 declare global {

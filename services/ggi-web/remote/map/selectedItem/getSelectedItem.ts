@@ -1,5 +1,5 @@
 
-import { GetItemResponse } from '@/models/ListItem'
+import { GetItemResponse } from 'app/map/models/map/ListItem'
 import axios from 'axios'
 
 export const getKmItem = async (idCode: string) => {

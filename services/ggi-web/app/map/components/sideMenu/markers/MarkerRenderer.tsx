@@ -1,4 +1,4 @@
-import { MapItem } from '@/models/MapItem'
+import { MapItem } from 'app/map/models/map/MapItem'
 import {
   Dispatch,
   MutableRefObject,
@@ -16,7 +16,7 @@ import {
   markerPositionAtom,
 } from '@/store/atom/map'
 import { UseQueryResult, useQuery } from '@tanstack/react-query'
-import { NaverMap } from '@/models/Map'
+import { NaverMap } from 'app/map/models/map/Map'
 import { queryKey } from '../../sections/hooks/useMap'
 import IconContent from './IconContent'
 
@@ -98,6 +98,7 @@ const MarkerRenderer = ({
       setClickedItem,
       markerClickedRef,
       openOverlay,
+      setOpenOverlay,
       isPanoVisible,
       item,
       isPyeong,

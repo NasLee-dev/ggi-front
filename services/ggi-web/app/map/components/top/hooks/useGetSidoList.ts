@@ -1,4 +1,4 @@
-import { SidoProps } from '@/models/Address'
+import { SidoProps } from 'app/map/models/map/Address'
 import { jusoAtom } from '@/store/atom/map'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'

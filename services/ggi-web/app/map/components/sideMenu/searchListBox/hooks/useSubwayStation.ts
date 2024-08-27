@@ -1,4 +1,4 @@
-import { KakaoSubwayProps } from "@/models/Kakao"
+import { KakaoSubwayProps } from "app/map/models/map/Kakao"
 import { getSubway } from "@/remote/map/kakao/getSubway"
 
 const useSubwayStation = (keyword: string) => {

@@ -1,4 +1,4 @@
-import { jusoProps } from '@/models/Address'
+import { jusoProps } from 'app/map/models/map/Address'
 import { Dispatch, SetStateAction } from 'react'
 
 interface AddressCursorArrowProps {

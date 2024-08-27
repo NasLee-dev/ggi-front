@@ -1,4 +1,4 @@
-import { KakaoAddrProps } from "@/models/Address"
+import { KakaoAddrProps } from "app/map/models/map/Address"
 import { getAddr } from "@/remote/map/kakao/getAddr"
 
 const useSearchAddr = (keyword: string) => {

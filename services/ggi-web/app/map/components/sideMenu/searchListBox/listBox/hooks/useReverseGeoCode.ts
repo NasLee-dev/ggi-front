@@ -1,5 +1,5 @@
 
-import { jusoProps } from '@/models/Address'
+import { jusoProps } from 'app/map/models/map/Address'
 import { jusoAtom } from '@/store/atom/map'
 import { useCallback } from 'react'
 import { useSetRecoilState } from 'recoil'

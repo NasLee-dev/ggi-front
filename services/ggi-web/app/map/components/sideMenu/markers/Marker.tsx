@@ -1,4 +1,4 @@
-import { MapItem } from '@/models/MapItem'
+import { MapItem } from 'app/map/models/map/MapItem'
 import { Dispatch, MutableRefObject, SetStateAction } from 'react'
 import MarkerRenderer from './MarkerRenderer'
 

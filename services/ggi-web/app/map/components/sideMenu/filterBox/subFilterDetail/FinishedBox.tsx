@@ -5,7 +5,7 @@ import Spacing from 'app/map/components/shared/Spacing'
 import Text from 'app/map/components/shared/Text'
 import { formDataAtom } from '@/store/atom/map'
 import { css } from '@emotion/react'
-import { MULGUN, MULGUN_SUB } from 'constants/map/SubFilter'
+import { MULGUN, MULGUN_SUB } from 'app/map/constants/map/SubFilter'
 import { useCallback, useEffect } from 'react'
 import { useRecoilState } from 'recoil'
 

@@ -1,4 +1,4 @@
-import { NaverMap } from "@/models/Map"
+import { NaverMap } from "app/map/models/map/Map"
 
 export const fetchMapData = async (): Promise<NaverMap> => {
   const response = await fetch('/api/map')

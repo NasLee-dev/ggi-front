@@ -1,5 +1,5 @@
-import { MapListResponse } from "@/models/ListItem";
-import { MapListParam } from "@/models/MapItemParam";
+import { MapListResponse } from "app/map/models/map/ListItem";
+import { MapListParam } from "app/map/models/map/MapItemParam";
 import axios from "axios";
 
 

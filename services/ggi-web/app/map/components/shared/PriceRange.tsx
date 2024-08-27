@@ -1,5 +1,5 @@
 'use client'
-import { Form } from '@/models/Form'
+import { Form } from 'app/map/models/map/Form'
 import { css } from '@emotion/react'
 import Flex from './Flex'
 import Input from './Input'

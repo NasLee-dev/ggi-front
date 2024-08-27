@@ -1,4 +1,4 @@
-import { MapItem } from '@/models/MapItem'
+import { MapItem } from 'app/map/models/map/MapItem'
 
 import {
   AmountIcon,
@@ -54,21 +54,21 @@ export default function IconContent({
     </div>
   `
 
-    if (item.winYn !== 'Y') {
-      if (
-        (item.types[0] === 1 || item.types[0] === 2 || item.types[0] === 3) &&
-        zoomLevel === 15
-      ) {
-        return commonStyle1
-      } else if (
-        (item.types[0] === 1 || item.types[0] === 2 || item.types[0] === 3) &&
-        zoomLevel > 15
-      ) {
-        return commonStyle2
-      } else if (item.types[0] === 4 && zoomLevel > 15) {
-        return commonStyle1
-      } else if (item.types[0] === 4 && zoomLevel === 15) {
-        return `
+  if (item.winYn !== 'Y') {
+    if (
+      (item.types[0] === 1 || item.types[0] === 2 || item.types[0] === 3) &&
+      zoomLevel === 15
+    ) {
+      return commonStyle1
+    } else if (
+      (item.types[0] === 1 || item.types[0] === 2 || item.types[0] === 3) &&
+      zoomLevel > 15
+    ) {
+      return commonStyle2
+    } else if (item.types[0] === 4 && zoomLevel > 15) {
+      return commonStyle1
+    } else if (item.types[0] === 4 && zoomLevel === 15) {
+      return `
           <div id="target_${index}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
               <g filter="url(#filter0_d_905_254)">
@@ -89,10 +89,10 @@ export default function IconContent({
               </defs>
             </svg>
           </div>`
-      }
-    } else if (item.winYn === 'Y') {
-      if (zoomLevel === 15) {
-        return `
+    }
+  } else if (item.winYn === 'Y') {
+    if (zoomLevel === 15) {
+      return `
           <div id="target_${index}" style="z-index: 75;">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
               <g filter="url(#filter0_d_905_256)">
@@ -113,10 +113,10 @@ export default function IconContent({
               </defs>
             </svg>
           </div>`
-      } else if (zoomLevel === 16) {
-        return commonStyle1
-      } else {
-        return commonStyle2
-      }
+    } else if (zoomLevel === 16) {
+      return commonStyle1
+    } else {
+      return commonStyle2
     }
+  }
 }
