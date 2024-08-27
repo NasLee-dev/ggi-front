@@ -2,7 +2,7 @@ import { biddingInfoState, stepState } from '@/store/atom/bid-form'
 import { useDisclosure } from '@chakra-ui/react'
 import { useRecoilState } from 'recoil'
 import usePostAgent from './hooks/usePostAgent'
-import AgentForm from '../form/AgentForm'
+import AgentForm from '../formComponents/AgentForm'
 
 export default function Agent() {
   const [biddingForm, setBiddingForm] = useRecoilState(biddingInfoState)
@@ -88,10 +88,7 @@ export default function Agent() {
           </div>
         </div>
         {/* 입력정보 */}
-        <AgentForm
-          onSubmit={onSubmit}
-          handlePrevBtn={handlePrevBtn}
-        />
+        <AgentForm onSubmit={onSubmit} handlePrevBtn={handlePrevBtn} />
       </div>
     </div>
   )

@@ -7,7 +7,7 @@ import { useRecoilState } from 'recoil'
 import Spinner from '../icons/Spinner'
 import usePutBidders from './hooks/usePutBidders'
 import usePostBidders from './hooks/usePostBidders'
-import BidderForm from '../form/BidderForm'
+import BidderForm from '../formComponents/BidderForm'
 import useGetBidders from './hooks/useGetBidders'
 import usePutManates from './hooks/usePutMandate'
 

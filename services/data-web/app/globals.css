@@ -4,14 +4,17 @@
 
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;
+  border-radius: 8px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
   background: none;
+  border-radius: 8px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background: #dfdfdf;
+  border-radius: 8px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
