@@ -153,7 +153,6 @@ export default css`
 
 =======
   }
->>>>>>> upstream/wt
   a {
     color: inherit;
     text-decoration: inherit;
