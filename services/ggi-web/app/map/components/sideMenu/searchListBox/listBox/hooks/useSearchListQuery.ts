@@ -12,7 +12,6 @@ import {
 import { useRecoilValue } from 'recoil'
 import { formDataAtom } from '@/store/atom/map'
 import { authInfo } from '@/store/atom/auth'
-
 import { queryKey } from 'app/map/components/sections/hooks/useMap'
 import useGetMapItems from 'app/map/components/hooks/useGetMapItems'
 import useGetMapListItems from 'app/map/components/hooks/useGetMapListItems'
