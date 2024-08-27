@@ -1,5 +1,5 @@
 {
-  "name": "data-wep",
+  "name": "data-web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@material-tailwind/react": "^2.1.9",
+    "@mui/icons-material": "^5.16.6",
     "@tailwindcss/typography": "^0.5.14",
     "next": "14.2.5",
     "react": "^18",
