@@ -1,9 +1,8 @@
+import { MapItems } from '@/models/map/MapItem'
 import {
   MutableRefObject,
-  useCallback,
   useEffect,
   useMemo,
-  useRef,
   useState,
 } from 'react'
 import {
@@ -14,12 +13,11 @@ import {
 import { useRecoilValue } from 'recoil'
 import { formDataAtom } from '@/store/atom/map'
 import { authInfo } from '@/store/atom/auth'
+import { NaverMap } from '@/models/map/Map'
 import { queryKey } from 'app/map/components/sections/hooks/useMap'
+import { MapListResponse } from '@/models/map/ListItem'
 import useGetMapItems from 'app/map/components/hooks/useGetMapItems'
 import useGetMapListItems from 'app/map/components/hooks/useGetMapListItems'
-import { NaverMap } from 'app/map/models/map/Map'
-import { MapListResponse } from 'app/map/models/map/ListItem'
-import { MapItems } from 'app/map/models/map/MapItem'
 
 interface SearchListQueryProps {
   handleCenterChanged: () => void
@@ -42,7 +40,6 @@ export default function useSearchListQuery({
   const { mutateAsync: getMapListItems } = useGetMapListItems({ formData })
   const delay = (ms: number) =>
     new Promise((resolve) => setTimeout(resolve, ms))
-  console.log(zoomLevel)
   useEffect(() => {
     if (map) {
       const zoomLevelChangeHandler = () => {
@@ -96,9 +93,6 @@ export default function useSearchListQuery({
         })) as unknown as MapListResponse
         return listItems
       }
-
-      console.log(listItems)
-
       if (
         listItems?.contents.some((item: MapItems) => item.idCode === auth.id)
       ) {

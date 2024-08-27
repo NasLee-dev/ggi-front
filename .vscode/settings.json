@@ -1,5 +1,4 @@
 {
   "files.autoSave": "off",
   "task.autoDetect": "on",
-  "typescript.tsdk": "node_modules\\typescript\\lib"
 }

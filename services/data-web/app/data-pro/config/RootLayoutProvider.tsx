@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import ReactQueryClientProvider from './ReactQueryClientProvider'
-import { ThemeProvider } from '@material-tailwind/react'
+import { ThemeProvider } from './material-tailwind-theme-provider'
 
 export default function RootLayoutProvider({
   children,
@@ -11,7 +11,7 @@ export default function RootLayoutProvider({
   return (
     <ReactQueryClientProvider>
       <ThemeProvider>
-        <div>{children}</div>
+        <>{children}</>
       </ThemeProvider>
     </ReactQueryClientProvider>
   )
