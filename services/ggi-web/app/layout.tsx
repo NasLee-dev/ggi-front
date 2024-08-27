@@ -1,15 +1,15 @@
 'use client'
-
+import AuthComponent from 'app/shared/components/AuthComponent'
 import RootLayoutProvider from 'app/shared/components/layout/RootLayoutProvider'
-import Script from 'next/script'
+import { Suspense } from 'react'
+import BackLoading from 'app/deunggi/components/commons/loading/BackLoading'
+import './globals.css'
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const KAKAO_SDK_URL = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_JS_KEY}&autoload=false`
-
   return (
     <html lang="en">
       <head>
@@ -23,14 +23,22 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT/fonts/static/woff2/SUIT.css"
         />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+          rel="stylesheet"
+        />
         <meta
           name="viewport"
           content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width, minimum-scale=1.0"
         />
-        <Script src={KAKAO_SDK_URL} strategy="lazyOnload" />
       </head>
       <body>
-        <RootLayoutProvider>{children}</RootLayoutProvider>
+        <RootLayoutProvider>
+          <Suspense fallback={<BackLoading />}>
+            <AuthComponent />
+          </Suspense>
+          {children}
+        </RootLayoutProvider>
       </body>
     </html>
   )

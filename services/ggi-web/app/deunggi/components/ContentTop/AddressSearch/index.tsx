@@ -3,7 +3,7 @@
 import * as S from './style'
 import { ChangeEvent, MouseEvent, useState } from 'react'
 import { useAddressStore } from '@/store/useAddressStore'
-import { useDeunggiStore } from '@/store/useDeunggiStore'
+import { useDeunggiDataStore, useDeunggiStore } from '@/store/useDeunggiStore'
 import { MODES } from 'constants/deunggi'
 import DefaultButton from 'app/deunggi/components/commons/button/DefaultButton'
 
@@ -11,6 +11,7 @@ export default function AddressSearch() {
   const [keyword, setKeyword] = useState('')
   const { mode } = useDeunggiStore()
   const { setAddress, setPage } = useAddressStore()
+  const { clearDeunggiData } = useDeunggiDataStore()
 
   const handleChangeKeyword = (e: ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value)
@@ -24,6 +25,7 @@ export default function AddressSearch() {
       return
     }
     setAddress(keyword)
+    clearDeunggiData()
     setPage(1)
   }
 

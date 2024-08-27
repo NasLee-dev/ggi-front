@@ -5,13 +5,21 @@ import { FlexColumn } from 'styles/sharedStyle'
 import * as S from './style'
 import Link from 'next/link'
 
-import { useDeunggiStore } from '@/store/useDeunggiStore'
+import {
+  useBasketDataStore,
+  useDeunggiDataStore,
+  useDeunggiStore,
+  useViewDataStore,
+} from '@/store/useDeunggiStore'
 import { MODES } from 'constants/deunggi'
 import StrokeButton from '../StrokeButton'
 import { useRouter } from 'next/navigation'
 
 function DeunggiInfo() {
   const { mode } = useDeunggiStore()
+  const { clearBasketData } = useBasketDataStore()
+  const { clearViewData } = useViewDataStore()
+  const { clearDeunggiData } = useDeunggiDataStore()
 
   const router = useRouter()
 
@@ -19,6 +27,9 @@ function DeunggiInfo() {
     const { name } = e.target as HTMLButtonElement
     if (name === '등기발행' || name === '장바구니' || name === '등기관리') {
       router.push(`/deunggi?mode=${name}`)
+      clearDeunggiData()
+      clearBasketData()
+      clearViewData()
     }
   }
   const descriptionContent = useMemo(() => {
@@ -62,18 +73,30 @@ function DeunggiInfo() {
       </S.Description>
       <S.ButtonContainer>
         <StrokeButton
+          mobileWidth="130px"
+          mobileHeight="42px"
+          mobileRadius="8px"
+          mobileFontSize="15px"
           text={MODES.REGISTRATION}
           name={MODES.REGISTRATION}
           active={mode === MODES.REGISTRATION}
           onClick={handleChangeMode}
         />
         <StrokeButton
+          mobileWidth="130px"
+          mobileHeight="42px"
+          mobileRadius="8px"
+          mobileFontSize="15px"
           text={MODES.BASKET}
           name={MODES.BASKET}
           active={mode === MODES.BASKET}
           onClick={handleChangeMode}
         />
         <StrokeButton
+          mobileWidth="130px"
+          mobileHeight="42px"
+          mobileRadius="8px"
+          mobileFontSize="15px"
           text={MODES.MANAGEMENT}
           name={MODES.MANAGEMENT}
           active={mode === MODES.MANAGEMENT}

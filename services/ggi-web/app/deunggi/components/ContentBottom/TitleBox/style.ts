@@ -1,6 +1,7 @@
 'use client'
 
 import styled from '@emotion/styled'
+import { mobile, small } from 'app/shared/styles/responsive'
 
 export const TitleContainer = styled.div`
   width: 100%;
@@ -8,14 +9,24 @@ export const TitleContainer = styled.div`
   justify-content: space-between;
   align-items: flex-end;
   margin-bottom: 17px;
+
+  ${small} {
+    align-items: center;
+    margin-bottom: 10px;
+  }
 `
 
 export const SearchResultTitle = styled.h3`
-  font-size: 20px;
+  font-size: ${({ theme }) => theme.fonts.subTitle};
   font-weight: 600;
-  color: #1f2937;
+  color: ${({ theme }) => theme.colors.text};
   padding-left: 10px;
   box-sizing: border-box;
+
+  ${mobile} {
+    font-size: ${({ theme }) => theme.fonts.text};
+    padding-left: 0;
+  }
 `
 
 export const ModalSpan = styled.span`
@@ -30,7 +41,7 @@ export const ModalSpan = styled.span`
     left: -12px;
     width: 4px;
     height: 4px;
-    background-color: #6b7280;
+    background-color: ${({ theme }) => theme.colors.coolGray};
     border-radius: 50%;
   }
 `

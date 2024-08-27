@@ -13,7 +13,7 @@ export default function ModeSetter() {
   useEffect(() => {
     if (mode === '등기발행' || mode === '장바구니' || mode === '등기관리')
       setMode(mode)
-  }, [mode])
+  }, [mode, setMode])
 
   return null
 }

@@ -143,17 +143,12 @@ export default css`
     color: inherit;
     font: inherit;
     line-height: normal;
-<<<<<<< HEAD
     cursor: pointer;
   }
 
   input {
     box-sizing: border-box;
   }
-
-=======
-  }
->>>>>>> upstream/wt
   a {
     color: inherit;
     text-decoration: inherit;

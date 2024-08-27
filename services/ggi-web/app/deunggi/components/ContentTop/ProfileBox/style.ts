@@ -1,32 +1,47 @@
 'use client'
 
 import styled from '@emotion/styled'
+import { mobile } from 'app/shared/styles/responsive'
 
 export const Box = styled.div`
   min-width: 540px;
   padding: 25px;
   background-color: #fff;
   border-radius: 12px;
-  border: 1px solid #e5e7eb;
+  border: ${({ theme }) => `1px solid ${theme.colors.border}`};
   box-sizing: border-box;
+
+  @media (max-width: 640px) {
+    min-width: auto;
+    padding: 12px;
+  }
 `
 
 export const ProfileName = styled.h3`
   font-size: 18px;
   font-weight: 700;
-  color: #1f2937;
+  color: ${({ theme }) => theme.colors.text};
+  font-family: 'Inter';
+
+  ${mobile} {
+    font-size: ${({ theme }) => theme.fonts.smallText};
+  }
 `
 
 export const CashBox = styled.div`
   width: 100%;
   padding: 20px 16px;
-  background-color: #f8fafc;
-  border: 1px solid #e5e7eb;
+  background-color: ${({ theme }) => theme.colors.secondary};
+  border: ${({ theme }) => `1px solid ${theme.colors.border}`};
   border-radius: 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
+
+  ${mobile} {
+    padding: 12px 10px;
+  }
 `
 
 export const CashTitleBox = styled.div`
@@ -35,18 +50,30 @@ export const CashTitleBox = styled.div`
   gap: 8px;
 
   span {
-    font-size: 16px;
+    font-size: ${({ theme }) => theme.fonts.text};
     font-weight: 400;
-    color: #4b5563;
+    color: ${({ theme }) => theme.colors.charcoal};
+  }
+
+  ${mobile} {
+    gap: 4px;
+
+    span {
+      font-size: ${({ theme }) => theme.fonts.tinyText};
+    }
   }
 `
 
 export const CashValue = styled.p`
-  font-size: 16px;
+  font-size: ${({ theme }) => theme.fonts.text};
   font-weight: 700;
-  color: #2563eb;
+  color: ${({ theme }) => theme.colors.primary};
 
   span {
-    color: #4b5563;
+    color: ${({ theme }) => theme.colors.charcoal};
+  }
+
+  ${mobile} {
+    font-size: ${({ theme }) => theme.fonts.tinyText};
   }
 `

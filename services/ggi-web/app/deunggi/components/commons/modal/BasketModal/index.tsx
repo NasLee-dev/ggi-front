@@ -10,7 +10,7 @@ interface BasketModalProps {
   text: ReactNode
   onClick: () => void
   onClose: () => void
-  type: 'basket' | 'complete' | 'view'
+  type: 'basket' | 'complete' | 'view' | 'delete'
 }
 
 export default function BasketModal({
@@ -36,6 +36,13 @@ export default function BasketModal({
           src="/images/won-icon.png"
           alt="금액 아이콘"
         />
+      ) : type === 'delete' ? (
+        <S.BasketIcon
+          width={48}
+          height={48}
+          src="/images/delete-icon.png"
+          alt="금액 아이콘"
+        />
       ) : (
         <S.BasketIcon
           width={48}
@@ -46,17 +53,23 @@ export default function BasketModal({
       )}
 
       <S.ModalText>{text}</S.ModalText>
-      <FlexBetween>
+      <FlexBetween gap={10}>
         <StrokeButton
           width="222px"
+          mobileWidth="48%"
+          mobileHeight="40px"
+          mobileFontSize="14px"
           radius="8px"
           text="아니오"
           onClick={onClose}
         />
         <DefaultButton
           width="222px"
+          mobileWidth="48%"
+          mobileHeight="40px"
+          mobileFontSize="14px"
           text={
-            type === 'basket'
+            type === 'basket' || type === 'delete'
               ? '확인'
               : type === 'complete'
                 ? '이동'

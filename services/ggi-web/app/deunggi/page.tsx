@@ -1,15 +1,17 @@
 'use client'
-import Header from 'app/deunggi/components/layout/Header'
+
+import Head from 'next/head'
 import DeunggiSection from './components/DeunggiSection'
-import { Suspense } from 'react'
 
 export default function Deunggi() {
   return (
     <>
-      <Header />
-      <Suspense fallback={<div>Loading...</div>}>
-        <DeunggiSection />
-      </Suspense>
+      <Head>
+        <title>바로등기</title>
+        <meta name="description" content="바로등기 서비스" />
+      </Head>
+
+      <DeunggiSection />
     </>
   )
 }

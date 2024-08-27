@@ -5,18 +5,30 @@ import * as S from './style'
 
 import Image from 'next/image'
 import DefaultButton from 'app/deunggi/components/commons/button/DefaultButton'
+import useSessionStorage from '@/hooks/useSessionSotrage'
+import { useGetUserQuery } from 'app/shared/hooks/useGetUserQuery'
+import { getToken } from 'utils/commons/getToken'
 
 export default function ProfileBox() {
+  const token = getToken() as string
+
+  const { data: userData } = useGetUserQuery(token)
+
   return (
     <S.Box>
       <FlexBetween mb={8}>
-        <S.ProfileName>best님</S.ProfileName>
+        <S.ProfileName>{userData?.userId}님</S.ProfileName>
         <DefaultButton
           width="138px"
           height="30px"
+          mobileWidth="105px"
+          mobileHeight="26px"
+          mobileFontSize="12px"
           fontSize="16px"
           text="사이버머니 충전"
-          onClick={() => {}}
+          onClick={() => {
+            console.log('')
+          }}
         />
       </FlexBetween>
       <FlexColumn gap={12}>

@@ -1,6 +1,9 @@
+'use client'
+
 import { ReactNode } from 'react'
 import ReactDOM from 'react-dom'
 import { ModalContainer } from './style'
+import usePreventScroll from 'app/shared/hooks/usePreventScroll'
 
 interface ModalProps {
   children: ReactNode
@@ -9,6 +12,8 @@ interface ModalProps {
 }
 
 export default function ModalPortal({ children, isOpen, onClose }: ModalProps) {
+  usePreventScroll(isOpen)
+
   if (!isOpen) return null
 
   const modalRoot = document.getElementById('modal-portal')
