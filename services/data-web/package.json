@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@material-tailwind/react": "^2.1.9",
-    "@mui/icons-material": "^5.16.6",
     "@tailwindcss/typography": "^0.5.14",
     "next": "14.2.5",
     "react": "^18",
