@@ -88,10 +88,7 @@ export default function Agent() {
           </div>
         </div>
         {/* 입력정보 */}
-        <AgentForm
-          onSubmit={onSubmit}
-          handlePrevBtn={handlePrevBtn}
-        />
+        <AgentForm onSubmit={onSubmit} handlePrevBtn={handlePrevBtn} />
       </div>
     </div>
   )

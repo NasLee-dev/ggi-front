@@ -1,26 +1,26 @@
+import { TabMenu } from '@/app/data-pro/constants/Tab'
 import { useState } from 'react'
-import { TabMenu } from '../../constants/Tab'
 
 export default function TabComponent() {
   const INITIAL_TAB = '매각통계'
   const [activeTab, setActiveTab] = useState(INITIAL_TAB)
 
   return (
-    <div className="flex w-full h-full justify-center items-center flex-row">
+    <div className="flex w-full h-[120px] justify-center items-center flex-row">
       {TabMenu.map((tab, index) => (
         <div
           key={index}
-          className={`flex w-[500px] h-[90px] text-center cursor-pointer items-center justify-center`}
+          className={`flex flex-1 h-full text-center cursor-pointer items-center justify-center`}
           onClick={() => {
             setActiveTab(tab.label)
           }}
           style={{
             transition: 'border-color 0.3s ease',
-            borderBottom: tab.label === activeTab ? '2px solid black' : ``,
+            borderBottom: tab.label === activeTab ? '2px solid #2563eb' : ``,
           }}
         >
           <p
-            className={`text-center ${activeTab === tab.label ? 'text-black' : 'text-gray-400'} text-2xl font-medium font-['Roboto'] leading-[21px] tracking-tight`}
+            className={`text-center ${activeTab === tab.label ? 'text-[#2563eb]' : 'text-gray-500'} text-xl font-bold font-['SUIT'] leading-[27px] tracking-tight`}
           >
             {tab.label}
           </p>
