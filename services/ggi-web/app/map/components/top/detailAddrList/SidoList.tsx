@@ -1,11 +1,7 @@
 'use client'
 import Flex from 'app/map/components/shared/Flex'
 import Text from 'app/map/components/shared/Text'
-<<<<<<< HEAD
 import { jusoProps, SidoProps } from '@/models/map/Address'
-=======
-import { jusoProps, SidoProps } from '@/models/Address'
->>>>>>> e022c75304d00a528adc1ad77ae99f2d5e4a4daf
 import { jusoAtom } from '@/store/atom/map'
 import { css } from '@emotion/react'
 import { Dispatch, SetStateAction, useCallback, useEffect } from 'react'
