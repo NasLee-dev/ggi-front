@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 import { useRef, useState } from 'react'
-import { NaverMap } from 'app/map/models/map/Map'
+import { NaverMap } from '@/models/map/Map'
 import useMap from './hooks/useMap'
 import useMapUtils from './hooks/useMapUtils'
 import GGIMap from './GGIMap'

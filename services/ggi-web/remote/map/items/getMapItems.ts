@@ -1,5 +1,5 @@
-import { MapItem, MapItemResponse } from 'app/map/models/map/MapItem'
-import { MapItemParam } from 'app/map/models/map/MapItemParam'
+import { MapItem, MapItemResponse } from '@/models/map/MapItem'
+import { MapItemParam } from '@/models/map/MapItemParam'
 import axios from 'axios'
 
 export default async function getMapItems(params: MapItemParam): Promise<MapItemResponse> {
