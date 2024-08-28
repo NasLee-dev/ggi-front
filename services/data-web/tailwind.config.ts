@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-import withMT from "@material-tailwind/react/utils/withMT";
 
 const colors = require("tailwindcss/colors");
 const config: Config = {
@@ -11,6 +10,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        'ggi': '1080px'
+      },
       boxShadow: {
         custom: '0 0 2px 2px rgba(0, 0, 0, 0.05)',
       },
@@ -56,4 +58,4 @@ const config: Config = {
   plugins: [require("@tailwindcss/typography")],
 };
 
-export default withMT(config);
+export default config;

@@ -1,23 +1,23 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './globals.css'
 import Header from './components/Header'
 import Sidebar from './components/Sidebar'
-import ReactQueryClientProvider from './config/ReactQueryClientProvider'
-import { ThemeProvider } from './config/material-tailwind-theme-provider'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+  if (!isMounted) {
+    return null
+  }
   return (
-    <ReactQueryClientProvider>
-      <ThemeProvider>
-        <div className="app-layout">
-          <Header />
-          <Sidebar />
-          <div className="content-area">
-            <main>{children}</main>
-          </div>
-        </div>
-      </ThemeProvider>
-    </ReactQueryClientProvider>
+    <div className="content-area">
+      <Header />
+      <Sidebar />
+      <main>{children}</main>
+    </div>
   )
 }
