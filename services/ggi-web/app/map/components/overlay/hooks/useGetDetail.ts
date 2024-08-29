@@ -1,5 +1,5 @@
 
-import { ItemDetail } from 'app/map/models/map/DetailItem'
+import { ItemDetail } from '@/models/map/DetailItem'
 import { getGgDetail, getGmDetail, getKmDetail, getKwDetail } from '@/remote/map/detail/getDetail'
 import { clickedItemAtom } from '@/store/atom/map'
 import { useQuery } from '@tanstack/react-query'

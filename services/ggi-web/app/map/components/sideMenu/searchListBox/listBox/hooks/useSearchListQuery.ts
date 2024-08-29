@@ -1,3 +1,4 @@
+import { MapItems } from '@/models/map/MapItem'
 import {
   MutableRefObject,
   useEffect,
@@ -12,12 +13,11 @@ import {
 import { useRecoilValue } from 'recoil'
 import { formDataAtom } from '@/store/atom/map'
 import { authInfo } from '@/store/atom/auth'
+import { NaverMap } from '@/models/map/Map'
 import { queryKey } from 'app/map/components/sections/hooks/useMap'
+import { MapListResponse } from '@/models/map/ListItem'
 import useGetMapItems from 'app/map/components/hooks/useGetMapItems'
 import useGetMapListItems from 'app/map/components/hooks/useGetMapListItems'
-import { MapItems } from 'app/map/models/map/MapItem'
-import { NaverMap } from 'app/map/models/map/Map'
-import { MapListResponse } from 'app/map/models/map/ListItem'
 
 interface SearchListQueryProps {
   handleCenterChanged: () => void

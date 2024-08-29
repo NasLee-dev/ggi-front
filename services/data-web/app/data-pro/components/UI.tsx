@@ -1,7 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
 import StatisticsPage from './Statistics'
-import { Button } from '@material-tailwind/react'
 
 export default function UI() {
   const [pathName, setPathName] = useState('')

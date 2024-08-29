@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 import { useQuery } from '@tanstack/react-query'
 import { Dispatch, SetStateAction, useCallback, useEffect } from 'react'
 import { queryKey } from '../sections/hooks/useMap'
-import { NaverMap } from 'app/map/models/map/Map'
+import { NaverMap } from '@/models/map/Map'
 import Text from '../shared/Text'
 
 interface MapTypeProps {
