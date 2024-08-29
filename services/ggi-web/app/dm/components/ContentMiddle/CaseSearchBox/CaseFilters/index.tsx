@@ -1,4 +1,4 @@
-import { useFilterStore } from "@/store/dm/useFilterStore";
+import { useKMFilterStore } from "@/store/dm/useFilterStore";
 import { useTabStore } from "@/store/dm/useTabStore";
 import CheckBoxFilter from "app/dm/components/filters/CheckBoxFilter";
 import DateFilter from "app/dm/components/filters/DateFilter";
@@ -13,7 +13,7 @@ import { useState } from "react";
 export default function CaseFilters() {
   const [dateDisabled, setDateDisabled] = useState<boolean>(true)
   const { tabs } = useTabStore()
-  const { filters, setFilters } = useFilterStore()
+  const { filters, setFilters } = useKMFilterStore()
 
   const handleChecked = (checked: boolean, name: string) => {
     setDateDisabled(checked)

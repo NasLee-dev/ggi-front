@@ -1,9 +1,9 @@
 import Selectbox from "../../styled/SelectBox"
 import useSearchLocals from "./hook/useSearchLocals"
-import { useFilterStore } from "@/store/dm/useFilterStore"
+import { useKMFilterStore } from "@/store/dm/useFilterStore"
 
 export default function SelectLocalBox() {
-  const { filters, setFilters } = useFilterStore()
+  const { filters, setFilters } = useKMFilterStore()
   const { sidos, sggs, umds } = useSearchLocals(filters.sd, filters.sgg)
 
   const handleSelectedValue = (prop: string) => (value: string, idx: number) => {

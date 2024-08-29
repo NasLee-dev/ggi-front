@@ -3,11 +3,11 @@ import * as T from "../../styles/Typography";
 import { theme } from "../../styles/theme";
 import * as S from "./style";
 import SelectLocalBox from "./SelectLocalBox";
-import { useFilterStore } from "@/store/dm/useFilterStore";
+import { useKMFilterStore } from "@/store/dm/useFilterStore";
 import SelectCourtBox from "./SelectCourtBox";
 
 export default function LocalFilter() {
-  const { filters, setFilters } = useFilterStore()
+  const { filters, setFilters } = useKMFilterStore()
   const [isAddress, setIsAddress] = useState<boolean>(filters.isAddress)
 
   const handleClickLocal = () => {

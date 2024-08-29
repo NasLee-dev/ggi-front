@@ -8,11 +8,11 @@ import CheckBoxFilter from "app/dm/components/filters/CheckBoxFilter";
 import MultipleChoice from "app/dm/components/styled/MultipleChoice";
 import Selectbox from "app/dm/components/styled/SelectBox";
 import { useTabStore } from "@/store/dm/useTabStore";
-import { useFilterStore } from "@/store/dm/useFilterStore";
+import { useKMFilterStore } from "@/store/dm/useFilterStore";
 
 export default function CaseDetails({ open }: I.ISearchProps) {
   const { tabs } = useTabStore()
-  const { filters, setFilters } = useFilterStore()
+  const { filters, setFilters } = useKMFilterStore()
   const [inputDisabled, setInputDisabled] = useState<boolean>(false)
   
   const handleChecked = (checked: boolean, name: string) => {

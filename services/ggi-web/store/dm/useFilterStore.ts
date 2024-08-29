@@ -13,7 +13,7 @@ interface IFilterState {
   setSort?: (sorts: string[]) => void
 }
 
-const InitialFilters = {
+const InitialKMFilters = {
   fromBiddingDate: '',
   toBiddingDate: '',
   isAddress: true,
@@ -29,17 +29,17 @@ const InitialFilters = {
   isCreditor: false,
   usageIds: [1],
   checkIds: [],
-  statusCode: '01',
+  statusCode: '',
   failCount: 0,
   fromAppraisalAmount: 0,
   toAppraisalAmount: 0,
   fromMinimumAmount: 0,
   toMinimumAmount: 0,
-  isExceptPrevData: false
+  isExceptPrevData: false 
 }
 
-export const useFilterStore = create<IFilterState>((set) => ({
-  filters: InitialFilters,
+export const useKMFilterStore = create<IFilterState>((set) => ({
+  filters: InitialKMFilters,
   setFilters: (newFilters) => set(() => {
     return {
       filters: newFilters
@@ -47,7 +47,7 @@ export const useFilterStore = create<IFilterState>((set) => ({
   }),
   clearFilters: () => set(() => {
     return {
-      filters: InitialFilters
+      filters: InitialKMFilters
     }
   }),
   page: 0,

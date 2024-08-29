@@ -4,7 +4,7 @@ import * as S from "./style";
 import Image from "next/image";
 import * as T from "../../styles/Typography";
 import { useTabStore } from "@/store/dm/useTabStore";
-import { useFilterStore } from "@/store/dm/useFilterStore";
+import { useKMFilterStore } from "@/store/dm/useFilterStore";
 
 interface IDateFilterProps {
   disable: boolean
@@ -14,7 +14,7 @@ export default function DateFilter ({
   disable
 }: IDateFilterProps) {
   const { tabs } = useTabStore()
-  const { filters, setFilters } = useFilterStore()
+  const { filters, setFilters } = useKMFilterStore()
   const [firstInput, setFirstInput] = useState<string>('')
   const [secondInput, setSecondInput] = useState<string>('')
 
