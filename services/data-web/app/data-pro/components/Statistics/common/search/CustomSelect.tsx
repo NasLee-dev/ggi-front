@@ -1,5 +1,5 @@
-import { Usage } from '@/app/data/data-pro/constants/Usage'
-import { OptionValue } from '@/app/data/data-pro/models/Common'
+import { Usage } from '@/app/data-pro/constants/Usage'
+import { OptionValue } from '@/app/data-pro/models/Common'
 import {
   Dispatch,
   SetStateAction,
