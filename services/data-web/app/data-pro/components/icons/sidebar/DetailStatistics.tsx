@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function DetailStatisticsIcon() {
   return (
     <div className="flex cursor-pointer w-12 h-12 justify-center items-center gap-2 flex-shrink-0 hover:rounded-full hover:bg-[#F3F4F6]">

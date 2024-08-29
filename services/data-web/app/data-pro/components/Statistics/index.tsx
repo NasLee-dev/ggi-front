@@ -1,12 +1,13 @@
 'use client'
+
 import { useState } from 'react'
-import Divider from './common/Divider'
+import { Usage } from '../../constants/Usage'
+import TopComponent from './common/Top'
 import SearchComponent from './common/search'
 import SearchBtn from './common/search/SearchBtn'
+import Divider from './common/Divider'
 import TabComponent from './common/tab'
-import TopComponent from './common/Top'
 import TableComponent from './common/table'
-import { Usage } from '../../constants/Usage'
 
 export default function StatisticsPage() {
   const INITIAL_TAB = '매각통계'
@@ -26,12 +27,7 @@ export default function StatisticsPage() {
   })
 
   return (
-    <div
-      className="flex flex-col absolute left-[150px] top-0 bg-white h-full pl-[40px] pr-[40px] pt-[40px] gap-[40px] overflow-y-auto custom-scrollbar"
-      style={{
-        width: 'calc(100% - 150px)',
-      }}
-    >
+    <div className="flex flex-col bg-white w-full h-full gap-[40px] overflow-y-auto overflow-x-hidden custom-scrollbar">
       <TopComponent
         keyword={searchCondition.keyword}
         setSearchCondition={setSearchCondition}
