@@ -20,15 +20,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-      "@components/*": ["./app/data-pro/components/*"],
-      "@hooks/*": ["./app/data-pro/hooks/*"],
-      "@store/*": ["./app/data-pro/store/*"],
-      "@models/*": ["./app/data-pro/models/*"],
-      "@utils/*": ["./app/data-pro/utils/*"],
-      "@constants/*": ["./app/data-pro/constants/*"],
-      "@config/*": ["./app/data-pro/config/*"],
-      "@remote/*": ["./app/data-pro/remote/*"]
+      "@/*": ["./*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

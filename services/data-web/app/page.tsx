@@ -1,4 +1,4 @@
-import DataWebComponent from './data-pro/page'
+import DataWebComponent from '@/app/data-pro/components/UI'
 
 export default function Home() {
   return <DataWebComponent />

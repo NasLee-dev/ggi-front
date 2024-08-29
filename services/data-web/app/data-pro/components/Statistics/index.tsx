@@ -1,12 +1,13 @@
 'use client'
+
 import { useState } from 'react'
-import Divider from './common/Divider'
+import { Usage } from '../../constants/Usage'
+import TopComponent from './common/Top'
 import SearchComponent from './common/search'
 import SearchBtn from './common/search/SearchBtn'
+import Divider from './common/Divider'
 import TabComponent from './common/tab'
-import TopComponent from './common/Top'
 import TableComponent from './common/table'
-import { Usage } from '../../constants/Usage'
 
 export default function StatisticsPage() {
   const INITIAL_TAB = '매각통계'
