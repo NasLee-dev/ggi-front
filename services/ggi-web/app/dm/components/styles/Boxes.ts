@@ -20,13 +20,14 @@ export const FlexNowrap = styled(Flex)({
 })
 
 export const DmContainer = styled(FlexColumn)({
+  width: '100%',
   justifyContent: 'center',
-  alignItems: 'center',
-  margin: '50px 100px'
+  alignItems: 'center'
 })
 
 export const Container =  styled(FlexColumn)({
-  width: '1500px'
+  width: '1500px',
+  margin: '50px 0'
 })
 
 export const FlexSpaceBetween =  styled(Flex)({
