@@ -1,7 +1,7 @@
-import Header from '@/app/shared/components/Header'
+import Header from '@/app/shared/components/layout/Header'
 import ReactQueryClientProvider from './data-pro/config/ReactQueryClientProvider'
 import './globals.css'
-import Sidebar from '@/app/shared/components/SideBar'
+import Sidebar from '@/app/shared/components/layout/SideBar'
 
 export default function RootLayout({
   children,
@@ -11,7 +11,7 @@ export default function RootLayout({
   return (
     <ReactQueryClientProvider>
       <html lang="en">
-        <body>
+        <body className="custom-scrollbar">
           <Header />
           <div>
             <Sidebar />
