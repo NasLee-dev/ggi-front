@@ -22,13 +22,32 @@ type AddressList = {
   y: string
 }
 
+type OptionValue = {
+  value: string
+  label: string
+}
+
 interface AutoKeywordProps {
   addressList: AddressList[]
-  setKeyword: Dispatch<SetStateAction<string>>
+  setSearchCondition: Dispatch<
+    SetStateAction<{
+      keyword: string
+      address: {
+        sido: boolean
+        sigungu: boolean
+        eupmyeondong: boolean
+      }
+      usage: {
+        main: OptionValue
+        compare1: OptionValue
+        compare2: OptionValue
+      }
+    }>
+  >
 }
 export default function AutoKeyword({
   addressList,
-  setKeyword,
+  setSearchCondition,
 }: AutoKeywordProps) {
   return (
     <div className="flex flex-col w-[1080px] h-[280px] overflow-y-auto pl-[20px] pr-[20px] justify-start items-center self-stretch rounded-b-[36px] border-2 border-t-0 border-b-blue-500 border-r-blue-500 border-l-blue-500 bg-white absolute top-[60px] custom-scrollbar z-10">
@@ -37,7 +56,12 @@ export default function AutoKeyword({
           <div
             key={index}
             className="flex flex-row justify-start w-full h-[50px] pl-[20px] pr-[20px] pt-[11px] pb-[11px] gap-[8px] flex-1 rounded-[16px] hover:bg-[#F8FAFC] cursor-pointer "
-            onClick={() => setKeyword(address.address_name)}
+            onClick={() =>
+              setSearchCondition((prev) => ({
+                ...prev,
+                keyword: address.address_name,
+              }))
+            }
           >
             <div className="flex w-[24px] h-[24px]">
               <svg
