@@ -1,10 +1,11 @@
 'use client'
 import React from 'react'
-import HomeIcon from '../../../data-pro/components/icons/sidebar/Home'
-import StatisticsIcon from '../../../data-pro/components/icons/sidebar/Statistics'
-import DetailStatisticsIcon from '../../../data-pro/components/icons/sidebar/DetailStatistics'
-import MyPageIcon from '../../../data-pro/components/icons/sidebar/MyPage'
+
 import Link from 'next/link'
+import HomeIcon from '@/app/shared/components/layout/SideBar/components/Home'
+import StatisticsIcon from '@/app/shared/components/layout/SideBar/components/Statistics'
+import DetailStatisticsIcon from '@/app/shared/components/layout/SideBar/components/DetailStatistics'
+import MyPageIcon from '@/app/shared/components/layout/SideBar/components/MyPage'
 
 export default function Sidebar() {
   return (
