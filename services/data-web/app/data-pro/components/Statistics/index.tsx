@@ -27,12 +27,7 @@ export default function StatisticsPage() {
   })
 
   return (
-    <div
-      className="flex flex-col absolute left-[150px] top-0 bg-white h-full pl-[40px] pr-[40px] pt-[40px] gap-[40px] overflow-y-auto custom-scrollbar"
-      style={{
-        width: 'calc(100% - 150px)',
-      }}
-    >
+    <div className="flex flex-col bg-white w-full h-full gap-[40px] overflow-y-auto overflow-x-hidden custom-scrollbar">
       <TopComponent
         keyword={searchCondition.keyword}
         setSearchCondition={setSearchCondition}
