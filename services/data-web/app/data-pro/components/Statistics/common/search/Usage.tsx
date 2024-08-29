@@ -1,4 +1,4 @@
-import { Usage } from '@/app/data/data-pro/constants/Usage'
+import { Usage } from '@/app/data-pro/constants/Usage'
 import CustomSelect from './CustomSelect'
 import { useState } from 'react'
 

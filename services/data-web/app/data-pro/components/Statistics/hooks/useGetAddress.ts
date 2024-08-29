@@ -1,4 +1,4 @@
-import { getAddress } from '@/app/data/data-pro/remote/kakao/getAddress'
+import { getAddress } from '@/app/data-pro/remote/kakao/getAddress'
 import { useQuery } from '@tanstack/react-query'
 
 export default function useGetAddress(address: string) {

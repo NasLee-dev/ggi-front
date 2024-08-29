@@ -1,4 +1,4 @@
-import { TabMenu } from '@/app/data/data-pro/constants/Tab'
+import { TabMenu } from '@/app/data-pro/constants/Tab'
 import { Dispatch, SetStateAction } from 'react'
 
 interface TabComponentProps {
