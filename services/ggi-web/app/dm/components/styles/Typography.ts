@@ -18,47 +18,80 @@ export const TitleText = styled(SuitText)({
   marginBottom: '10px'
 })
 
-export const InfoText = styled(GothicText)<{ color: string }>`
-  color: ${({color}) => (color)};
-  font-size: 16px;
+export const TextSuitBold20px = styled(SuitText)({
+  color: `${theme.palette.black}`,
+  fontSize: '20px',
+  fontWeight: 800,
+  lineHeight: '25px'
+})
+
+export const TextGothic18px = styled(GothicText)<{ color?: string }>`
+  color: ${({color}) => (color ? color : theme.palette.black)};
+  font-size: 18px;
   font-weight: 400;
-  line-height: 23.2px
+  line-height: 24.3px;
 `
 
-export const HelpText = styled.span<{ color: string }>`
-  font-family: 'nanum-gothic';
-  color: ${({color}) => (color)};
-  font-size: '16px';
-  font-weight: 400;
-  line-height: '23.2px';
-  margin-left: '5px';
-  text-decoration: 'underline';
-`
-
-export const TextSuit18px = styled(SuitText)<{ color: string }>`
-  color: ${({color}) => (color)};
+export const TextSuitBold18px = styled(SuitText)<{ color?: string }>`
+  color: ${({color}) => (color ? color : theme.palette.black)};
   font-size: 18px;
   font-weight: 800;
   line-height: 24.3px
 `
 
-export const TextGothic18px = styled(GothicText)<{ color: string }>`
+export const TextGothicBold18px = styled(GothicText)<{ color?: string }>`
+  color: ${({color}) => (color ? color : theme.palette.black)};
   font-size: 18px;
   font-weight: 700;
   line-height: 17.82px;
-  color: ${({color}) => color}
 `
 
-export const TextGothicBold = styled(GothicText)<{ color: string }>`
-  color: ${({color}) => (color)};
+export const InfoGothicText = styled(GothicText)<{ color?: string, underline?: boolean }>`
+  color: ${({color}) => (color ? color : theme.palette.black)};
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 23.2px;
+  text-decoration: ${({ underline }) => (underline ? 'underline' : 'none')};
+`
+
+export const HelpGothicText = styled.span`
+  color: ${theme.palette.blueMain};
+  font-size: 16px;
+  font-family: nanum-gothic;
+  font-weight: 400;
+  line-height: 23.2px;
+  text-decoration: underline;
+  margin-left: 5px;
+`
+
+export const InfoSuitText = styled.span<{ color?: string, underline?: boolean }>`
+  color: ${({color}) => (color ? color : theme.palette.black)};
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 23.2px;
+  text-decoration: ${({ underline }) => (underline ? 'underline' : 'none')};
+  font-family: SUIT;
+`
+
+export const InfoGothicBoldText = styled(GothicText)<{ color?: string }>`
+  color: ${({color}) => (color ? color : theme.palette.black)};
   font-size: 16px;
   font-weight: 700;
-  line-height: 20px
+  line-height: 20px;
+  vertical-align: middle;
 `
 
-export const TextGothicBoldMb10 = styled(TextGothicBold)<{ color: string }>`
-  color: ${({color}) => (color)};
-  margin-bottom: 10px;
+export const InfoSuitBoldText = styled.span<{ color?: string }>`
+  color: ${({color}) => (color ? color : theme.palette.black)};
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  font-family: SUIT;
+`
+
+export const InfoGothicBoldMb15 = styled(InfoGothicBoldText)<{ color?: string }>`
+  color: ${({color}) => (color ? color : theme.palette.black)};
+  margin-bottom: 15px;
 `
 
 // search component
@@ -68,23 +101,28 @@ export const SearchTitle = styled(SuitText)({
   fontWeight: 800
 })
 
-export const TextGothic15px = styled(GothicText)({
-  fontSize: '15px',
-  fontWeight: 500,
-  color: `${theme.palette.grayMain}`,
-  whiteSpace: 'pre-wrap'
-})
+export const TextGothic15px = styled(GothicText)<{ color?: string }>`
+  font-size: 15px;
+  font-weight: 500;
+  color: ${({ color }) => (color ? color : theme.palette.grayMain)};
+  white-space: pre-wrap;
+`
 
-export const TextGothic14px = styled(GothicText)<{ color: string }>`
-  color: ${({color}) => (color)};
+export const TextGothic14px = styled(GothicText)<{ color?: string }>`
+  color: ${({color}) => (color ? color : theme.palette.black)};
   font-size: 14px;
   font-weight: 400;
   line-height: 18.9px
 `
 
-export const TextSuit20px = styled(SuitText)({
-  color: `${theme.palette.black}`,
-  fontSize: '20px',
-  fontWeight: 800,
-  lineHeight: '25px'
-})
+export const TextSuit14px = styled(SuitText)<{ color?: string }>`
+  color: ${({color}) => (color ? color : theme.palette.black)};
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18.9px
+`
+
+export const TextSuitBold14px = styled(TextSuit14px)<{ color?: string }>`
+  color: ${({color}) => (color ? color : theme.palette.black)};
+  font-weight: 700;
+`
