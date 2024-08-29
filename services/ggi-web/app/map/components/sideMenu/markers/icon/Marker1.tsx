@@ -1,4 +1,4 @@
-import { MapItem } from 'app/map/models/map/MapItem'
+import { MapItem } from '@/models/map/MapItem'
 import { colors } from 'app/styles/colorPallette'
 import { NumToHan } from 'utils/map/NumToHan'
 

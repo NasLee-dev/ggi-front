@@ -1,5 +1,5 @@
-import { Auth } from 'app/map/models/map/Auth'
-import { NaverMap } from 'app/map/models/map/Map'
+import { Auth } from '@/models/map/Auth'
+import { NaverMap } from '@/models/map/Map'
 import { authInfo } from '@/store/atom/auth'
 import { useCallback } from 'react'
 import { useSetRecoilState } from 'recoil'

@@ -14,7 +14,7 @@ import {
   interest,
   InterestFormData,
   UpdatedInterest,
-} from 'app/map/models/map/Interest'
+} from '@/models/map/Interest'
 import useHandleSelectedData from './hooks/useHandleSelectedData'
 import usePostInterest from './hooks/usePostInterest'
 import usePutInterest from './hooks/usePutInterest'

@@ -5,7 +5,7 @@ import { Dispatch, SetStateAction, useEffect } from 'react'
 import { css } from '@emotion/react'
 import { useRecoilState } from 'recoil'
 import { jusoAtom } from '@/store/atom/map'
-import { DongProps } from 'app/map/models/map/Address'
+import { DongProps } from '@/models/map/Address'
 import useGetDongList from '../hooks/useGetDongList'
 
 interface DongListProps {

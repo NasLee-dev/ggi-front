@@ -7,7 +7,6 @@ import { css } from '@emotion/react'
 import { Dispatch, SetStateAction, useCallback, useEffect } from 'react'
 import { useRecoilState } from 'recoil'
 import useGetSidoList from '../hooks/useGetSidoList'
-import { jusoProps, SidoProps } from 'app/map/models/map/Address'
 
 interface Props {
   setRange: Dispatch<SetStateAction<number>>
