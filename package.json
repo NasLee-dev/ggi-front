@@ -18,7 +18,8 @@
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "lint-staged": "latest",
     "prettier": "latest",
-    "typescript": "latest"
+    "typescript": "latest",
+    "zustand": "^4.5.4"
   },
   "scripts": {
     "format": "prettier --write .",
@@ -26,12 +27,13 @@
     "ggi:dev": "yarn workspace ggi-web dev",
     "ggi:lint": "yarn workspace ggi-web lint",
     "ggi:start": "yarn workspace ggi-web start",
-    "data:build": "yarn workspace data-wep build",
-    "data:dev": "yarn workspace data-wep dev",
-    "data:lint": "yarn workspace data-wep lint",
-    "data:start": "yarn workspace data-wep start"
+    "data:build": "yarn workspace data-web build",
+    "data:dev": "yarn workspace data-web dev",
+    "data:lint": "yarn workspace data-web lint",
+    "data:start": "yarn workspace data-web start"
   },
   "dependencies": {
+    "@babel/runtime": "^7.25.4",
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",

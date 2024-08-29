@@ -1,5 +1,5 @@
-import { Form } from '@/models/Form'
-import { MapItem, MapItemResponse } from '@/models/MapItem'
+import { Form } from '@/models/map/Form'
+import { MapItem, MapItemResponse } from '@/models/map/MapItem'
 import getMapItems from '@/remote/map/items/getMapItems'
 
 import { authInfo } from '@/store/atom/auth'

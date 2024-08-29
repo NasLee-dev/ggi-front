@@ -1,4 +1,4 @@
-import { MapItem } from '@/models/MapItem'
+import { MapItem } from '@/models/map/MapItem'
 import { colors } from 'app/styles/colorPallette'
 import { NumToHan } from 'utils/map/NumToHan'
 
@@ -158,7 +158,7 @@ export const ShareIcon = (item: MapItem, type: number, top?: string) => {
   <div style="position: absolute; z-index: 90; right: 0px; top: ${
     top ? `${top}px` : '-42px'
   };">
-    <div style="display: inline-flex; z-index: 90; height: 15px; width: 32px; padding: 0px 6px 1px 6px; justify-content: center; align-items: center; border-radius: 100px; border: ${getBorderColor(
+    <div style="display: inline-flex; z-index: 90; height: 15px; width: 32px; justify-content: center; align-items: center; border-radius: 100px; border: ${getBorderColor(
       item,
       type,
     )}; background: #FFF;">

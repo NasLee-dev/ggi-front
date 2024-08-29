@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode, useEffect } from 'react'
+import { ReactNode } from 'react'
 import ReactDOM from 'react-dom'
 import { ModalContainer } from './style'
 import usePreventScroll from 'app/shared/hooks/usePreventScroll'
