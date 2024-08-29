@@ -51,3 +51,9 @@ export const ButtonContainer = styled.div`
     justify-content: center;
   }
 `
+
+export const BrComponent = styled.br`
+  @media (max-width: 1500px) {
+    display: none;
+  }
+`
