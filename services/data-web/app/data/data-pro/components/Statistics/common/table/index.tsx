@@ -1,4 +1,4 @@
-import { SearchCondition } from '@/app/data-pro/models/Common'
+import { SearchCondition } from '@/app/data/data-pro/models/Common'
 import { Dispatch, SetStateAction } from 'react'
 import CustomSelect from './CustomSelect'
 

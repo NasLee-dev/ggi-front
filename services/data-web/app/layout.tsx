@@ -1,4 +1,4 @@
-import ReactQueryClientProvider from './data-pro/config/ReactQueryClientProvider'
+import ReactQueryClientProvider from './data/data-pro/config/ReactQueryClientProvider'
 import './globals.css'
 
 export default function RootLayout({
