@@ -100,7 +100,7 @@ export default function TableBody({ headers, values }: I.ITableListProps) {
       </tr>
     </tbody>
     
-    {/* <MyConditionModal 
+    <MyConditionModal 
       modalType='detail'
       title={'검색조건 상세'} 
       subTitle={''} 
@@ -113,7 +113,7 @@ export default function TableBody({ headers, values }: I.ITableListProps) {
       confirmType={confirmBtnType} 
       clickLeftBtn={handleClickBefor} 
       clickRightBtn={handleClickConfirm}
-    /> */}
+    />
 
     {openTooltip ? <Tooltip /> : null}
     </>
