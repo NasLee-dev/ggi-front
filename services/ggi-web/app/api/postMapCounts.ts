@@ -2,7 +2,7 @@
 // app/api/postMapCounts.ts
 import { NextResponse } from 'next/server';
 import axios from 'axios';
-import { MapCounts } from 'app/map/models/map/MapItem';
+import { MapCounts } from '@/models/map/MapItem';
 
 export const POST = async (request: Request) => {
   const formData: MapCounts = await request.json();

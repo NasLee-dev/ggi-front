@@ -1,4 +1,4 @@
-import { MapCountsParams } from 'app/map/models/map/Params'
+import { MapCountsParams } from '@/models/map/Params'
 import axios from 'axios'
 
 export default async function postMapCounts(formData: MapCountsParams) {

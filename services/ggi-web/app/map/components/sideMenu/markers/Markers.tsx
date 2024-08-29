@@ -5,7 +5,7 @@ import {
   mapItemsAtom,
   selectedItemAtom,
 } from '@/store/atom/map'
-import { MapItem } from 'app/map/models/map/MapItem'
+import { MapItem } from '@/models/map/MapItem'
 import { authInfo } from '@/store/atom/auth'
 import Marker from './Marker'
 

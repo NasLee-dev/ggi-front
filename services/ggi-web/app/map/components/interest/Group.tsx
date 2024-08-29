@@ -8,7 +8,7 @@ import Star3 from './icons/star3'
 import Star2 from './icons/star2'
 import Star1 from './icons/star1'
 import Star0 from './icons/star0'
-import { InterestFormData } from 'app/map/models/map/Interest'
+import { InterestFormData } from '@/models/map/Interest'
 
 interface GroupElementsProps {
   formData: InterestFormData
