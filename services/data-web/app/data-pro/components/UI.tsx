@@ -11,12 +11,7 @@ export default function UI() {
     }
   }, [])
   return (
-    <main
-      className="flex w-full bg-[#F5F5F5] relative"
-      style={{
-        height: pathName === '/data-pro' ? 'calc(100vh - 88px)' : '100vh',
-      }}
-    >
+    <main className="flex w-full h-full bg-[#F5F5F5] relative">
       <StatisticsPage />
     </main>
   )
