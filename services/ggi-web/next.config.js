@@ -73,6 +73,10 @@ const nextConfig = {
         source: '/member/:path*',
         destination: `https://www.ggi.co.kr/member/:path*`,
       },
+      {
+        source: '/ggi/api/dm/:path*',
+        destination: `https://dev-api.ggi.co.kr:8443/ggi/api/dm/:path*`,
+      },
     ]
   },
   webpack(config, { isServer }) {

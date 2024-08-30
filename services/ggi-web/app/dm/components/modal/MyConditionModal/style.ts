@@ -6,9 +6,7 @@ import { IconBtn } from "../../styles/Button"
 export const ModalBox = styled(B.FlexCenter)`
   flex-direction: column;
   width: 451px;
-  max-height: 188px;
-  margin: 20px;
-  margin-top: 30px;
+  max-height: 200px;
 `
 
 export const ModalScrollBox = styled.div`

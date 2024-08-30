@@ -1,24 +1,7 @@
 import * as I from "@/models/dm/DM"
+import { ISearchRes } from "@/models/dm/SearchList"
 
-export interface SearchRes {
-  contents: any[]
-  paging: {
-    isFirst: boolean
-    pageNumber: number
-    isLast: boolean
-    totalPages: number
-    isEmpty: boolean
-    pageSize: number
-    sort: {
-      empty: boolean
-      sorted: boolean
-      unsorted: boolean
-    }
-    totalElements: number
-  }
-}
-
-export const getSearchList = async (pageNum: number, pageSize: number, sorts: string[], filters: I.IFilterProps): Promise<SearchRes> => {
+export const getKMSearchList = async (pageNum: number, pageSize: number, sorts: string[], filters: I.IFilterProps): Promise<ISearchRes> => {
   try {
     let sort: any = ''
     if (sorts.length) {
@@ -40,7 +23,6 @@ export const getSearchList = async (pageNum: number, pageSize: number, sorts: st
       throw new Error(data.message)
     }
 
-    console.log(data.data)
     return data.data
   } catch (error) {
     throw new Error(error)

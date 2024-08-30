@@ -52,7 +52,7 @@ export default function CaseButtonBox({ open, setOpen }: I.ISearchProps) {
           }}
         >
           <T.InfoGothicBoldText 
-            color={type === 'view' 
+            color={type === 'view' && openModal 
               ? theme.palette.blueMain 
               : theme.palette.grayMain}
           >
