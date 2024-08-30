@@ -1,90 +1,11 @@
+import PageTop from '@/app/data-detail/components/PageTop'
+import SearchContainer from '@/app/data-detail/components/SearchContainer'
+
 export default function DataDetailPage() {
   return (
     <>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
-      <div>디테일 페이지</div>
+      <PageTop />
+      <SearchContainer />
     </>
   )
 }
