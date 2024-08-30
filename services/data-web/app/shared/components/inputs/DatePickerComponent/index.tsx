@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import './styles/style.css'
@@ -18,6 +18,8 @@ const DatePickerComponent = React.forwardRef<
   DatePicker,
   DatePickerComponentProps
 >(({ value, onChange, isOpen, handleCancelPicker, onApply }, ref) => {
+  const datePickerRef = useRef<HTMLDivElement>(null)
+
   const updateHeader = () => {
     setTimeout(() => {
       const headerElement = document.querySelector(
@@ -37,9 +39,28 @@ const DatePickerComponent = React.forwardRef<
     }
   }, [isOpen])
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        datePickerRef.current &&
+        !datePickerRef.current.contains(event.target as Node)
+      ) {
+        handleCancelPicker()
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [handleCancelPicker])
+
   return (
     isOpen && (
-      <div className="absolute z-50 top-16 left-1/2 -translate-x-1/2  border border-[#E5E7EB] rounded-xl overflow-hidden">
+      <div
+        ref={datePickerRef}
+        className="absolute z-50 top-16 left-1/2 -translate-x-1/2 border border-[#E5E7EB] rounded-xl overflow-hidden"
+      >
         <DatePicker
           selected={value}
           onChange={onChange}
