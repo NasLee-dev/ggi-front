@@ -39,32 +39,36 @@ export default function SearchMyCondition ({
       </T.TextGothic15px>
       <S.ModalScrollBox>
         <S.ModalContentBox>
-          <B.FlexSpaceBetweenAlignCenter 
-            style={{ 
-              width: '410px'
-            }}
-          >
-            <B.FlexCenter>
-              <T.InfoGothicBoldText>
-                최근검색 yyyy.mm.dd
-              </T.InfoGothicBoldText>
-            </B.FlexCenter>
-            <B.FlexNowrap>
-              <ModalBtn 
-                styles={theme.styles.modal.condition.searchSave}
-                onClick={handleClickSave}
-              >
-                <T.TextSuitBold14px color={theme.palette.grayMain}>
-                  조건저장
-                </T.TextSuitBold14px>
-              </ModalBtn>
-              <S.DeleteIconButton
-                onClick={handleClickDelete}
-              >
-                <Image src="/dm/images/delete.png" alt="delete" width={20} height={20} />
-              </S.DeleteIconButton>
-            </B.FlexNowrap>
-          </B.FlexSpaceBetweenAlignCenter>
+          {contents?.length 
+          ? <B.FlexSpaceBetweenAlignCenter 
+              style={{ 
+                width: '410px'
+              }}
+            >
+              <B.FlexCenter>
+                <T.InfoGothicBoldText>
+                  최근검색 yyyy.mm.dd
+                </T.InfoGothicBoldText>
+              </B.FlexCenter>
+              <B.FlexNowrap>
+                <ModalBtn 
+                  styles={theme.styles.modal.condition.searchSave}
+                  onClick={handleClickSave}
+                >
+                  <T.TextSuitBold14px color={theme.palette.grayMain}>
+                    조건저장
+                  </T.TextSuitBold14px>
+                </ModalBtn>
+                <S.DeleteIconButton
+                  onClick={handleClickDelete}
+                >
+                  <Image src="/dm/images/delete.png" alt="delete" width={20} height={20} />
+                </S.DeleteIconButton>
+              </B.FlexNowrap>
+            </B.FlexSpaceBetweenAlignCenter>
+          : <B.FlexCenter>
+              최근 검색 결과가 없습니다.
+            </B.FlexCenter>}
           {/* contents */}
         </S.ModalContentBox>
       </S.ModalScrollBox>

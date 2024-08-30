@@ -10,8 +10,8 @@ export const ModalContainer = styled.div`
   border-radius: 16px;
   padding: 40px;
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 40%;
+  left: 37%;
   z-index: 9999;
   box-sizing: border-box;
 `

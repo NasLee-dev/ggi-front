@@ -35,14 +35,14 @@ export interface IMyConditionModalProps {
   setOpenModal: Dispatch<SetStateAction<boolean>>
   setOpenConfirmModal: Dispatch<SetStateAction<boolean>>
   setBtnType: (type: string) => void
-  confirmType: string
+  confirmType: 'SAVE' | 'CANCEL' | 'DELETE' | 'OVER'
   clickLeftBtn: (type: string) => void
   clickRightBtn: (type: string) => void
   contents?: any
 }
 
 export interface IConfirmModalProps {
-  type: string
+  type: 'SAVE' | 'CANCEL' | 'DELETE' | 'OVER'
   clickLeftBtn: (type: string) => void
   clickRightBtn: (type: string) => void
 }
