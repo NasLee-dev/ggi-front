@@ -9,35 +9,28 @@ export default function SelectLocalBox() {
   const handleSelectedValue = (prop: string) => (value: string, idx: number) => {
     const newFilters = {
       ...filters,
-      [prop]: value
+      [prop]: value === '전체' ? '' : value
     }
     setFilters(newFilters)
   }
-  
   return (
     <>
-    {sidos 
-      ? <Selectbox 
-          options={sidos}
-          width="186px" 
-          setOption={handleSelectedValue('sd')}
-        />
-      : null}
-    {sggs 
-      ? <Selectbox 
+      <Selectbox 
+        options={sidos}
+        width="186px" 
+        setOption={handleSelectedValue('sd')}
+      />
+      <Selectbox 
           options={sggs} 
           width="186px" 
           setOption={handleSelectedValue('sgg')}
-        /> 
-      : null}
-    {umds
-      ? <Selectbox 
+        />
+      <Selectbox 
           options={umds} 
           marginRight={'0'} 
           width="186px" 
           setOption={handleSelectedValue('umd')}
         /> 
-      : null}
     </>
   )
 }

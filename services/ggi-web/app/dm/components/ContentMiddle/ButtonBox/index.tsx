@@ -6,6 +6,7 @@ import useMyConditionModal from "@/hooks/dm/useMyConditionModal";
 import * as C from "constants/dm/dm";
 import { useKMFilterStore } from "@/store/dm/useFilterStore";
 import { getKMSearchList } from "@/remote/dm/search/getKMSearchList";
+import { useKMListStore } from "@/store/dm/useListStore";
 
 export default function ButtonBox() {
   const {
@@ -19,10 +20,11 @@ export default function ButtonBox() {
     handleClickConfirm
   } = useMyConditionModal()
   const { filters, page, size, sort } = useKMFilterStore()
+  const { setList } = useKMListStore()
 
   const handleClickSearch = async () => {
-    console.log(filters)
     const res = await getKMSearchList(page, size, sort, filters)
+    setList(res)
   }
 
   return (

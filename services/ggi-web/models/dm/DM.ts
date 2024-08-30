@@ -49,5 +49,4 @@ export interface IMultipleProps {
 
 export interface ITableListProps {
   headers: any
-  values: any
 }

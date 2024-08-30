@@ -77,7 +77,7 @@ export default function CaseDetails({ open }: I.ISearchProps) {
             />
           </B.FlexSpaceBetweenMb>
           <MultipleChoice 
-            values={C.rentConditions} 
+            values={C.RENT} 
             type='rent'
           />
         </B.FlexColumn>
@@ -123,6 +123,7 @@ export default function CaseDetails({ open }: I.ISearchProps) {
               options={Object.keys(C.FAILCOUNT)} 
               width='335px'
               setOption={handleChangeFailCount}
+              disabled={inputDisabled}
             />
           </B.FlexSpaceBetweenAlignCenter>
         </B.FlexColumn>

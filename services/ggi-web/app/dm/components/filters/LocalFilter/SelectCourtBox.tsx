@@ -1,4 +1,3 @@
-import { useState } from "react"
 import Selectbox from "../../styled/SelectBox"
 import useSearchCourts from "./hook/useSearchCourts"
 import { useKMFilterStore } from "@/store/dm/useFilterStore"
@@ -15,37 +14,31 @@ export default function SelectLocalBox({
   const handleSelectedValue = (prop: string) => (value: string, idx: number) => {
     const newFilters = {
       ...filters,
-      [prop]: value
+      [prop]: value === '전체' ? '' : value
     }
     setFilters(newFilters)
   }
   return (
     <>
-    {court1s 
-      ? <Selectbox 
-          options={court1s}
-          width="186px" 
-          setOption={handleSelectedValue('code1')}
-          court={court}
-        />
-      : null}
-    {court2s 
-      ? <Selectbox 
-          options={court2s} 
-          width="186px" 
-          setOption={handleSelectedValue('code2')}
-          court={court}
-        /> 
-      : null}
-    {court3s
-      ? <Selectbox 
-          options={court3s} 
-          marginRight={'0'} 
-          width="186px" 
-          setOption={handleSelectedValue('code3')}
-          court={court}
-        /> 
-      : null}
+      <Selectbox 
+        options={court1s}
+        width="186px" 
+        setOption={handleSelectedValue('code1')}
+        court={court}
+      />
+      <Selectbox 
+        options={court2s} 
+        width="186px" 
+        setOption={handleSelectedValue('code2')}
+        court={court}
+      /> 
+      <Selectbox 
+        options={court3s} 
+        marginRight={'0'} 
+        width="186px" 
+        setOption={handleSelectedValue('code3')}
+        court={court}
+      />
     </>
   )
 }
