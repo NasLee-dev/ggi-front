@@ -12,7 +12,7 @@ export default function FilterSelect({
 }: FilterSelectProps) {
   return (
     <div
-      className={`flex items-center ${width ? `w-[${width}]` : 'w-[404px]'} ${height ? `h-[${height}]` : 'h-[50px]'}  border border-[#E5E7EB] rounded-2xl relative`}
+      className={`flex items-center ${width ? `w-[${width}]` : 'w-[398px]'} ${height ? `h-[${height}]` : 'h-[50px]'}  border border-[#E5E7EB] rounded-2xl relative`}
     >
       <select
         className="w-full h-full appearance-none outline-none px-4 bg-transparent cursor-pointer"

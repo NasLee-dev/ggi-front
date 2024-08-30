@@ -30,7 +30,7 @@ export default function DatePickerContainer({
   handleEndDateApply,
 }: DatePickerContainerProps) {
   return (
-    <div className="w-[852px] h-[50px] px-4 border border-[#E5E7EB] rounded-2xl flex items-center gap-2">
+    <div className="w-[835px] h-[50px] px-4 border border-[#E5E7EB] rounded-2xl flex items-center gap-2">
       <CalendarIcon />
       <div className="flex-[1] flex items-center justify-center">
         {' '}
