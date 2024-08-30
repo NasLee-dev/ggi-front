@@ -4,10 +4,10 @@ import './globals.css'
 import Sidebar from '@/app/shared/components/layout/SideBar'
 
 export const metadata = {
-  title: 'Your App Title',
-  description: 'Your App Description',
+  title: '데이터 프로바이저',
+  description: '지지옥션 데이터 프로바이저',
   icons: {
-    icon: '/favicon.ico', // favicon 설정
+    icon: 'https://web.ggi.co.kr/GGILogo.ico',
   },
 }
 
