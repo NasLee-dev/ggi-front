@@ -3,6 +3,14 @@ import ReactQueryClientProvider from './data-pro/config/ReactQueryClientProvider
 import './globals.css'
 import Sidebar from '@/app/shared/components/layout/SideBar'
 
+export const metadata = {
+  title: 'Your App Title',
+  description: 'Your App Description',
+  icons: {
+    icon: '/favicon.ico', // favicon 설정
+  },
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
