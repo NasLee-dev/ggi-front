@@ -24,7 +24,7 @@ export default function RootLayout({
           <div>
             <Sidebar />
             <div className="pt-[88px] pl-[120px] ggi:pl-0">
-              <div className="w-[1800px] p-10">{children}</div>
+              <div className="w-[1794px] p-10">{children}</div>
             </div>
           </div>
         </body>

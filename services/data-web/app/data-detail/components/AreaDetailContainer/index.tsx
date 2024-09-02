@@ -46,7 +46,7 @@ export default function AreaDetailContainer() {
             <TableHead width="180px" text="감정가총액" />
             <TableHead width="180px" text="매각가총액" />
           </ul>
-          <ul className="flex border-b border-[#E5E7EB] last:border-none group hover:bg-[#F9FBFF] transition-[0.3s]">
+          <ul className="flex border-b border-[#E5E7EB] last:border-none">
             <TableItem width="120px" text="서울특별시" />
             <TableItem width="120px" text="서대문구" />
             <TableItem width="88px" text="전체" />
