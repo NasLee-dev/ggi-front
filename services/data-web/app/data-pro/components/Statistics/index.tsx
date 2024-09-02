@@ -41,10 +41,10 @@ export default function StatisticsPage() {
       />
       <SearchBtn />
       <Divider />
-      {activeTab === '실거래통계' && <RepresentComponent />}
       <TabComponent activeTab={activeTab} setActiveTab={setActiveTab} />
       {activeTab === '매각통계' || activeTab === '실거래통계' ? (
         <>
+          {activeTab === '실거래통계' && <RepresentComponent />}
           <TableComponent
             activeTab={activeTab}
             searchCondition={searchCondition}

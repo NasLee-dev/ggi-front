@@ -15,8 +15,8 @@ export default function RepresentComponent() {
           </p>
         </div>
       </div>
-      <div className="flex flex-row w-[1436px] h-full gap-[12px]">
-        <div className="flex flex-col p-5 gap-[12px] items-start rounded-[24px] bg-[#F8FAFC] w-[350px] h-full">
+      <div className="flex flex-row w-[1436px] h-full gap-[12px] ml-[10px]">
+        <div className="flex flex-col p-5 gap-[12px] items-start rounded-[24px] bg-[#F8FAFC] w-[340px] h-full">
           <p className="text-gray-500 text-base font-bold font-['SUIT'] leading-snug">
             주소
           </p>
@@ -24,7 +24,7 @@ export default function RepresentComponent() {
             서울특별시 용산구 청파동 35-1
           </p>
         </div>
-        <div className="flex flex-col p-5 gap-[12px] items-start rounded-[24px] bg-[#F8FAFC] w-[350px] h-full">
+        <div className="flex flex-col p-5 gap-[12px] items-start rounded-[24px] bg-[#F8FAFC] w-[340px] h-full">
           <p className="text-gray-500 text-base font-bold font-['SUIT'] leading-snug">
             용도
           </p>
@@ -32,7 +32,7 @@ export default function RepresentComponent() {
             아파트
           </p>
         </div>
-        <div className="flex flex-col p-5 gap-[12px] items-start rounded-[24px] bg-[#F8FAFC] w-[350px] h-full">
+        <div className="flex flex-col p-5 gap-[12px] items-start rounded-[24px] bg-[#F8FAFC] w-[340px] h-full">
           <p className="text-gray-500 text-base font-bold font-['SUIT'] leading-snug">
             매매가격
           </p>
@@ -40,7 +40,7 @@ export default function RepresentComponent() {
             1,200,000,000원
           </p>
         </div>
-        <div className="flex flex-col p-5 gap-[12px] items-start rounded-[24px] bg-[#F8FAFC] w-[350px] h-full">
+        <div className="flex flex-col p-5 gap-[12px] items-start rounded-[24px] bg-[#F8FAFC] w-[340px] h-full">
           <p className="text-gray-500 text-base font-bold font-['SUIT'] leading-snug">
             토지/건물 면적
           </p>
