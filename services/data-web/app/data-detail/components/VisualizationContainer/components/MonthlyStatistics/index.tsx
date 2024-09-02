@@ -43,8 +43,8 @@ export default function MonthlyStatistics() {
           <TableHead width="190px" text="감정가총액" />
           <TableHead width="200px" text="매각가총액" />
         </ul>
-        <ul className="flex border-b border-[#E5E7EB] last:border-none group hover:bg-[#F9FBFF] transition-[0.3s]">
-          <TableHead width="108px" text="2023.07" />
+        <ul className="flex border-b border-[#E5E7EB] last:border-none group last:bg-[#F9FBFF]">
+          <TableItem width="108px" text="2023.07" />
           <TableItem width="190px" text="서울특별시 서대문구" />
           <TableItem width="160px" text="아파트" />
           <TableItem width="88px" text="45.65" />
