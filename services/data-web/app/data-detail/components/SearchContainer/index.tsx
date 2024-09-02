@@ -16,7 +16,10 @@ export default function SearchContainer() {
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)}>
+      <form
+        className="pb-10 border-b border-[#E5E7EB] mb-10"
+        onSubmit={methods.handleSubmit(onSubmit)}
+      >
         <FilterBox title="경매통계 검색">
           <DateContainer control={methods.control} />
           <AreaContainer />
