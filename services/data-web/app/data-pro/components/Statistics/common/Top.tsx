@@ -34,11 +34,11 @@ export default function TopComponent({
 
   const { data: addressList } = useGetAddress(keyword)
   return (
-    <div className="w-[1714px] h-[72px] flex gap-[70px] z-10">
-      <div className="flex w-[10%] h-full justify-start items-center">
+    <div className="w-[1720px] h-[72px] flex gap-[20px] z-10">
+      <div className="flex w-[100px] h-full justify-start items-center">
         <Title />
       </div>
-      <div className="flex flex-col gap-0 w-[1080px] h-full relative justify-start">
+      <div className="flex flex-col gap-0 w-[1150px] h-full relative justify-start">
         <div className="flex flex-row relative w-full h-full justify-start items-center">
           <input
             type="text"
@@ -69,7 +69,7 @@ export default function TopComponent({
           />
         )}
       </div>
-      <div className="flex w-[30%] h-full p-[24px] flex-col justify-center items-center flex-shrink-0 rounded-[12px] border border-[#E5E7EB] bg-white">
+      <div className="flex w-[430px] h-full p-[24px] flex-col justify-center items-center flex-shrink-0 rounded-[12px] border border-[#E5E7EB] bg-white">
         <div className="w-full justify-between flex">
           <p className="text-gray-800 text-lg font-extrabold font-['SUIT'] leading-normal">
             BEST님
