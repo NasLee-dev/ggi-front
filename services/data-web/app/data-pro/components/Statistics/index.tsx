@@ -8,6 +8,9 @@ import SearchBtn from './common/search/SearchBtn'
 import Divider from './common/Divider'
 import TabComponent from './common/tab'
 import TableComponent from './common/table'
+import MapComponent from './mapSearch/Map'
+import RepresentComponent from './realStatistics/Represent'
+import AnnualDataComponent from './soldStatistics/AnnualData'
 
 export default function StatisticsPage() {
   const INITIAL_TAB = '매각통계'
@@ -27,7 +30,7 @@ export default function StatisticsPage() {
   })
 
   return (
-    <div className="flex flex-col bg-white w-full h-full gap-[40px] overflow-y-auto overflow-x-hidden custom-scrollbar">
+    <div className="flex flex-col bg-white w-full h-full gap-[40px] overflow-y-hidden overflow-x-hidden custom-scrollbar">
       <TopComponent
         keyword={searchCondition.keyword}
         setSearchCondition={setSearchCondition}
@@ -38,13 +41,19 @@ export default function StatisticsPage() {
       />
       <SearchBtn />
       <Divider />
+      {activeTab === '실거래통계' && <RepresentComponent />}
       <TabComponent activeTab={activeTab} setActiveTab={setActiveTab} />
-      {(activeTab === '매각통계' || activeTab === '실거래통계') && (
-        <TableComponent
-          activeTab={activeTab}
-          searchCondition={searchCondition}
-          setSearchCondition={setSearchCondition}
-        />
+      {activeTab === '매각통계' || activeTab === '실거래통계' ? (
+        <>
+          <TableComponent
+            activeTab={activeTab}
+            searchCondition={searchCondition}
+            setSearchCondition={setSearchCondition}
+          />
+          <AnnualDataComponent />
+        </>
+      ) : (
+        <MapComponent />
       )}
     </div>
   )
