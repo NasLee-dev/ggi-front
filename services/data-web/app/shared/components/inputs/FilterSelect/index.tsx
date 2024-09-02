@@ -4,16 +4,18 @@ import Image from 'next/image'
 interface FilterSelectProps {
   width?: string
   height?: string
+  error?: boolean
 }
 
 export default function FilterSelect({
   width,
   height,
+  error,
   ...props
 }: FilterSelectProps) {
   return (
     <div
-      className={`flex items-center ${width ? `w-[${width}]` : 'w-[398px]'} ${height ? `h-[${height}]` : 'h-[50px]'}  border border-[#E5E7EB] rounded-2xl px-4 cursor-pointer relative`}
+      className={`flex items-center ${width ? `w-[${width}]` : 'w-[398px]'} ${height ? `h-[${height}]` : 'h-[50px]'}  border ${error ? 'border-[#EF4444]' : 'border-[#E5E7EB]'}  rounded-2xl px-4 cursor-pointer relative`}
     >
       <p className="text-[16px] font-normal text-[#6B7280]">선택안함</p>
       <Image

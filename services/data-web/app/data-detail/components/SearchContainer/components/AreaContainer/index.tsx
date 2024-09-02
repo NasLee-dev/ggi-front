@@ -1,5 +1,6 @@
 import ToggleButton from '@/app/shared/components/buttons/ToggleButton'
 import FilterSelect from '@/app/shared/components/inputs/FilterSelect'
+import ErrorText from '@/app/shared/components/text/ErrorText'
 import FilterTitle from '@/app/shared/components/text/FilterTitle'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -22,9 +23,14 @@ export default function AreaContainer() {
             handleToggle={handleToggle}
             buttonTextArrays={['법원', '지역']}
           />
-          <FilterSelect />
-          <FilterSelect />
-          <FilterSelect />
+          <div className="flex justify-between gap-2 relative">
+            <FilterSelect error />
+            <FilterSelect error />
+            <FilterSelect error />
+            <div className="absolute right-0 -top-8">
+              <ErrorText text="용도 복수선택 시 한 가지 지역만 선택할 수 있습니다" />
+            </div>
+          </div>
           <button className="w-[50px] h-[50px] border border-[#E5E7EB] rounded-2xl flex justify-center items-center">
             <Image
               width={24}
