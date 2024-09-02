@@ -116,16 +116,9 @@ const AddressOptionSidoCombined = ({
           setSearchCondition((prev) => ({
             ...prev,
             address: {
-              ...prev.address,
               sido: !prev.address.sido,
-            },
-          }))
-        } else {
-          setSearchCondition((prev) => ({
-            ...prev,
-            address: {
-              ...prev.address,
-              sigungu: !prev.address.sigungu,
+              sigungu: !prev.address.sido,
+              eupmyeondong: !prev.address.sido,
             },
           }))
         }
@@ -140,16 +133,9 @@ const AddressOptionSidoCombined = ({
           setSearchCondition((prev) => ({
             ...prev,
             address: {
-              ...prev.address,
+              sido: prev.address.sido,
               sigungu: !prev.address.sigungu,
-            },
-          }))
-        } else {
-          setSearchCondition((prev) => ({
-            ...prev,
-            address: {
-              ...prev.address,
-              eupmyeondong: !prev.address.eupmyeondong,
+              eupmyeondong: !prev.address.sigungu,
             },
           }))
         }
@@ -188,36 +174,63 @@ export default function Address({
   useEffect(() => {
     if (
       searchCondition.address.sido &&
+      !searchCondition.address.sigungu &&
+      !searchCondition.address.eupmyeondong
+    ) {
+      setIsCombined({
+        sidoCombined: false,
+        eupmyeondongCombined: false,
+      })
+    } else if (
+      searchCondition.address.sido &&
       searchCondition.address.sigungu &&
       !searchCondition.address.eupmyeondong
     ) {
-      setIsCombined(() => ({
+      setIsCombined({
         sidoCombined: true,
         eupmyeondongCombined: false,
-      }))
-    } else if (
-      !searchCondition.address.sido &&
-      searchCondition.address.sigungu &&
-      searchCondition.address.eupmyeondong
-    ) {
-      setIsCombined(() => ({
-        sidoCombined: false,
-        eupmyeondongCombined: true,
-      }))
+      })
     } else if (
       searchCondition.address.sido &&
       searchCondition.address.sigungu &&
       searchCondition.address.eupmyeondong
     ) {
-      setIsCombined(() => ({
+      setIsCombined({
         sidoCombined: true,
         eupmyeondongCombined: true,
-      }))
+      })
+    } else if (
+      !searchCondition.address.sido &&
+      searchCondition.address.sigungu &&
+      searchCondition.address.eupmyeondong
+    ) {
+      setIsCombined({
+        sidoCombined: true,
+        eupmyeondongCombined: false,
+      })
+    } else if (
+      !searchCondition.address.sido &&
+      searchCondition.address.sigungu &&
+      !searchCondition.address.eupmyeondong
+    ) {
+      setIsCombined({
+        sidoCombined: true,
+        eupmyeondongCombined: false,
+      })
+    } else if (
+      !searchCondition.address.sido &&
+      !searchCondition.address.sigungu &&
+      searchCondition.address.eupmyeondong
+    ) {
+      setIsCombined({
+        sidoCombined: true,
+        eupmyeondongCombined: true,
+      })
     } else {
-      setIsCombined(() => ({
+      setIsCombined({
         sidoCombined: false,
         eupmyeondongCombined: false,
-      }))
+      })
     }
   }, [searchCondition])
 
@@ -232,7 +245,90 @@ export default function Address({
         </p>
       </div>
       <div className="flex flex-row gap-[8px] p-2 px-4 justify-between items-start content-start gap-y-4 self-stretch flex-wrap rounded-[16px] bg-[#F8FAFC] w-full">
-        {isCombined.sidoCombined && !isCombined.eupmyeondongCombined ? (
+        {!isCombined.sidoCombined && !isCombined.eupmyeondongCombined && (
+          <>
+            <AddressOption
+              label="시도"
+              isActive={searchCondition.address.sido}
+              onClick={() => {
+                setSearchCondition((prev) => ({
+                  ...prev,
+                  address: {
+                    ...prev.address,
+                    sido: !prev.address.sido,
+                  },
+                }))
+              }}
+            />
+            <AddressOption
+              label="시군구"
+              isActive={searchCondition.address.sigungu}
+              onClick={() => {
+                if (!isCombined.sidoCombined) {
+                  setSearchCondition((prev) => ({
+                    ...prev,
+                    address: {
+                      sido: !prev.address.sigungu,
+                      sigungu: !prev.address.sigungu,
+                      eupmyeondong: false,
+                    },
+                  }))
+                } else if (isCombined.sidoCombined) {
+                  setSearchCondition((prev) => ({
+                    ...prev,
+                    address: {
+                      ...prev.address,
+                      sigungu: !prev.address.sigungu,
+                      eupmyeondong: false,
+                    },
+                  }))
+                }
+              }}
+            />
+            <AddressOption
+              label="읍면동"
+              isActive={searchCondition.address.eupmyeondong}
+              onClick={() => {
+                if (
+                  !isCombined.sidoCombined &&
+                  !isCombined.eupmyeondongCombined
+                ) {
+                  setSearchCondition((prev) => ({
+                    ...prev,
+                    address: {
+                      sido: !prev.address.eupmyeondong,
+                      sigungu: !prev.address.eupmyeondong,
+                      eupmyeondong: !prev.address.eupmyeondong,
+                    },
+                  }))
+                } else if (
+                  isCombined.sidoCombined &&
+                  !isCombined.eupmyeondongCombined
+                ) {
+                  setSearchCondition((prev) => ({
+                    ...prev,
+                    address: {
+                      ...prev.address,
+                      eupmyeondong: !prev.address.eupmyeondong,
+                    },
+                  }))
+                } else if (
+                  isCombined.sidoCombined &&
+                  isCombined.eupmyeondongCombined
+                ) {
+                  setSearchCondition((prev) => ({
+                    ...prev,
+                    address: {
+                      ...prev.address,
+                      eupmyeondong: !prev.address.eupmyeondong,
+                    },
+                  }))
+                }
+              }}
+            />
+          </>
+        )}
+        {isCombined.sidoCombined && !isCombined.eupmyeondongCombined && (
           <>
             <AddressOptionSidoCombined
               label="시도 시군구"
@@ -242,84 +338,29 @@ export default function Address({
             <AddressOption
               label="읍면동"
               isActive={searchCondition.address.eupmyeondong}
-              onClick={() =>
-                setSearchCondition((prev) => ({
-                  ...prev,
-                  address: {
-                    ...prev.address,
-                    eupmyeondong: !prev.address.eupmyeondong,
-                  },
-                }))
-              }
+              onClick={() => {
+                if (
+                  isCombined.sidoCombined &&
+                  !isCombined.eupmyeondongCombined
+                ) {
+                  setSearchCondition((prev) => ({
+                    ...prev,
+                    address: {
+                      ...prev.address,
+                      eupmyeondong: !prev.address.eupmyeondong,
+                    },
+                  }))
+                }
+              }}
             />
           </>
-        ) : isCombined.sidoCombined && isCombined.eupmyeondongCombined ? (
-          <AddressOptionSidoCombined
-            label="시도 시군구 읍면동"
-            setSearchCondition={setSearchCondition}
-            isCombined={isCombined}
-          />
-        ) : !isCombined.sidoCombined && isCombined.eupmyeondongCombined ? (
+        )}
+        {isCombined.sidoCombined && isCombined.eupmyeondongCombined && (
           <>
-            <AddressOption
-              label="시도"
-              isActive={searchCondition.address.sido}
-              onClick={() =>
-                setSearchCondition((prev) => ({
-                  ...prev,
-                  address: {
-                    ...prev.address,
-                    sido: !prev.address.sido,
-                  },
-                }))
-              }
-            />
             <AddressOptionSidoCombined
-              label="시군구 읍면동"
+              label="시도 시군구 읍면동"
               setSearchCondition={setSearchCondition}
               isCombined={isCombined}
-            />
-          </>
-        ) : (
-          <>
-            <AddressOption
-              label="시도"
-              isActive={searchCondition.address.sido}
-              onClick={() =>
-                setSearchCondition((prev) => ({
-                  ...prev,
-                  address: {
-                    ...prev.address,
-                    sido: !prev.address.sido,
-                  },
-                }))
-              }
-            />
-            <AddressOption
-              label="시군구"
-              isActive={searchCondition.address.sigungu}
-              onClick={() =>
-                setSearchCondition((prev) => ({
-                  ...prev,
-                  address: {
-                    ...prev.address,
-                    sigungu: !prev.address.sigungu,
-                  },
-                }))
-              }
-            />
-            <AddressOption
-              label="읍면동"
-              isActive={searchCondition.address.eupmyeondong}
-              onClick={() =>
-                setSearchCondition((prev) => ({
-                  ...prev,
-                  address: {
-                    ...prev.address,
-                    eupmyeondong: !prev.address.eupmyeondong,
-                  },
-                }))
-              }
             />
           </>
         )}

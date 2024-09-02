@@ -131,7 +131,7 @@ export default function CustomSelect({
   return (
     <div
       ref={selectRef}
-      className="relative inline-block text-left flex-1 rounded-full h-full border border-[#e5e7eb] pr-[16px] pl-[16px] pt-[7px] pb-[7px]"
+      className="flex relative text-left items-center flex-1 rounded-full h-full border border-[#e5e7eb] pr-[16px] pl-[16px] pt-[7px] pb-[7px]"
     >
       <div className="flex flex-row w-full gap-[10px] justify-center items-center">
         <p className="text-left text-gray-300 text-base font-bold font-['NanumGothic'] leading-snug w-[25%]">

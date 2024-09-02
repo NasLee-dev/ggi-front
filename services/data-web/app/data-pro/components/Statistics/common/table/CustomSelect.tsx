@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function CustomSelect() {
   const selectRef = useRef<HTMLDivElement>(null)
@@ -19,13 +19,28 @@ export default function CustomSelect() {
   ]
   const [options, setOptions] = useState(optionLabel[2].label)
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        selectRef.current &&
+        !selectRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [selectRef])
+
   return (
     <div
       ref={selectRef}
-      className="relative inline-block text-left flex-1 rounded-full h-full border border-[#e5e7eb] bg-[#f8fafc] p-[14px]"
+      className="relative inline-block text-left flex-1 rounded-full w-full h-full border border-[#e5e7eb] bg-[#f8fafc] p-[10px] justify-center items-center"
     >
-      <div className="flex flex-row w-full gap-[5px] justify-center items-center">
-        <p className="text-center text-gray-300 text-base font-bold font-['NanumGothic'] leading-snug w-[30%]">
+      <div className="flex flex-row w-full gap-[5px] justify-center items-center h-full">
+        <p className="text-center text-gray-300 text-base font-bold font-['NanumGothic'] leading-snug w-[60px]">
           기간
         </p>
 
@@ -45,7 +60,9 @@ export default function CustomSelect() {
 
         <div
           className="block appearance-none w-full p-1 rounded-full h-full  focus:outline-none cursor-pointer"
-          onClick={() => {}}
+          onClick={() => {
+            setIsOpen(!isOpen)
+          }}
         >
           <p className="text-left text-gray-800 text-base font-normal font-['NanumGothic'] leading-snug">
             {options}
@@ -75,17 +92,35 @@ export default function CustomSelect() {
         </div>
       </div>
       {isOpen && (
-        <div className="absolute z-10 top-[50px] left-0 w-full h-[160px] bg-white rounded-md shadow-lg overflow-y-auto custom-scrollbar">
+        <div className="absolute z-10 top-[50px] left-0 w-full h-[120px] p-[8px] bg-white rounded-md shadow-lg overflow-y-auto custom-scrollbar">
           {optionLabel.map((option, index) => (
             <div
               key={index}
-              className="cursor-pointer select-none relative py-2 pl-3 pr-9 hover:bg-gray-100"
+              className="flex flex-row w-full h-[38px] cursor-pointer select-none relative p-[8px] hover:bg-gray-100"
               onClick={() => {
-                setOptions(option.value)
+                setOptions(option.label)
                 setIsOpen(false)
               }}
             >
               <span className="block truncate">{option.label}</span>
+              {options === option.label && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  className="absolute right-0 top-0 bottom-0 m-auto"
+                >
+                  <path
+                    d="M13.3307 4L5.9974 11.3333L2.66406 8"
+                    stroke="#3B82F6"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              )}
             </div>
           ))}
         </div>

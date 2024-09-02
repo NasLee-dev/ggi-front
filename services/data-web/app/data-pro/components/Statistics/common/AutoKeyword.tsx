@@ -50,7 +50,7 @@ export default function AutoKeyword({
   setSearchCondition,
 }: AutoKeywordProps) {
   return (
-    <div className="flex flex-col w-[919px] h-[280px] overflow-y-auto pl-[20px] pr-[20px] justify-start items-center self-stretch rounded-b-[36px] border-2 border-t-0 border-b-blue-500 border-r-blue-500 border-l-blue-500 absolute top-[60px] left-[-2px] custom-scrollbar z-10 bg-white">
+    <div className="flex flex-col w-[1154px] h-[280px] overflow-y-auto pl-[20px] pr-[20px] justify-start items-center self-stretch rounded-b-[36px] border-2 border-t-0 border-b-blue-500 border-r-blue-500 border-l-blue-500 absolute top-[60px] left-[-2px] custom-scrollbar z-10 bg-white">
       {addressList?.map((address, index) => (
         <div
           key={index}
