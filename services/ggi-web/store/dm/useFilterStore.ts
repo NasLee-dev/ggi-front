@@ -62,7 +62,7 @@ export const useKMFilterStore = create<IFilterState>((set) => ({
       size: pageSize
     }
   }),
-  sort: ["caseNo"],
+  sort: ["caseNo", "stakeholder"],
   setSort: (sorts) => set(() => {
     return {
       sort: sorts

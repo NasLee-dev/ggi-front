@@ -13,4 +13,5 @@ export const SearchBtn = styled.button<{ color: string }>`
   border-radius: 12px;
   margin: 0 5px; 
   padding: 15px 20px;
+  cursor: pointer;
 `

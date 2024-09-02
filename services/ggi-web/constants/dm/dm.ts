@@ -235,15 +235,15 @@ export const KMHEADER = {
   },
   idx: {
     name: '순번',
-    width: 5
+    width: 4
   },
   download: {
     name: '다운이력',
-    width: 5
+    width: 6
   },
   courtName: {
     name: '법원 또는 계',
-    width: 10
+    width: 9
   },
   caseNoString: {
     name: '사건번호',
@@ -251,7 +251,7 @@ export const KMHEADER = {
   },
   status: {
     name: '현재상태',
-    width: 5
+    width: 6
   },
   usage: {
     name: '용도',

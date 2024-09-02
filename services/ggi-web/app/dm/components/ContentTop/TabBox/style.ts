@@ -17,4 +17,5 @@ export const TabBtn = styled.button<{ status : boolean}>`
   border-radius: 16px;
   color: ${({status}) => (status ? theme.palette.blueMain : theme.palette.grayMain)};
   background-color: ${({status}) => (status ? theme.palette.blueSecondary : theme.palette.btnBackground)};
+  cursor: pointer;
 `
