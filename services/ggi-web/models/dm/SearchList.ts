@@ -1,5 +1,5 @@
 
-export interface ISearchContent {
+export interface ISearchKMContent {
   id: string
   courtName: string
   caseNoString: string
@@ -28,6 +28,6 @@ export interface ISearchPaging {
 }
 
 export interface ISearchRes {
-  contents: ISearchContent[]
+  contents: ISearchKMContent[]
   paging: ISearchPaging
 }

@@ -19,6 +19,7 @@ export const ArrowButton = styled.button`
   border: 1px solid ${theme.palette.graySecondary};
   background-color: ${theme.palette.white};
   padding: 5px 10px; 
+  cursor: pointer;
 `
 
 export const PageButton = styled.button<{ clicked: boolean }>`
@@ -30,4 +31,5 @@ export const PageButton = styled.button<{ clicked: boolean }>`
   &:hover {
     background-color: ${theme.palette.graySecondary};
   }
+  cursor: pointer;
 `

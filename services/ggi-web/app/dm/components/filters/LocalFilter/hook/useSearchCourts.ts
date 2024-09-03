@@ -11,12 +11,20 @@ export default function useSearchCourts(code1: string, code2: string) {
     queryFn: () => getCourt2s(code1),
     enabled: !!code1
   })
+
+  let findCourt
+  findCourt = court2s?.findIndex((court) => court.court === '전체')
+  if (findCourt === -1) court2s?.unshift({ code: '', court: '전체' })
+
   const { data: court3s } = useQuery({
-    queryKey: ['court3s'],
+    queryKey: ['court3s', code2],
     queryFn: () => getCourt3s(code1, code2),
     enabled: !!code1 && !!code2
   })
-  
+
+  findCourt = court3s?.findIndex((court) => court.court === '전체')
+  if (findCourt === -1) court3s?.unshift({ code: '', court: '전체' })
+
   return {
     court1s,
     court2s,

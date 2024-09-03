@@ -37,4 +37,5 @@ export const AddBtn = styled.button`
   font-family: nanum-gothic;
   font-weight: 700;
   line-height: 20px;
+  cursor: pointer;
 `

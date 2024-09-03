@@ -11,9 +11,11 @@ import MyConditionModal from "app/dm/components/modal/MyConditionModal";
 import MyDmBadge from "app/dm/components/styled/MyDmBadge";
 import Tooltip from "app/dm/components/modal/Tooltip";
 import { useTabStore } from "@/store/dm/useTabStore";
+import { useKMListStore } from "@/store/dm/useListStore";
 
-export default function TableBody({ headers, values }: I.ITableListProps) {
+export default function TableBody({ headers }: I.ITableListProps) {
   const { tabs } = useTabStore()
+  const { list } = useKMListStore()
   const [detailContent, setDetailContent] = useState<any>()
   const [openTooltip, setOpenTooltip] = useState<boolean>(false)
   const {
@@ -34,22 +36,21 @@ export default function TableBody({ headers, values }: I.ITableListProps) {
   return (
     <>
     <tbody>
-      <tr>
-        {Object.keys(headers).map((header, idx) => (
-          <S.StyledTD 
-            key={`tbody-${header}-${idx}`} 
-            width={headers[header].width} 
-            mine={tabs.mine ?? false}
-          >
-            {values.map((value, index) => (
-              idx === 0 
+      {list.contents.map((value, index) => (
+        <tr key={`tbody-tr-${value.caseNoString}-${index}`}>
+          {Object.keys(headers).map((header, idx) => (
+            <S.StyledTD 
+              key={`tbody-${header}-${idx}`} 
+              width={headers[header].width} 
+              mine={tabs.mine ?? false}
+            >
+              {idx === 0 
                 ? <CheckBox 
-                    key={`checkbox-${index}`} 
+                    key={`checkbox-${index}`}
                     type="checkbox" 
                     id='chk' 
                   /> 
-                : (tabs?.mine && 
-                  header === 'filters' 
+                : (tabs?.mine && header === 'filters' 
                   ? <B.FlexNowrap key={`filters-${index}`} style={{ padding: '0 10px' }}>
                       {Object.keys(value[header]).slice(0, 3).map((filterKey) => (
                         <MyDmBadge 
@@ -71,8 +72,8 @@ export default function TableBody({ headers, values }: I.ITableListProps) {
                       }
                     </B.FlexNowrap> 
                   : (tabs.mine && 
-                    header === 'reDownload' && 
-                    value.reDownload 
+                    header === 'reDownload' 
+                    // && value.reDownload 
                     ? <>
                         <IconBtn 
                           key={`reDownload-${index}`} 
@@ -87,17 +88,16 @@ export default function TableBody({ headers, values }: I.ITableListProps) {
                           />
                         </IconBtn>
                       </> 
-                    : <T.InfoGothicText 
-                        key={`text-${idx}`}
-                      >
-                        {idx === 1 
-                          ? idx 
+                    : <T.TextGothic14px key={`text-${idx}`}>
+                        {header === 'idx'
+                          ? index+1 
                           : value[header] ?? null}
-                      </T.InfoGothicText>
-                ))))}
-          </S.StyledTD>
-        ))}
-      </tr>
+                      </T.TextGothic14px>
+              ))}
+            </S.StyledTD>
+          ))}
+        </tr>
+      ))}
     </tbody>
     
     <MyConditionModal 

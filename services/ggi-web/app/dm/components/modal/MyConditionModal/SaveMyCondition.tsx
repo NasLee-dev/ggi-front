@@ -66,8 +66,8 @@ export default function SaveMyCondition ({
           // type="save"
           leftBtnTitle={"취소"} 
           rightBtnTitle={"저장하기"} 
-          clickLeftBtn={() => handleClickCancel('cancel')} 
-          clickRightBtn={() => handleClickSave('save')}
+          clickLeftBtn={() => handleClickCancel('CANCEL')} 
+          clickRightBtn={() => handleClickSave('SAVE')}
         />
       </ModalBtnGrid>
     </S.ModalBox>

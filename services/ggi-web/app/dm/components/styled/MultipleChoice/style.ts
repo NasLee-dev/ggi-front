@@ -26,6 +26,7 @@ export const MultipleButton = styled.button<{ status: boolean }>`
   )};
   margin-right: 5px;
   padding: 0 8px;
+  cursor: pointer;
 `
 
 export const ExtraButton = styled.button<{ status: boolean }>`
@@ -43,6 +44,7 @@ export const ExtraButton = styled.button<{ status: boolean }>`
   )};
   margin-right: 5px;
   padding: 0 8px;
+  cursor: pointer;
 `
 
 export const CountBox = styled.span`

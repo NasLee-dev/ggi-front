@@ -8,7 +8,7 @@ import { theme } from "../../styles/theme";
 import { FlexNowrap } from "../../styles/Boxes";
 import { useTabStore } from "@/store/dm/useTabStore";
 import * as C from "constants/dm/dm";
-import { useFilterStore } from "@/store/dm/useFilterStore";
+import { useKMFilterStore } from "@/store/dm/useFilterStore";
 import * as I from "@/models/dm/DM";
 
 export default function MultipleChoice({
@@ -17,7 +17,7 @@ export default function MultipleChoice({
   extra
 }: I.IMultipleProps) {
   const { tabs } = useTabStore()
-  const { filters, setFilters } = useFilterStore()
+  const { filters, setFilters } = useKMFilterStore()
   const [clickExtra, setClickExtra] = useState<boolean>(false)
   const [data, setData] = useState<I.ICheckValues[]>(values)
   const [extraCount, setExtraCount] = useState<number>(0)

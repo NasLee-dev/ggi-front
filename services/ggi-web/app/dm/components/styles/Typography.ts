@@ -62,6 +62,7 @@ export const HelpGothicText = styled.span`
   line-height: 23.2px;
   text-decoration: underline;
   margin-left: 5px;
+  cursor: pointer;
 `
 
 export const InfoSuitText = styled.span<{ color?: string, underline?: boolean }>`

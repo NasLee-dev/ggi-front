@@ -8,7 +8,7 @@ export const ModalContainer = styled.div<{ type: string, tabs: I.ITabStatus }>`
   border-radius: 16px;
   border: 1px solid ${theme.palette.graySecondary};
   position: absolute;
-  top: 750px;
+  top: 800px;
   background-color: ${theme.palette.white};
   width: ${({ type }) => (type === 'usageIds' ? '400px' : '600px')};
   left: ${({ type, tabs }) => (
@@ -38,6 +38,7 @@ export const ExtraModalBtn = styled.button<{ save: boolean }>`
   background-color: ${({ save }) => (save ? theme.palette.blueMain : theme.palette.white)};
   border: ${({ save }) => (save ? 'none' : `1px solid ${theme.palette.graySecondary}`)};
   border-radius: 8px;
+  cursor: pointer;
 `
 
 export const ModalContentGrid = styled.div<{ styles: any }>`

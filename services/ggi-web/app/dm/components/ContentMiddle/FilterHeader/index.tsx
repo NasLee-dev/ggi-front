@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import * as S from "./style";
 import { IconBtn } from "app/dm/components/styles/Button";
-import { theme } from "app/dm/components/styles/theme";
 import Image from 'next/image'
 
 interface IFilterHeaderProps {
@@ -19,7 +18,6 @@ export default function FilterHeader({ open, setOpen, title }: IFilterHeaderProp
         {title}
       </S.FilterTitle>
       <IconBtn 
-        bc={theme.palette.backgroundGray} 
         onClick={() => setOpen(!open)}
       >
         {open 

@@ -3,6 +3,7 @@ import * as B from 'app/dm/components/styles/Boxes'
 import * as T from 'app/dm/components/styles/Typography'
 import { theme } from '../../styles/theme'
 import Image from 'next/image'
+import { IconBtn } from '../../styles/Button'
 
 export default function ProfileBox() {
   return (
@@ -24,12 +25,14 @@ export default function ProfileBox() {
           >
             잔여 다운로드
           </T.InfoGothicBoldText>
-          <Image 
-            src='/dm/images/help.png'
-            alt='help' 
-            width={16} 
-            height={16}
-          />
+          <IconBtn>
+            <Image 
+              src='/dm/images/help.png'
+              alt='help' 
+              width={16} 
+              height={16}
+            />
+          </IconBtn>
         </B.FlexNowrap>
         <B.FlexSpaceBetweenAlignCenter>
           <B.FlexNowrap>

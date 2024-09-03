@@ -7,4 +7,5 @@ export const CaseBtn = styled.button`
   border-radius: 12px;
   margin-left: 10px;
   border: 1px solid ${theme.palette.graySecondary};
+  cursor: pointer;
 `

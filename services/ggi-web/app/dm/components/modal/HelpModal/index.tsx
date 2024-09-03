@@ -40,10 +40,10 @@ export default function HelpModal ({
               {key}
             </T.InfoSuitBoldText>
             <T.InfoSuitText>
-              &nbsp;:&nbsp;{C.HELPCONTENTS[key].sub1}
+              &nbsp;:&nbsp;{C.HELPCONTENTS[key].SUB1}
             </T.InfoSuitText>
             <T.InfoSuitText color={theme.palette.blueMain}>
-              &nbsp;{C.HELPCONTENTS[key].sub2}
+              &nbsp;{C.HELPCONTENTS[key].SUB2}
             </T.InfoSuitText>
           </li>
         ))}

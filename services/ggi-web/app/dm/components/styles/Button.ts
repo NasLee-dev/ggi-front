@@ -3,7 +3,10 @@ import { theme } from './theme'
 
 // Search Component
 export const IconBtn = styled.button<{ bc?: string }>`
-  background-color: ${({ bc }) => (bc ? bc : theme.palette.white)}
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 `
 
 export const CheckBox = styled.input({
@@ -16,5 +19,6 @@ export const ModalBtn = styled.button<{ styles: any }>`
   ${({ styles }) => (styles)},
   width: auto;
   border-radius: 8px;
+  cursor: pointer;
 `
 

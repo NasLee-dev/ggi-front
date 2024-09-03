@@ -44,23 +44,24 @@ export default function ViewMyCondition ({
       </T.TextGothic15px>
       <S.ModalScrollBox>
         <S.ModalContentBox>
-          <B.FlexSpaceBetweenAlignCenter 
-            style={{ 
-              width: '410px' 
-            }}
-          >
-            {edit ? (
+          {contents?.length 
+          ? <B.FlexSpaceBetweenAlignCenter 
+              style={{ 
+                width: '410px' 
+              }}
+            >
+              {edit ? (
               <>
-              <ModalInput
-                width='320px'
-                value={`조건이름`} 
-                changeInput={handleChangeInput}          
-              />
-              <ModalBtn styles={theme.styles.modal.condition.editSave}>
-                <T.TextGothic15px color={theme.palette.white}>
-                  저장하기
-                </T.TextGothic15px>
-              </ModalBtn>
+                <ModalInput
+                  width='320px'
+                  value={`조건이름`} 
+                  changeInput={handleChangeInput}          
+                />
+                <ModalBtn styles={theme.styles.modal.condition.editSave}>
+                  <T.TextGothic15px color={theme.palette.white}>
+                    저장하기
+                  </T.TextGothic15px>
+                </ModalBtn>
               </>
             ) : (
               <>
@@ -77,7 +78,7 @@ export default function ViewMyCondition ({
                   />
                 </IconBtn>
               </B.FlexNowrap>
-              <IconBtn onClick={handleClickDelete('delete')}>
+              <IconBtn onClick={handleClickDelete('DELETE')}>
                 <Image 
                   src='/dm/images/delete.png' 
                   alt='delete' 
@@ -88,6 +89,9 @@ export default function ViewMyCondition ({
               </>
             )}
           </B.FlexSpaceBetweenAlignCenter>
+          : <B.FlexCenter>
+              저장된 조건이 없습니다.
+            </B.FlexCenter>}
         </S.ModalContentBox>
       </S.ModalScrollBox>
     </S.ModalBox>

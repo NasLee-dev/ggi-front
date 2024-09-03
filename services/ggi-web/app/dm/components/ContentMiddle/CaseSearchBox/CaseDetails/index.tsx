@@ -8,11 +8,11 @@ import CheckBoxFilter from "app/dm/components/filters/CheckBoxFilter";
 import MultipleChoice from "app/dm/components/styled/MultipleChoice";
 import Selectbox from "app/dm/components/styled/SelectBox";
 import { useTabStore } from "@/store/dm/useTabStore";
-import { useFilterStore } from "@/store/dm/useFilterStore";
+import { useKMFilterStore } from "@/store/dm/useFilterStore";
 
 export default function CaseDetails({ open }: I.ISearchProps) {
   const { tabs } = useTabStore()
-  const { filters, setFilters } = useFilterStore()
+  const { filters, setFilters } = useKMFilterStore()
   const [inputDisabled, setInputDisabled] = useState<boolean>(false)
   
   const handleChecked = (checked: boolean, name: string) => {
@@ -77,7 +77,7 @@ export default function CaseDetails({ open }: I.ISearchProps) {
             />
           </B.FlexSpaceBetweenMb>
           <MultipleChoice 
-            values={C.rentConditions} 
+            values={C.RENT} 
             type='rent'
           />
         </B.FlexColumn>
@@ -123,6 +123,7 @@ export default function CaseDetails({ open }: I.ISearchProps) {
               options={Object.keys(C.FAILCOUNT)} 
               width='335px'
               setOption={handleChangeFailCount}
+              disabled={inputDisabled}
             />
           </B.FlexSpaceBetweenAlignCenter>
         </B.FlexColumn>
