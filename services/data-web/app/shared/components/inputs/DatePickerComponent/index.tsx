@@ -1,10 +1,10 @@
 'use client'
 
-import React, { useEffect, useRef } from 'react'
-import DatePicker from 'react-datepicker'
+import React, { useEffect, useRef, useState } from 'react'
 import 'react-datepicker/dist/react-datepicker.css'
 import './styles/style.css'
 import { ko } from 'date-fns/locale'
+import DatePicker from 'react-datepicker'
 
 interface DatePickerComponentProps {
   value: Date | null

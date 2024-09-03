@@ -16,7 +16,7 @@ export default function UsageComponent() {
           용도
         </p>
       </div>
-      <div className="flex flex-row h-[50px] gap-[8px] w-full">
+      <div className="flex flex-row h-[50px] gap-[8px] w-full ">
         <CustomSelect
           options={Usage}
           label="대표"
