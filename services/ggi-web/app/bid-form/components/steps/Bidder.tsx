@@ -34,33 +34,33 @@ export default function Bidder() {
     peopleSeq: stepNum,
     bidders: biddingForm.bidders,
   })
-  const {
-    register,
-    handleSubmit,
-    reset,
-    setFocus,
-    setError,
-    setValue,
-    formState: { errors },
-  } = useForm<BiddingInfoType>({
-    defaultValues: {
-      bidderName: [''],
-      bidderPhone1: [''],
-      bidderPhone2: [''],
-      bidderPhone3: [''],
-      bidderIdNum1: [''],
-      bidderIdNum2: [''],
-      bidderAddr: [''],
-      bidderAddrDetail: [''],
-      bidderCorpNum1: [''],
-      bidderCorpNum2: [''],
-      bidderCorpNum3: [''],
-      bidderCorpRegiNum1: [''],
-      bidderCorpRegiNum2: [''],
-      bidderJob: [''],
-    },
-    mode: 'onChange',
-  })
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   reset,
+  //   setFocus,
+  //   setError,
+  //   setValue,
+  //   formState: { errors },
+  // } = useForm<BiddingInfoType>({
+  //   defaultValues: {
+  //     bidderName: [''],
+  //     bidderPhone1: [''],
+  //     bidderPhone2: [''],
+  //     bidderPhone3: [''],
+  //     bidderIdNum1: [''],
+  //     bidderIdNum2: [''],
+  //     bidderAddr: [''],
+  //     bidderAddrDetail: [''],
+  //     bidderCorpNum1: [''],
+  //     bidderCorpNum2: [''],
+  //     bidderCorpNum3: [''],
+  //     bidderCorpRegiNum1: [''],
+  //     bidderCorpRegiNum2: [''],
+  //     bidderJob: [''],
+  //   },
+  //   mode: 'onChange',
+  // })
 
   //  수정 사항 반영
   const handleUpdate = () => {
@@ -120,13 +120,11 @@ export default function Bidder() {
           if (!errControl) {
             setStepNum(num + 1)
           }
-          reset()
         } else {
           handleBidderFormSave()
           if (!errControl) {
             setStepNum(num + 1)
           }
-          reset()
         }
       }
     }
@@ -139,39 +137,6 @@ export default function Bidder() {
       } catch (error) {
         console.log(error)
       }
-    }
-  }
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    if (
-      name === 'bidderName' ||
-      name === 'bidderPhone1' ||
-      name === 'bidderPhone2' ||
-      name === 'bidderPhone3' ||
-      name === 'bidderIdNum1' ||
-      name === 'bidderIdNum2' ||
-      name === 'bidderAddr' ||
-      name === 'bidderAddrDetail' ||
-      name === 'bidderCorpNum1' ||
-      name === 'bidderCorpNum2' ||
-      name.startsWith('bidderJob.')
-    ) {
-      setValue(
-        name as
-          | 'bidderName'
-          | 'bidderPhone1'
-          | 'bidderPhone2'
-          | 'bidderPhone3'
-          | 'bidderIdNum1'
-          | 'bidderIdNum2'
-          | 'bidderAddr'
-          | 'bidderAddrDetail'
-          | 'bidderCorpNum1'
-          | 'bidderCorpNum2'
-          | `bidderJob.${number}`,
-        value,
-        { shouldValidate: true },
-      )
     }
   }
 
@@ -247,17 +212,7 @@ export default function Bidder() {
         <BidderForm
           stepNum={stepNum}
           setStepNum={setStepNum}
-          setError={setError}
-          isOpen={isOpen}
-          onOpen={onOpen}
-          setValue={setValue}
           onSubmit={onSubmit}
-          handleInputChange={handleInputChange}
-          errors={errors}
-          setFocus={setFocus}
-          onClose={onClose}
-          register={register}
-          handleSubmit={handleSubmit}
         />
       </div>
     </div>

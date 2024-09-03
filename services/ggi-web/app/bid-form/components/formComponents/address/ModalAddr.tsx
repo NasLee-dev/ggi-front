@@ -13,8 +13,6 @@ import useGetAddress from '../hooks/useGetAddress'
 import Dimmed from 'app/map/components/shared/Dimmed'
 import Flex from 'app/map/components/shared/Flex'
 import Pagination from './Pagination'
-import { UseFormSetValue } from 'react-hook-form'
-import { BiddingInfoType } from 'app/bid-form/models/Bidder'
 
 type IsDirtyProps = {
   agentName: boolean
@@ -29,13 +27,30 @@ type IsDirtyProps = {
   agentJob: boolean
 }
 
+type BidderisDirtyProps = {
+  bidderName: boolean
+  bidderPhone1: boolean
+  bidderPhone2: boolean
+  bidderPhone3: boolean
+  bidderIdNum1: boolean
+  bidderIdNum2: boolean
+  bidderAddrDetail: boolean
+  bidderCorpNum1: boolean
+  bidderCorpNum2: boolean
+  bidderCorpNum3: boolean
+  bidderCorpRegiNum1: boolean
+  bidderCorpRegiNum2: boolean
+  bidderJob: boolean
+  bidderAddr: boolean
+}
+
 interface PopupContentProps {
   isAgent: boolean
   isOpen: boolean
   stepNum: number
   onClose: () => void
   setIsDirty?: Dispatch<SetStateAction<IsDirtyProps>>
-  setValue?: UseFormSetValue<BiddingInfoType>
+  setBidderIsDirty?: Dispatch<SetStateAction<BidderisDirtyProps>>
 }
 
 export default function ModalAddr({
@@ -44,7 +59,7 @@ export default function ModalAddr({
   onClose,
   stepNum,
   setIsDirty,
-  setValue,
+  setBidderIsDirty,
 }: PopupContentProps) {
   const [searchAddr, setSearchAddr] = useState<string>('')
   const [emptyView, setEmptyView] = useState<boolean>(false) // 검색결과 없을 때 뷰
@@ -152,55 +167,13 @@ export default function ModalAddr({
   }
 
   const handleGetAddr = () => {
-    if (!isAgent) {
-      setValue('bidderAddr', [biddingForm?.bidders[stepNum].address ?? ''])
-      setValue('bidderAddrDetail', [
-        biddingForm.bidders[stepNum].addressDetail ?? '',
-      ])
-      setDetailAddr(false)
-    } else if (isAgent) {
-      setDetailAddr(false)
-    }
+    setDetailAddr(false)
   }
-
-  // const handleCombineAddr = () => {
-  //   if (!agentInfo) {
-  //     const updatedAddr =
-  //       biddingForm.bidders[stepNum].address +
-  //       ' ' +
-  //       (biddingForm.bidders[stepNum].addressDetail !== ''
-  //         ? biddingForm.bidders[stepNum].addressDetail
-  //         : '')
-  //     setBiddingForm((prev) => ({
-  //       ...prev,
-  //       bidders: prev.bidders.map((bidder, idx) => {
-  //         if (idx === stepNum) {
-  //           return {
-  //             ...bidder,
-  //             address: updatedAddr,
-  //           }
-  //         }
-  //         return bidder
-  //       }),
-  //     }))
-  //   } else {
-  //     const updatedAddr =
-  //       agentInfo?.agentAddr + (' ' + agentInfo?.agentAddrDetail) ?? ''
-  //     setBiddingForm((prev) => ({
-  //       ...prev,
-  //       agent: {
-  //         ...prev.agent,
-  //         address: updatedAddr,
-  //       },
-  //     }))
-  //   }
-  // }
 
   const handleEnterDetail = (e: any) => {
     if (window !== undefined) {
       if (e.key === 'Enter' && searchAddr.length > 0) {
         handleGetAddr()
-        // handleCombineAddr()
         onClose()
         setBiddingForm((prev: any) => ({
           ...prev,

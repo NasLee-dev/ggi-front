@@ -35,7 +35,7 @@ export default function TopComponent({
   const { data: addressList } = useGetAddress(keyword)
   return (
     <div className="w-[1720px] h-[72px] flex gap-[20px] z-10">
-      <div className="flex w-[100px] h-full justify-start items-center">
+      <div className="flex w-[105px] h-full justify-start items-center">
         <Title />
       </div>
       <div className="flex flex-col gap-0 w-[1150px] h-full relative justify-start">
