@@ -1,8 +1,7 @@
 import DatePickerContainer from '@/app/data-detail/components/SearchContainer/components/DateContainer/components/DatePickerContainer'
 import LastMonthButton from '@/app/data-detail/components/SearchContainer/components/DateContainer/components/LastMonthsButton'
 import FilterTitle from '@/app/shared/components/text/FilterTitle'
-import { formatDate } from '@/app/shared/utils/formatDate'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Control, useFormContext } from 'react-hook-form'
 import { subMonths, endOfMonth } from 'date-fns'
 
@@ -11,68 +10,71 @@ interface DateContainerProps {
 }
 
 export default function DateContainer({ control }: DateContainerProps) {
-  const [isOpenStartPicker, setIsOpenStartPicker] = useState(false)
-  const [isOpenEndPicker, setIsOpenEndPicker] = useState(false)
-  const [startDateValue, setStartDateValue] = useState('yyyy / mm / dd')
-  const [endDateValue, setEndDateValue] = useState('yyyy / mm / dd')
+  const [isPicker, setIsPicker] = useState(false)
   const [startDate, setStartDate] = useState(null)
   const [endDate, setEndDate] = useState(null)
+  const [prevStartDate, setPrevStartDate] = useState(startDate)
+  const [prevEndDate, setPrevEndDate] = useState(endDate)
+  const [activeButton, setActiveButton] = useState(null)
 
   const { setValue } = useFormContext()
 
-  const handleClickStartPicker = () => {
-    setIsOpenStartPicker((prev) => !prev)
-    setIsOpenEndPicker(false)
-  }
-  const handleClickEndPicker = () => {
-    setIsOpenEndPicker((prev) => !prev)
-    setIsOpenStartPicker(false)
+  const handleChange = (dates: any) => {
+    const [start, end] = dates
+    setStartDate(start)
+    setEndDate(end)
   }
 
-  const handleChangeStartDate = (value: Date) => {
-    setStartDate(value)
-  }
-
-  const handleChangeEndDate = (value: Date) => {
-    setEndDate(value)
-  }
-
-  const handleStartDateApply = () => {
+  const handleApply = () => {
     if (endDate && startDate > endDate) {
-      alert('시작 날짜는 종료 날짜보다 빠를 수 없습니다.')
+      alert('시작 날짜는 종료 날짜보다 늦을 수 없습니다.')
       return
     }
 
-    if (!endDate || startDate <= endDate) {
-      setValue('startDate', startDate)
-      setStartDateValue(formatDate(startDate))
-      setIsOpenStartPicker(false)
-    }
-  }
-
-  const handleEndDateApply = () => {
     if (startDate && endDate < startDate) {
       alert('종료 날짜는 시작 날짜보다 빠를 수 없습니다.')
       return
     }
 
-    if (!startDate || endDate >= startDate) {
-      setValue('endDate', endDate)
-      setEndDateValue(formatDate(endDate))
-      setIsOpenEndPicker(false)
-    }
+    setValue('startDate', startDate)
+    setValue('endDate', endDate)
+    setPrevStartDate(startDate)
+    setPrevEndDate(endDate)
+    setIsPicker(false)
   }
 
   const setDateRange = (monthsAgo: number) => {
     const endDate = endOfMonth(subMonths(new Date(), 1)) // 저번 달 말일
     const startDate = subMonths(endDate, monthsAgo - 1) // endDate 기준 monthsAgo 만큼 이전 날짜 설정
+    setStartDate(startDate)
+    setEndDate(endDate)
+    setPrevStartDate(startDate)
+    setPrevEndDate(endDate)
     setValue('startDate', startDate)
     setValue('endDate', endDate)
-    setStartDateValue(formatDate(startDate))
-    setEndDateValue(formatDate(endDate))
-    setIsOpenStartPicker(false)
-    setIsOpenEndPicker(false)
   }
+
+  const resetDate = () => {
+    setValue('startDate', null)
+    setValue('endDate', null)
+    setStartDate(null)
+    setEndDate(null)
+  }
+
+  const handleCancel = () => {
+    setIsPicker(false)
+    setStartDate(prevStartDate)
+    setEndDate(prevEndDate)
+  }
+
+  useEffect(() => {
+    if (startDate && endDate) {
+      const monthsDifference = Math.round(
+        (endDate - startDate) / (1000 * 60 * 60 * 24 * 30),
+      )
+      setActiveButton(monthsDifference + 1)
+    }
+  }, [startDate, endDate])
 
   return (
     <div>
@@ -80,20 +82,30 @@ export default function DateContainer({ control }: DateContainerProps) {
       <div className="flex justify-between items-center mt-3 mb-8">
         <DatePickerContainer
           control={control}
-          isOpenStartPicker={isOpenStartPicker}
-          isOpenEndPicker={isOpenEndPicker}
-          startDateValue={startDateValue}
-          endDateValue={endDateValue}
-          handleClickStartPicker={handleClickStartPicker}
-          handleClickEndPicker={handleClickEndPicker}
-          handleChangeStartDate={handleChangeStartDate}
-          handleChangeEndDate={handleChangeEndDate}
-          handleStartDateApply={handleStartDateApply}
-          handleEndDateApply={handleEndDateApply}
+          isPicker={isPicker}
+          setIsPicker={setIsPicker}
+          startDate={startDate}
+          endDate={endDate}
+          handleChange={handleChange}
+          resetDate={resetDate}
+          handleCancel={handleCancel}
+          handleApply={handleApply}
         />
-        <LastMonthButton text="최근 3개월" onClick={() => setDateRange(3)} />
-        <LastMonthButton text="최근 6개월" onClick={() => setDateRange(6)} />
-        <LastMonthButton text="최근 1년" onClick={() => setDateRange(12)} />
+        <LastMonthButton
+          active={activeButton === 3}
+          text="최근 3개월"
+          onClick={() => setDateRange(3)}
+        />
+        <LastMonthButton
+          active={activeButton === 6}
+          text="최근 6개월"
+          onClick={() => setDateRange(6)}
+        />
+        <LastMonthButton
+          active={activeButton === 12}
+          text="최근 1년"
+          onClick={() => setDateRange(12)}
+        />
       </div>
     </div>
   )
