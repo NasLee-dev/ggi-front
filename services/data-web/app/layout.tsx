@@ -6,9 +6,6 @@ import Sidebar from '@/app/shared/components/layout/SideBar'
 export const metadata = {
   title: '데이터 프로바이저',
   description: '지지옥션 데이터 프로바이저',
-  icons: {
-    icon: 'https://web.ggi.co.kr/GGILogo.ico',
-  },
 }
 
 export default function RootLayout({
@@ -19,12 +16,15 @@ export default function RootLayout({
   return (
     <ReactQueryClientProvider>
       <html lang="en">
+        <head>
+          <link rel="icon" href="https://web.ggi.co.kr/GGILogo.ico" />
+        </head>
         <body className="custom-scrollbar">
           <Header />
           <div>
             <Sidebar />
             <div className="pt-[88px] pl-[120px] ggi:pl-0">
-              <div className="w-[1800px] p-10">{children}</div>
+              <div className="w-[1794px] p-10">{children}</div>
             </div>
           </div>
         </body>
