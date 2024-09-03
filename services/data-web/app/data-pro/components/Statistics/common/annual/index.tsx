@@ -16,11 +16,11 @@ export default function AnnualDataComponent({
     <div className="flex flex-col w-[1714px] h-full p-[40px] border border-[#E5E7EB] bg-white rounded-[24px] gap-8">
       <div className="flex justify-between w-full">
         <TopComponent />
-        <div className="flex w-[250px] h-[50px]">
+        <div className="flex w-[270px] h-[50px]">
           <CustomSelect
             label="용도"
             option={Usage.filter((usage) => usage.label !== '선택안함')}
-            width="250"
+            width="270"
             height="50"
           />
         </div>

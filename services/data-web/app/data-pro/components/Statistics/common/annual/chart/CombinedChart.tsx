@@ -3,64 +3,54 @@ import { Bar, CartesianGrid, ComposedChart, Line, XAxis, YAxis } from 'recharts'
 export default function CombinedChartComponent() {
   const data = [
     {
-      name: 'Page A',
+      name: '2019년',
       uv: 4000,
       pv: 2400,
-      amt: 2400,
     },
     {
-      name: 'Page B',
+      name: '2020년',
       uv: 3000,
       pv: 1398,
-      amt: 2210,
     },
     {
-      name: 'Page C',
+      name: '2021년',
       uv: 2000,
       pv: 9800,
-      amt: 2290,
     },
     {
-      name: 'Page D',
+      name: '2022년',
       uv: 2780,
       pv: 3908,
-      amt: 2000,
     },
     {
-      name: 'Page E',
-      uv: 1890,
-      pv: 4800,
-      amt: 2181,
-    },
-    {
-      name: 'Page F',
-      uv: 2390,
-      pv: 3800,
-      amt: 2500,
-    },
-    {
-      name: 'Page G',
-      uv: 3490,
-      pv: 4300,
-      amt: 2100,
+      name: '2023년',
+      uv: 2780,
+      pv: 3908,
     },
   ]
 
   return (
-    <div className="flex flex-row gap-5 w-[1620px]">
-      <ComposedChart width={800} height={500} data={data}>
+    <div className="flex flex-col gap-5 w-full bg-[#F8FAFC] rounded-[24px] justify-center items-end">
+      <div className="flex flex-col gap-5 justify-center items-center w-full">
+        <div className="flex flex-1 w-full justify-between items-center pl-5 pr-5">
+          <div className="w-[10%]">
+            <img src={'/images/mark.png'} alt="mark" />
+          </div>
+          <p className="h-7 text-center text-gray-800 text-lg font-bold font-['SUIT'] leading-normal ">
+            실거래추이(당기)
+          </p>
+          <p className="w-[10%]">&nbsp;&nbsp;</p>{' '}
+          {/* 중간에 빈 공간을 배치하려면 필요 */}
+        </div>
+        <p className="text-gray-400 text-sm font-medium font-['SUIT'] leading-[18.90px] ">
+          (출처 : 지지옥션)
+        </p>
+      </div>
+      <ComposedChart width={1600} height={500} data={data}>
         <XAxis dataKey="name" />
         <YAxis />
-        <CartesianGrid stroke="#f5f5f5" />
-        <Bar dataKey="pv" barSize={20} fill="#413ea0" />
-        <Line type="monotone" dataKey="uv" stroke="#ff7300" />
-      </ComposedChart>
-      <ComposedChart width={800} height={500} data={data}>
-        <XAxis dataKey="name" />
-        <YAxis />
-        <CartesianGrid stroke="#f5f5f5" />
-        <Bar dataKey="pv" barSize={20} fill="#413ea0" />
-        <Line type="monotone" dataKey="uv" stroke="#ff7300" />
+        <Bar dataKey="pv" barSize={80} fill="rgba(124, 37, 235, 0.50)" />
+        <Bar dataKey="uv" barSize={80} fill="rgba(203, 213, 225, 0.50)" />
       </ComposedChart>
     </div>
   )
