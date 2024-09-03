@@ -2,11 +2,11 @@ import { SearchCondition } from '@/app/data-pro/models/Common'
 import { Dispatch, SetStateAction } from 'react'
 import CustomSelect from './CustomSelect'
 import TableList from './TableList'
+import { Option } from '@/app/data-pro/constants/Option'
 
 interface TableComponentProps {
   activeTab: string
   searchCondition: SearchCondition
-  setSearchCondition: Dispatch<SetStateAction<SearchCondition>>
 }
 
 export default function TableComponent({
@@ -30,7 +30,7 @@ export default function TableComponent({
             </p>
           </div>
           <div className="flex w-[200px] h-[50px]">
-            <CustomSelect />
+            <CustomSelect label="기간" option={Option} />
           </div>
         </div>
       </div>

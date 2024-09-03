@@ -21,7 +21,7 @@ export default function TableList({ activeTab }: TableListProps) {
   return (
     <div className="flex flex-col w-full h-[200px] mt-[20px]">
       <TableHeader activeTab={activeTab} />
-      <TableBody data={dummy} />
+      <TableBody data={dummy} activeTab={activeTab} />
     </div>
   )
 }
