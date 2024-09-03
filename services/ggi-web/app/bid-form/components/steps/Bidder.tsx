@@ -8,6 +8,7 @@ import Spinner from '../icons/Spinner'
 import usePutBidders from './hooks/usePutBidders'
 import usePostBidders from './hooks/usePostBidders'
 import BidderForm from '../formComponents/BidderForm'
+import useGetBidder from './hooks/useGetBidder'
 
 export default function Bidder() {
   if (typeof window === 'undefined') return null
@@ -22,6 +23,11 @@ export default function Bidder() {
   const [loading, setLoading] = useState<boolean>(false) //  로딩 상태
   const { isOpen, onClose, onOpen } = useDisclosure() //  주소검색 모달 상태
   const [errControl, setErrControl] = useState(false)
+  const { data: bidderData } = useGetBidder({
+    mstSeq: biddingForm.mstSeq.toString(),
+    seq: (stepNum + 1).toString(),
+  })
+  console.log(bidderData)
   const putBidderInfo = usePutBidders({
     mstSeq: biddingForm.mstSeq,
     bidderType: biddingForm.bidders[stepNum]?.bidderType,
@@ -34,33 +40,6 @@ export default function Bidder() {
     peopleSeq: stepNum,
     bidders: biddingForm.bidders,
   })
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   reset,
-  //   setFocus,
-  //   setError,
-  //   setValue,
-  //   formState: { errors },
-  // } = useForm<BiddingInfoType>({
-  //   defaultValues: {
-  //     bidderName: [''],
-  //     bidderPhone1: [''],
-  //     bidderPhone2: [''],
-  //     bidderPhone3: [''],
-  //     bidderIdNum1: [''],
-  //     bidderIdNum2: [''],
-  //     bidderAddr: [''],
-  //     bidderAddrDetail: [''],
-  //     bidderCorpNum1: [''],
-  //     bidderCorpNum2: [''],
-  //     bidderCorpNum3: [''],
-  //     bidderCorpRegiNum1: [''],
-  //     bidderCorpRegiNum2: [''],
-  //     bidderJob: [''],
-  //   },
-  //   mode: 'onChange',
-  // })
 
   //  수정 사항 반영
   const handleUpdate = () => {
@@ -83,48 +62,72 @@ export default function Bidder() {
   }
 
   //  다음 스텝 넘어가기
+  // const handleNextStepNew = (num: number) => {
+  //   if (biddingForm.bidderCount === 1) {
+  //     handleBidderFormSave()
+  //     if (!errControl) {
+  //       setStateNum(stateNum + 2)
+  //     }
+  //   } else if (biddingForm.bidderCount > 1) {
+  //     if (
+  //       stepNum + 1 === biddingForm.bidderCount &&
+  //       biddingForm.agentYn !== 'Y'
+  //     ) {
+  //       handleBidderFormSave()
+  //       if (!errControl) {
+  //         setStateNum(stateNum + 1)
+  //       }
+  //     } else if (
+  //       stepNum + 1 === biddingForm.bidderCount &&
+  //       biddingForm.agentYn === 'Y'
+  //     ) {
+  //       handleBidderFormSave()
+  //       if (!errControl) {
+  //         setStateNum(19)
+  //       }
+  //     } else if (biddingForm.bidders[stepNum]?.name === '') {
+  //       handleBidderFormSave()
+  //       if (!errControl) {
+  //         setStepNum(num + 1)
+  //       }
+  //     } else {
+  //       if (
+  //         biddingForm?.bidders?.length > 0 &&
+  //         biddingForm?.bidders[stepNum]?.peopleSeq === stepNum
+  //       ) {
+  //         handleUpdate()
+  //         if (!errControl) {
+  //           setStepNum(num + 1)
+  //         }
+  //       } else {
+  //         handleBidderFormSave()
+  //         if (!errControl) {
+  //           setStepNum(num + 1)
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+
   const handleNextStepNew = (num: number) => {
     if (biddingForm.bidderCount === 1) {
       handleBidderFormSave()
-      if (!errControl) {
-        setStateNum(stateNum + 2)
-      }
-    } else if (biddingForm.bidderCount > 1) {
-      if (
-        stepNum + 1 === biddingForm.bidderCount &&
-        biddingForm.agentYn !== 'Y'
-      ) {
-        handleBidderFormSave()
-        if (!errControl) {
-          setStateNum(stateNum + 1)
-        }
-      } else if (
-        stepNum + 1 === biddingForm.bidderCount &&
-        biddingForm.agentYn === 'Y'
-      ) {
-        handleBidderFormSave()
-        if (!errControl) {
-          setStateNum(19)
-        }
-      } else if (biddingForm.bidders[stepNum].name === '') {
-        handleBidderFormSave()
-        if (!errControl) {
-          setStepNum(num + 1)
-        }
+    } else {
+      if (bidderData.bidders.length > 0) {
+        handleUpdate()
+        setStepNum(num + 1)
       } else {
-        if (
-          biddingForm?.bidders?.length > 0 &&
-          biddingForm?.bidders[stepNum]?.peopleSeq === stepNum
-        ) {
-          handleUpdate()
-          if (!errControl) {
-            setStepNum(num + 1)
+        if (biddingForm.bidderCount === stepNum + 1) {
+          if (biddingForm.agentYn === 'Y') {
+            handleBidderFormSave()
+            setStateNum(19)
+          } else {
+            handleBidderFormSave()
+            setStateNum(stateNum + 1)
           }
         } else {
           handleBidderFormSave()
-          if (!errControl) {
-            setStepNum(num + 1)
-          }
+          setStepNum(num + 1)
         }
       }
     }
