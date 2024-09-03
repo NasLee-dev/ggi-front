@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useState } from 'react'
 import SearchIcon from '../../icons/statistics/SearchIcon'
 import Title from './Title'
 import useGetAddress from '../hooks/useGetAddress'
-import AutoKeyword from './AutoKeyword'
+import AutoKeyword from './search/AutoKeyword'
 type OptionValue = {
   value: string
   label: string
@@ -34,7 +34,7 @@ export default function TopComponent({
 
   const { data: addressList } = useGetAddress(keyword)
   return (
-    <div className="w-[1720px] h-[72px] flex gap-[20px] z-10">
+    <div className="w-[1720px] h-[72px] flex gap-[14px] z-10">
       <div className="flex w-[105px] h-full justify-start items-center">
         <Title />
       </div>

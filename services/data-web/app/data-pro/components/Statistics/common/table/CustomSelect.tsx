@@ -1,23 +1,22 @@
+import { OptionValue } from '@/app/data-pro/models/Common'
 import { useEffect, useRef, useState } from 'react'
 
-export default function CustomSelect() {
+interface CustomSelectProps {
+  label: string
+  option: OptionValue[]
+  width?: string
+  height?: string
+}
+
+export default function CustomSelect({
+  label,
+  option,
+  width,
+  height,
+}: CustomSelectProps) {
   const selectRef = useRef<HTMLDivElement>(null)
   const [isOpen, setIsOpen] = useState(false)
-  const optionLabel = [
-    {
-      label: '최근 3개월',
-      value: '3',
-    },
-    {
-      label: '최근 6개월',
-      value: '6',
-    },
-    {
-      label: '최근 12개월',
-      value: '12',
-    },
-  ]
-  const [options, setOptions] = useState(optionLabel[2].label)
+  const [options, setOptions] = useState(option[0].label)
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -39,9 +38,11 @@ export default function CustomSelect() {
       ref={selectRef}
       className="relative inline-block text-left flex-1 rounded-full w-full h-full border border-[#e5e7eb] bg-[#f8fafc] p-[10px] justify-center items-center"
     >
-      <div className="flex flex-row w-full gap-[5px] justify-center items-center h-full">
+      <div
+        className={`flex flex-row gap-[5px] justify-center items-center ${width ? width + 'px' : 'w-full'} ${height ? height + 'px' : 'h-full'}`}
+      >
         <p className="text-center text-gray-300 text-base font-bold font-['NanumGothic'] leading-snug w-[60px]">
-          기간
+          {label}
         </p>
 
         <select
@@ -51,7 +52,7 @@ export default function CustomSelect() {
             setOptions(e.target.value)
           }}
         >
-          {optionLabel.map((option, index) => (
+          {option.map((option, index) => (
             <option key={index} value={option.value}>
               {option.label}
             </option>
@@ -93,7 +94,7 @@ export default function CustomSelect() {
       </div>
       {isOpen && (
         <div className="absolute z-10 top-[50px] left-0 w-full h-[120px] p-[8px] bg-white rounded-md shadow-lg overflow-y-auto custom-scrollbar">
-          {optionLabel.map((option, index) => (
+          {option.map((option, index) => (
             <div
               key={index}
               className="flex flex-row w-full h-[38px] cursor-pointer select-none relative p-[8px] hover:bg-gray-100"

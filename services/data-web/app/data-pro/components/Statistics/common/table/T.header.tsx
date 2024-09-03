@@ -1,7 +1,7 @@
 interface TableHeaderProps {
   activeTab: string
 }
-export default function TableHeader({ activeTab }) {
+export default function TableHeader({ activeTab }: TableHeaderProps) {
   return (
     <div className="flex flex-row w-full">
       <div className="flex w-[204.7px] h-[50px] pt-3 pb-3 pl-5 pr-5 justify-center items-center border-b border-gray-200 ">

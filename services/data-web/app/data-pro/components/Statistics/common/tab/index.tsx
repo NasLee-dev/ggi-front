@@ -4,11 +4,13 @@ import { Dispatch, SetStateAction } from 'react'
 interface TabComponentProps {
   activeTab: string
   setActiveTab: Dispatch<SetStateAction<string>>
+  handleScroll: (id: string) => void
 }
 
 export default function TabComponent({
   activeTab,
   setActiveTab,
+  handleScroll,
 }: TabComponentProps) {
   return (
     <div className="flex w-full h-[45px] justify-center items-center flex-row">
@@ -18,6 +20,15 @@ export default function TabComponent({
           className={`flex flex-1 w-[30%] h-full text-center cursor-pointer items-center justify-center`}
           onClick={() => {
             setActiveTab(tab.label)
+            setTimeout(() => {
+              handleScroll(
+                tab.label === '매각통계'
+                  ? 'sold'
+                  : tab.label === '실거래통계'
+                    ? 'real'
+                    : 'map',
+              )
+            }, 100)
           }}
           style={{
             transition: 'border-color 0.3s ease',

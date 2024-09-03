@@ -1,8 +1,9 @@
 interface TableBodyProps {
   data: any[]
+  activeTab: string
 }
 
-export default function TableBody({ data }: TableBodyProps) {
+export default function TableBody({ data, activeTab }: TableBodyProps) {
   return (
     <div className="flex flex-col">
       <div className="flex flex-row w-full">
