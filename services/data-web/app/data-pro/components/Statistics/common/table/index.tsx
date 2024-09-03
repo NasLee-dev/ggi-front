@@ -30,7 +30,9 @@ export default function TableComponent({
             </p>
           </div>
           <div className="flex w-[200px] h-[50px]">
-            <CustomSelect label="기간" option={Option} />
+            {activeTab === '매각통계' && (
+              <CustomSelect label="기간" option={Option} />
+            )}
           </div>
         </div>
       </div>
