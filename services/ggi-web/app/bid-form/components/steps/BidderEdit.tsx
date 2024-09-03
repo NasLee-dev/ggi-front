@@ -430,17 +430,7 @@ export default function BidderEdit() {
         <BidderForm
           stepNum={stepNum}
           setStepNum={setStepNum}
-          setError={setError}
-          isOpen={isOpen}
-          onOpen={onOpen}
-          setValue={setValue}
           onSubmit={onSubmit}
-          handleInputChange={handleInputChange}
-          errors={errors}
-          setFocus={setFocus}
-          onClose={onClose}
-          register={register}
-          handleSubmit={handleSubmit}
         />
       </div>
     </div>
