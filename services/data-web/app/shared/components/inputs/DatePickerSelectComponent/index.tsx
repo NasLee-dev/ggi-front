@@ -10,13 +10,12 @@ import { formatDate } from '@/app/shared/utils/formatDate'
 import DropIcon from '@/app/shared/components/inputs/DatePickerSelectComponent/components/DropIcon'
 
 interface DatePickerSelectComponentProps {
-  onChange: (value: Date | null) => void
-  handleChange: any
-  onApply: () => void
   isOpen: boolean
-  setIsOpen: Dispatch<SetStateAction<boolean>>
   startDate: Date
   endDate: Date
+  handleChange: (dates: any) => void
+  onApply: () => void
+  setIsOpen: Dispatch<SetStateAction<boolean>>
   resetDate: () => void
   handleCancel: () => void
 }
@@ -27,12 +26,12 @@ const DatePickerSelectComponent = React.forwardRef<
 >(
   (
     {
-      onApply,
-      handleChange,
-      setIsOpen,
       isOpen,
       startDate,
       endDate,
+      handleChange,
+      onApply,
+      setIsOpen,
       resetDate,
       handleCancel,
     },

@@ -1,5 +1,4 @@
 import CalendarIcon from '@/app/data-detail/components/SearchContainer/components/DateContainer/components/DatePickerContainer/components/CalendarIcon'
-import DatePickerComponent from '@/app/shared/components/inputs/DatePickerComponent'
 import DatePickerSelectComponent from '@/app/shared/components/inputs/DatePickerSelectComponent'
 import { Dispatch, SetStateAction } from 'react'
 import { Control, Controller } from 'react-hook-form'
@@ -7,9 +6,9 @@ import { Control, Controller } from 'react-hook-form'
 interface DatePickerContainerProps {
   control: Control<any>
   isPicker: boolean
-  setIsPicker: Dispatch<SetStateAction<boolean>>
   startDate: Date
   endDate: Date
+  setIsPicker: Dispatch<SetStateAction<boolean>>
   handleChange: (value: Date) => void
   resetDate: () => void
   handleCancel: () => void
@@ -19,9 +18,9 @@ interface DatePickerContainerProps {
 export default function DatePickerContainer({
   control,
   isPicker,
-  setIsPicker,
   startDate,
   endDate,
+  setIsPicker,
   handleChange,
   resetDate,
   handleCancel,
@@ -39,7 +38,6 @@ export default function DatePickerContainer({
             <DatePickerSelectComponent
               isOpen={isPicker}
               handleChange={handleChange}
-              onChange={handleChange}
               onApply={handleApply}
               setIsOpen={setIsPicker}
               startDate={startDate}
