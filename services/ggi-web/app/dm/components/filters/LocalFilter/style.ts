@@ -22,4 +22,5 @@ export const SwitchBtn = styled.button<{ status : boolean}>`
   border-radius: 100px;
   border: 1px solid ${({status}) => (status ? theme.palette.blueMain : theme.palette.blueSecondary)};
   background-color: ${({status}) => (status ? theme.palette.blueMain : theme.palette.blueSecondary)};
+  cursor: pointer;
 `

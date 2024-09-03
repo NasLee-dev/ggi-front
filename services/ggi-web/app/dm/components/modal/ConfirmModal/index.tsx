@@ -16,7 +16,7 @@ export default function ConfirmModal ({
   return (
     <S.ModalContainer>
       <S.TitleBox>
-        {type === 'save' ? (
+        {type === 'SAVE' ? (
           <Image 
             src='/dm/images/confirm_save.png'
             alt='save'
@@ -34,20 +34,20 @@ export default function ConfirmModal ({
           />
         )}
         <T.TitleText>
-          {C.CONFIRMCONTENTS[type].title}
+          {C.CONFIRMCONTENTS[type].TITLE}
         </T.TitleText>
         <T.TextGothic18px color={theme.palette.grayMain}>
-          {C.CONFIRMCONTENTS[type].subTitle}
+          {C.CONFIRMCONTENTS[type].SUBTITLE}
         </T.TextGothic18px>
       </S.TitleBox>
       
-      <B.ModalBtnGrid styles={ type === 'over' 
+      <B.ModalBtnGrid styles={ type === 'OVER' 
         ? theme.styles.modal.condition.confirm.overBtn
         : theme.styles.modal.condition.confirm.btnGrid}>
         <ModalButton 
           // type={type}
-          leftBtnTitle={C.CONFIRMCONTENTS[type].leftBtn} 
-          rightBtnTitle={C.CONFIRMCONTENTS[type].rightBtn} 
+          leftBtnTitle={C.CONFIRMCONTENTS[type].LEFTBTN} 
+          rightBtnTitle={C.CONFIRMCONTENTS[type].RIGHTBTN} 
           clickLeftBtn={() => clickLeftBtn(type)} 
           clickRightBtn={() => clickRightBtn(type)}
         />

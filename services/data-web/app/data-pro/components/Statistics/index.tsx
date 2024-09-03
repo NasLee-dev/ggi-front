@@ -1,17 +1,21 @@
 'use client'
-
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Usage } from '../../constants/Usage'
 import TopComponent from './common/Top'
 import SearchComponent from './common/search'
 import SearchBtn from './common/search/SearchBtn'
 import Divider from './common/Divider'
 import TabComponent from './common/tab'
-import TableComponent from './common/table'
+import SoldComponent from './soldStatistics'
+import RealStatistics from './realStatistics'
+import MapComponent from './mapSearch/Map'
+import RepresentComponent from './realStatistics/Represent'
+import AnnualDataComponent from './common/annual'
 
 export default function StatisticsPage() {
   const INITIAL_TAB = '매각통계'
   const [activeTab, setActiveTab] = useState(INITIAL_TAB)
+  const [isMounted, setIsMounted] = useState(false)
   const [searchCondition, setSearchCondition] = useState({
     keyword: '',
     address: {
@@ -25,9 +29,22 @@ export default function StatisticsPage() {
       compare2: Usage[0],
     },
   })
+  const handleScroll = (id: string) => {
+    const element = document.getElementById(id)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  useEffect(() => {
+    if (!isMounted) {
+      setIsMounted(true)
+      handleScroll('sold')
+    }
+  }, [isMounted])
 
   return (
-    <div className="flex flex-col bg-white w-full h-full gap-[40px] overflow-y-auto overflow-x-hidden custom-scrollbar">
+    <div className="flex flex-col bg-white w-full h-full gap-[40px] overflow-y-hidden overflow-x-hidden custom-scrollbar">
       <TopComponent
         keyword={searchCondition.keyword}
         setSearchCondition={setSearchCondition}
@@ -38,13 +55,34 @@ export default function StatisticsPage() {
       />
       <SearchBtn />
       <Divider />
-      <TabComponent activeTab={activeTab} setActiveTab={setActiveTab} />
-      {(activeTab === '매각통계' || activeTab === '실거래통계') && (
-        <TableComponent
-          activeTab={activeTab}
-          searchCondition={searchCondition}
-          setSearchCondition={setSearchCondition}
-        />
+      <TabComponent
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        handleScroll={handleScroll}
+      />
+      {activeTab === '매각통계' && (
+        <div id="sold" className="flex flex-col w-full gap-10">
+          <SoldComponent
+            searchCondition={searchCondition}
+            activeTab={'매각통계'}
+          />
+          <AnnualDataComponent activeTab={'매각통계'} />
+        </div>
+      )}
+      {activeTab === '실거래통계' && (
+        <div id="real" className="flex flex-col w-full gap-10">
+          <RepresentComponent />
+          <RealStatistics
+            searchCondition={searchCondition}
+            activeTab={'실거래통계'}
+          />
+          <AnnualDataComponent activeTab={'실거래통계'} />
+        </div>
+      )}
+      {activeTab === '인근사례' && (
+        <div id="map">
+          <MapComponent />
+        </div>
       )}
     </div>
   )

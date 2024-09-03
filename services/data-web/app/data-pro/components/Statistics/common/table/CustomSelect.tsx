@@ -1,32 +1,48 @@
-import { useRef, useState } from 'react'
+import { OptionValue } from '@/app/data-pro/models/Common'
+import { useEffect, useRef, useState } from 'react'
 
-export default function CustomSelect() {
+interface CustomSelectProps {
+  label: string
+  option: OptionValue[]
+  width?: string
+  height?: string
+}
+
+export default function CustomSelect({
+  label,
+  option,
+  width,
+  height,
+}: CustomSelectProps) {
   const selectRef = useRef<HTMLDivElement>(null)
   const [isOpen, setIsOpen] = useState(false)
-  const optionLabel = [
-    {
-      label: '최근 3개월',
-      value: '3',
-    },
-    {
-      label: '최근 6개월',
-      value: '6',
-    },
-    {
-      label: '최근 12개월',
-      value: '12',
-    },
-  ]
-  const [options, setOptions] = useState(optionLabel[2].label)
+  const [options, setOptions] = useState(option[0].label)
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        selectRef.current &&
+        !selectRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [selectRef])
 
   return (
     <div
       ref={selectRef}
-      className="relative inline-block text-left flex-1 rounded-full h-full border border-[#e5e7eb] bg-[#f8fafc] p-[14px]"
+      className="relative inline-block text-left flex-1 rounded-full w-full h-full border border-[#e5e7eb] bg-[#f8fafc] p-[10px] justify-center items-center"
     >
-      <div className="flex flex-row w-full gap-[5px] justify-center items-center">
-        <p className="text-center text-gray-300 text-base font-bold font-['NanumGothic'] leading-snug w-[30%]">
-          기간
+      <div
+        className={`flex flex-row gap-[5px] justify-center items-center ${width ? width + 'px' : 'w-full'} ${height ? height + 'px' : 'h-full'}`}
+      >
+        <p className="text-center text-gray-300 text-base font-bold font-['NanumGothic'] leading-snug w-[60px]">
+          {label}
         </p>
 
         <select
@@ -36,7 +52,7 @@ export default function CustomSelect() {
             setOptions(e.target.value)
           }}
         >
-          {optionLabel.map((option, index) => (
+          {option.map((option, index) => (
             <option key={index} value={option.value}>
               {option.label}
             </option>
@@ -45,7 +61,9 @@ export default function CustomSelect() {
 
         <div
           className="block appearance-none w-full p-1 rounded-full h-full  focus:outline-none cursor-pointer"
-          onClick={() => {}}
+          onClick={() => {
+            setIsOpen(!isOpen)
+          }}
         >
           <p className="text-left text-gray-800 text-base font-normal font-['NanumGothic'] leading-snug">
             {options}
@@ -75,17 +93,35 @@ export default function CustomSelect() {
         </div>
       </div>
       {isOpen && (
-        <div className="absolute z-10 top-[50px] left-0 w-full h-[160px] bg-white rounded-md shadow-lg overflow-y-auto custom-scrollbar">
-          {optionLabel.map((option, index) => (
+        <div className="absolute z-10 top-[50px] left-0 w-full h-[120px] p-[8px] bg-white rounded-md shadow-lg overflow-y-auto custom-scrollbar">
+          {option.map((option, index) => (
             <div
               key={index}
-              className="cursor-pointer select-none relative py-2 pl-3 pr-9 hover:bg-gray-100"
+              className="flex flex-row w-full h-[38px] cursor-pointer select-none relative p-[8px] hover:bg-gray-100"
               onClick={() => {
-                setOptions(option.value)
+                setOptions(option.label)
                 setIsOpen(false)
               }}
             >
               <span className="block truncate">{option.label}</span>
+              {options === option.label && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  className="absolute right-0 top-0 bottom-0 m-auto"
+                >
+                  <path
+                    d="M13.3307 4L5.9974 11.3333L2.66406 8"
+                    stroke="#3B82F6"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              )}
             </div>
           ))}
         </div>

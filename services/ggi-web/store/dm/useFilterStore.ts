@@ -13,33 +13,33 @@ interface IFilterState {
   setSort?: (sorts: string[]) => void
 }
 
-const InitialFilters = {
+const InitialKMFilters = {
   fromBiddingDate: '',
   toBiddingDate: '',
   isAddress: true,
   sd: '서울',
-  sgg: '강남구',
-  umd: '개포동',
+  sgg: '',
+  umd: '',
   code1: '01',
-  code2: '01',
-  code3: '01',
+  code2: '',
+  code3: '',
   isOwner: false,
   isDebtor: false,
   isTenant: true,
   isCreditor: false,
   usageIds: [1],
   checkIds: [],
-  statusCode: '01',
+  statusCode: '',
   failCount: 0,
   fromAppraisalAmount: 0,
   toAppraisalAmount: 0,
   fromMinimumAmount: 0,
   toMinimumAmount: 0,
-  isExceptPrevData: false
+  isExceptPrevData: false 
 }
 
-export const useFilterStore = create<IFilterState>((set) => ({
-  filters: InitialFilters,
+export const useKMFilterStore = create<IFilterState>((set) => ({
+  filters: InitialKMFilters,
   setFilters: (newFilters) => set(() => {
     return {
       filters: newFilters
@@ -47,7 +47,7 @@ export const useFilterStore = create<IFilterState>((set) => ({
   }),
   clearFilters: () => set(() => {
     return {
-      filters: InitialFilters
+      filters: InitialKMFilters
     }
   }),
   page: 0,
@@ -62,7 +62,7 @@ export const useFilterStore = create<IFilterState>((set) => ({
       size: pageSize
     }
   }),
-  sort: ["caseNo"],
+  sort: ["caseNo", "stakeholder"],
   setSort: (sorts) => set(() => {
     return {
       sort: sorts

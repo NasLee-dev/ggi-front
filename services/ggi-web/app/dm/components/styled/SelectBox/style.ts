@@ -3,7 +3,7 @@ import * as B from "../../styles/Boxes";
 import { theme } from "../../styles/theme";
 import { css } from "@emotion/react";
 
-export const SelectBox = styled(B.FlexSpaceBetween)<{ width: string, open: boolean }>`
+export const SelectBox = styled(B.FlexSpaceBetween)<{ width: string, open: boolean, disabled: boolean }>`
   width: ${({ width }) => (width)};
   height: 50px;
   position: ${({ open }) => (open ? 'relative' : 'none')};
@@ -15,6 +15,12 @@ export const SelectBox = styled(B.FlexSpaceBetween)<{ width: string, open: boole
   align-items: center;
   cursor: pointer;
   box-sizing: border-box;
+
+  ${({ disabled }) => (disabled 
+    ? `
+      pointer-events: none;
+    ` 
+    : null)}
 `
 
 export const SelectOptions = styled.ul<{ open: boolean }>`

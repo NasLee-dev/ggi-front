@@ -3,9 +3,10 @@ import { useState } from "react"
 const useMyConditionModal = () => {
   const [openModal, setOpenModal] = useState<boolean>(false)
   const [openConfirmModal, setOpenConfirmModal] = useState<boolean>(false)
-  const [confirmBtnType, setConfirmBtnType] = useState<string>('')
+  const [confirmBtnType, setConfirmBtnType] = useState<'SAVE' | 'CANCEL' | 'DELETE' | 'OVER'>('CANCEL')
 
-  const handleConfirmBtnType = (type: string) => {
+  const handleConfirmBtnType = (type: 'SAVE' | 'CANCEL' | 'DELETE' | 'OVER') => {
+    console.log(type)
     setConfirmBtnType(type)
   }
 

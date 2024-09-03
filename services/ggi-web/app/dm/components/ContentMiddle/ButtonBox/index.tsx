@@ -4,7 +4,9 @@ import * as S from "./style";
 import MyConditionModal from "../../modal/MyConditionModal";
 import useMyConditionModal from "@/hooks/dm/useMyConditionModal";
 import * as C from "constants/dm/dm";
-import { useFilterStore } from "@/store/dm/useFilterStore";
+import { useKMFilterStore } from "@/store/dm/useFilterStore";
+import { getKMSearchList } from "@/remote/dm/search/getKMSearchList";
+import { useKMListStore } from "@/store/dm/useListStore";
 
 export default function ButtonBox() {
   const {
@@ -17,10 +19,12 @@ export default function ButtonBox() {
     handleClickBefor,
     handleClickConfirm
   } = useMyConditionModal()
-  const { filters, page, size, sort } = useFilterStore()
+  const { filters, page, size, sort } = useKMFilterStore()
+  const { setList } = useKMListStore()
 
-  const handleClickSearch = () => {
-    console.log(filters)
+  const handleClickSearch = async () => {
+    const res = await getKMSearchList(page, size, sort, filters)
+    setList(res)
   }
 
   return (

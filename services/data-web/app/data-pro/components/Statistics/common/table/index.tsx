@@ -1,11 +1,12 @@
 import { SearchCondition } from '@/app/data-pro/models/Common'
 import { Dispatch, SetStateAction } from 'react'
 import CustomSelect from './CustomSelect'
+import TableList from './TableList'
+import { Option } from '@/app/data-pro/constants/Option'
 
 interface TableComponentProps {
   activeTab: string
   searchCondition: SearchCondition
-  setSearchCondition: Dispatch<SetStateAction<SearchCondition>>
 }
 
 export default function TableComponent({
@@ -13,7 +14,7 @@ export default function TableComponent({
   searchCondition,
 }: TableComponentProps) {
   return (
-    <div className="flex w-full p-[40px] flex-col items-center rounded-[24px] border border-[#E5E7EB] bg-white">
+    <div className="flex flex-col w-full h-full p-10 items-start rounded-[24px] border border-[#E5E7EB] bg-white">
       <div className="flex flex-col gap-[12px] justify-start w-full h-[60px]">
         <div className="flex justify-between w-full">
           <div className="flex flex-col gap-[12px] justify-start w-full h-[60px]">
@@ -28,10 +29,13 @@ export default function TableComponent({
                 : searchCondition.usage.main.label}{' '}
             </p>
           </div>
-          <div className="flex w-[200px] h-[60px]">
-            <CustomSelect />
+          <div className="flex w-[200px] h-[50px]">
+            <CustomSelect label="기간" option={Option} />
           </div>
         </div>
+      </div>
+      <div>
+        <TableList activeTab={activeTab} />
       </div>
     </div>
   )

@@ -5,11 +5,11 @@ import * as S from "./style";
 import Selectbox from "../../styled/SelectBox";
 import { useTabStore } from "@/store/dm/useTabStore";
 import * as C from "constants/dm/dm";
-import { useFilterStore } from "@/store/dm/useFilterStore";
+import { useKMFilterStore } from "@/store/dm/useFilterStore";
 
 export default function DownloadButtonBox() {
   const { tabs } = useTabStore()
-  const { setPage } = useFilterStore()
+  const { setPage } = useKMFilterStore()
 
   const handleSelectPageNum = (value: string, idx: number) => {
     const pageNum = value.replaceAll('개씩 보기', '')

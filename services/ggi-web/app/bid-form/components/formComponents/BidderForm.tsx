@@ -1,15 +1,11 @@
 import { biddingInfoState, stepState } from '@/store/atom/bid-form'
-import { BiddingInfoType } from 'app/bid-form/models/Bidder'
-import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react'
 import {
-  FieldErrors,
-  SubmitHandler,
-  UseFormHandleSubmit,
-  UseFormRegister,
-  UseFormSetError,
-  UseFormSetFocus,
-  UseFormSetValue,
-} from 'react-hook-form'
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useState,
+} from 'react'
 import { LiaEyeSlashSolid, LiaEyeSolid } from 'react-icons/lia'
 import { useRecoilState } from 'recoil'
 import SearchAddress from './address/SearchAddress'
@@ -17,82 +13,160 @@ import SearchAddress from './address/SearchAddress'
 interface BidderFormProps {
   stepNum: number
   setStepNum: Dispatch<SetStateAction<number>>
-  setError: UseFormSetError<BiddingInfoType>
-  isOpen: boolean
-  onOpen: () => void
-  onClose: () => void
-  setValue: UseFormSetValue<BiddingInfoType>
-  onSubmit: SubmitHandler<any>
-  handleInputChange: (e: ChangeEvent<HTMLInputElement>) => void
-  errors: FieldErrors<BiddingInfoType>
-  setFocus: UseFormSetFocus<BiddingInfoType>
-  register: UseFormRegister<BiddingInfoType>
-  handleSubmit: UseFormHandleSubmit<BiddingInfoType>
+  onSubmit: (stepNum: number) => void
 }
 
 export default function BidderForm({
   stepNum,
   setStepNum,
-  setError,
-  isOpen,
-  onOpen,
-  onClose,
-  setValue,
   onSubmit,
-  handleInputChange,
-  errors,
-  setFocus,
-  register,
-  handleSubmit,
 }: BidderFormProps) {
+  const [passwordActive, setPasswordActive] = useState(false)
   const [biddingForm, setBiddingForm] = useRecoilState(biddingInfoState)
   const [stateNum, setStateNum] = useRecoilState(stepState)
-  const [passwordActive, setPasswordActive] = useState(false)
+  const [isDirty, setIsDirty] = useState({
+    bidderName: false,
+    bidderPhone1: false,
+    bidderPhone2: false,
+    bidderPhone3: false,
+    bidderIdNum1: false,
+    bidderIdNum2: false,
+    bidderCorpNum1: false,
+    bidderCorpNum2: false,
+    bidderCorpNum3: false,
+    bidderCorpRegiNum1: false,
+    bidderCorpRegiNum2: false,
+    bidderJob: false,
+    bidderAddr: false,
+    bidderAddrDetail: false,
+  })
 
   const handleFocusChange = (length: number, nextField: string) => {
     return (e: ChangeEvent<HTMLInputElement>) => {
       if (e.target.value.length === length) {
-        setFocus(nextField as keyof BiddingInfoType)
+        document.getElementById(nextField)?.focus()
       }
     }
   }
+
+  const handleIsDirtyReset = useCallback(() => {
+    setIsDirty({
+      bidderName: false,
+      bidderPhone1: false,
+      bidderPhone2: false,
+      bidderPhone3: false,
+      bidderIdNum1: false,
+      bidderIdNum2: false,
+      bidderCorpNum1: false,
+      bidderCorpNum2: false,
+      bidderCorpNum3: false,
+      bidderCorpRegiNum1: false,
+      bidderCorpRegiNum2: false,
+      bidderJob: false,
+      bidderAddr: false,
+      bidderAddrDetail: false,
+    })
+  }, [])
+
+  const handleValidation = () => {
+    if (!isDirty.bidderName && biddingForm.bidders[stepNum]?.name === '') {
+      setIsDirty((prev) => ({ ...prev, bidderName: true }))
+    }
+    if (
+      !isDirty.bidderPhone1 &&
+      !isDirty.bidderPhone2 &&
+      !isDirty.bidderPhone3 &&
+      biddingForm.bidders[stepNum]?.phoneNo === ''
+    ) {
+      setIsDirty((prev) => ({
+        ...prev,
+        bidderPhone1: true,
+        bidderPhone2: true,
+        bidderPhone3: true,
+      }))
+    }
+    if (biddingForm.bidders[stepNum]?.bidderType === 'I') {
+      if (
+        !isDirty.bidderIdNum1 &&
+        !isDirty.bidderIdNum2 &&
+        biddingForm.bidders[stepNum]?.idNum1 +
+          biddingForm.bidders[stepNum]?.idNum2 ===
+          ''
+      ) {
+        setIsDirty((prev) => ({
+          ...prev,
+          bidderIdNum1: true,
+          bidderIdNum2: true,
+        }))
+      }
+    }
+    if (biddingForm.bidders[stepNum]?.bidderType === 'C') {
+      if (
+        !isDirty.bidderCorpNum1 &&
+        !isDirty.bidderCorpNum2 &&
+        !isDirty.bidderCorpNum3 &&
+        biddingForm.bidders[stepNum]?.companyNo === ''
+      ) {
+        setIsDirty((prev) => ({
+          ...prev,
+          bidderCorpNum1: true,
+          bidderCorpNum2: true,
+          bidderCorpNum3: true,
+        }))
+      }
+      if (
+        !isDirty.bidderCorpRegiNum1 &&
+        !isDirty.bidderCorpRegiNum2 &&
+        biddingForm.bidders[stepNum]?.corporationNo === ''
+      ) {
+        setIsDirty((prev) => ({
+          ...prev,
+          bidderCorpRegiNum1: true,
+          bidderCorpRegiNum2: true,
+        }))
+      }
+    }
+    if (!isDirty.bidderAddr && biddingForm.bidders[stepNum]?.address === '') {
+      setIsDirty((prev) => ({ ...prev, bidderAddr: true }))
+    } else {
+      onSubmit(stepNum)
+      handleIsDirtyReset()
+    }
+  }
+
   return (
-    <form
-      onSubmit={handleSubmit(async () => {
-        await onSubmit(stepNum)
-      })}
-      className="flex flex-col md:w-[550px] w-[80%] h-[60%] justify-center items-center overflow-y-auto overflow-x-hidden relative"
-    >
+    <div className="flex flex-col md:w-[550px] w-[80%] h-[60%] justify-center items-center overflow-y-auto overflow-x-hidden relative">
       <div className="flex flex-col w-[100%] gap-2 absolute top-0">
+        {/* 이름 */}
         <div className="flex flex-col w-[100%] gap-1">
           <div className="flex justify-between w-[100%]">
-            {errors.bidderName?.type == 'required' ? (
+            {biddingForm.bidders[stepNum]?.name === '' && isDirty.bidderName ? (
               <div className="flex w-[100%] justify-start">
                 <label
                   htmlFor="bidderName"
                   className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
                 >
-                  {errors.bidderName?.message}
+                  성명을 입력해주세요
                 </label>
               </div>
-            ) : errors.bidderName?.type == 'minLength' &&
-              biddingForm.bidders[stepNum].name.length < 2 ? (
+            ) : biddingForm.bidders[stepNum]?.name.length < 2 &&
+              isDirty.bidderName ? (
               <div className="flex w-[100%] justify-start">
                 <label
                   htmlFor="bidderName"
                   className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
                 >
-                  {errors.bidderName?.message}
+                  2글자 이상 입력해주세요
                 </label>
               </div>
-            ) : errors.bidderName?.type == 'maxLength' &&
-              biddingForm.bidders[stepNum].name.length > 10 ? (
+            ) : biddingForm.bidders[stepNum]?.name.length > 10 &&
+              isDirty.bidderName ? (
               <div className="flex w-[100%] justify-start">
                 <label
                   htmlFor="bidderName"
                   className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
                 >
-                  {errors.bidderName?.message}
+                  10글자 이하로 입력해주세요
                 </label>
               </div>
             ) : (
@@ -113,17 +187,6 @@ export default function BidderForm({
             )}
           </div>
           <input
-            {...register('bidderName', {
-              required: '이름을 입력해주세요',
-              minLength: {
-                value: 2,
-                message: '2글자 이상 입력해주세요',
-              },
-              maxLength: {
-                value: 10,
-                message: '10글자 이하로 입력해주세요',
-              },
-            })}
             value={biddingForm.bidders[stepNum]?.name ?? ''}
             maxLength={10}
             id="bidderName"
@@ -135,6 +198,7 @@ export default function BidderForm({
                 : '법인명'
             }을 입력해주세요`}
             onChange={(e) => {
+              setIsDirty((prev) => ({ ...prev, bidderName: true }))
               setBiddingForm((prev) => ({
                 ...prev,
                 bidders: prev.bidders.map((bidder, idx) => {
@@ -158,19 +222,16 @@ export default function BidderForm({
                   }),
                 }))
               }
-              handleInputChange(e)
             }}
           />
         </div>
+        {/* 전화번호 */}
         <div className="flex flex-col w-[100%] gap-1">
           <div className="flex justify-between w-[100%]">
-            {(errors.bidderPhone1?.type === 'required' ||
-              errors.bidderPhone2?.type === 'required' ||
-              errors.bidderPhone3?.type === 'required') &&
-            biddingForm.bidders[stepNum]?.phoneNo1 +
-              biddingForm.bidders[stepNum]?.phoneNo2 +
-              biddingForm.bidders[stepNum]?.phoneNo3 ===
-              '' ? (
+            {biddingForm.bidders[stepNum]?.phoneNo === '' &&
+            isDirty.bidderPhone1 &&
+            isDirty.bidderPhone2 &&
+            isDirty.bidderPhone3 ? (
               <div className="flex w-[100%] justify-start">
                 <span className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500">
                   전화번호를 입력해주세요
@@ -192,12 +253,6 @@ export default function BidderForm({
           </div>
           <div className="flex flex-row gap-[0.5%]">
             <input
-              {...register('bidderPhone1', { required: true })}
-              onInput={(e) => {
-                e.currentTarget.value = e.currentTarget.value
-                  .replace(/[^0-9.]/g, '')
-                  .replace(/(\..*)\./g, '$1')
-              }}
               type="text"
               id="bidderPhone1"
               inputMode="numeric"
@@ -206,6 +261,7 @@ export default function BidderForm({
               className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[16px] font-semibold font-['suit'] leading-[135%] tracking-[-2%] not-italic h-[40px] px-2 w-[33%] text-center"
               value={biddingForm.bidders[stepNum]?.phoneNo1 ?? ''}
               onChange={(e) => {
+                setIsDirty((prev) => ({ ...prev, bidderPhone1: true }))
                 setBiddingForm((prev) => ({
                   ...prev,
                   bidders: prev.bidders.map((bidder, idx) => {
@@ -220,15 +276,10 @@ export default function BidderForm({
                     return bidder
                   }),
                 }))
-                handleInputChange(e)
                 handleFocusChange(3, 'bidderPhone2')(e)
               }}
             />
             <input
-              {...register('bidderPhone2', {
-                required: true,
-                maxLength: 4,
-              })}
               type="text"
               id="bidderPhone2"
               inputMode="numeric"
@@ -242,6 +293,7 @@ export default function BidderForm({
               className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[16px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic h-[40px] px-2 w-[33%] text-center"
               value={biddingForm.bidders[stepNum]?.phoneNo2 ?? ''}
               onChange={(e) => {
+                setIsDirty((prev) => ({ ...prev, bidderPhone2: true }))
                 setBiddingForm((prev) => ({
                   ...prev,
                   bidders: prev.bidders.map((bidder, idx) => {
@@ -256,15 +308,10 @@ export default function BidderForm({
                     return bidder
                   }),
                 }))
-                handleInputChange(e)
                 handleFocusChange(4, 'bidderPhone3')(e)
               }}
             />
             <input
-              {...register('bidderPhone3', {
-                required: true,
-                maxLength: 4,
-              })}
               type="text"
               id="bidderPhone3"
               inputMode="numeric"
@@ -278,6 +325,7 @@ export default function BidderForm({
               className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[16px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic h-[40px] px-2 w-[33%] text-center"
               value={biddingForm.bidders[stepNum]?.phoneNo3 ?? ''}
               onChange={(e) => {
+                setIsDirty((prev) => ({ ...prev, bidderPhone3: true }))
                 setBiddingForm((prev) => ({
                   ...prev,
                   bidders: prev.bidders.map((bidder, idx) => {
@@ -292,7 +340,6 @@ export default function BidderForm({
                     return bidder
                   }),
                 }))
-                handleInputChange(e)
               }}
             />
           </div>
@@ -301,11 +348,11 @@ export default function BidderForm({
           <>
             <div className="flex flex-col w-[100%] gap-1">
               <div className="flex justify-between w-[100%]">
-                {errors.bidderIdNum1?.type === 'required' &&
-                errors.bidderIdNum2?.type === 'required' &&
-                biddingForm.bidders[stepNum]?.idNum1 +
+                {biddingForm.bidders[stepNum]?.idNum1 +
                   biddingForm.bidders[stepNum]?.idNum2 ===
-                  '' ? (
+                  '' &&
+                isDirty.bidderIdNum1 &&
+                isDirty.bidderIdNum2 ? (
                   <div className="flex w-[100%] justify-start h-[15px] mb-[5px]">
                     <span className="md:text-[20px] text-[16px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left text-red-500">
                       주민등록번호를 입력해주세요
@@ -331,9 +378,6 @@ export default function BidderForm({
               </div>
               <div className="flex flex-row gap-[5%] relative">
                 <input
-                  {...register('bidderIdNum1', {
-                    maxLength: 6,
-                  })}
                   onInput={(e) => {
                     e.currentTarget.value = e.currentTarget.value
                       .replace(/[^0-9.]/g, '')
@@ -347,6 +391,7 @@ export default function BidderForm({
                   className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[16px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic h-[40px] px-2 w-[45%] text-center"
                   value={biddingForm.bidders[stepNum]?.idNum1 ?? ''}
                   onChange={(e) => {
+                    setIsDirty((prev) => ({ ...prev, bidderIdNum1: true }))
                     setBiddingForm((prev) => ({
                       ...prev,
                       bidders: prev.bidders.map((bidder, idx) => {
@@ -356,7 +401,6 @@ export default function BidderForm({
                         return bidder
                       }),
                     }))
-                    handleInputChange(e)
                     handleFocusChange(6, 'bidderIdNum2')(e)
                     if (biddingForm.bidders[stepNum].idNum1.length > 6) {
                       setBiddingForm((prev) => ({
@@ -378,9 +422,6 @@ export default function BidderForm({
                   -
                 </span>
                 <input
-                  {...register('bidderIdNum2', {
-                    maxLength: 7,
-                  })}
                   onInput={(e) => {
                     e.currentTarget.value = e.currentTarget.value
                       .replace(/[^0-9.]/g, '')
@@ -394,6 +435,7 @@ export default function BidderForm({
                   className="flex justify-center items-center border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[16px] font-semibold leading-[150%] tracking-[-1%] font-['suit'] not-italic h-[40px] px-2 w-[45%] text-center"
                   value={biddingForm.bidders[stepNum]?.idNum2 ?? ''}
                   onChange={(e) => {
+                    setIsDirty((prev) => ({ ...prev, bidderIdNum2: true }))
                     setBiddingForm((prev) => ({
                       ...prev,
                       bidders: prev.bidders.map((bidder, idx) => {
@@ -403,7 +445,6 @@ export default function BidderForm({
                         return bidder
                       }),
                     }))
-                    handleInputChange(e)
                     if (biddingForm.bidders[stepNum]?.idNum2.length > 7) {
                       setBiddingForm((prev) => ({
                         ...prev,
@@ -440,10 +481,10 @@ export default function BidderForm({
           <>
             <div className="flex flex-col w-[100%] gap-1">
               <div className="flex justify-between w-[100%]">
-                {(errors.bidderCorpNum1?.type === 'required' ||
-                  errors.bidderCorpNum2?.type === 'required' ||
-                  errors.bidderCorpNum3?.type === 'required') &&
-                biddingForm.bidders[stepNum]?.companyNo === '' ? (
+                {biddingForm.bidders[stepNum]?.companyNo === '' &&
+                isDirty.bidderCorpNum1 &&
+                isDirty.bidderCorpNum2 &&
+                isDirty.bidderCorpNum3 ? (
                   <div className="flex w-[100%] justify-start mb-1">
                     <span className="md:text-[20px] text-[16px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left text-red-500">
                       사업자등록번호를 입력해주세요
@@ -462,9 +503,6 @@ export default function BidderForm({
               </div>
               <div className="flex flex-row gap-[5%]">
                 <input
-                  {...register('bidderCorpNum1', {
-                    maxLength: 3,
-                  })}
                   type="text"
                   id="bidderCorpNum1"
                   inputMode="numeric"
@@ -478,6 +516,7 @@ export default function BidderForm({
                   className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[16px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic h-[40px] px-2 w-[30%] text-center"
                   value={biddingForm.bidders[stepNum]?.companyNo1 ?? ''}
                   onChange={(e) => {
+                    setIsDirty((prev) => ({ ...prev, bidderCorpNum1: true }))
                     setBiddingForm((prev) => ({
                       ...prev,
                       bidders: prev.bidders.map((bidder, idx) => {
@@ -494,7 +533,6 @@ export default function BidderForm({
                         return bidder
                       }),
                     }))
-                    handleInputChange(e)
                     handleFocusChange(3, 'bidderCorpNum2')(e)
                   }}
                 />
@@ -502,9 +540,6 @@ export default function BidderForm({
                   -
                 </span>
                 <input
-                  {...register('bidderCorpNum2', {
-                    maxLength: 2,
-                  })}
                   type="text"
                   id="bidderCorpNum2"
                   inputMode="numeric"
@@ -518,6 +553,7 @@ export default function BidderForm({
                   className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[16px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic h-[40px] px-2 w-[30%] text-center"
                   value={biddingForm.bidders[stepNum]?.companyNo2 ?? ''}
                   onChange={(e) => {
+                    setIsDirty((prev) => ({ ...prev, bidderCorpNum2: true }))
                     setBiddingForm((prev) => ({
                       ...prev,
                       bidders: prev.bidders.map((bidder, idx) => {
@@ -534,7 +570,6 @@ export default function BidderForm({
                         return bidder
                       }),
                     }))
-                    handleInputChange(e)
                     handleFocusChange(2, 'bidderCorpNum3')(e)
                   }}
                 />
@@ -542,9 +577,6 @@ export default function BidderForm({
                   -
                 </span>
                 <input
-                  {...register('bidderCorpNum3', {
-                    maxLength: 5,
-                  })}
                   type="text"
                   id="bidderCorpNum3"
                   inputMode="numeric"
@@ -558,6 +590,7 @@ export default function BidderForm({
                   className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[16px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic h-[40px] px-2 w-[30%] text-center"
                   value={biddingForm.bidders[stepNum]?.companyNo3 ?? ''}
                   onChange={(e) => {
+                    setIsDirty((prev) => ({ ...prev, bidderCorpNum3: true }))
                     setBiddingForm((prev) => ({
                       ...prev,
                       bidders: prev.bidders.map((bidder, idx) => {
@@ -574,15 +607,14 @@ export default function BidderForm({
                         return bidder
                       }),
                     }))
-                    handleInputChange(e)
                   }}
                 />
               </div>
               <div className="flex flex-col w-[100%] gap-1 mt-1">
                 <div className="flex justify-between w-[100%]">
-                  {(errors.bidderCorpRegiNum1?.type === 'required' ||
-                    errors.bidderCorpRegiNum2?.type === 'required') &&
-                  biddingForm.bidders[stepNum]?.corporationNo === '' ? (
+                  {biddingForm.bidders[stepNum]?.corporationNo === '' &&
+                  isDirty.bidderCorpRegiNum1 &&
+                  isDirty.bidderCorpRegiNum2 ? (
                     <div className="flex w-[100%] justify-start mb-1">
                       <span className="md:text-[20px] text-[16px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left text-red-500">
                         법인 등록번호를 입력해주세요
@@ -601,9 +633,6 @@ export default function BidderForm({
                 </div>
                 <div className="flex flex-row gap-[5%]">
                   <input
-                    {...register('bidderCorpRegiNum1', {
-                      maxLength: 6,
-                    })}
                     type="text"
                     id="bidderCorpRegiNum1"
                     inputMode="numeric"
@@ -617,6 +646,10 @@ export default function BidderForm({
                     className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[16px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic h-[40px] px-2 w-[50%] text-center"
                     value={biddingForm.bidders[stepNum]?.corporationNo1 ?? ''}
                     onChange={(e) => {
+                      setIsDirty((prev) => ({
+                        ...prev,
+                        bidderCorpRegiNum1: true,
+                      }))
                       setBiddingForm((prev) => ({
                         ...prev,
                         bidders: prev.bidders.map((bidder, idx) => {
@@ -631,7 +664,6 @@ export default function BidderForm({
                           return bidder
                         }),
                       }))
-                      handleInputChange(e)
                       handleFocusChange(6, 'bidderCorpRegiNum2')(e)
                     }}
                   />
@@ -639,9 +671,6 @@ export default function BidderForm({
                     -
                   </span>
                   <input
-                    {...register('bidderCorpRegiNum2', {
-                      maxLength: 7,
-                    })}
                     type="text"
                     id="bidderCorpRegiNum2"
                     inputMode="numeric"
@@ -655,6 +684,10 @@ export default function BidderForm({
                     className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[16px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic h-[40px] px-2 w-[50%] text-center"
                     value={biddingForm.bidders[stepNum]?.corporationNo2 ?? ''}
                     onChange={(e) => {
+                      setIsDirty((prev) => ({
+                        ...prev,
+                        bidderCorpRegiNum2: true,
+                      }))
                       setBiddingForm((prev) => ({
                         ...prev,
                         bidders: prev.bidders.map((bidder, idx) => {
@@ -669,7 +702,6 @@ export default function BidderForm({
                           return bidder
                         }),
                       }))
-                      handleInputChange(e)
                     }}
                   />
                 </div>
@@ -700,6 +732,7 @@ export default function BidderForm({
                   className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[16px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left h-[40px] px-2"
                   placeholder="직업을 입력해주세요(예: 회사원, 농부)"
                   onChange={(e) => {
+                    setIsDirty((prev) => ({ ...prev, bidderJob: true }))
                     setBiddingForm((prev) => ({
                       ...prev,
                       bidders: prev.bidders.map((bidder, idx) => {
@@ -730,10 +763,8 @@ export default function BidderForm({
           <SearchAddress
             isAgent={false}
             stepNum={stepNum}
-            register={register}
-            errors={errors}
-            setError={setError}
-            setValue={setValue}
+            bidderIsDirty={isDirty}
+            setBidderIsDirty={setIsDirty}
           />
         </div>
       </div>
@@ -762,14 +793,17 @@ export default function BidderForm({
           </span>
         </button>
         <button
-          type="submit"
+          type="button"
           className="flex w-[60%] md:w-[65%] h-[50px] bg-myBlue rounded-full justify-center items-center cursor-pointer"
+          onClick={() => {
+            handleValidation()
+          }}
         >
           <span className="text-white font-bold font-['suit'] md:text-[1.2rem] text-[1rem]">
             다음으로
           </span>
         </button>
       </div>
-    </form>
+    </div>
   )
 }

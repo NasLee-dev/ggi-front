@@ -56,6 +56,7 @@ export const BASEDATE = [
 ]
 
 export const STATUSCODE = {
+  '현재상태': '',
   '진행(구건)': 'A1',
   '신건': '01',
   '유찰': '02',
@@ -164,8 +165,8 @@ export const SENDTOCODE = {
   '채권자': 'isCreditor'
 }
 
-export const rentConditions = [
-  {status : true, name: '임차인 없는 물건'},
+export const RENT = [
+  {status : false, name: '임차인 없는 물건'},
   {status : false, name: 'HUG인수조건 변경'},
 ]
 
@@ -227,48 +228,48 @@ export const sidos = {
   '제주도': '제주'
 }
 
-export const listHeaders = (expected: boolean) => ({
+export const KMHEADER = {
   chk: {
     name: '',
     width: 3
   },
   idx: {
     name: '순번',
-    width: 5
+    width: 4
   },
   download: {
     name: '다운이력',
-    width: 7
+    width: 6
   },
-  court: {
+  courtName: {
     name: '법원 또는 계',
+    width: 9
+  },
+  caseNoString: {
+    name: '사건번호',
     width: 10
   },
-  caseNum: {
-    name: '사건번호',
-    width: 15
-  },
-  openingDate: {
-    name: expected ? '개시결정일' : '현재상태',
-    width: 7
+  status: {
+    name: '현재상태',
+    width: 6
   },
   usage: {
     name: '용도',
-    width: 13
-  },
-  sendTo: {
-    name: '수신인',
     width: 10
+  },
+  stakeholder: {
+    name: '수신인',
+    width: 7
   },
   address: {
     name: '주소',
-    width: 20
+    width: 35
   },
-  postCode: {
+  zipNo: {
     name: '우편번호',
     width: 10
   }
-})
+}
 
 export const myDmHeaders = {
   chk: {

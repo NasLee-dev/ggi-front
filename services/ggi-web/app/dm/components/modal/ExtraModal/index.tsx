@@ -4,7 +4,7 @@ import * as I from "@/models/dm/Modal";
 import CheckBoxFilter from "../../filters/CheckBoxFilter";
 import * as S from "./style";
 import { useTabStore } from "@/store/dm/useTabStore";
-import { useFilterStore } from "@/store/dm/useFilterStore";
+import { useKMFilterStore } from "@/store/dm/useFilterStore";
 import * as C from "constants/dm/dm";
 
 export default function ExtraModal ({
@@ -16,7 +16,7 @@ export default function ExtraModal ({
   extra
 }: I.IExtraModalProps) {
   const { tabs } = useTabStore()
-  const { filters, setFilters } = useFilterStore()
+  const { filters, setFilters } = useKMFilterStore()
 
   const handleChecked = (idx: number) => (checked: boolean, name?: string) => {
     const newValues = [...values]

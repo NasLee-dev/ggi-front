@@ -41,8 +41,7 @@ export default function ContentBottom() {
       <TableList 
         headers={tabs.mine 
           ? C.myDmHeaders 
-          : C.listHeaders(tabs.expected)}
-        values={tabs.mine ? tempMyValues : tempValues}      
+          : C.KMHEADER}
       />
       <Pagination />
     </>

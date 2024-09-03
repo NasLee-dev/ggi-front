@@ -12,6 +12,7 @@ export const DownloadBtn = styled.button`
   border: 1px solid ${theme.palette.graySecondary};
   padding: 10px;
   background-color: ${theme.palette.white};
+  cursor: pointer;
 `
 
 export const DownloadCount = styled.span`
