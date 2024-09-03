@@ -44,7 +44,7 @@ export default function StatisticsPage() {
   }, [isMounted])
 
   return (
-    <div className="flex flex-col bg-white w-full h-full gap-[40px] overflow-y-hidden overflow-x-hidden custom-scrollbar">
+    <div className="flex flex-col bg-white w-full h-full gap-[40px] overflow-y-hidden overflow-x-hidden">
       <TopComponent
         keyword={searchCondition.keyword}
         setSearchCondition={setSearchCondition}
