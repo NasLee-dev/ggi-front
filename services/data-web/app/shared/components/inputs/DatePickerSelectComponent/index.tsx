@@ -8,6 +8,7 @@ import { ko } from 'date-fns/locale'
 import CloseButton from '@/app/shared/components/buttons/CloseButton'
 import { formatDate } from '@/app/shared/utils/formatDate'
 import DropIcon from '@/app/shared/components/inputs/DatePickerSelectComponent/components/DropIcon'
+import useWindowSize from '@/app/shared/hooks/useWindowSize'
 
 interface DatePickerSelectComponentProps {
   isOpen: boolean
@@ -42,6 +43,9 @@ const DatePickerSelectComponent = React.forwardRef<
     const [isYearOpen, setIsYearOpen] = useState(false)
     const [isMonthOpen, setIsMonthOpen] = useState(false)
 
+    const size = useWindowSize()
+    const isMobile = size.width < 1080
+
     const years = Array.from(
       { length: 25 },
       (_, i) => new Date().getFullYear() - 19 + i,
@@ -53,7 +57,7 @@ const DatePickerSelectComponent = React.forwardRef<
     return (
       <div ref={datePickerRef}>
         {isOpen && (
-          <div className="w-screen h-screen fixed top-0 left-0 right-0 bottom-0 backdrop-brightness-50 hidden ggi:block z-[100]"></div>
+          <div className="w-screen h-screen fixed top-0 left-0 right-0 bottom-0 backdrop-brightness-50 hidden ggi:block z-[5000]"></div>
         )}
         <DatePicker
           onChange={handleChange}

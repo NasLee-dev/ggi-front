@@ -12,7 +12,7 @@ export default function TableContainer({
   return (
     <div className="overflow-x-auto custom-scrollbar">
       <div
-        style={{ width: width ? width : '1640px' }}
+        style={{ width: width ? width : '1632px' }}
         className="w-full flex flex-col"
       >
         {children}
