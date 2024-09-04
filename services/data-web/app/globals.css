@@ -4,6 +4,7 @@
 
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
   border-radius: 8px;
 }
 
@@ -26,3 +27,4 @@
   -webkit-user-select: none; /* Safari */
   -moz-user-select: none; /* Firefox */
 }
+
