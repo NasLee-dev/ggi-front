@@ -23,8 +23,10 @@ export default function RootLayout({
           <Header />
           <div>
             <Sidebar />
-            <div className="pt-[88px] pl-[120px] ggi:pl-0">
-              <div className="w-[1794px] p-10">{children}</div>
+            <div className="pt-[88px] pl-[120px] ggi:pl-0 ggi:pt-[50px]">
+              <div className="w-[1794px] p-10 ggi:w-full ggi:p-0">
+                {children}
+              </div>
             </div>
           </div>
         </body>

@@ -27,9 +27,9 @@ export default function DatePickerContainer({
   handleApply,
 }: DatePickerContainerProps) {
   return (
-    <div className="w-[835px] h-[50px] px-4 border border-[#E5E7EB] rounded-2xl flex items-center gap-2">
+    <div className="w-[835px] h-[50px] px-4 border border-[#E5E7EB] rounded-2xl flex items-center gap-2 ggi:w-full ggi:h-[42px] relative">
       <CalendarIcon />
-      <div className="w-full flex-[1] flex items-center justify-center gap-10">
+      <div className="w-full h-full flex-[1] flex items-center justify-center gap-10 select-picker">
         <Controller
           name="startDate"
           control={control}
