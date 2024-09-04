@@ -1,3 +1,4 @@
+import AreaAddButton from '@/app/data-detail/components/SearchContainer/components/AreaContainer/components/AreaAddButton'
 import ToggleButton from '@/app/shared/components/buttons/ToggleButton'
 import FilterSelect from '@/app/shared/components/inputs/FilterSelect'
 import ErrorText from '@/app/shared/components/text/ErrorText'
@@ -31,14 +32,11 @@ export default function AreaContainer() {
             <FilterSelect error />
             <FilterSelect error />
           </div>
-          <button className="w-[50px] h-[50px] border border-[#E5E7EB] rounded-2xl flex justify-center items-center ggi:w-full ggi:h-[42px]">
-            <Image
-              width={24}
-              height={24}
-              src="/images/plus.png"
-              alt="지역추가 이미지"
-            />
-          </button>
+          <AreaAddButton
+            onClick={() => {
+              console.log('++')
+            }}
+          />
           <button className="w-[260px] h-[50px] border border-[#E5E7EB] rounded-2xl flex justify-center items-center text-[16px] font-bold text-[#6B7280] ggi:hidden">
             지역테마
           </button>

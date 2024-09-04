@@ -21,3 +21,17 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+.hover-btn:hover,
+.hover-btn:hover span {
+  color: #2563eb;
+}
+
+.hover-btn:hover svg path {
+  fill: #2563eb;
+  stroke: #2563eb;
+}
+
+.hover-stroke-btn:hover svg path {
+  stroke: #2563eb;
+}

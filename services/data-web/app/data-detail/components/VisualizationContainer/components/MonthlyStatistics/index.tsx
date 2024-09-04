@@ -1,4 +1,4 @@
-import DownloadBtn from '@/app/data-detail/components/AreaDetailContainer/components/DownloadBtn'
+import DownloadBtn from '@/app/shared/components/buttons/DownloadBtn'
 import TableContainer from '@/app/shared/components/table/TableContainer'
 import TableHead from '@/app/shared/components/table/TableHead'
 import TableItem from '@/app/shared/components/table/TableItem'
@@ -26,7 +26,11 @@ export default function MonthlyStatistics() {
             />
           </div>
         </div>
-        <DownloadBtn />
+        <DownloadBtn
+          onClick={() => {
+            console.log('다운로드')
+          }}
+        />
       </div>
       <TableContainer>
         <ul className="flex border-b border-[#E5E7EB]">

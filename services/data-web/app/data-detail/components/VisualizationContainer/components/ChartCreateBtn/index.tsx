@@ -9,7 +9,7 @@ export default function ChartCreateBtn({
 }: ChartCreateBtnProps) {
   return (
     <button
-      className="w-[50px] h-[50px] flex justify-center items-center rounded-2xl border border-[#E5E7EB]"
+      className="w-[50px] h-[50px] flex justify-center items-center rounded-2xl border border-[#E5E7EB] hover-stroke-btn"
       onClick={handleToggleCreateBox}
       {...props}
     >
