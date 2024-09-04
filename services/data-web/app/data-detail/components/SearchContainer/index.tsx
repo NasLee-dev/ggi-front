@@ -20,7 +20,7 @@ export default function SearchContainer() {
   return (
     <FormProvider {...methods}>
       <form
-        className="pb-10 border-b border-[#E5E7EB] mb-10 ggi:px-4 ggi:pb-5 ggi:border-b-[6px] ggi:border-[#F1F2F6]"
+        className="pb-10 border-b border-[#E5E7EB] mb-10 ggi:px-4 ggi:pb-5 ggi:border-b-[6px] ggi:border-[#F1F2F6] ggi:mb-5"
         onSubmit={methods.handleSubmit(onSubmit)}
       >
         <FilterBox title="경매통계 검색">
