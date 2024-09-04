@@ -16,6 +16,7 @@
   height: 45px;
   text-align: center;
   outline: none;
+  cursor: pointer;
 }
 
 .date-picker-container {
