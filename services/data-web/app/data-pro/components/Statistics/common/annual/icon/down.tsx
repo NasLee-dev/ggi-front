@@ -9,13 +9,23 @@ export default function DownIcon({
   data: any[]
   tableHeader: Header
 }) {
+  const today = new Date()
+  const year = today.getFullYear()
+  const month =
+    today.getMonth() < 10
+      ? (today.getMonth() + 1).toString().padStart(2, '0')
+      : today.getMonth() + 1
+  const day =
+    today.getDate() < 10
+      ? today.getDate().toString().padStart(2, '0')
+      : today.getDate()
   return (
     <div
       className="download-container flex flex-row gap-1 w-30 h-[50px] pl-3 pr-3 pt-2 pb-2 justify-center items-center rounded-[16px] border border-[#E5E7EB] cursor-pointer"
       onClick={() => {
         excelDownload({
           data,
-          fileName: `경매통계(연간)_${new Date().getTime()}`,
+          fileName: `경매통계(연간)_${year}${month}${day}`,
           header: tableHeader,
           condition: {
             location: `서울특별시 용산구 청파동`,
