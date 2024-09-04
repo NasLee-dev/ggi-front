@@ -10,7 +10,7 @@ export default function ChartContainer({
   handleToggleCreateBox,
 }: ChartContainerProps) {
   return (
-    <div className="flex gap-5 items-center mb-8">
+    <div className="flex gap-5 items-center mb-8 ggi:px-4">
       <ChartBox />
       {isCreateBox && (
         <ChartCreateBox handleToggleCreateBox={handleToggleCreateBox} />

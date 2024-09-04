@@ -16,7 +16,7 @@ export default function AreaDetailContainer() {
   return (
     <div className="w-full mb-5 pb-5 border-b-[6px] border-[#F1F2F6]">
       <ContentBox>
-        <div className="w-full flex justify-between items-center mb-8 ggi:flex-col ggi:items-start ggi:mb-5">
+        <div className="w-full flex justify-between items-center mb-8 ggi:flex-col ggi:items-start ggi:mb-5 ggi:px-4">
           <div>
             <SubTitle title="지역별 경매통계 상세" />
             <div className="mt-3 ggi:mt-2">
