@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Usage } from '../../constants/Usage'
 import TopComponent from './common/Top'
 import SearchComponent from './common/search'

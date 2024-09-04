@@ -7,6 +7,7 @@ import TableHeader from '../table/T.header'
 import { AnnualHeader } from '@/app/data-pro/constants/Table'
 import AnnualTableBody from './table/T.body'
 import DownIcon from './icon/down'
+import { Dummy } from '@/app/data-pro/models/Dummy'
 
 interface AnnualDataComponentProps {
   activeTab: string
@@ -15,7 +16,7 @@ interface AnnualDataComponentProps {
 export default function AnnualDataComponent({
   activeTab,
 }: AnnualDataComponentProps) {
-  const data = [
+  const data: Dummy[] = [
     {
       year: '2023.07',
       appraisalSum: 100000000,
@@ -174,7 +175,7 @@ export default function AnnualDataComponent({
                 월 평균
               </p>
             </div>
-            <DownIcon />
+            <DownIcon data={data} tableHeader={AnnualHeader} />
           </div>
           <div className="flex flex-col w-full h-full">
             <TableHeader tableHeader={AnnualHeader} />
