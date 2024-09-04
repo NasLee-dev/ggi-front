@@ -5,6 +5,7 @@ import { YAxis } from 'recharts/lib/cartesian/YAxis'
 import { Tooltip } from 'recharts/lib/component/Tooltip'
 import { Legend } from 'recharts/lib/component/Legend'
 import { Bar } from 'recharts/lib/cartesian/Bar'
+import Background from './Background'
 
 export default function BarChartComponent() {
   const data = [
@@ -45,8 +46,8 @@ export default function BarChartComponent() {
     },
   ]
   return (
-    <div className="flex flex-row gap-5 w-full bg-[#F8FAFC] rounded-[24px] justify-center items-end">
-      <BarChart width={800} height={560} data={data}>
+    <Background title="매각통계 그래프" isRow={true}>
+      <BarChart width={800} height={500} data={data}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis />
@@ -55,7 +56,7 @@ export default function BarChartComponent() {
         <Bar dataKey="pv" fill="#8884d8" />
         <Bar dataKey="uv" fill="#82ca9d" />
       </BarChart>
-      <BarChart width={800} height={560} data={data}>
+      <BarChart width={800} height={500} data={data}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis />
@@ -64,6 +65,6 @@ export default function BarChartComponent() {
         <Bar dataKey="pv" fill="#8884d8" />
         <Bar dataKey="uv" fill="#82ca9d" />
       </BarChart>
-    </div>
+    </Background>
   )
 }

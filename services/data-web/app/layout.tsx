@@ -19,12 +19,14 @@ export default function RootLayout({
         <head>
           <link rel="icon" href="https://web.ggi.co.kr/GGILogo.ico" />
         </head>
-        <body className="custom-scrollbar">
+        <body className="custom-scrollbar noselect ">
           <Header />
           <div>
             <Sidebar />
-            <div className="pt-[88px] pl-[120px] ggi:pl-0">
-              <div className="w-[1794px] p-10">{children}</div>
+            <div className="pt-[88px] pl-[120px] ggi:pl-0 ggi:pt-[50px]">
+              <div className="w-[1794px] p-10 ggi:w-full ggi:p-0">
+                {children}
+              </div>
             </div>
           </div>
         </body>
