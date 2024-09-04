@@ -17,6 +17,7 @@ export default function CustomSelect({
   const selectRef = useRef<HTMLDivElement>(null)
   const [isOpen, setIsOpen] = useState(false)
   const [options, setOptions] = useState(option[0].label)
+  const reversedOption = label === '기간' ? [...option].reverse() : option
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -52,7 +53,7 @@ export default function CustomSelect({
             setOptions(e.target.value)
           }}
         >
-          {option.map((option, index) => (
+          {reversedOption.map((option, index) => (
             <option key={index} value={option.value}>
               {option.label}
             </option>
@@ -94,7 +95,7 @@ export default function CustomSelect({
       </div>
       {isOpen && (
         <div className="absolute z-10 top-[50px] left-0 w-full h-[120px] p-[8px] bg-white rounded-md shadow-lg overflow-y-auto custom-scrollbar">
-          {option.map((option, index) => (
+          {reversedOption.map((option, index) => (
             <div
               key={index}
               className="flex flex-row w-full h-[38px] cursor-pointer select-none relative p-[8px] hover:bg-gray-100"

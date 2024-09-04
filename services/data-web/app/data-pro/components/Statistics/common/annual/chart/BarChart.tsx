@@ -45,7 +45,7 @@ export default function BarChartComponent() {
     },
   ]
   return (
-    <div className="flex flex-row gap-5 w-[1620px]">
+    <div className="flex flex-row gap-5 w-full bg-[#F8FAFC] rounded-[24px] justify-center items-end">
       <BarChart width={800} height={560} data={data}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
