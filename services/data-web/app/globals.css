@@ -4,6 +4,7 @@
 
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
   border-radius: 8px;
 }
 
@@ -20,4 +21,3 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-
