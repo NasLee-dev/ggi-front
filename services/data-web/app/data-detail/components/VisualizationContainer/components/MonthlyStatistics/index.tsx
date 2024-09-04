@@ -12,7 +12,7 @@ export default function MonthlyStatistics() {
 
   return (
     <div>
-      <div className="w-full flex justify-between items-center mb-8 ggi:flex-col ggi:items-start ggi:mb-5">
+      <div className="w-full flex justify-between items-center mb-8 ggi:flex-col ggi:items-start ggi:mb-5 ggi:px-4">
         <div>
           <SubTitle title="월별 통계" />
           <div className="mt-3 ggi:mt-2">

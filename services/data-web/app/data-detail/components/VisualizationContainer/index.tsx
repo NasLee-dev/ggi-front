@@ -16,7 +16,7 @@ export default function VisualizationContainer() {
 
   return (
     <ContentBox>
-      <div className="w-full mb-8 flex justify-between items-center">
+      <div className="w-full mb-8 flex justify-between items-center ggi:px-4">
         <SubTitle title="통계 시각화" />
         <ChartCreateBtn handleToggleCreateBox={handleToggleCreateBox} />
       </div>
