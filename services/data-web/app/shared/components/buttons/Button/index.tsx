@@ -29,7 +29,7 @@ const Button = ({
   return (
     <button
       onClick={onClick}
-      className={`${backgroundColor} ${textColor} font-bold rounded-lg border ${borderColor} ${className}`}
+      className={`${backgroundColor} ${textColor} font-bold rounded-lg border ${borderColor} ${className} ggi:rounded-2xl`}
       style={{
         width: width || '166px',
         height: height || '50px',

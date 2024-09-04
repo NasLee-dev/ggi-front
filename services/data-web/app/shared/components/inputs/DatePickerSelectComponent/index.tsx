@@ -52,6 +52,9 @@ const DatePickerSelectComponent = React.forwardRef<
 
     return (
       <div ref={datePickerRef}>
+        {isOpen && (
+          <div className="w-screen h-screen fixed top-0 left-0 right-0 bottom-0 backdrop-brightness-50 hidden ggi:block z-[100]"></div>
+        )}
         <DatePicker
           onChange={handleChange}
           startDate={startDate}
