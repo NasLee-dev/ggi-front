@@ -1,12 +1,6 @@
 'use client'
 
-import React, {
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import React, { Dispatch, SetStateAction, useRef, useState } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import './styles/style.css'
@@ -59,18 +53,6 @@ const DatePickerSelectComponent = React.forwardRef<
     const months = Array.from({ length: 12 }, (_, i) =>
       new Date(0, i).toLocaleString('default', { month: 'long' }),
     )
-
-    useEffect(() => {
-      if (isOpen && isMobile) {
-        document.body.style.overflow = 'hidden'
-      } else {
-        document.body.style.overflow = ''
-      }
-
-      return () => {
-        document.body.style.overflow = ''
-      }
-    }, [isOpen, isMobile])
 
     return (
       <div ref={datePickerRef}>
