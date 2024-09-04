@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import TableBody from './T.body'
 import TableHeader from './T.header'
+import { RealHeader, SoldHeader } from '@/app/data-pro/constants/Table'
 
 interface TableListProps {
   activeTab: string
@@ -20,8 +21,10 @@ export default function TableList({ activeTab }: TableListProps) {
   )
   return (
     <div className="flex flex-col w-full h-[200px] mt-[20px]">
-      <TableHeader activeTab={activeTab} />
-      <TableBody data={dummy} activeTab={activeTab} />
+      <TableHeader
+        tableHeader={activeTab === '매각통계' ? SoldHeader : RealHeader}
+      />
+      <TableBody data={dummy} />
     </div>
   )
 }
