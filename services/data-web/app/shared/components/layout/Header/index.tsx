@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 export default function Header() {
   return (
-    <header className="w-full h-[88px] fixed z-[5000] ggi:h-[50px]">
+    <header className="w-full h-[88px] fixed z-[5001] ggi:h-[50px]">
       <div className="flex w-full h-full py-5 px-6 justify-between items-center bg-[#333] ggi:py-2 ggi:px-4">
         <div className="flex items-center gap-[10px]">
           <button className="hidden ggi:block">
