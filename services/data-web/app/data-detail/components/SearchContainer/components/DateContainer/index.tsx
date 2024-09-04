@@ -79,7 +79,7 @@ export default function DateContainer({ control }: DateContainerProps) {
   return (
     <div>
       <FilterTitle title="기준일자" />
-      <div className="flex justify-between items-center mt-3 mb-8">
+      <div className="flex justify-between items-center mt-3 mb-8 gap-2 ggi:flex-col ggi:mt-2 ggi:mb-5">
         <DatePickerContainer
           control={control}
           isPicker={isPicker}
@@ -91,21 +91,23 @@ export default function DateContainer({ control }: DateContainerProps) {
           handleCancel={handleCancel}
           handleApply={handleApply}
         />
-        <LastMonthButton
-          active={activeButton === 3}
-          text="최근 3개월"
-          onClick={() => setDateRange(3)}
-        />
-        <LastMonthButton
-          active={activeButton === 6}
-          text="최근 6개월"
-          onClick={() => setDateRange(6)}
-        />
-        <LastMonthButton
-          active={activeButton === 12}
-          text="최근 1년"
-          onClick={() => setDateRange(12)}
-        />
+        <div className="flex flex-1 justify-between ggi:w-full">
+          <LastMonthButton
+            active={activeButton === 3}
+            text="최근 3개월"
+            onClick={() => setDateRange(3)}
+          />
+          <LastMonthButton
+            active={activeButton === 6}
+            text="최근 6개월"
+            onClick={() => setDateRange(6)}
+          />
+          <LastMonthButton
+            active={activeButton === 12}
+            text="최근 1년"
+            onClick={() => setDateRange(12)}
+          />
+        </div>
       </div>
     </div>
   )

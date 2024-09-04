@@ -10,7 +10,7 @@ export default function DropDownIcon() {
       <path
         d="M17 1L9 9L1 1"
         stroke="#1F2937"
-        stroke-width="1.5"
+        strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
