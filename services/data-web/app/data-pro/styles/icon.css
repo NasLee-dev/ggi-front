@@ -1,0 +1,16 @@
+.download-container:hover p {
+  color: #2563EB;
+}
+
+.download-container:hover .icon-path {
+  fill: #2563EB;
+  stroke: #2563EB;
+}
+
+.print-container:hover p {
+  color: #2563EB;
+}
+
+.print-container:hover .icon-path {
+  stroke: #2563EB;
+}

@@ -32,19 +32,26 @@ export default function StatisticsPage() {
   const handleScroll = (id: string) => {
     const element = document.getElementById(id)
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+      const offset = 100
+      const elementPosition = element.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.scrollY - offset
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      })
     }
   }
 
   useEffect(() => {
     if (!isMounted) {
       setIsMounted(true)
-      handleScroll('sold')
+      handleScroll('tab')
     }
   }, [isMounted])
 
   return (
-    <div className="flex flex-col bg-white w-full h-full gap-[40px] overflow-y-hidden overflow-x-hidden custom-scrollbar">
+    <div className="flex flex-col bg-white w-full h-full gap-[40px] overflow-y-hidden overflow-x-hidden">
       <TopComponent
         keyword={searchCondition.keyword}
         setSearchCondition={setSearchCondition}
@@ -55,11 +62,13 @@ export default function StatisticsPage() {
       />
       <SearchBtn />
       <Divider />
-      <TabComponent
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        handleScroll={handleScroll}
-      />
+      <div id="tab" className="flex w-full">
+        <TabComponent
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          handleScroll={handleScroll}
+        />
+      </div>
       {activeTab === '매각통계' && (
         <div id="sold" className="flex flex-col w-full gap-10">
           <SoldComponent

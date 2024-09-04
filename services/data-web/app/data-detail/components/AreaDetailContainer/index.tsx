@@ -1,3 +1,5 @@
+'use client'
+
 import DownloadBtn from '@/app/data-detail/components/AreaDetailContainer/components/DownloadBtn'
 import ContentBox from '@/app/shared/components/box/ContentBox'
 import TableContainer from '@/app/shared/components/table/TableContainer'
@@ -5,16 +7,27 @@ import TableHead from '@/app/shared/components/table/TableHead'
 import TableItem from '@/app/shared/components/table/TableItem'
 import PickText from '@/app/shared/components/text/PickText'
 import SubTitle from '@/app/shared/components/text/SubTitle'
+import useWindowSize from '@/app/shared/hooks/useWindowSize'
 
 export default function AreaDetailContainer() {
+  const size = useWindowSize()
+  const isMobile = size.width < 1080
+
   return (
     <div className="w-full mb-10">
       <ContentBox>
-        <div className="w-full flex justify-between items-center mb-8">
+        <div className="w-full flex justify-between items-center mb-8 ggi:flex-col ggi:items-start ggi:mb-5">
           <div>
             <SubTitle title="지역별 경매통계 상세" />
-            <div className="mt-3">
-              <PickText text="서울특별시" />
+            <div className="mt-3 ggi:mt-2">
+              <PickText
+                text={
+                  <span>
+                    서울특별시 용산구 청파동,{isMobile && <br />}2023.08.01 ~
+                    2024.07.31 경매매각 건,{isMobile && <br />}아파트
+                  </span>
+                }
+              />
             </div>
           </div>
           <DownloadBtn />
