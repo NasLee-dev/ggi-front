@@ -38,7 +38,7 @@ export default function ToggleButton({
       </div>
       <div
         className={`w-[46px] h-[42px] bg-[#2563EB] rounded-[100px] transition-[0.3s] ease-in-out absolute transform top-1/2 -translate-y-1/2  ${
-          isToggled ? 'left-[46.5px] ggi:left-[49%]' : 'left-[3.5px]'
+          isToggled ? 'left-[46.5px] ggi:left-[calc(50%-3px)]' : 'left-[3.5px]'
         } ggi:w-1/2 ggi:h-[35px] ggi:bg-[#fff]`}
       ></div>
     </div>
