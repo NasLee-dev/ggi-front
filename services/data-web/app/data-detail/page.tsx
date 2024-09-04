@@ -7,7 +7,7 @@ import MobileProfileBox from '@/app/shared/components/box/MobileProfileBox'
 export default function DataDetailPage() {
   return (
     <>
-      <MobileProfileBox />
+      <MobileProfileBox isFilter />
       <div className="ggi:py-5">
         <PageTop />
         <SearchContainer />
