@@ -21,3 +21,8 @@
   background: #555;
 }
 
+.noselect {
+  user-select: none; /* 텍스트 선택 방지 */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+}
