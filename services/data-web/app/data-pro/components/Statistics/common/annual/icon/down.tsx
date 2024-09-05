@@ -5,9 +5,11 @@ import { Header } from '@/app/data-pro/models/Table'
 export default function DownIcon({
   data,
   tableHeader,
+  sendImage,
 }: {
   data: any[]
   tableHeader: Header
+  sendImage: () => void
 }) {
   const today = new Date()
   const year = today.getFullYear()
@@ -23,20 +25,21 @@ export default function DownIcon({
     <div
       className="download-container flex flex-row gap-1 w-30 h-[50px] pl-3 pr-3 pt-2 pb-2 justify-center items-center rounded-[16px] border border-[#E5E7EB] cursor-pointer"
       onClick={() => {
-        excelDownload({
-          data,
-          fileName: `경매통계(연간)_${year}${month}${day}`,
-          header: tableHeader,
-          condition: {
-            location: `서울특별시 용산구 청파동`,
-            period: `2023.07 ~ 2024.06`,
-            usage: `아파트`,
-          },
-        })
+        // excelDownload({
+        //   data,
+        //   fileName: `경매통계(연간)_${year}${month}${day}`,
+        //   header: tableHeader,
+        //   condition: {
+        //     location: `서울특별시 용산구 청파동`,
+        //     period: `2023.07 ~ 2024.06`,
+        //     usage: `아파트`,
+        //   },
+        // })
+        sendImage()
       }}
     >
       <p className="text-gray-500 text-base font-bold font-['SUIT'] leading-snug">
-        다운로드
+        EXCEL
       </p>
       <svg
         xmlns="http://www.w3.org/2000/svg"

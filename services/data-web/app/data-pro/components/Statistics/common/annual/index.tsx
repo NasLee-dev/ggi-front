@@ -8,6 +8,9 @@ import { AnnualHeader } from '@/app/data-pro/constants/Table'
 import AnnualTableBody from './table/T.body'
 import DownIcon from './icon/down'
 import { Dummy } from '@/app/data-pro/models/Dummy'
+import { useRef } from 'react'
+import domtoimage from 'dom-to-image'
+import axios from 'axios'
 
 interface AnnualDataComponentProps {
   activeTab: string
@@ -148,6 +151,46 @@ export default function AnnualDataComponent({
       auctionRate2: 100,
     },
   ]
+  const chartRef = useRef(null)
+
+  const sendImage = async () => {
+    try {
+      // `chartRef`는 해당 DOM 요소를 참조하는 React ref 객체입니다.
+      const blob = await domtoimage.toBlob(chartRef.current)
+
+      const formData = new FormData()
+      formData.append('file', blob, 'chart.png') // 이미지 Blob과 파일 이름 설정
+
+      const response = await axios.post(
+        'http://localhost:8000/api/generateDataPDF',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        },
+      )
+
+      if (response.status === 200) {
+        console.log('success')
+      }
+    } catch (error) {
+      console.error('Error sending image:', error)
+    }
+    // try {
+    //   // DOM 요소를 Blob으로 변환
+    //   const blob = await domtoimage.toBlob(chartRef.current)
+    //   // Blob을 URL로 변환
+    //   const link = document.createElement('a')
+    //   link.href = URL.createObjectURL(blob)
+    //   link.download = 'chart.png' // 다운로드할 이미지 파일 이름
+    //   link.click() // 링크 클릭하여 다운로드 트리거
+    //   URL.revokeObjectURL(link.href) // URL 해제
+    // } catch (error) {
+    //   console.error('Error downloading image:', error)
+    // }
+  }
+
   return (
     <div className="flex flex-col w-[1714px] h-full p-[40px] border border-[#E5E7EB] bg-white rounded-[24px] gap-8">
       <div className="flex justify-between w-full">
@@ -163,6 +206,7 @@ export default function AnnualDataComponent({
       </div>
       <SummaryComponent />
       <div
+        ref={chartRef}
         className={`flex ${activeTab === '매각통계' && 'flex-row gap-10'} w-full h-[600px]`}
       >
         <ChartComponent activeTab={activeTab} />
@@ -175,7 +219,11 @@ export default function AnnualDataComponent({
                 월 평균
               </p>
             </div>
-            <DownIcon data={data} tableHeader={AnnualHeader} />
+            <DownIcon
+              data={data}
+              tableHeader={AnnualHeader}
+              sendImage={sendImage}
+            />
           </div>
           <div className="flex flex-col w-full h-full">
             <TableHeader tableHeader={AnnualHeader} />
