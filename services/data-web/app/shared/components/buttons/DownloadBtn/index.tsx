@@ -2,7 +2,7 @@ import DownloadIcon from '@/app/shared/components/buttons/DownloadBtn/components
 import { ButtonHTMLAttributes } from 'react'
 
 interface DownloadBtn extends ButtonHTMLAttributes<HTMLButtonElement> {
-  onClick: () => void
+  onClick: any
   disabled?: boolean
 }
 

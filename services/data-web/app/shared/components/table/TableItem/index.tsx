@@ -1,6 +1,6 @@
 interface TableItemProps {
   width: string
-  text: string
+  text: string | number
 }
 
 export default function TableItem({ width, text }: TableItemProps) {
