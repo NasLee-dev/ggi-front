@@ -1,10 +1,10 @@
 export type Dummy = {
-  year: string
-  appraisalSum: number
-  auctionSum: number
-  auctionRate: number
+  date: string
+  appraisalTotal: number
+  saleTotal: number
+  salePriceRate: number
   progressCount: number
-  auctionCount: number
+  saleCount: number
   avgBidCount: number
-  auctionRate2: number
+  saleRate: number
 }

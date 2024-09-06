@@ -9,7 +9,7 @@ export default function TableHeader({ tableHeader }: TableHeaderProps) {
       {tableHeader.header.map((header, index) => (
         <div
           key={index}
-          className={`flex w-[${header.width}] h-[50px] pt-3 pb-3 pl-5 pr-5 justify-center items-center border-b border-gray-200`}
+          className={`flex w-[214px] h-[50px] pt-3 pb-3 pl-5 pr-5 justify-center items-center border-b border-gray-200`}
         >
           <p className="text-gray-500 text-base font-bold font-['NanumGothic'] leading-snug text-center">
             {header.title}

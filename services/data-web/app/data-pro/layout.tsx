@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import './globals.css'
+import { ModalContextProvider } from './context/useModalContext'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isMounted, setIsMounted] = useState(false)
@@ -13,7 +14,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }
   return (
     <div className="content-area">
-      <main>{children}</main>
+      <main>
+        <ModalContextProvider>{children}</ModalContextProvider>
+      </main>
     </div>
   )
 }

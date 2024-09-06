@@ -1,22 +1,17 @@
-import { Usage } from '@/app/data-pro/constants/Usage'
-import CustomSelect from '../table/CustomSelect'
-import SummaryComponent from './summary'
-import TopComponent from './top'
-import ChartComponent from './chart'
-import TableHeader from '../table/T.header'
-import AnnualTableBody from './table/T.body'
-import DownIcon from './icon/down'
 import { Dummy } from '@/app/data-pro/models/Dummy'
-import { useRef } from 'react'
+import DownIcon from '../../common/annual/icon/down'
+import TableHeader from '../../common/table/T.header'
+import AnnualTableBody from '../../common/annual/table/T.body'
 import { ANNUAL_HEADER } from '@/app/data-pro/constants/Table'
+import { useEffect } from 'react'
 
-interface AnnualDataComponentProps {
-  activeTab: string
+interface PdfAnnualTableComponentProps {
+  isPdfContent: boolean
 }
 
-export default function AnnualDataComponent({
-  activeTab,
-}: AnnualDataComponentProps) {
+export default function PdfAnnualTableComponent({
+  isPdfContent,
+}: PdfAnnualTableComponentProps) {
   const data: Dummy[] = [
     {
       date: '2023.07',
@@ -149,44 +144,36 @@ export default function AnnualDataComponent({
       saleRate: 100,
     },
   ]
-  const chartRef = useRef(null)
 
+  const handleDeleteFirstDiv = () => {
+    if (!isPdfContent) {
+      const firstDiv = document.getElementById('border')
+      if (firstDiv) {
+        firstDiv.style.border = 'none'
+      }
+    }
+  }
+
+  useEffect(() => {
+    handleDeleteFirstDiv()
+  }, [])
   return (
-    <div className="flex flex-col w-[1714px] h-full p-[40px] border border-[#E5E7EB] bg-white rounded-[24px] gap-8">
-      <div className="flex justify-between w-full">
-        <TopComponent />
-        <div className="flex w-[270px] h-[50px]">
-          <CustomSelect
-            label="용도"
-            option={Usage.filter((usage) => usage.label !== '선택안함')}
-            width="270"
-            height="50"
-          />
+    <div
+      id="border"
+      className={`flex flex-col w-[1714px] h-full p-[40px] bg-white rounded-[24px] gap-8`}
+    >
+      <div className="flex w-full justify-between">
+        <div className="flex w-30 h-[50px] pl-4 pr-4 pt-[14px] pb-[14px] justify-center items-center rounded-[16px] border border-[#E5E7EB] cursor-pointer">
+          <p className="text-gray-800 text-lg font-bold font-['SUIT'] leading-normal">
+            월 평균
+          </p>
         </div>
+        <DownIcon data={data} tableHeader={ANNUAL_HEADER} />
       </div>
-      <SummaryComponent />
-      <div
-        ref={chartRef}
-        className={`flex ${activeTab === '매각통계' && 'flex-row gap-10'} w-full h-[600px]`}
-      >
-        <ChartComponent activeTab={activeTab} />
+      <div className="flex flex-col w-full h-full">
+        <TableHeader tableHeader={ANNUAL_HEADER} />
+        <AnnualTableBody data={data} />
       </div>
-      {activeTab === '매각통계' && (
-        <>
-          <div className="flex w-full justify-between">
-            <div className="flex w-30 h-[50px] pl-4 pr-4 pt-[14px] pb-[14px] justify-center items-center rounded-[16px] border border-[#E5E7EB] cursor-pointer">
-              <p className="text-gray-800 text-lg font-bold font-['SUIT'] leading-normal">
-                월 평균
-              </p>
-            </div>
-            <DownIcon data={data} tableHeader={ANNUAL_HEADER} />
-          </div>
-          <div className="flex flex-col w-full h-full">
-            <TableHeader tableHeader={ANNUAL_HEADER} />
-            <AnnualTableBody data={data} />
-          </div>
-        </>
-      )}
     </div>
   )
 }

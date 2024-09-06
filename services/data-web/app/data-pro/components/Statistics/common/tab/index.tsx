@@ -1,17 +1,19 @@
 import { TabMenu } from '@/app/data-pro/constants/Tab'
 import { Dispatch, SetStateAction } from 'react'
-import Print from './Print'
+import Pdf from './Pdf'
 
 interface TabComponentProps {
   activeTab: string
   setActiveTab: Dispatch<SetStateAction<string>>
   handleScroll: (id: string) => void
+  sendImage: () => void
 }
 
 export default function TabComponent({
   activeTab,
   setActiveTab,
   handleScroll,
+  sendImage,
 }: TabComponentProps) {
   return (
     <div className="flex w-full h-[45px] justify-center items-center flex-row">
@@ -38,7 +40,7 @@ export default function TabComponent({
         </div>
       ))}
       <div className="flex justify-end w-[10%] h-full">
-        <Print />
+        <Pdf sendImage={sendImage} />
       </div>
     </div>
   )

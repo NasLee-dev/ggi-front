@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import TableBody from './T.body'
 import TableHeader from './T.header'
-import { RealHeader, SoldHeader } from '@/app/data-pro/constants/Table'
+import { REAL_HEADER, SOLD_HEADER } from '@/app/data-pro/constants/Table'
 
 interface TableListProps {
   activeTab: string
@@ -20,9 +20,9 @@ export default function TableList({ activeTab }: TableListProps) {
     }),
   )
   return (
-    <div className="flex flex-col w-full h-[200px] mt-[20px]">
+    <div className="flex flex-col w-[100%] h-[200px] mt-[20px]">
       <TableHeader
-        tableHeader={activeTab === '매각통계' ? SoldHeader : RealHeader}
+        tableHeader={activeTab === '매각통계' ? SOLD_HEADER : REAL_HEADER}
       />
       <TableBody data={dummy} />
     </div>

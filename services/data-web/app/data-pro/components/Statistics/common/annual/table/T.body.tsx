@@ -4,9 +4,9 @@ interface IAnnualTableBodyProps {
 
 export default function AnnualTableBody({ data }: IAnnualTableBodyProps) {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full">
       {data.map((item, index) => (
-        <div key={index} className="flex flex-row w-full h-full">
+        <div key={index} className="flex flex-row w-full h-full ">
           {Object.values(item).map((value, subIndex) => (
             <div
               key={subIndex}

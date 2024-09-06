@@ -1,6 +1,12 @@
-export default function RepresentComponent() {
+interface RepresentProps {
+  isPdfContent: boolean
+}
+
+export default function RepresentComponent({ isPdfContent }: RepresentProps) {
   return (
-    <div className="flex flex-row w-[1714px] p-10 h-[176px] bg-white gap-[12px] rounded-[24px] border border-[#E5E7EB]">
+    <div
+      className={`flex flex-row w-[1714px] p-10 h-[176px] bg-white gap-[12px] rounded-[24px] ${!isPdfContent && 'border border-[#E5E7EB]'}`}
+    >
       <div className="flex flex-col w-[200px] h-full gap-[12px]">
         <div className="flex justify-start w-full h-full">
           <p className="text-gray-800 text-xl font-bold font-['SUIT'] leading-7">

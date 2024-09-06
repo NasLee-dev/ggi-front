@@ -19,7 +19,10 @@ export default function AreaDetailContainer() {
   const isMobile = size.width < 1080
 
   return (
-    <div className="w-full mb-5 pb-5 ggi:border-b-[6px] ggi:border-[#F1F2F6]">
+    <div
+      id="pdf-zone"
+      className="w-full mb-5 pb-5 ggi:border-b-[6px] ggi:border-[#F1F2F6]"
+    >
       <ContentBox>
         <div className="w-full flex justify-between items-center mb-8 ggi:flex-col ggi:items-start ggi:mb-5 ggi:px-4">
           <div>

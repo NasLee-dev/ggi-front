@@ -1,113 +1,137 @@
-export const SoldHeader = {
+export const SOLD_HEADER = {
   title: '매각통계',
   header: [
     {
       title: '구분',
-      width: '204.7px',
+      key: 'division',
+      width: 210,
     },
     {
       title: '용도',
-      width: '204.7px',
+      key: 'usage',
+      width: 210,
     },
     {
       title: '감정가 총액(원)',
-      width: '204.7px',
+      key: 'appraisalTotal',
+      width: 210,
     },
     {
       title: '매각가 총액(원)',
-      width: '204.7px',
+      key: 'saleTotal',
+      width: 210,
     },
     {
       title: '매각가율',
-      width: '204.7px',
+      key: 'salePriceRate',
+      width: 210,
     },
     {
       title: '진행건수',
-      width: '204.7px',
+      key: 'progressCount',
+      width: 210,
     },
     {
       title: '매각건수',
-      width: '204.7px',
+      key: 'saleCount',
+      width: 210,
     },
     {
       title: '매각율',
-      width: '204.7px',
+      key: 'saleRate',
+      width: 210,
     },
   ],
 }
 
-export const RealHeader = {
+export const REAL_HEADER = {
   title: '실거래통계',
   header: [
     {
       title: '구분',
-      width: '204.7px',
+      key: 'division',
+      width: 210,
     },
     {
       title: '용도',
-      width: '204.7px',
+      key: 'usage',
+      width: 210,
     },
     {
       title: '평균 평당가(만원)',
-      width: '204.7px',
+      key: 'avgPrice',
+      width: 210,
     },
     {
       title: '최저 평당가(만원)',
-      width: '204.7px',
+      key: 'minPrice',
+      width: 210,
     },
     {
       title: '최고 평당가(만원)',
-      width: '204.7px',
+      key: 'maxPrice',
+      width: 210,
     },
     {
       title: '평균 거래면적(㎡)',
-      width: '204.7px',
+      key: 'avgArea',
+      width: 210,
     },
     {
       title: '거래량',
-      width: '204.7px',
+      key: 'dealCount',
+      width: 210,
     },
     {
       title: '매각율',
-      width: '204.7px',
+      key: 'saleRate',
+      width: 210,
     },
   ],
 }
 
-export const AnnualHeader = {
+export const ANNUAL_HEADER = {
   title: '연간데이터',
   header: [
     {
       title: '기준연월',
-      width: '204.7px',
+      key: 'date',
+      width: 210,
     },
     {
       title: '감정가 총액(원)',
-      width: '204.7px',
+      key: 'appraisalTotal',
+      width: 210,
     },
     {
       title: '매각가 총액(원)',
-      width: '204.7px',
+      key: 'saleTotal',
+      width: 210,
     },
     {
       title: '매각가율(%)',
-      width: '204.7px',
+      key: 'salePriceRate',
+      width: 210,
     },
     {
       title: '진행건수(건)',
-      width: '204.7px',
+      key: 'progressCount',
+      width: 210,
     },
     {
       title: '매각건수(건)',
-      width: '204.7px',
+      key: 'saleCount',
+      width: 210,
     },
     {
       title: '평균응찰수',
-      width: '204.7px',
+      key: 'avgBidCount',
+      width: 210,
     },
     {
       title: '매각율(%)',
-      width: '204.7px',
+      key: 'saleRate',
+      width: 210,
     },
   ],
 }

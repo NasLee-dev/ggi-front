@@ -17,9 +17,11 @@ export default function RootLayout({
     <ReactQueryClientProvider>
       <html lang="en">
         <head>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="https://web.ggi.co.kr/GGILogo.ico" />
         </head>
         <body className="custom-scrollbar noselect ">
+          <div id="portal-root" />
           <Header />
           <div>
             <Sidebar />

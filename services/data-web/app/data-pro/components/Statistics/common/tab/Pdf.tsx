@@ -1,34 +1,27 @@
-import { excelDownload } from '@/app/shared/utils/excelDownload'
-import '../../../../../styles/icon.css'
-import { Header } from '@/app/data-pro/models/Table'
-import { excelTitle } from '@/app/shared/utils/excelTitle'
+import { useModalContext } from '@/app/data-pro/context/useModalContext'
+import '../../../../styles/icon.css'
+import SelectPdf from '../../pdf/SelectPdf'
 
-export default function DownIcon({
-  data,
-  tableHeader,
-}: {
-  data: any[]
-  tableHeader: Header
-}) {
+export default function Pdf({ sendImage }: { sendImage: () => void }) {
+  const { open } = useModalContext()
   return (
     <div
-      className="download-container flex flex-row gap-1 w-30 h-[50px] pl-3 pr-3 pt-2 pb-2 justify-center items-center rounded-[16px] border border-[#E5E7EB] cursor-pointer"
+      className="print-container flex flex-row gap-1 w-[120px] px-3 py-2 border border-gray-100 justify-center items-center h-full self-stretch bg-white  rounded-full cursor-pointer"
       onClick={() => {
-        excelDownload({
-          data,
-          fileName: excelTitle('경매통계(연간)'),
-          headers: tableHeader.header,
-          conditions: {
-            location: `서울특별시 용산구 청파동`,
-            period: `2023.07 ~ 2024.06`,
-            usage: `아파트`,
+        open({
+          title: '다운로드 받을 항목을 선택하세요(PDF)',
+          onButtonClick: () => {
+            sendImage()
           },
+          width: 600,
+          height: 430,
+          buttonLabel: '선택완료',
+          children: <SelectPdf />,
         })
-        // sendImage()
       }}
     >
       <p className="text-gray-500 text-base font-bold font-['SUIT'] leading-snug">
-        EXCEL
+        PDF
       </p>
       <svg
         xmlns="http://www.w3.org/2000/svg"

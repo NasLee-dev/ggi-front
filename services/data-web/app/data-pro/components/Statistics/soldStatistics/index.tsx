@@ -11,7 +11,7 @@ export default function SoldComponent({
   activeTab,
 }: SoldComponentProps) {
   return (
-    <div>
+    <div className="flex w-full">
       <TableComponent searchCondition={searchCondition} activeTab={activeTab} />
     </div>
   )
